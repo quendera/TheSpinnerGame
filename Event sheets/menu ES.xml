@@ -11,7 +11,9 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="6363714755384442" type="SelectedLevel" />
-                <action id="-9" name="Destroy" sid="8004587193219628" type="Game" />
+                <action id="-9" name="Destroy" sid="7269652194697548" type="SliderGrowthSpeed" />
+                <action id="-9" name="Destroy" sid="4859916544373086" type="SliderRotateSpeed" />
+                <action id="-9" name="Destroy" sid="8004587193219628" type="Button2" />
                 <action id="-9" name="Destroy" sid="8698607517091848" type="TextBox" />
                 <action id="-9" name="Destroy" sid="1780681377828461" type="ArrayOut" />
                 <action id="-9" name="Destroy" sid="7808637850130622" type="b3" />
@@ -47,30 +49,6 @@
                     <param id="0" name="Variable">RotateSpeed</param>
                     <param id="1" name="Value">0.4</param>
                 </action>
-                <action id="-9" name="Set value" sid="9814440019825036" type="System">
-                    <param id="0" name="Variable">BankTimeout</param>
-                    <param id="1" name="Value">0.4</param>
-                </action>
-                <action id="-9" name="Set value" sid="8291796820603667" type="System">
-                    <param id="0" name="Variable">CashinTimeout</param>
-                    <param id="1" name="Value">0.4</param>
-                </action>
-                <action id="-9" name="Set value" sid="3214026169174606" type="System">
-                    <param id="0" name="Variable">DecayRate</param>
-                    <param id="1" name="Value">10</param>
-                </action>
-                <action id="-9" name="Set value" sid="219435801465701" type="System">
-                    <param id="0" name="Variable">DecayMenu</param>
-                    <param id="1" name="Value">300</param>
-                </action>
-                <action id="-9" name="Set value" sid="8227256774605608" type="System">
-                    <param id="0" name="Variable">ArrivalCushion</param>
-                    <param id="1" name="Value">0.6</param>
-                </action>
-                <action id="-9" name="Set value" sid="8528828331495952" type="System">
-                    <param id="0" name="Variable">DepartureCushion</param>
-                    <param id="1" name="Value">0.4</param>
-                </action>
                 <action id="7" name="Set CSS style" sid="845868633795294" type="TextBox">
                     <param id="0" name="Property name">&quot;font-size&quot;</param>
                     <param id="1" name="Value">&quot;150%&quot;</param>
@@ -79,23 +57,29 @@
                     <param id="0" name="Text">&quot;&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="9940579497779587" type="Instructions">
-                    <param id="0" name="Text">&quot;SELECT THE LEVEL, ENTER YOUR NAME AND PRESS 1 TO START.&quot;</param>
-                </action>
-                <action id="0" name="Set text" sid="4254676036209983" type="Version">
-                    <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
+                    <param id="0" name="Text">&quot;SELECT THE LEVEL YOU WISH TO PLAY AND ENTER YOUR NAME.&quot;</param>
                 </action>
                 <action id="1" name="Get item" sid="8455384883565543" type="LocalStorage">
                     <param id="0" name="Key">&quot;Name&quot;</param>
                 </action>
+                <action id="-3" name="Create object" sid="3986691912599772" type="System">
+                    <param id="0" name="Object to create">Button2</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">1100</param>
+                    <param id="3" name="Y">850</param>
+                </action>
                 <action id="-3" name="Create object" sid="1572893501847743" type="System">
                     <param id="0" name="Object to create">TextBox</param>
                     <param id="1" name="Layer">1</param>
-                    <param id="2" name="X">800</param>
+                    <param id="2" name="X">700</param>
                     <param id="3" name="Y">850</param>
                 </action>
                 <action id="-9" name="Set value" sid="2503364074768471" type="System">
                     <param id="0" name="Variable">Gamepad</param>
                     <param id="1" name="Value">0</param>
+                </action>
+                <action id="3" name="Set enabled" sid="5443520539994763" type="Button2">
+                    <param id="0" name="Mode">0</param>
                 </action>
                 <action id="-9" name="Set value" sid="9887936060338712" type="System">
                     <param id="0" name="Variable">Device</param>
@@ -150,30 +134,35 @@
                     <param id="2" name="X">1248</param>
                     <param id="3" name="Y">640</param>
                 </action>
-                <action id="10" name="Request fullscreen" sid="2659056333348967" type="Browser">
-                    <param id="0" name="Mode">0</param>
+                <action id="-3" name="Create object" sid="9661048217396596" type="System">
+                    <param id="0" name="Object to create">SliderGrowthSpeed</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">1530</param>
+                    <param id="3" name="Y">900</param>
                 </action>
-            </actions>
-        </event-block>
-        <event-block sid="442497125970995">
-            <conditions>
-                <condition id="13" name="Gamepads are supported" sid="4103144434484186" type="Gamepad" />
-            </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="8354996611094162" type="System">
-                    <param id="0" name="Variable">Gamepad</param>
-                    <param id="1" name="Value">1</param>
+                <action id="-3" name="Create object" sid="71898442888253" type="System">
+                    <param id="0" name="Object to create">GrowSpeedText</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">1500</param>
+                    <param id="3" name="Y">850</param>
                 </action>
-            </actions>
-        </event-block>
-        <event-block sid="5066946409960469">
-            <conditions>
-                <condition id="4" name="Has gamepads" sid="3750829068685711" type="Gamepad" />
-            </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="3545238878348061" type="System">
-                    <param id="0" name="Variable">Gamepad</param>
-                    <param id="1" name="Value">2</param>
+                <action id="0" name="Set text" sid="8651546523848939" type="GrowSpeedText">
+                    <param id="0" name="Text">&quot;Grow Speed: &quot; &amp; GrowSpeed</param>
+                </action>
+                <action id="-3" name="Create object" sid="8702032480698029" type="System">
+                    <param id="0" name="Object to create">SliderRotateSpeed</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">1530</param>
+                    <param id="3" name="Y">700</param>
+                </action>
+                <action id="-3" name="Create object" sid="2825213724129116" type="System">
+                    <param id="0" name="Object to create">SpinSpeed</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">1500</param>
+                    <param id="3" name="Y">650</param>
+                </action>
+                <action id="0" name="Set text" sid="2324825330265524" type="SpinSpeed">
+                    <param id="0" name="Text">&quot;Rotation Speed: &quot; &amp; RotateSpeed</param>
                 </action>
             </actions>
         </event-block>
@@ -359,11 +348,39 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="8803132114568266">
+            <conditions>
+                <condition id="2" name="On changed" sid="7609890634433714" type="SliderGrowthSpeed" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4944133818590854" type="System">
+                    <param id="0" name="Variable">GrowSpeed</param>
+                    <param id="1" name="Value">SliderGrowthSpeed.Value</param>
+                </action>
+                <action id="0" name="Set text" sid="683389613517768" type="GrowSpeedText">
+                    <param id="0" name="Text">&quot;Grow Speed: &quot; &amp; GrowSpeed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7190718394648257">
+            <conditions>
+                <condition id="2" name="On changed" sid="6006592620146976" type="SliderRotateSpeed" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="2712493605909089" type="System">
+                    <param id="0" name="Variable">RotateSpeed</param>
+                    <param id="1" name="Value">SliderRotateSpeed.Value</param>
+                </action>
+                <action id="0" name="Set text" sid="6167800735349224" type="SpinSpeed">
+                    <param id="0" name="Text">&quot;Rotation Speed: &quot; &amp; RotateSpeed</param>
+                </action>
+            </actions>
+        </event-block>
         <event-block sid="6722429832157528">
             <conditions>
-                <condition id="7" name="On button released" sid="3056564149339489" type="Gamepad">
+                <condition id="12" name="On button index released" sid="3056564149339489" type="Gamepad">
                     <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Button">9</param>
+                    <param id="1" name="Button index">7</param>
                 </condition>
                 <condition id="-14" name="Compare variable" sid="8297852495415798" type="System">
                     <param id="0" name="Variable">Vertices</param>
@@ -382,9 +399,7 @@
         </event-block>
         <event-block sid="8892486385533281">
             <conditions>
-                <condition id="3" name="On key released" sid="7854003259549725" type="Keyboard">
-                    <param id="0" name="Key">49 (1)</param>
-                </condition>
+                <condition id="0" name="On clicked" sid="7854003259549725" type="Button2" />
                 <condition id="-14" name="Compare variable" sid="8057749060787376" type="System">
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Comparison">5</param>
@@ -397,32 +412,6 @@
                 </action>
                 <action id="-2" name="Go to layout" sid="9951913708914998" type="System">
                     <param id="0" name="Layout">game layout</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="9877882126073127">
-            <conditions>
-                <condition id="7" name="On button released" sid="1472039292600254" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Button">8</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="6" name="Stop" sid="1089707940274551" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
-                <action id="-2" name="Go to layout" sid="8373469207782352" type="System">
-                    <param id="0" name="Layout">Calibration</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="8698148544989021">
-            <conditions>
-                <condition id="0" name="On clicked" sid="6605317165980681" type="ButtonSettings" />
-            </conditions>
-            <actions>
-                <action id="-2" name="Go to layout" sid="1939129153393992" type="System">
-                    <param id="0" name="Layout">settings</param>
                 </action>
             </actions>
         </event-block>
@@ -500,12 +489,56 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="5" name="Set CSS style" sid="5975077321211643" type="Game">
+                <action id="5" name="Set CSS style" sid="5975077321211643" type="Button2">
                     <param id="0" name="Property name">&quot;font-size&quot;</param>
                     <param id="1" name="Value">&quot;150%&quot;</param>
                 </action>
-                <action id="3" name="Set enabled" sid="2609930257206846" type="Game">
+                <action id="3" name="Set enabled" sid="2609930257206846" type="Button2">
                     <param id="0" name="Mode">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8998388949276832">
+            <conditions>
+                <condition id="13" name="Gamepads are supported" sid="7438155582246076" type="Gamepad" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1510100954633352" type="System">
+                    <param id="0" name="Variable">Gamepad</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7686514256338859">
+            <conditions>
+                <condition id="4" name="Has gamepads" sid="3699172491883282" type="Gamepad" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6468861344932104" type="System">
+                    <param id="0" name="Variable">Gamepad</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block disabled="1" sid="6921932865629911">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="2546061002064543" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1985975144486823" type="System">
+                    <param id="0" name="Variable">Gamepad</param>
+                    <param id="1" name="Value">Gamepad.LastButton(0)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="670585129804309">
+            <conditions>
+                <condition id="1" name="On selection changed" sid="6848875402809407" type="List" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5430782621145199" type="System">
+                    <param id="0" name="Variable">GAMEPADNR</param>
+                    <param id="1" name="Value">List.SelectedText</param>
                 </action>
             </actions>
         </event-block>
