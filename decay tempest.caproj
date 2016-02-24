@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>decay tempest</name>
+    <name>controller spinner</name>
     <description>wip</description>
-    <version>2</version>
+    <version>2.5</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
@@ -465,6 +465,433 @@
                 </animation-folder>
             </object-type>
         </object-folder>
+        <object-folder name="Sliders">
+            <object-type name="BankTimeoutSlider" sid="23949880727728">
+                <plugin id="sliderbar" />
+            </object-type>
+            <object-type name="CashinTimeoutSlider" sid="5443920362613997">
+                <plugin id="sliderbar" />
+            </object-type>
+            <object-type name="SliderGrowthSpeed" sid="6268038697563149">
+                <plugin id="sliderbar" />
+            </object-type>
+            <object-type name="SliderRotateSpeed" sid="7439479622420208">
+                <plugin id="sliderbar" />
+            </object-type>
+            <object-type name="SliderDecayRate" sid="9936458295857544">
+                <plugin id="sliderbar" />
+            </object-type>
+            <object-type name="SliderDecayStart" sid="1496592674250237">
+                <plugin id="sliderbar" />
+            </object-type>
+        </object-folder>
+        <object-folder name="Buffer Sprites">
+            <object-type name="ArrowD" sid="1679290378470927">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="780790946460238" speed="5">
+                        <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
+                            <collision-poly>
+                                <point x="0.993869" y="0.774324" />
+                                <point x="0.444817" y="0.96504" />
+                                <point x="0" y="0.500114" />
+                                <point x="0" y="0.265369" />
+                                <point x="0.444817" y="0.00735635" />
+                                <point x="0.993869" y="0.221341" />
+                                <point x="0.993869" y="0.500114" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowD2" sid="4790512513727306">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5426670716530472" speed="5">
+                        <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
+                            <collision-poly>
+                                <point x="0.993869" y="0.774324" />
+                                <point x="0.444817" y="0.96504" />
+                                <point x="0" y="0.500114" />
+                                <point x="0" y="0.265369" />
+                                <point x="0.444817" y="0.00735635" />
+                                <point x="0.993869" y="0.221341" />
+                                <point x="0.993869" y="0.500114" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowD3" sid="9079132589483921">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5642927566840428" speed="5">
+                        <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
+                            <collision-poly>
+                                <point x="0.993869" y="0.774324" />
+                                <point x="0.444817" y="0.96504" />
+                                <point x="0" y="0.500114" />
+                                <point x="0" y="0.265369" />
+                                <point x="0.444817" y="0.00735635" />
+                                <point x="0.993869" y="0.221341" />
+                                <point x="0.993869" y="0.500114" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowD4" sid="4606589003047685">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1240787516355478" speed="5">
+                        <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
+                            <collision-poly>
+                                <point x="0.993869" y="0.774324" />
+                                <point x="0.444817" y="0.96504" />
+                                <point x="0" y="0.500114" />
+                                <point x="0" y="0.265369" />
+                                <point x="0.444817" y="0.00735635" />
+                                <point x="0.993869" y="0.221341" />
+                                <point x="0.993869" y="0.500114" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowL" sid="1956908171041946">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6633850562475083" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.995025" y="0.5" />
+                                <point x="0.880597" y="0.925" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.661692" y="0.319444" />
+                                <point x="0.00248802" y="0.5" />
+                                <point x="0.069652" y="0.0194444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.818408" y="0.144444" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowL4" sid="3685632362539487">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6576445457946147" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.995025" y="0.5" />
+                                <point x="0.880597" y="0.925" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.661692" y="0.319444" />
+                                <point x="0.00248802" y="0.5" />
+                                <point x="0.069652" y="0.0194444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.818408" y="0.144444" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowR2" sid="6870645421547433">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1543474693765302" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.181592" y="0.144444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.930348" y="0.0194444" />
+                                <point x="0.997512" y="0.5" />
+                                <point x="0.338308" y="0.319444" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.119403" y="0.925" />
+                                <point x="0.00497512" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowR3" sid="9856040128295904">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1428775024041627" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.181592" y="0.144444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.930348" y="0.0194444" />
+                                <point x="0.997512" y="0.5" />
+                                <point x="0.338308" y="0.319444" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.119403" y="0.925" />
+                                <point x="0.00497512" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowR4" sid="9916088333864223">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9974376257493003" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.181592" y="0.144444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.930348" y="0.0194444" />
+                                <point x="0.997512" y="0.5" />
+                                <point x="0.338308" y="0.319444" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.119403" y="0.925" />
+                                <point x="0.00497512" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowU4" sid="7601675849216189">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3213055526211673" speed="5">
+                        <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
+                            <collision-poly>
+                                <point x="0.00299401" y="0.2244" />
+                                <point x="0.526946" y="0.032797" />
+                                <point x="1" y="0.499885" />
+                                <point x="1" y="0.735722" />
+                                <point x="0.526946" y="0.994935" />
+                                <point x="0.00299401" y="0.779955" />
+                                <point x="0.00299401" y="0.499885" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowU2" sid="5128397099488988">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7277068668811484" speed="5">
+                        <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
+                            <collision-poly>
+                                <point x="0.00299401" y="0.2244" />
+                                <point x="0.526946" y="0.032797" />
+                                <point x="1" y="0.499885" />
+                                <point x="1" y="0.735722" />
+                                <point x="0.526946" y="0.994935" />
+                                <point x="0.00299401" y="0.779955" />
+                                <point x="0.00299401" y="0.499885" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowU" sid="3060262400598667">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3016479133217442" speed="5">
+                        <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
+                            <collision-poly>
+                                <point x="0.00299401" y="0.2244" />
+                                <point x="0.526946" y="0.032797" />
+                                <point x="1" y="0.499885" />
+                                <point x="1" y="0.735722" />
+                                <point x="0.526946" y="0.994935" />
+                                <point x="0.00299401" y="0.779955" />
+                                <point x="0.00299401" y="0.499885" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowL3" sid="3648158828100313">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5706934285583984" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.995025" y="0.5" />
+                                <point x="0.880597" y="0.925" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.661692" y="0.319444" />
+                                <point x="0.00248802" y="0.5" />
+                                <point x="0.069652" y="0.0194444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.818408" y="0.144444" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowR" sid="3681354724535501">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="244190313331734" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.181592" y="0.144444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.930348" y="0.0194444" />
+                                <point x="0.997512" y="0.5" />
+                                <point x="0.338308" y="0.319444" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.119403" y="0.925" />
+                                <point x="0.00497512" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowL2" sid="887708025840157">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7258558524412722" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                            <collision-poly>
+                                <point x="0.995025" y="0.5" />
+                                <point x="0.880597" y="0.925" />
+                                <point x="0.5" y="0.263889" />
+                                <point x="0.661692" y="0.319444" />
+                                <point x="0.00248802" y="0.5" />
+                                <point x="0.069652" y="0.0194444" />
+                                <point x="0.5" y="0.0166667" />
+                                <point x="0.818408" y="0.144444" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ArrowU3" sid="8401303488518139">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4926140111408934" speed="5">
+                        <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
+                            <collision-poly>
+                                <point x="0.00299401" y="0.2244" />
+                                <point x="0.526946" y="0.032797" />
+                                <point x="1" y="0.499885" />
+                                <point x="1" y="0.735722" />
+                                <point x="0.526946" y="0.994935" />
+                                <point x="0.00299401" y="0.779955" />
+                                <point x="0.00299401" y="0.499885" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Textboxes">
+            <object-type name="CashTimeoutText" sid="3616751182309678">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="DecayRate" sid="510395917895242">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="DecayTimeout" sid="6934582084840937">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="DecayStartingValue" sid="6099409973321159">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Feedback" sid="8629769677912897">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="BankTimeoutText" sid="566413047664219">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="GamepadNumber" sid="9042828397216208">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Instructions" sid="487035502771215">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="GrowSpeedText" sid="661686227775485">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Locked" sid="3327194919151352">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="LivesText" sid="4488542341235085">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="levels" sid="8468162838883562">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Points" sid="7726499853601641">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Pop" sid="4847246249968965">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Score" sid="2196677238145554">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="SelectedLevel" sid="67607162075742">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="SpinSpeed" sid="2486744109550164">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Text" sid="1952410607809389">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Text2" sid="3460854266352984">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Version" sid="4812639879092108">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="YourHighScore" sid="5168593097893814">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="TextBox" sid="7559929107351091">
+                <plugin id="TextBox" />
+            </object-type>
+        </object-folder>
+        <object-folder name="System">
+            <object-type name="AJAX" sid="176610706732099">
+                <plugin id="AJAX" />
+            </object-type>
+            <object-type name="Audio" sid="9541066816692243">
+                <plugin id="Audio" />
+            </object-type>
+            <object-type name="Keyboard" sid="2575931861939836">
+                <plugin id="Keyboard" />
+            </object-type>
+            <object-type name="Gamepad" sid="8234680684535929">
+                <plugin id="gamepad" />
+            </object-type>
+            <object-type name="CSVToArray" sid="1879519664582604">
+                <plugin id="Rex_CSV2Array" />
+            </object-type>
+            <object-type global="1" name="Date" sid="3324207350386055">
+                <plugin id="Rex_Date" />
+                <instance-variables>
+                    <instance-variable name="Variable1" sid="504317818491916" type="number" />
+                </instance-variables>
+            </object-type>
+            <object-type name="Mandrill" sid="6190623839993524">
+                <plugin id="social" />
+            </object-type>
+            <object-type name="LocalStorage" sid="5270260468167194">
+                <plugin id="LocalStorage" />
+            </object-type>
+            <object-type name="NWjs" sid="4928616499819893">
+                <plugin id="NodeWebkit" />
+            </object-type>
+            <object-type name="ScirraArcade" sid="6435721104376942">
+                <plugin id="ScirraArcadeV4" />
+            </object-type>
+            <object-type name="Function" sid="8356106543827538">
+                <plugin id="Function" />
+            </object-type>
+            <object-type name="Browser" sid="2612061261343523">
+                <plugin id="Browser" />
+            </object-type>
+        </object-folder>
         <object-type name="Circle" sid="600832520585249">
             <plugin id="Sprite" />
             <behaviors>
@@ -522,9 +949,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Keyboard" sid="2575931861939836">
-            <plugin id="Keyboard" />
-        </object-type>
         <object-type name="Particles" sid="7001924085446789">
             <plugin id="Particles" />
             <behaviors>
@@ -553,12 +977,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Pop" sid="4847246249968965">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Audio" sid="9541066816692243">
-            <plugin id="Audio" />
-        </object-type>
         <object-type name="Title" sid="2144441429751857">
             <plugin id="Sprite" />
             <behaviors>
@@ -577,9 +995,6 @@
                     </frame>
                 </animation>
             </animation-folder>
-        </object-type>
-        <object-type name="AJAX" sid="176610706732099">
-            <plugin id="AJAX" />
         </object-type>
         <object-type global="1" name="ArrayIn" sid="5068430766284203">
             <plugin id="Arr" />
@@ -605,24 +1020,12 @@
                 </behavior-type>
             </behaviors>
         </object-type>
-        <object-type global="1" name="Date" sid="3324207350386055">
-            <plugin id="Rex_Date" />
-            <instance-variables>
-                <instance-variable name="Variable1" sid="504317818491916" type="number" />
-            </instance-variables>
-        </object-type>
-        <object-type name="CSVToArray" sid="1879519664582604">
-            <plugin id="Rex_CSV2Array" />
-        </object-type>
         <object-type global="1" name="ArrayOut" sid="3624283059172194">
             <plugin id="Arr" />
             <instance-variables>
                 <instance-variable name="XCount" sid="5421836013174798" type="number" />
                 <instance-variable name="ReleaseCount" sid="1826596737166806" type="number" />
             </instance-variables>
-        </object-type>
-        <object-type name="TextBox" sid="7559929107351091">
-            <plugin id="TextBox" />
         </object-type>
         <object-type name="List" sid="9776795524200703">
             <plugin id="List" />
@@ -636,12 +1039,6 @@
             </behaviors>
             <texture />
         </object-type>
-        <object-type name="Mandrill" sid="6190623839993524">
-            <plugin id="social" />
-        </object-type>
-        <object-type name="LocalStorage" sid="5270260468167194">
-            <plugin id="LocalStorage" />
-        </object-type>
         <object-type name="Sprite2" sid="175429468726173">
             <plugin id="Sprite" />
             <animation-folder>
@@ -649,9 +1046,6 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\6.png" />
                 </animation>
             </animation-folder>
-        </object-type>
-        <object-type name="levels" sid="8468162838883562">
-            <plugin id="Text" />
         </object-type>
         <object-type name="Particles3" sid="8693101196973467">
             <plugin id="Particles" />
@@ -675,12 +1069,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Text" sid="1952410607809389">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="ScirraArcade" sid="6435721104376942">
-            <plugin id="ScirraArcadeV4" />
-        </object-type>
         <object-type global="1" name="ArrayBuffer" sid="3387988547366903">
             <plugin id="Arr" />
             <instance-variables>
@@ -690,29 +1078,8 @@
                 <instance-variable name="Slot4" sid="7779278134902455" type="number" />
             </instance-variables>
         </object-type>
-        <object-type name="Browser" sid="2612061261343523">
-            <plugin id="Browser" />
-        </object-type>
-        <object-type name="NWjs" sid="4928616499819893">
-            <plugin id="NodeWebkit" />
-        </object-type>
-        <object-type name="SliderGrowthSpeed" sid="6268038697563149">
-            <plugin id="sliderbar" />
-        </object-type>
         <object-type name="Button2" sid="5520075123124259">
             <plugin id="Button" />
-        </object-type>
-        <object-type name="SliderRotateSpeed" sid="7439479622420208">
-            <plugin id="sliderbar" />
-        </object-type>
-        <object-type name="GrowSpeedText" sid="661686227775485">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="SpinSpeed" sid="2486744109550164">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Instructions" sid="487035502771215">
-            <plugin id="Text" />
         </object-type>
         <object-type name="Centre" sid="4204355764543278">
             <plugin id="Sprite" />
@@ -730,354 +1097,59 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="SelectedLevel" sid="67607162075742">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Function" sid="8356106543827538">
-            <plugin id="Function" />
-        </object-type>
-        <object-type name="Text2" sid="3460854266352984">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="LivesText" sid="4488542341235085">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="DecayTimeout" sid="6934582084840937">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Score" sid="2196677238145554">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="YourHighScore" sid="5168593097893814">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Locked" sid="3327194919151352">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Feedback" sid="8629769677912897">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Points" sid="7726499853601641">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="SliderRotateSpeed2" sid="2723697506576654">
-            <plugin id="sliderbar" />
-        </object-type>
-        <object-type name="SpinSpeed2" sid="5843878515553804">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Gamepad" sid="8234680684535929">
-            <plugin id="gamepad" />
-        </object-type>
         <object-type name="SpriteFont" sid="1293359318495832">
             <plugin id="Spritefont2" />
             <texture />
         </object-type>
-        <object-type name="ArrowR" sid="3681354724535501">
+        <object-type name="Sprite3" sid="6095412396013323">
             <plugin id="Sprite" />
             <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="244190313331734" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2141362809468596" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="CalibrationTarget" sid="5326869457281554">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="VertexCount" sid="9378734845028053" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Move" sid="7868792320722098">
+                    <behavior id="lunarray_LiteTween" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3987449533966225" speed="5">
+                    <frame duration="1" hotspotX="0.501577" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\targetbw.png">
                         <collision-poly>
-                            <point x="0.181592" y="0.144444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.930348" y="0.0194444" />
-                            <point x="0.997512" y="0.5" />
-                            <point x="0.338308" y="0.319444" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.119403" y="0.925" />
-                            <point x="0.00497512" y="0.5" />
+                            <point x="0.148265" y="0.147799" />
+                            <point x="0.498423" y="0" />
+                            <point x="0.851735" y="0.147799" />
+                            <point x="1" y="0.5" />
+                            <point x="0.851735" y="0.852201" />
+                            <point x="0.498423" y="1" />
+                            <point x="0.148265" y="0.852201" />
+                            <point x="0" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="ArrowL" sid="1956908171041946">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6633850562475083" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
-                        <collision-poly>
-                            <point x="0.995025" y="0.5" />
-                            <point x="0.880597" y="0.925" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.661692" y="0.319444" />
-                            <point x="0.00248802" y="0.5" />
-                            <point x="0.069652" y="0.0194444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.818408" y="0.144444" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowU" sid="3060262400598667">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3016479133217442" speed="5">
-                    <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
-                        <collision-poly>
-                            <point x="0.00299401" y="0.2244" />
-                            <point x="0.526946" y="0.032797" />
-                            <point x="1" y="0.499885" />
-                            <point x="1" y="0.735722" />
-                            <point x="0.526946" y="0.994935" />
-                            <point x="0.00299401" y="0.779955" />
-                            <point x="0.00299401" y="0.499885" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowD" sid="1679290378470927">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="780790946460238" speed="5">
-                    <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
-                        <collision-poly>
-                            <point x="0.993869" y="0.774324" />
-                            <point x="0.444817" y="0.96504" />
-                            <point x="0" y="0.500114" />
-                            <point x="0" y="0.265369" />
-                            <point x="0.444817" y="0.00735635" />
-                            <point x="0.993869" y="0.221341" />
-                            <point x="0.993869" y="0.500114" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowD2" sid="4790512513727306">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5426670716530472" speed="5">
-                    <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
-                        <collision-poly>
-                            <point x="0.993869" y="0.774324" />
-                            <point x="0.444817" y="0.96504" />
-                            <point x="0" y="0.500114" />
-                            <point x="0" y="0.265369" />
-                            <point x="0.444817" y="0.00735635" />
-                            <point x="0.993869" y="0.221341" />
-                            <point x="0.993869" y="0.500114" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowL2" sid="887708025840157">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7258558524412722" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
-                        <collision-poly>
-                            <point x="0.995025" y="0.5" />
-                            <point x="0.880597" y="0.925" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.661692" y="0.319444" />
-                            <point x="0.00248802" y="0.5" />
-                            <point x="0.069652" y="0.0194444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.818408" y="0.144444" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowR2" sid="6870645421547433">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1543474693765302" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
-                        <collision-poly>
-                            <point x="0.181592" y="0.144444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.930348" y="0.0194444" />
-                            <point x="0.997512" y="0.5" />
-                            <point x="0.338308" y="0.319444" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.119403" y="0.925" />
-                            <point x="0.00497512" y="0.5" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowU2" sid="5128397099488988">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7277068668811484" speed="5">
-                    <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
-                        <collision-poly>
-                            <point x="0.00299401" y="0.2244" />
-                            <point x="0.526946" y="0.032797" />
-                            <point x="1" y="0.499885" />
-                            <point x="1" y="0.735722" />
-                            <point x="0.526946" y="0.994935" />
-                            <point x="0.00299401" y="0.779955" />
-                            <point x="0.00299401" y="0.499885" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowD3" sid="9079132589483921">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5642927566840428" speed="5">
-                    <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
-                        <collision-poly>
-                            <point x="0.993869" y="0.774324" />
-                            <point x="0.444817" y="0.96504" />
-                            <point x="0" y="0.500114" />
-                            <point x="0" y="0.265369" />
-                            <point x="0.444817" y="0.00735635" />
-                            <point x="0.993869" y="0.221341" />
-                            <point x="0.993869" y="0.500114" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowD4" sid="4606589003047685">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1240787516355478" speed="5">
-                    <frame duration="1" hotspotX="0.443114" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\bluearrow.png">
-                        <collision-poly>
-                            <point x="0.993869" y="0.774324" />
-                            <point x="0.444817" y="0.96504" />
-                            <point x="0" y="0.500114" />
-                            <point x="0" y="0.265369" />
-                            <point x="0.444817" y="0.00735635" />
-                            <point x="0.993869" y="0.221341" />
-                            <point x="0.993869" y="0.500114" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowL3" sid="3648158828100313">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5706934285583984" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
-                        <collision-poly>
-                            <point x="0.995025" y="0.5" />
-                            <point x="0.880597" y="0.925" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.661692" y="0.319444" />
-                            <point x="0.00248802" y="0.5" />
-                            <point x="0.069652" y="0.0194444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.818408" y="0.144444" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowL4" sid="3685632362539487">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6576445457946147" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
-                        <collision-poly>
-                            <point x="0.995025" y="0.5" />
-                            <point x="0.880597" y="0.925" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.661692" y="0.319444" />
-                            <point x="0.00248802" y="0.5" />
-                            <point x="0.069652" y="0.0194444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.818408" y="0.144444" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowR3" sid="9856040128295904">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1428775024041627" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
-                        <collision-poly>
-                            <point x="0.181592" y="0.144444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.930348" y="0.0194444" />
-                            <point x="0.997512" y="0.5" />
-                            <point x="0.338308" y="0.319444" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.119403" y="0.925" />
-                            <point x="0.00497512" y="0.5" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowR4" sid="9916088333864223">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9974376257493003" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\44592-curved-arrow.png">
-                        <collision-poly>
-                            <point x="0.181592" y="0.144444" />
-                            <point x="0.5" y="0.0166667" />
-                            <point x="0.930348" y="0.0194444" />
-                            <point x="0.997512" y="0.5" />
-                            <point x="0.338308" y="0.319444" />
-                            <point x="0.5" y="0.263889" />
-                            <point x="0.119403" y="0.925" />
-                            <point x="0.00497512" y="0.5" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowU3" sid="8401303488518139">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4926140111408934" speed="5">
-                    <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
-                        <collision-poly>
-                            <point x="0.00299401" y="0.2244" />
-                            <point x="0.526946" y="0.032797" />
-                            <point x="1" y="0.499885" />
-                            <point x="1" y="0.735722" />
-                            <point x="0.526946" y="0.994935" />
-                            <point x="0.00299401" y="0.779955" />
-                            <point x="0.00299401" y="0.499885" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="ArrowU4" sid="7601675849216189">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3213055526211673" speed="5">
-                    <frame duration="1" hotspotX="0.52994" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\greenarrow.png">
-                        <collision-poly>
-                            <point x="0.00299401" y="0.2244" />
-                            <point x="0.526946" y="0.032797" />
-                            <point x="1" y="0.499885" />
-                            <point x="1" y="0.735722" />
-                            <point x="0.526946" y="0.994935" />
-                            <point x="0.00299401" y="0.779955" />
-                            <point x="0.00299401" y="0.499885" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
+        <object-type name="Button" sid="7493783610571424">
+            <plugin id="Button" />
         </object-type>
     </object-folder>
     <families />
     <layout-folder>
         <layout>menu layout.xml</layout>
         <layout>game layout.xml</layout>
+        <layout>Calibration.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>game ES.xml</event-sheet>
         <event-sheet>menu ES.xml</event-sheet>
+        <event-sheet>Calibration.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="11">

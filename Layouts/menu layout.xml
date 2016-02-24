@@ -305,8 +305,8 @@
                 <instance type="SliderGrowthSpeed" uid="74">
                     <properties>
                         <value>5</value>
-                        <minimum>10</minimum>
-                        <maximum>1</maximum>
+                        <minimum>1</minimum>
+                        <maximum>10</maximum>
                         <step>0.1</step>
                         <tooltip>Growth Speed</tooltip>
                         <initial-visibility>Visible</initial-visibility>
@@ -353,8 +353,8 @@
                 <instance type="SliderRotateSpeed" uid="28">
                     <properties>
                         <value>0.4</value>
-                        <minimum>1</minimum>
-                        <maximum>0.1</maximum>
+                        <minimum>0.1</minimum>
+                        <maximum>1</maximum>
                         <step>0.1</step>
                         <tooltip></tooltip>
                         <initial-visibility>Visible</initial-visibility>
@@ -655,57 +655,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="SliderRotateSpeed2" uid="72">
-                    <properties>
-                        <value>0.4</value>
-                        <minimum>0.1</minimum>
-                        <maximum>0.8</maximum>
-                        <step>0.1</step>
-                        <tooltip></tooltip>
-                        <initial-visibility>Visible</initial-visibility>
-                        <enabled>Yes</enabled>
-                        <id-optional></id-optional>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>2080</x>
-                        <y>736</y>
-                        <z>0</z>
-                        <width>215</width>
-                        <height>30</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                    </world>
-                </instance>
-                <instance type="SpinSpeed2" uid="75">
-                    <properties>
-                        <text>Text</text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-40,400,0</font>
-                        <color>255,255,255</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                        <line-height>0</line-height>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>2048</x>
-                        <y>672</y>
-                        <z>0</z>
-                        <width>411</width>
-                        <height>58</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="List" uid="92">
                     <properties>
                         <items>0;1;2;3;</items>
@@ -720,14 +669,296 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1654</x>
-                        <y>128</y>
+                        <x>2368</x>
+                        <y>-128</y>
                         <z>0</z>
                         <width>160</width>
                         <height>32</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="Version" uid="93">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-48,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>32</x>
+                        <y>32</y>
+                        <z>0</z>
+                        <width>448</width>
+                        <height>192</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="GamepadNumber" uid="94">
+                    <properties>
+                        <text>Gamepad Number:</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-40,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2088</x>
+                        <y>-256</y>
+                        <z>0</z>
+                        <width>416</width>
+                        <height>192</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="BankTimeoutSlider" uid="95">
+                    <properties>
+                        <value>0.4</value>
+                        <minimum>0</minimum>
+                        <maximum>2</maximum>
+                        <step>0.1</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2720</x>
+                        <y>32</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>25</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="CashinTimeoutSlider" uid="96">
+                    <properties>
+                        <value>0.4</value>
+                        <minimum>0</minimum>
+                        <maximum>2</maximum>
+                        <step>0.1</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2848</x>
+                        <y>288</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>25</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="BankTimeoutText" uid="97">
+                    <properties>
+                        <text>Bank Timeout</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-40,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2720</x>
+                        <y>-96</y>
+                        <z>0</z>
+                        <width>608</width>
+                        <height>320</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="CashTimeoutText" uid="98">
+                    <properties>
+                        <text>Cash-in Timeout</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-40,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2976</x>
+                        <y>160</y>
+                        <z>0</z>
+                        <width>992</width>
+                        <height>896</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Button" uid="100">
+                    <properties>
+                        <type>Button</type>
+                        <text>Calibration</text>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <auto-font-size>Yes</auto-font-size>
+                        <id-optional></id-optional>
+                        <checked>No</checked>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>128</x>
+                        <y>640</y>
+                        <z>0</z>
+                        <width>288</width>
+                        <height>96</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="SliderDecayStart" uid="101">
+                    <properties>
+                        <value>300</value>
+                        <minimum>100</minimum>
+                        <maximum>500</maximum>
+                        <step>25</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2274</x>
+                        <y>1398</y>
+                        <z>0</z>
+                        <width>224</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="SliderDecayRate" uid="102">
+                    <properties>
+                        <value>10</value>
+                        <minimum>0</minimum>
+                        <maximum>50</maximum>
+                        <step>1</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>35</x>
+                        <y>1321</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>25</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="DecayRate" uid="103">
+                    <properties>
+                        <text>Decay Rate</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-40,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>99</x>
+                        <y>1237</y>
+                        <z>0</z>
+                        <width>672</width>
+                        <height>544</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="DecayStartingValue" uid="104">
+                    <properties>
+                        <text>Decay Starting Value</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-40,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2378</x>
+                        <y>1299</y>
+                        <z>0</z>
+                        <width>558</width>
+                        <height>472</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
             </instances>

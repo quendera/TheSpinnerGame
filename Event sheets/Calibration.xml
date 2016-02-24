@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Calibration</name>
     <events>
-        <variable constant="0" name="WaitTime" sid="311550008323883" static="0" type="number">5</variable>
+        <variable constant="0" name="WaitTime" sid="311550008323883" static="0" type="number">4</variable>
         <event-block sid="9151027134140232">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="4226184403160172" type="System" />
@@ -20,8 +20,8 @@
                     <param id="0" name="Visibility">0</param>
                 </action>
                 <action id="-7" name="Set size" sid="2532509075014416" type="CalibrationTarget">
-                    <param id="0" name="Width">120</param>
-                    <param id="1" name="Height">120</param>
+                    <param id="0" name="Width">150</param>
+                    <param id="1" name="Height">150</param>
                 </action>
                 <action id="-9" name="Destroy" sid="5600257865782979" type="DecayTimeout" />
                 <action id="-3" name="Create object" sid="3402162675540984" type="System">
@@ -70,7 +70,7 @@
                     <param id="0" name="Visibility">1</param>
                 </action>
                 <action id="-16" name="Wait" sid="5003049476619363" type="System">
-                    <param id="0" name="Seconds">WaitTime</param>
+                    <param id="0" name="Seconds">4</param>
                 </action>
                 <action id="0" name="Call function" sid="387707385179771" type="Function">
                     <param id="0" name="Name">&quot;Point1&quot;</param>
@@ -85,6 +85,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="4287466538694907" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="3010715460429467" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -118,6 +121,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="8160420382687149" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="261393945001441" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -151,6 +157,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="5380863318068659" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="2082401427906123" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -184,6 +193,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="570859013123356" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="5192240155703165" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -217,6 +229,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="591899095911282" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="4252443397017601" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -250,6 +265,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="6022584339569826" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="7554779421585193" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -283,6 +301,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="719263728242563" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="5269944833787011" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -316,6 +337,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="6790975910867734" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="302233907750788" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -349,6 +373,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="8655461879164452" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="5079016434548772" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -382,6 +409,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="1017280484279592" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="956733204335507" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -415,6 +445,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="2027335565070742" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="9002992998100551" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -448,6 +481,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="1963523255874771" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="614628747769628" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
@@ -481,6 +517,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action behavior="Move" id="1" name="Set duration" sid="8192914083880588" type="CalibrationTarget">
+                    <param id="0" name="Duration">2</param>
+                </action>
                 <action behavior="Move" id="4" name="Set tweened property" sid="7024380142915276" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
