@@ -9,6 +9,9 @@
                 <condition id="-2" name="On start of layout" sid="4226184403160172" type="System" />
             </conditions>
             <actions>
+                <action id="0" name="Start timer" sid="8057322491632351" type="Date">
+                    <param id="0" name="Name">&quot;C&quot;</param>
+                </action>
                 <action id="0" name="Clear" sid="5335744622042061" type="Array" />
                 <action id="-10" name="Set value" sid="2676380353459329" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
@@ -70,9 +73,6 @@
                 </action>
                 <action id="-15" name="Set visible" sid="5527489821393812" type="DecayTimeout">
                     <param id="0" name="Visibility">0</param>
-                </action>
-                <action id="0" name="Start timer" sid="8057322491632351" type="Date">
-                    <param id="0" name="Name">&quot;C&quot;</param>
                 </action>
                 <action id="-15" name="Set visible" sid="7053079568776123" type="CalibrationTarget">
                     <param id="0" name="Visibility">1</param>
@@ -893,7 +893,7 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
                 </action>
-                <action id="12" name="Download" sid="6920161700799779" type="Array">
+                <action disabled="1" id="12" name="Download" sid="6920161700799779" type="Array">
                     <param id="0" name="Filename">&quot;Calibration.txt&quot;</param>
                 </action>
                 <action id="-9" name="Destroy" sid="8937848051790132" type="Date" />

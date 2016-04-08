@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>lab</name>
+    <name>spinner</name>
     <description>wip</description>
-    <version>3.0.1</version>
+    <version>3.0.3</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
@@ -177,7 +177,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1429972150281914" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\stars6.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\sponge6.png">
                             <collision-poly>
                                 <point x="0.183526" y="0.15875" />
                                 <point x="0.5" y="0" />
@@ -201,7 +201,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2807216574537869" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\stars4.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\sponge4.png">
                             <collision-poly>
                                 <point x="0.5" y="0" />
                                 <point x="1" y="0.5" />
@@ -243,7 +243,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9478191403673153" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\brown4.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\universe4.png">
                             <collision-poly>
                                 <point x="0.5" y="0" />
                                 <point x="1" y="0.5" />
@@ -266,7 +266,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9538739875582149" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\brown6.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\universe6.png">
                             <collision-poly>
                                 <point x="0.183526" y="0.15875" />
                                 <point x="0.5" y="0" />
@@ -290,7 +290,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="559611359357404" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\CCU\Games\Assets\i4g.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\sponge4.png">
                             <collision-poly>
                                 <point x="0.5" y="0" />
                                 <point x="1" y="0.5" />
@@ -310,7 +310,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7805802998852887" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\CCU\Games\Assets\i6g.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\sponge6.png">
                             <collision-poly>
                                 <point x="0.182081" y="0.1575" />
                                 <point x="0.5" y="0" />
@@ -334,7 +334,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5013598498323941" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\CCU\Games\Assets\i4g.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\sponge4transparent.png">
                             <collision-poly>
                                 <point x="0.5" y="0" />
                                 <point x="1" y="0.5" />
@@ -354,7 +354,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7736546458932163" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\CCU\Games\Assets\i6g.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\sponge6translucent.png">
                             <collision-poly>
                                 <point x="0.182081" y="0.1575" />
                                 <point x="0.5" y="0" />
@@ -548,8 +548,13 @@
             <object-type name="Text" sid="1952410607809389">
                 <plugin id="Text" />
             </object-type>
-            <object-type name="Text2" sid="3460854266352984">
+            <object-type name="Continue" sid="3460854266352984">
                 <plugin id="Text" />
+                <behaviors>
+                    <behavior-type name="Flash" sid="2537370517715496">
+                        <behavior id="Flash" />
+                    </behavior-type>
+                </behaviors>
             </object-type>
             <object-type name="Version" sid="4812639879092108">
                 <plugin id="Text" />
@@ -650,7 +655,7 @@
             </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5603710269847947" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\meteor.png">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\watermeteor.png">
                         <collision-poly>
                             <point x="0" y="0.146667" />
                             <point x="0.5" y="0" />
@@ -679,6 +684,9 @@
             <behaviors>
                 <behavior-type name="Pin" sid="1756561793054629">
                     <behavior id="Pin" />
+                </behavior-type>
+                <behavior-type name="Flash" sid="4430524208440239">
+                    <behavior id="Flash" />
                 </behavior-type>
             </behaviors>
             <animation-folder>
@@ -759,7 +767,7 @@
             <plugin id="Sprite" />
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6683498408657087" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\6.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\5.png" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -931,6 +939,36 @@
         <object-type name="tutorialbutton" sid="4971032485248511">
             <plugin id="Button" />
         </object-type>
+        <object-type name="TutorialText" sid="8459219683006627">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Text2" sid="5878734437474884">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Square" sid="7601705131979632">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Flash" sid="1466563767462775">
+                    <behavior id="Flash" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8831476631335351" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Desktop\PS3_Square.png">
+                        <collision-poly>
+                            <point x="0.208333" y="0.208333" />
+                            <point x="0.5" y="0.0833333" />
+                            <point x="0.791667" y="0.208333" />
+                            <point x="0.916667" y="0.5" />
+                            <point x="0.791667" y="0.791667" />
+                            <point x="0.5" y="0.916667" />
+                            <point x="0.208333" y="0.791667" />
+                            <point x="0.0833333" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
@@ -1028,6 +1066,9 @@
             <file name="joint81.txt" />
             <file name="joint82.txt" />
             <file name="joint83.txt" />
+            <file name="tutorial.txt" />
+            <file name="4Vert1.txt" />
+            <file name="6Vert1.txt" />
         </file-folder>
     </files-folder>
 </c2project>

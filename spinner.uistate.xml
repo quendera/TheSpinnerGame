@@ -33,7 +33,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="object-folder/polygon sprites/" />
         <folder expanded="0" path="object-folder/Sliders/" />
         <folder expanded="0" path="object-folder/Textboxes/" />
-        <folder expanded="1" path="object-folder/System/" />
+        <folder expanded="0" path="object-folder/System/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="1" path="file-folder/" />
@@ -71,5 +71,6 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Ok/" />
         <folder expanded="1" path="animation-folder/NoOk/" />
         <folder expanded="1" path="animation-folder/TriangleBack/" />
+        <folder expanded="1" path="animation-folder/Square/" />
     </folders-expanded>
 </c2uistate>

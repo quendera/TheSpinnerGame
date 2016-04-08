@@ -14,14 +14,7 @@
                 <action id="-9" name="Destroy" sid="8004587193219628" type="Game" />
                 <action id="-9" name="Destroy" sid="8698607517091848" type="TextBox" />
                 <action id="-9" name="Destroy" sid="1780681377828461" type="ArrayOut" />
-                <action id="-9" name="Destroy" sid="7808637850130622" type="b3" />
-                <action id="-9" name="Destroy" sid="7650306435882748" type="b4" />
-                <action id="-9" name="Destroy" sid="3129926304497637" type="b6" />
-                <action id="-9" name="Destroy" sid="6746630699809563" type="b8" />
-                <action id="-9" name="Destroy" sid="9425849158868568" type="b6locked" />
-                <action id="-9" name="Destroy" sid="325942073823767" type="b8locked" />
                 <action id="-9" name="Destroy" sid="2720059253073605" type="Locked" />
-                <action id="-9" name="Destroy" sid="9042484609365951" type="b8" />
                 <action id="33" name="Stop all" sid="723979965530756" type="Audio" />
                 <action id="-3" name="Create object" sid="889927861610184" type="System">
                     <param id="0" name="Object to create">ArrayOut</param>
@@ -34,10 +27,6 @@
                     <param id="2" name="Loop">1</param>
                     <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;menu&quot;</param>
-                </action>
-                <action behavior="LiteTween" id="10" name="Start" sid="7101842544462356" type="b3">
-                    <param id="0" name="Start Mode">2</param>
-                    <param id="1" name="Force use current">0</param>
                 </action>
                 <action id="-9" name="Set value" sid="8613559693552196" type="System">
                     <param id="0" name="Variable">GrowSpeed</param>
@@ -79,7 +68,7 @@
                     <param id="0" name="Text">&quot;&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="9940579497779587" type="Instructions">
-                    <param id="0" name="Text">&quot;ENTER YOUR NAME AND PRESS 1 TO START or ENTER SETTINGS TO CUSTOMISE YOUR EXPERIENCE&quot;</param>
+                    <param id="0" name="Text">&quot;&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="4254676036209983" type="Version">
                     <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
@@ -113,45 +102,20 @@
                 <action id="5" name="Check item exists" sid="166367756614172" type="LocalStorage">
                     <param id="0" name="Key">&quot;8cleared&quot;</param>
                 </action>
-                <action id="-3" name="Create object" sid="7068573767859794" type="System">
+                <action disabled="1" id="-3" name="Create object" sid="7068573767859794" type="System">
                     <param id="0" name="Object to create">SelectedLevel</param>
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="X">975</param>
                     <param id="3" name="Y">800</param>
                 </action>
-                <action id="0" name="Set text" sid="4399857657010841" type="SelectedLevel">
-                    <param id="0" name="Text">&quot;Select a Level by pressing a polygon!&quot;</param>
+                <action disabled="1" id="0" name="Set text" sid="4399857657010841" type="SelectedLevel">
+                    <param id="0" name="Text">&quot;Please fill in this small questionaire&quot;</param>
                 </action>
                 <action id="-3" name="Create object" sid="6839292314667167" type="System">
                     <param id="0" name="Object to create">YourHighScore</param>
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="X">975</param>
                     <param id="3" name="Y">1000</param>
-                </action>
-                <action id="-3" name="Create object" sid="3674495865352422" type="System">
-                    <param id="0" name="Object to create">b4</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="X">704</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-                <action behavior="LiteTween" id="10" name="Start" sid="7832574947847389" type="b4">
-                    <param id="0" name="Start Mode">2</param>
-                    <param id="1" name="Force use current">0</param>
-                </action>
-                <action id="-3" name="Create object" sid="8154856982935204" type="System">
-                    <param id="0" name="Object to create">b6</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="X">981</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-                <action id="-3" name="Create object" sid="8410095293213437" type="System">
-                    <param id="0" name="Object to create">b8</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="X">1248</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-                <action id="10" name="Request fullscreen" sid="2659056333348967" type="Browser">
-                    <param id="0" name="Mode">0</param>
                 </action>
             </actions>
         </event-block>
@@ -174,200 +138,6 @@
                 <action id="-9" name="Set value" sid="3545238878348061" type="System">
                     <param id="0" name="Variable">Gamepad</param>
                     <param id="1" name="Value">2</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block disabled="1" sid="2706125564221064">
-            <conditions>
-                <condition id="9" name="On item exists" sid="5289789440026079" type="LocalStorage">
-                    <param id="0" name="Key">&quot;4cleared&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="5193938950234159" type="System">
-                    <param id="0" name="Object to create">b6</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="X">981</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block disabled="1" sid="6371849285961779">
-            <conditions>
-                <condition id="9" name="On item exists" sid="5924740180344324" type="LocalStorage">
-                    <param id="0" name="Key">&quot;6cleared&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="5259762239864795" type="System">
-                    <param id="0" name="Object to create">b8</param>
-                    <param id="1" name="Layer">0</param>
-                    <param id="2" name="X">1248</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block disabled="1" sid="8949147481899754">
-            <conditions>
-                <condition id="10" name="On item missing" sid="8473319519811869" type="LocalStorage">
-                    <param id="0" name="Key">&quot;4cleared&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="2760673654641809" type="System">
-                    <param id="0" name="Object to create">b6locked</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">981</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-                <action id="-3" name="Create object" sid="5235322980137877" type="System">
-                    <param id="0" name="Object to create">Locked</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">981</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block disabled="1" sid="4334235389608019">
-            <conditions>
-                <condition id="10" name="On item missing" sid="9868986798262963" type="LocalStorage">
-                    <param id="0" name="Key">&quot;6cleared&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="2854693058624387" type="System">
-                    <param id="0" name="Object to create">b8locked</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">1248</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-                <action id="-3" name="Create object" sid="7693783782050539" type="System">
-                    <param id="0" name="Object to create">Locked</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">1248</param>
-                    <param id="3" name="Y">640</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="483024463990703">
-            <conditions>
-                <condition id="-18" name="On created" sid="9915261605235384" type="b6" />
-            </conditions>
-            <actions>
-                <action behavior="LiteTween" id="10" name="Start" sid="3259958185492258" type="b6">
-                    <param id="0" name="Start Mode">2</param>
-                    <param id="1" name="Force use current">0</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="823910776758535">
-            <conditions>
-                <condition id="-18" name="On created" sid="9061981976993922" type="b8" />
-            </conditions>
-            <actions>
-                <action behavior="LiteTween" id="10" name="Start" sid="6527875511878292" type="b8">
-                    <param id="0" name="Start Mode">2</param>
-                    <param id="1" name="Force use current">0</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block disabled="1" sid="8774602289377159">
-            <conditions>
-                <condition id="17" name="On tap object" sid="5582624934563851" type="Touch">
-                    <param id="0" name="Object">b3</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="429711162320514" type="System">
-                    <param id="0" name="Variable">Vertices</param>
-                    <param id="1" name="Value">3</param>
-                </action>
-                <action id="0" name="Play" sid="2595645224682186" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-                <action id="0" name="Set text" sid="3165138234197269" type="SelectedLevel">
-                    <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="3132355524327387">
-            <conditions>
-                <condition id="17" name="On tap object" sid="2882745429824723" type="Touch">
-                    <param id="0" name="Object">b4</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="4780635257995182" type="System">
-                    <param id="0" name="Variable">Vertices</param>
-                    <param id="1" name="Value">4</param>
-                </action>
-                <action id="0" name="Play" sid="6480731522061624" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-                <action id="0" name="Set text" sid="5422748470261384" type="SelectedLevel">
-                    <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
-                </action>
-                <action id="-9" name="Set value" sid="5326303911350941" type="System">
-                    <param id="0" name="Variable">inputtag</param>
-                    <param id="1" name="Value">43</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="9734979382076131">
-            <conditions>
-                <condition id="17" name="On tap object" sid="5036610081449681" type="Touch">
-                    <param id="0" name="Object">b6</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="8988721109032335" type="System">
-                    <param id="0" name="Variable">Vertices</param>
-                    <param id="1" name="Value">6</param>
-                </action>
-                <action id="0" name="Play" sid="6530566270001919" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-                <action id="0" name="Set text" sid="9339201267230725" type="SelectedLevel">
-                    <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
-                </action>
-                <action id="-9" name="Set value" sid="6469381087700779" type="System">
-                    <param id="0" name="Variable">inputtag</param>
-                    <param id="1" name="Value">63</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="3480461441024548">
-            <conditions>
-                <condition id="17" name="On tap object" sid="908752544393145" type="Touch">
-                    <param id="0" name="Object">b8</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="7457414236648111" type="System">
-                    <param id="0" name="Variable">Vertices</param>
-                    <param id="1" name="Value">8</param>
-                </action>
-                <action id="0" name="Play" sid="4704117256821664" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-                <action id="0" name="Set text" sid="5104191525737273" type="SelectedLevel">
-                    <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
-                </action>
-                <action id="-9" name="Set value" sid="6733909612688476" type="System">
-                    <param id="0" name="Variable">inputtag</param>
-                    <param id="1" name="Value">83</param>
                 </action>
             </actions>
         </event-block>
@@ -424,7 +194,7 @@
                     <param id="0" name="Tag">&quot;menu&quot;</param>
                 </action>
                 <action id="-2" name="Go to layout" sid="8373469207782352" type="System">
-                    <param id="0" name="Layout">Calibration</param>
+                    <param id="0" name="Layout">settings</param>
                 </action>
             </actions>
         </event-block>
@@ -518,6 +288,17 @@
                 </action>
                 <action id="3" name="Set enabled" sid="2609930257206846" type="Game">
                     <param id="0" name="Mode">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7218367097392633">
+            <conditions>
+                <condition id="-3" name="On end of layout" sid="9105629561626133" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set item" sid="7859986080175893" type="LocalStorage">
+                    <param id="0" name="Key">&quot;Name&quot;</param>
+                    <param id="1" name="Value">Name</param>
                 </action>
             </actions>
         </event-block>

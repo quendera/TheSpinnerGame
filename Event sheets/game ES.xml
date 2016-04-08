@@ -3,12 +3,14 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>game ES</name>
     <events>
+        <variable constant="0" name="Sound" sid="1799224369730348" static="0" type="number">0</variable>
         <variable constant="0" name="InputFile" sid="8439793730091524" static="0" type="text"></variable>
-        <variable constant="0" name="Array" sid="3146732013373107" static="0" type="number">0</variable>
+        <variable constant="0" name="ArrayVar" sid="3146732013373107" static="0" type="number">0</variable>
         <variable constant="0" name="Bank" sid="8425479342281176" static="0" type="number">0</variable>
         <variable constant="0" name="ScoreMultiplier" sid="8157274277484364" static="0" type="number">0</variable>
-        <variable constant="0" name="WaveInSeconds" sid="4665340492081656" static="0" type="number">0</variable>
+        <variable constant="0" name="Wave2" sid="2474625739250737" static="0" type="number">0</variable>
         <variable constant="0" name="CurrentTarget" sid="3524887013073726" static="0" type="number">0</variable>
+        <variable constant="0" name="WAveBeginArrayOut" sid="2803479350994875" static="0" type="number">0</variable>
         <variable constant="0" name="IsSwiping" sid="6986200308196045" static="0" type="number">0</variable>
         <variable constant="0" name="inputtag" sid="4936953176516843" static="0" type="number">0</variable>
         <variable constant="0" name="LivesPlus1" sid="7137186137910001" static="0" type="number">0</variable>
@@ -27,6 +29,7 @@
         <variable constant="0" name="KeyCode" sid="8602646543059054" static="0" type="number">0</variable>
         <variable constant="0" name="SpawnTime" sid="5419693737867305" static="0" type="number">0</variable>
         <variable constant="0" name="NextWave" sid="9835766702126065" static="0" type="number">0</variable>
+        <variable constant="0" name="ArrayHeight" sid="60385590097171" static="0" type="number">0</variable>
         <variable constant="0" name="DecayRateMenu" sid="3159733732923691" static="0" type="number">0</variable>
         <variable constant="0" name="DecayRate" sid="5222719999120359" static="0" type="number">0</variable>
         <variable constant="0" name="ScaleFactor" sid="5146200472250834" static="0" type="number">0</variable>
@@ -88,7 +91,7 @@
                                 <action id="-9" name="Destroy" sid="5731783222723488" type="ArrayBuffer" />
                                 <action id="-9" name="Destroy" sid="5103599614045508" type="TriangleBack" />
                                 <action id="-9" name="Set value" sid="4491227558919464" type="System">
-                                    <param id="0" name="Variable">Array</param>
+                                    <param id="0" name="Variable">ArrayVar</param>
                                     <param id="1" name="Value">999</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="7681892389069199" type="System">
@@ -171,6 +174,10 @@
                                     <param id="0" name="Variable">Wave</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-9" name="Set value" sid="6288035488766189" type="System">
+                                    <param id="0" name="Variable">Wave2</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
                                 <action id="-9" name="Set value" sid="8612229758651592" type="System">
                                     <param id="0" name="Variable">NextWave</param>
                                     <param id="1" name="Value">1</param>
@@ -198,6 +205,14 @@
                                 <action id="-9" name="Set value" sid="4117647156900631" type="System">
                                     <param id="0" name="Variable">vertexcounter</param>
                                     <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="2797479113538493" type="System">
+                                    <param id="0" name="Variable">ArrayHeight</param>
+                                    <param id="1" name="Value">12</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="8328041471489689" type="System">
+                                    <param id="0" name="Variable">WAveBeginArrayOut</param>
+                                    <param id="1" name="Value">1</param>
                                 </action>
                                 <action id="0" name="Play" sid="9493006145775999" type="Audio">
                                     <param id="0" name="Audio file">Lost signal main theme (WIP) (online-audio-converter.com)</param>
@@ -269,15 +284,8 @@
                                     <param id="0" name="Variable">BankDecay</param>
                                     <param id="1" name="Value">Decay</param>
                                 </action>
-                                <action id="-12" name="Set group active" sid="4395750192219064" type="System">
-                                    <param id="0" name="Group name">&quot;Move&quot;</param>
-                                    <param id="1" name="State">1</param>
-                                </action>
                                 <action id="5" name="Check item exists" sid="764651794826546" type="LocalStorage">
                                     <param id="0" name="Key">&quot;highscore&quot;</param>
-                                </action>
-                                <action id="0" name="Start timer" sid="4573177398398128" type="Date">
-                                    <param id="0" name="Name">&quot;t&quot;</param>
                                 </action>
                                 <action id="-12" name="Set group active" sid="1772910681679757" type="System">
                                     <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
@@ -329,165 +337,153 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="6448841152203902">
+                                <event-block sid="5376355901072996">
                                     <conditions>
-                                        <condition id="-14" name="Compare variable" sid="2843176656072422" type="System">
+                                        <condition id="-14" name="Compare variable" sid="111824579560913" type="System">
                                             <param id="0" name="Variable">Vertices</param>
                                             <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">8</param>
+                                            <param id="2" name="Value">4</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Add Vertex" sid="7548936995458496" type="Polygon">
+                                        <action id="0" name="Add Vertex" sid="1862598693470589" type="Polygon">
                                             <param id="0" name="X">0</param>
                                             <param id="1" name="Y">396</param>
                                             <param id="2" name="coordinate-system">0</param>
                                         </action>
-                                        <action id="0" name="Add Vertex" sid="6711413444590037" type="Polygon">
-                                            <param id="0" name="X">278</param>
-                                            <param id="1" name="Y">278</param>
-                                            <param id="2" name="coordinate-system">0</param>
-                                        </action>
-                                        <action id="0" name="Add Vertex" sid="4373951317102497" type="Polygon">
+                                        <action id="0" name="Add Vertex" sid="7678592425660003" type="Polygon">
                                             <param id="0" name="X">396</param>
                                             <param id="1" name="Y">0</param>
                                             <param id="2" name="coordinate-system">0</param>
                                         </action>
-                                        <action id="0" name="Add Vertex" sid="1074430835901093" type="Polygon">
-                                            <param id="0" name="X">278</param>
-                                            <param id="1" name="Y">-278</param>
-                                            <param id="2" name="coordinate-system">0</param>
-                                        </action>
-                                        <action id="0" name="Add Vertex" sid="6302637932598033" type="Polygon">
+                                        <action id="0" name="Add Vertex" sid="3618332431447685" type="Polygon">
                                             <param id="0" name="X">0</param>
                                             <param id="1" name="Y">-396</param>
                                             <param id="2" name="coordinate-system">0</param>
                                         </action>
-                                        <action id="0" name="Add Vertex" sid="3963887200358305" type="Polygon">
-                                            <param id="0" name="X">-278</param>
-                                            <param id="1" name="Y">-278</param>
-                                            <param id="2" name="coordinate-system">0</param>
-                                        </action>
-                                        <action id="0" name="Add Vertex" sid="3528313874907143" type="Polygon">
+                                        <action id="0" name="Add Vertex" sid="8022652947837577" type="Polygon">
                                             <param id="0" name="X">-396</param>
                                             <param id="1" name="Y">0</param>
                                             <param id="2" name="coordinate-system">0</param>
                                         </action>
-                                        <action id="0" name="Add Vertex" sid="9539188691908907" type="Polygon">
-                                            <param id="0" name="X">-278</param>
-                                            <param id="1" name="Y">278</param>
-                                            <param id="2" name="coordinate-system">0</param>
+                                        <action id="1" name="Request project file" sid="2568560700344565" type="AJAX">
+                                            <param id="0" name="Tag">&quot;input&quot;</param>
+                                            <param id="1" name="File">4Vert1.txt</param>
                                         </action>
-                                        <action id="-3" name="Create object" sid="8643447757588097" type="System">
-                                            <param id="0" name="Object to create">g8</param>
+                                        <action disabled="1" id="-3" name="Create object" sid="7179697754943021" type="System">
+                                            <param id="0" name="Object to create">g4</param>
                                             <param id="1" name="Layer">2</param>
                                             <param id="2" name="X">Polygon.CenterX</param>
                                             <param id="3" name="Y">Polygon.CenterY</param>
                                         </action>
-                                        <action id="-3" name="Create object" sid="4977741836577176" type="System">
-                                            <param id="0" name="Object to create">b8</param>
-                                            <param id="1" name="Layer">3</param>
+                                        <action id="-3" name="Create object" sid="3718700851466277" type="System">
+                                            <param id="0" name="Object to create">b4</param>
+                                            <param id="1" name="Layer">2</param>
                                             <param id="2" name="X">Polygon.CenterX</param>
                                             <param id="3" name="Y">Polygon.CenterY</param>
                                         </action>
-                                        <action id="-7" name="Set size" sid="7744905463901904" type="b8">
+                                        <action id="-7" name="Set size" sid="6844165627107331" type="b4">
                                             <param id="0" name="Width">792</param>
                                             <param id="1" name="Height">792</param>
                                         </action>
-                                        <action id="-9" name="Set value" sid="6080308457862219" type="System">
+                                        <action disabled="1" id="-7" name="Set size" sid="4493233304788403" type="g4">
+                                            <param id="0" name="Width">792</param>
+                                            <param id="1" name="Height">792</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="8295694591493649" type="System">
+                                            <param id="0" name="Object to create">i4</param>
+                                            <param id="1" name="Layer">3</param>
+                                            <param id="2" name="X">Polygon.CenterX</param>
+                                            <param id="3" name="Y">Polygon.CenterY</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="1707251669044748" type="System">
+                                            <param id="0" name="Object to create">ig4</param>
+                                            <param id="1" name="Layer">3</param>
+                                            <param id="2" name="X">Polygon.CenterX</param>
+                                            <param id="3" name="Y">Polygon.CenterY</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="8270308184194531" type="System">
                                             <param id="0" name="Variable">maxbank</param>
                                             <param id="1" name="Value">720</param>
                                         </action>
-                                        <action id="-3" name="Create object" sid="586817191887552" type="System">
-                                            <param id="0" name="Object to create">i8</param>
-                                            <param id="1" name="Layer">3</param>
-                                            <param id="2" name="X">Polygon.CenterX</param>
-                                            <param id="3" name="Y">Polygon.CenterY</param>
-                                        </action>
-                                        <action id="-3" name="Create object" sid="5679436871360162" type="System">
-                                            <param id="0" name="Object to create">ig8</param>
-                                            <param id="1" name="Layer">3</param>
-                                            <param id="2" name="X">Polygon.CenterX</param>
-                                            <param id="3" name="Y">Polygon.CenterY</param>
-                                        </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="7217124000837302" type="g8">
+                                        <action behavior="Pin" id="0" name="Pin to object" sid="2323875084956337" type="g4">
                                             <param id="0" name="Pin to">Polygon</param>
                                             <param id="1" name="Mode">0</param>
                                         </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="5831819861639226" type="b8">
+                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" sid="1768999952040448" type="b4">
                                             <param id="0" name="Pin to">Polygon</param>
                                             <param id="1" name="Mode">0</param>
                                         </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="43281268140786" type="i8">
+                                        <action behavior="Pin" id="0" name="Pin to object" sid="4821297962994087" type="i4">
                                             <param id="0" name="Pin to">Polygon</param>
                                             <param id="1" name="Mode">0</param>
                                         </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="1442106544479822" type="ig8">
+                                        <action behavior="Pin" id="0" name="Pin to object" sid="2355346273455416" type="ig4">
                                             <param id="0" name="Pin to">Polygon</param>
                                             <param id="1" name="Mode">0</param>
                                         </action>
-                                        <action id="-7" name="Set size" sid="4192479882472731" type="i8">
+                                        <action id="-7" name="Set size" sid="8551411901118305" type="i4">
                                             <param id="0" name="Width">0</param>
                                             <param id="1" name="Height">0</param>
                                         </action>
-                                        <action id="-7" name="Set size" sid="8707320825827844" type="ig8">
+                                        <action id="-7" name="Set size" sid="1716850574548738" type="ig4">
                                             <param id="0" name="Width">0</param>
                                             <param id="1" name="Height">0</param>
                                         </action>
                                     </actions>
                                     <sub-events>
-                                        <event-block sid="2467053166176172">
+                                        <event-block disabled="1" sid="4210486303312474">
                                             <conditions>
-                                                <condition id="-14" name="Compare variable" sid="2781025043712444" type="System">
+                                                <condition id="-14" name="Compare variable" sid="7800696102114857" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
                                                     <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">81</param>
+                                                    <param id="2" name="Value">41</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="1" name="Request project file" sid="247418063018594" type="AJAX">
+                                                <action id="1" name="Request project file" sid="2511275353741631" type="AJAX">
                                                     <param id="0" name="Tag">&quot;input&quot;</param>
-                                                    <param id="1" name="File">joint81.txt</param>
+                                                    <param id="1" name="File">joint41.txt</param>
                                                 </action>
-                                                <action id="-9" name="Set value" sid="3791400540907097" type="System">
+                                                <action id="-9" name="Set value" sid="2643459348589156" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
                                             </actions>
                                         </event-block>
-                                        <event-block sid="4715606511185465">
+                                        <event-block disabled="1" sid="8000747722536267">
                                             <conditions>
-                                                <condition id="-14" name="Compare variable" sid="2959899137143672" type="System">
+                                                <condition id="-14" name="Compare variable" sid="5146346800626089" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
                                                     <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">82</param>
+                                                    <param id="2" name="Value">42</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="1" name="Request project file" sid="9441961717702858" type="AJAX">
+                                                <action id="1" name="Request project file" sid="5764575539019109" type="AJAX">
                                                     <param id="0" name="Tag">&quot;input&quot;</param>
-                                                    <param id="1" name="File">joint82.txt</param>
+                                                    <param id="1" name="File">joint42.txt</param>
                                                 </action>
-                                                <action id="-9" name="Set value" sid="4288797825440131" type="System">
+                                                <action id="-9" name="Set value" sid="828888254444885" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
                                             </actions>
                                         </event-block>
-                                        <event-block sid="6592144568300458">
+                                        <event-block disabled="1" sid="3838441278022867">
                                             <conditions>
-                                                <condition id="-14" name="Compare variable" sid="7059025011151446" type="System">
+                                                <condition id="-14" name="Compare variable" sid="4486001207482017" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
                                                     <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">83</param>
+                                                    <param id="2" name="Value">43</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="1" name="Request project file" sid="9560428346569742" type="AJAX">
+                                                <action id="1" name="Request project file" sid="8829422280304983" type="AJAX">
                                                     <param id="0" name="Tag">&quot;input&quot;</param>
-                                                    <param id="1" name="File">joint83.txt</param>
+                                                    <param id="1" name="File">joint43.txt</param>
                                                 </action>
-                                                <action id="-9" name="Set value" sid="9220861350778859" type="System">
+                                                <action id="-9" name="Set value" sid="841967674313356" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
@@ -534,7 +530,11 @@
                                             <param id="1" name="Y">200</param>
                                             <param id="2" name="coordinate-system">0</param>
                                         </action>
-                                        <action id="-3" name="Create object" sid="5495548138377119" type="System">
+                                        <action id="1" name="Request project file" sid="8734920189292537" type="AJAX">
+                                            <param id="0" name="Tag">&quot;input&quot;</param>
+                                            <param id="1" name="File">6Vert1.txt</param>
+                                        </action>
+                                        <action disabled="1" id="-3" name="Create object" sid="5495548138377119" type="System">
                                             <param id="0" name="Object to create">g6</param>
                                             <param id="1" name="Layer">2</param>
                                             <param id="2" name="X">Polygon.CenterX</param>
@@ -542,7 +542,7 @@
                                         </action>
                                         <action id="-3" name="Create object" sid="6687850394926209" type="System">
                                             <param id="0" name="Object to create">b6</param>
-                                            <param id="1" name="Layer">3</param>
+                                            <param id="1" name="Layer">2</param>
                                             <param id="2" name="X">Polygon.CenterX</param>
                                             <param id="3" name="Y">Polygon.CenterY</param>
                                         </action>
@@ -570,7 +570,7 @@
                                             <param id="0" name="Pin to">Polygon</param>
                                             <param id="1" name="Mode">0</param>
                                         </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="9621825611533924" type="b6">
+                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" sid="9621825611533924" type="b6">
                                             <param id="0" name="Pin to">Polygon</param>
                                             <param id="1" name="Mode">0</param>
                                         </action>
@@ -592,7 +592,7 @@
                                         </action>
                                     </actions>
                                     <sub-events>
-                                        <event-block sid="2620147330708316">
+                                        <event-block disabled="1" sid="2620147330708316">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="6758513966526406" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
@@ -611,7 +611,7 @@
                                                 </action>
                                             </actions>
                                         </event-block>
-                                        <event-block sid="9988088154263281">
+                                        <event-block disabled="1" sid="9988088154263281">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="4652412837552284" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
@@ -630,7 +630,7 @@
                                                 </action>
                                             </actions>
                                         </event-block>
-                                        <event-block sid="7056432655468979">
+                                        <event-block disabled="1" sid="7056432655468979">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="5207741442919324" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
@@ -644,156 +644,6 @@
                                                     <param id="1" name="File">joint63.txt</param>
                                                 </action>
                                                 <action id="-9" name="Set value" sid="6126740178446246" type="System">
-                                                    <param id="0" name="Variable">inputtag</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
-                                </event-block>
-                                <event-block sid="9623919184157198">
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" sid="2034571595902892" type="System">
-                                            <param id="0" name="Variable">Vertices</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">4</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Add Vertex" sid="8078323323356259" type="Polygon">
-                                            <param id="0" name="X">0</param>
-                                            <param id="1" name="Y">396</param>
-                                            <param id="2" name="coordinate-system">0</param>
-                                        </action>
-                                        <action id="0" name="Add Vertex" sid="442748963767548" type="Polygon">
-                                            <param id="0" name="X">396</param>
-                                            <param id="1" name="Y">0</param>
-                                            <param id="2" name="coordinate-system">0</param>
-                                        </action>
-                                        <action id="0" name="Add Vertex" sid="3345829446888664" type="Polygon">
-                                            <param id="0" name="X">0</param>
-                                            <param id="1" name="Y">-396</param>
-                                            <param id="2" name="coordinate-system">0</param>
-                                        </action>
-                                        <action id="0" name="Add Vertex" sid="4254586706266111" type="Polygon">
-                                            <param id="0" name="X">-396</param>
-                                            <param id="1" name="Y">0</param>
-                                            <param id="2" name="coordinate-system">0</param>
-                                        </action>
-                                        <action id="-3" name="Create object" sid="5320685663468784" type="System">
-                                            <param id="0" name="Object to create">g4</param>
-                                            <param id="1" name="Layer">2</param>
-                                            <param id="2" name="X">Polygon.CenterX</param>
-                                            <param id="3" name="Y">Polygon.CenterY</param>
-                                        </action>
-                                        <action id="-3" name="Create object" sid="9975094069847428" type="System">
-                                            <param id="0" name="Object to create">b4</param>
-                                            <param id="1" name="Layer">3</param>
-                                            <param id="2" name="X">Polygon.CenterX</param>
-                                            <param id="3" name="Y">Polygon.CenterY</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="764423071093467" type="b4">
-                                            <param id="0" name="Width">792</param>
-                                            <param id="1" name="Height">792</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="7913534221809735" type="g4">
-                                            <param id="0" name="Width">792</param>
-                                            <param id="1" name="Height">792</param>
-                                        </action>
-                                        <action id="-3" name="Create object" sid="8993398550140843" type="System">
-                                            <param id="0" name="Object to create">i4</param>
-                                            <param id="1" name="Layer">3</param>
-                                            <param id="2" name="X">Polygon.CenterX</param>
-                                            <param id="3" name="Y">Polygon.CenterY</param>
-                                        </action>
-                                        <action id="-3" name="Create object" sid="6911237597905102" type="System">
-                                            <param id="0" name="Object to create">ig4</param>
-                                            <param id="1" name="Layer">3</param>
-                                            <param id="2" name="X">Polygon.CenterX</param>
-                                            <param id="3" name="Y">Polygon.CenterY</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="4857319293747833" type="System">
-                                            <param id="0" name="Variable">maxbank</param>
-                                            <param id="1" name="Value">720</param>
-                                        </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="3315949655464104" type="g4">
-                                            <param id="0" name="Pin to">Polygon</param>
-                                            <param id="1" name="Mode">0</param>
-                                        </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="8113829624004903" type="b4">
-                                            <param id="0" name="Pin to">Polygon</param>
-                                            <param id="1" name="Mode">0</param>
-                                        </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="4788578501109551" type="i4">
-                                            <param id="0" name="Pin to">Polygon</param>
-                                            <param id="1" name="Mode">0</param>
-                                        </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" sid="6240863667807261" type="ig4">
-                                            <param id="0" name="Pin to">Polygon</param>
-                                            <param id="1" name="Mode">0</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="6497650894017717" type="i4">
-                                            <param id="0" name="Width">0</param>
-                                            <param id="1" name="Height">0</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="993219630384823" type="ig4">
-                                            <param id="0" name="Width">0</param>
-                                            <param id="1" name="Height">0</param>
-                                        </action>
-                                    </actions>
-                                    <sub-events>
-                                        <event-block sid="3204372703739359">
-                                            <conditions>
-                                                <condition id="-14" name="Compare variable" sid="8192186244746679" type="System">
-                                                    <param id="0" name="Variable">inputtag</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">41</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="1" name="Request project file" sid="5674361541454931" type="AJAX">
-                                                    <param id="0" name="Tag">&quot;input&quot;</param>
-                                                    <param id="1" name="File">joint41.txt</param>
-                                                </action>
-                                                <action id="-9" name="Set value" sid="1831616410059824" type="System">
-                                                    <param id="0" name="Variable">inputtag</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <event-block sid="3128446378065022">
-                                            <conditions>
-                                                <condition id="-14" name="Compare variable" sid="9123507952162086" type="System">
-                                                    <param id="0" name="Variable">inputtag</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">42</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="1" name="Request project file" sid="4657272815257682" type="AJAX">
-                                                    <param id="0" name="Tag">&quot;input&quot;</param>
-                                                    <param id="1" name="File">joint42.txt</param>
-                                                </action>
-                                                <action id="-9" name="Set value" sid="3064888624636191" type="System">
-                                                    <param id="0" name="Variable">inputtag</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <event-block sid="2277176405199014">
-                                            <conditions>
-                                                <condition id="-14" name="Compare variable" sid="1167126158993207" type="System">
-                                                    <param id="0" name="Variable">inputtag</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">43</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="1" name="Request project file" sid="9716170228853827" type="AJAX">
-                                                    <param id="0" name="Tag">&quot;input&quot;</param>
-                                                    <param id="1" name="File">joint43.txt</param>
-                                                </action>
-                                                <action id="-9" name="Set value" sid="8729349210945203" type="System">
                                                     <param id="0" name="Variable">inputtag</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
@@ -903,9 +753,9 @@
                             <param id="1" name="Relativity">1</param>
                             <param id="2" name="Value">360/Polygon.VertexCount</param>
                         </action>
-                        <action id="1" name="Set size" sid="6076189643201852" type="ArrayOut">
+                        <action id="1" name="Set size" sid="7406103152926997" type="ArrayOut">
                             <param id="0" name="Width">1+ArrayOut.XCount</param>
-                            <param id="1" name="Height">9</param>
+                            <param id="1" name="Height">ArrayHeight</param>
                             <param id="2" name="Depth">1</param>
                         </action>
                         <action id="4" name="Set at XYZ" sid="6505593320153703" type="ArrayOut">
@@ -949,68 +799,6 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-group description="" sid="5031799030764237" title="Spawn and Reset">
-                    <sub-events>
-                        <event-block sid="3519419607393503">
-                            <conditions>
-                                <condition id="-14" name="Compare variable" sid="4795401286441419" type="System">
-                                    <param id="0" name="Variable">SpawnTime</param>
-                                    <param id="1" name="Comparison">2</param>
-                                    <param id="2" name="Value">WaveTimer</param>
-                                </condition>
-                                <condition id="-14" name="Compare variable" sid="5784170152110773" type="System">
-                                    <param id="0" name="Variable">Wave</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">NextWave</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="9309829009868211" type="System">
-                                    <param id="0" name="Object to create">Target</param>
-                                    <param id="1" name="Layer">3</param>
-                                    <param id="2" name="X">Polygon.CenterX</param>
-                                    <param id="3" name="Y">Polygon.CenterY</param>
-                                </action>
-                                <action behavior="Grow" id="1" name="Set duration" sid="4626939447300776" type="Target">
-                                    <param id="0" name="Duration">GrowSpeed</param>
-                                </action>
-                                <action behavior="Travel" id="1" name="Set duration" sid="9429908626896174" type="Target">
-                                    <param id="0" name="Duration">GrowSpeed</param>
-                                </action>
-                                <action behavior="Travel" id="3" name="Set target" sid="6593705922944403" type="Target">
-                                    <param id="0" name="Target is">0</param>
-                                    <param id="1" name="Relativity">0</param>
-                                    <param id="2" name="Value">Polygon.VertexX(ArrayIn.At(CurrentTarget,1,0))</param>
-                                </action>
-                                <action behavior="Travel" id="3" name="Set target" sid="7544363230069734" type="Target">
-                                    <param id="0" name="Target is">1</param>
-                                    <param id="1" name="Relativity">0</param>
-                                    <param id="2" name="Value">Polygon.VertexY(ArrayIn.At(CurrentTarget,1,0))</param>
-                                </action>
-                                <action behavior="Travel" id="10" name="Start" sid="7705585626952836" type="Target">
-                                    <param id="0" name="Start Mode">0</param>
-                                    <param id="1" name="Force use current">0</param>
-                                </action>
-                                <action behavior="Grow" id="10" name="Start" sid="2676843473647298" type="Target">
-                                    <param id="0" name="Start Mode">0</param>
-                                    <param id="1" name="Force use current">0</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="7658637002503548" type="System">
-                                    <param id="0" name="Variable">NextWave</param>
-                                    <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
-                                </action>
-                                <action id="-10" name="Add to" sid="742381656612793" type="System">
-                                    <param id="0" name="Variable">CurrentTarget</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="481857669325598" type="System">
-                                    <param id="0" name="Variable">SpawnTime</param>
-                                    <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-group>
             </sub-events>
         </event-group>
         <event-group description="" sid="8193913164658087" title="New Wave">
@@ -1024,6 +812,13 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="-12" name="Set group active" sid="8586141800079912" type="System">
+                            <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="3619144954540353" type="System">
+                            <param id="0" name="Seconds">0</param>
+                        </action>
                         <action behavior="Timer" id="0" name="Start timer" sid="7043679434289129" type="Polygon">
                             <param id="0" name="Duration">GrowSpeed+2</param>
                             <param id="1" name="Type">0</param>
@@ -1042,107 +837,165 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-12" name="Set group active" sid="9341909988214204" type="System">
+                        <action id="-12" name="Set group active" sid="6433010448586874" type="System">
                             <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
-                        <action id="-12" name="Set group active" sid="3062418372108047" type="System">
+                        <action id="-12" name="Set group active" sid="2864550434230972" type="System">
                             <param id="0" name="Group name">&quot;Decay&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
-                        <action id="-12" name="Set group active" sid="4974149043065428" type="System">
+                        <action id="-12" name="Set group active" sid="9592873035548543" type="System">
                             <param id="0" name="Group name">&quot;Move&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
-                        <action id="-12" name="Set group active" sid="5965653130411331" type="System">
+                        <action id="-12" name="Set group active" sid="8263367894476936" type="System">
                             <param id="0" name="Group name">&quot;DecayTimeout&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
-                        <action id="-12" name="Set group active" sid="2942476530805189" type="System">
+                        <action id="-12" name="Set group active" sid="7801351866223108" type="System">
                             <param id="0" name="Group name">&quot;Wave Timer&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
-                        <action id="-12" name="Set group active" sid="1763547813368357" type="System">
+                        <action id="-12" name="Set group active" sid="9929307869130731" type="System">
                             <param id="0" name="Group name">&quot;Movement&quot;</param>
                             <param id="1" name="State">1</param>
                         </action>
-                        <action id="-12" name="Set group active" sid="4874956458676602" type="System">
+                        <action id="-12" name="Set group active" sid="3211514108748853" type="System">
                             <param id="0" name="Group name">&quot;go&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
-                        <action id="-10" name="Add to" sid="1802034562026331" type="System">
-                            <param id="0" name="Variable">Bank</param>
-                            <param id="1" name="Value">((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier</param>
-                        </action>
-                        <action id="-10" name="Add to" sid="4925922095823944" type="System">
+                        <action id="-10" name="Add to" sid="3704873890052569" type="System">
                             <param id="0" name="Variable">Score</param>
                             <param id="1" name="Value">Bank</param>
                         </action>
-                        <action id="-9" name="Set value" sid="2431822942309482" type="System">
+                        <action id="-9" name="Set value" sid="131649452107141" type="System">
                             <param id="0" name="Variable">Decay</param>
                             <param id="1" name="Value">BankDecay</param>
                         </action>
-                        <action id="0" name="Spawn another object" sid="5658992954700424" type="Target">
+                        <action id="0" name="Spawn another object" sid="501791757043312" type="Target">
                             <param id="0" name="Object">Points</param>
                             <param id="1" name="Layer">4</param>
                             <param id="2" name="Image point">0</param>
                         </action>
-                        <action id="0" name="Set text" sid="2366571581008622" type="Points">
+                        <action id="0" name="Set text" sid="9171177143010193" type="Points">
                             <param id="0" name="Text">round(Bank)</param>
                         </action>
-                        <action id="4" name="Set font color" sid="3931332130516198" type="Points">
+                        <action id="4" name="Set font color" sid="999224730820127" type="Points">
                             <param id="0" name="Color">rgb(0, 160, 255)</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="6566704240482561" type="Points">
+                        <action id="-15" name="Set visible" sid="2052953353252393" type="Points">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action id="0" name="Spawn another object" sid="7549742193641376" type="Centre">
+                        <action id="0" name="Spawn another object" sid="4732778800376028" type="Centre">
                             <param id="0" name="Object">Particles2</param>
                             <param id="1" name="Layer">4</param>
                             <param id="2" name="Image point">0</param>
                         </action>
-                        <action id="-9" name="Destroy" sid="4415378455750932" type="Target" />
-                        <action id="0" name="Play" sid="1118461875920632" type="Audio">
+                        <action id="-9" name="Destroy" sid="8386287458426422" type="Target" />
+                        <action id="0" name="Play" sid="2585572000949995" type="Audio">
                             <param id="0" name="Audio file">boom</param>
                             <param id="2" name="Loop">0</param>
                             <param id="3" name="Volume">0</param>
                             <param id="1" name="Tag (optional)">&quot;&quot;</param>
                         </action>
-                        <action id="-9" name="Set value" sid="8486966673792304" type="System">
+                        <action id="-9" name="Set value" sid="4977379763619465" type="System">
                             <param id="0" name="Variable">Bank</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action id="-7" name="Set size" sid="6980287254668384" type="i8">
+                        <action id="-7" name="Set size" sid="2826599437852596" type="i8">
                             <param id="0" name="Width">Decay</param>
                             <param id="1" name="Height">Decay</param>
                         </action>
-                        <action id="-7" name="Set size" sid="8709584523372188" type="i6">
+                        <action id="-7" name="Set size" sid="3996423960739332" type="i6">
                             <param id="0" name="Width">Decay</param>
                             <param id="1" name="Height">Decay</param>
                         </action>
-                        <action id="-7" name="Set size" sid="8612661117575105" type="i4">
+                        <action id="-7" name="Set size" sid="5739348150591303" type="i4">
                             <param id="0" name="Width">Decay</param>
                             <param id="1" name="Height">Decay</param>
                         </action>
-                        <action id="-7" name="Set size" sid="7209556172180946" type="ig4">
+                        <action id="-7" name="Set size" sid="4841685210648455" type="ig4">
                             <param id="0" name="Width">BankDecay</param>
                             <param id="1" name="Height">BankDecay</param>
                         </action>
-                        <action id="-7" name="Set size" sid="7000558853733664" type="ig6">
+                        <action id="-7" name="Set size" sid="1469826015099193" type="ig6">
                             <param id="0" name="Width">BankDecay</param>
                             <param id="1" name="Height">BankDecay</param>
                         </action>
-                        <action id="-7" name="Set size" sid="2699930030010035" type="ig8">
+                        <action id="-7" name="Set size" sid="6871368600628427" type="ig8">
                             <param id="0" name="Width">BankDecay</param>
                             <param id="1" name="Height">BankDecay</param>
                         </action>
-                        <action id="6" name="Stop" sid="6301901224435926" type="Audio">
+                        <action id="6" name="Stop" sid="5615832780590937" type="Audio">
                             <param id="0" name="Tag">&quot;clock&quot;</param>
                         </action>
-                        <action behavior="Timer" id="0" name="Start timer" sid="7498687798358506" type="Polygon">
+                        <action behavior="Timer" id="0" name="Start timer" sid="7725687774713405" type="Polygon">
                             <param id="0" name="Duration">1</param>
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;wait&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="5031799030764237" title="Spawn and Reset">
+            <sub-events>
+                <event-block sid="3519419607393503">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4795401286441419" type="System">
+                            <param id="0" name="Variable">SpawnTime</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">WaveTimer</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="5784170152110773" type="System">
+                            <param id="0" name="Variable">Wave</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">NextWave</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="9309829009868211" type="System">
+                            <param id="0" name="Object to create">Target</param>
+                            <param id="1" name="Layer">3</param>
+                            <param id="2" name="X">Polygon.CenterX</param>
+                            <param id="3" name="Y">Polygon.CenterY</param>
+                        </action>
+                        <action behavior="Grow" id="1" name="Set duration" sid="4626939447300776" type="Target">
+                            <param id="0" name="Duration">GrowSpeed</param>
+                        </action>
+                        <action behavior="Travel" id="1" name="Set duration" sid="9429908626896174" type="Target">
+                            <param id="0" name="Duration">GrowSpeed</param>
+                        </action>
+                        <action behavior="Travel" id="3" name="Set target" sid="6593705922944403" type="Target">
+                            <param id="0" name="Target is">0</param>
+                            <param id="1" name="Relativity">0</param>
+                            <param id="2" name="Value">Polygon.VertexX(ArrayIn.At(CurrentTarget,1,0))</param>
+                        </action>
+                        <action behavior="Travel" id="3" name="Set target" sid="7544363230069734" type="Target">
+                            <param id="0" name="Target is">1</param>
+                            <param id="1" name="Relativity">0</param>
+                            <param id="2" name="Value">Polygon.VertexY(ArrayIn.At(CurrentTarget,1,0))</param>
+                        </action>
+                        <action behavior="Travel" id="10" name="Start" sid="7705585626952836" type="Target">
+                            <param id="0" name="Start Mode">0</param>
+                            <param id="1" name="Force use current">0</param>
+                        </action>
+                        <action behavior="Grow" id="10" name="Start" sid="2676843473647298" type="Target">
+                            <param id="0" name="Start Mode">0</param>
+                            <param id="1" name="Force use current">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7658637002503548" type="System">
+                            <param id="0" name="Variable">NextWave</param>
+                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="742381656612793" type="System">
+                            <param id="0" name="Variable">CurrentTarget</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="481857669325598" type="System">
+                            <param id="0" name="Variable">SpawnTime</param>
+                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1161,6 +1014,10 @@
                         <action id="-9" name="Set value" sid="9966344647217111" type="System">
                             <param id="0" name="Variable">WaveTimer</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="4089402764310871" type="System">
+                            <param id="0" name="Group name">&quot;rotateend&quot;</param>
+                            <param id="1" name="State">0</param>
                         </action>
                         <action id="-12" name="Set group active" sid="2426059690640434" type="System">
                             <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
@@ -1268,9 +1125,21 @@
                     </conditions>
                     <actions>
                         <action behavior="Pin" id="1" name="Unpin" sid="6532228558566338" type="TriangleBack" />
+                        <action id="-12" name="Set group active" sid="5025117065013123" type="System">
+                            <param id="0" name="Group name">&quot;rotateend&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
                         <action id="-9" name="Set value" sid="9492284178459031" type="System">
                             <param id="0" name="Variable">Wave</param>
                             <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6791300543021802" type="System">
+                            <param id="0" name="Variable">Wave2</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2163737665408043" type="System">
+                            <param id="0" name="Variable">WaveTimer</param>
+                            <param id="1" name="Value">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="4768835411798101" type="System">
                             <param id="0" name="Variable">SpawnTime</param>
@@ -1352,13 +1221,25 @@
                             <param id="0" name="Variable">WaveBegin</param>
                             <param id="1" name="Value">CurrentTarget</param>
                         </action>
+                        <action id="-9" name="Set value" sid="9559659381092903" type="System">
+                            <param id="0" name="Variable">WAveBeginArrayOut</param>
+                            <param id="1" name="Value">ArrayOut.XCount</param>
+                        </action>
                         <action id="-9" name="Set value" sid="1735982347134576" type="System">
                             <param id="0" name="Variable">Wave</param>
+                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4651453854818327" type="System">
+                            <param id="0" name="Variable">Wave2</param>
                             <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
                         </action>
                         <action id="-9" name="Set value" sid="9779290193434845" type="System">
                             <param id="0" name="Variable">SpawnTime</param>
                             <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9797517701830117" type="System">
+                            <param id="0" name="Variable">WaveTimer</param>
+                            <param id="1" name="Value">0</param>
                         </action>
                         <action id="-12" name="Set group active" sid="1962040337319463" type="System">
                             <param id="0" name="Group name">&quot;Move&quot;</param>
@@ -1388,6 +1269,10 @@
                             <param id="0" name="Group name">&quot;Movement&quot;</param>
                             <param id="1" name="State">1</param>
                         </action>
+                        <action id="-12" name="Set group active" sid="8172693790827555" type="System">
+                            <param id="0" name="Group name">&quot;rotateend&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
                         <action id="-12" name="Set group active" sid="2207583206678689" type="System">
                             <param id="0" name="Group name">&quot;go&quot;</param>
                             <param id="1" name="State">1</param>
@@ -1413,10 +1298,6 @@
                                 </action>
                                 <action id="-12" name="Set group active" sid="3266282418224859" type="System">
                                     <param id="0" name="Group name">&quot;Decay&quot;</param>
-                                    <param id="1" name="State">1</param>
-                                </action>
-                                <action id="-12" name="Set group active" sid="5163972414512056" type="System">
-                                    <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
                                     <param id="1" name="State">1</param>
                                 </action>
                                 <action id="-12" name="Set group active" sid="5153636324242145" type="System">
@@ -1473,13 +1354,13 @@
                                 <condition id="-1" name="Every tick" sid="4296753170672146" type="System" />
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" sid="1401717149614287" type="System">
-                                    <param id="0" name="Variable">Timer</param>
-                                    <param id="1" name="Value">Date.timer(&quot;t&quot;)</param>
-                                </action>
                                 <action id="-9" name="Set value" sid="6814319664564288" type="System">
                                     <param id="0" name="Variable">AngleT</param>
                                     <param id="1" name="Value">Centre.Angle</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="8046735227258334" type="System">
+                                    <param id="0" name="Variable">Timer</param>
+                                    <param id="1" name="Value">1*dt</param>
                                 </action>
                                 <action id="0" name="Set text" sid="5124069022140999" type="LivesText">
                                     <param id="0" name="Text">&quot;Lives:&quot; &amp; newline &amp; Lives</param>
@@ -1564,7 +1445,7 @@
                                 <action id="0" name="Play" sid="4908598984067135" type="Audio">
                                     <param id="0" name="Audio file">Pickup_03</param>
                                     <param id="2" name="Loop">0</param>
-                                    <param id="3" name="Volume">10</param>
+                                    <param id="3" name="Volume">0</param>
                                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                 </action>
                                 <action id="-10" name="Add to" sid="4452807152203597" type="System">
@@ -1755,6 +1636,10 @@
                                 <condition id="0" name="On key pressed" sid="5397008365948096" type="Keyboard">
                                     <param id="0" name="Key">39 (Right arrow)</param>
                                 </condition>
+                                <condition id="6" name="On button pressed" sid="1459235355578134" type="Gamepad">
+                                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                                    <param id="1" name="Button">15</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-10" name="Add to" sid="6356833595258941" type="System">
@@ -1765,9 +1650,9 @@
                                     <param id="0" name="Instance variable">XCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="1" name="Set size" sid="9589144586099376" type="ArrayOut">
+                                <action id="1" name="Set size" sid="5118089264184804" type="ArrayOut">
                                     <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                    <param id="1" name="Height">9</param>
+                                    <param id="1" name="Height">ArrayHeight</param>
                                     <param id="2" name="Depth">1</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="3371660820238784" type="ArrayOut">
@@ -1786,7 +1671,7 @@
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value">Wave</param>
+                                    <param id="3" name="Value">Wave2</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="9017051028802074" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
@@ -1824,6 +1709,12 @@
                                     <param id="2" name="Z">0</param>
                                     <param id="3" name="Value">WaveTimer</param>
                                 </action>
+                                <action id="4" name="Set at XYZ" sid="464941981100509" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">11</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Gamepad.LastButton(GAMEPADNR)</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
@@ -1835,6 +1726,10 @@
                                 <condition id="0" name="On key pressed" sid="1551240138839284" type="Keyboard">
                                     <param id="0" name="Key">37 (Left arrow)</param>
                                 </condition>
+                                <condition id="6" name="On button pressed" sid="1145979459115143" type="Gamepad">
+                                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                                    <param id="1" name="Button">14</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-11" name="Subtract from" sid="400911113859708" type="System">
@@ -1845,9 +1740,9 @@
                                     <param id="0" name="Instance variable">XCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="1" name="Set size" sid="6013099706912496" type="ArrayOut">
+                                <action id="1" name="Set size" sid="4387086652485059" type="ArrayOut">
                                     <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                    <param id="1" name="Height">9</param>
+                                    <param id="1" name="Height">ArrayHeight</param>
                                     <param id="2" name="Depth">1</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="9710863067736962" type="ArrayOut">
@@ -1866,7 +1761,7 @@
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value">Wave</param>
+                                    <param id="3" name="Value">Wave2</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="3318751333583185" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
@@ -1904,16 +1799,26 @@
                                     <param id="2" name="Z">0</param>
                                     <param id="3" name="Value">WaveTimer</param>
                                 </action>
+                                <action id="4" name="Set at XYZ" sid="45706550205909" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">11</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Gamepad.LastButton(GAMEPADNR)</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-group>
                 <event-group description="" sid="1592941481776946" title="U2">
                     <sub-events>
-                        <event-block sid="1736263906644289">
+                        <event-block any="1" sid="1736263906644289">
                             <conditions>
                                 <condition id="0" name="On key pressed" sid="7633166026886606" type="Keyboard">
                                     <param id="0" name="Key">38 (Up arrow)</param>
+                                </condition>
+                                <condition id="6" name="On button pressed" sid="2293621035518209" type="Gamepad">
+                                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                                    <param id="1" name="Button">1</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -1945,19 +1850,23 @@
                                             <actions>
                                                 <action id="-10" name="Add to" sid="4033352152605804" type="System">
                                                     <param id="0" name="Variable">Bank</param>
-                                                    <param id="1" name="Value">((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier</param>
+                                                    <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier)*2</param>
                                                 </action>
                                                 <action id="-10" name="Add to" sid="2294140249276166" type="System">
                                                     <param id="0" name="Variable">BankDecay</param>
-                                                    <param id="1" name="Value">((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor</param>
+                                                    <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor)*2</param>
+                                                </action>
+                                                <action id="-9" name="Set value" sid="9037122435729697" type="System">
+                                                    <param id="0" name="Variable">Sound</param>
+                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier))*2</param>
                                                 </action>
                                                 <action id="-11" name="Add to" sid="5362397275629188" type="ArrayOut">
                                                     <param id="0" name="Instance variable">XCount</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
-                                                <action id="1" name="Set size" sid="4600083624485269" type="ArrayOut">
+                                                <action id="1" name="Set size" sid="2036784124257972" type="ArrayOut">
                                                     <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                                    <param id="1" name="Height">9</param>
+                                                    <param id="1" name="Height">ArrayHeight</param>
                                                     <param id="2" name="Depth">1</param>
                                                 </action>
                                                 <action id="4" name="Set at XYZ" sid="9416326913508378" type="ArrayOut">
@@ -1976,7 +1885,7 @@
                                                     <param id="0" name="X">ArrayOut.XCount</param>
                                                     <param id="1" name="Y">2</param>
                                                     <param id="2" name="Z">0</param>
-                                                    <param id="3" name="Value">Wave</param>
+                                                    <param id="3" name="Value">Wave2</param>
                                                 </action>
                                                 <action id="4" name="Set at XYZ" sid="1257582499398415" type="ArrayOut">
                                                     <param id="0" name="X">ArrayOut.XCount</param>
@@ -2013,6 +1922,24 @@
                                                     <param id="1" name="Y">8</param>
                                                     <param id="2" name="Z">0</param>
                                                     <param id="3" name="Value">WaveTimer</param>
+                                                </action>
+                                                <action id="4" name="Set at XYZ" sid="4728730205340194" type="ArrayOut">
+                                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                                    <param id="1" name="Y">9</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">Target.X</param>
+                                                </action>
+                                                <action id="4" name="Set at XYZ" sid="2340476962895741" type="ArrayOut">
+                                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                                    <param id="1" name="Y">10</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">Target.Y</param>
+                                                </action>
+                                                <action id="4" name="Set at XYZ" sid="4957313798756217" type="ArrayOut">
+                                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                                    <param id="1" name="Y">11</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">Gamepad.LastButton(GAMEPADNR)+1</param>
                                                 </action>
                                                 <action id="-8" name="Set angle" sid="9238018236969511" type="Particles">
                                                     <param id="0" name="Angle">90</param>
@@ -2067,15 +1994,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="9990757438596496" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">0.8</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="4038705750417865" type="Audio">
+                                                                <action id="0" name="Play" sid="46111394666029" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="7262130549655814" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="9990757438596496" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">0.8</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="1775469776358215" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2097,15 +2028,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="4606961163553642" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">0.9</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="2115757880132535" type="Audio">
+                                                                <action id="0" name="Play" sid="386176139034049" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="5959823196241433" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="4606961163553642" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">0.9</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="5714036840801804" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2127,15 +2062,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="1777928512199457" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="4945468944495766" type="Audio">
+                                                                <action id="0" name="Play" sid="2799436835432909" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="5007655233917419" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="1777928512199457" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="1349748789236809" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2157,15 +2096,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="8636583155945336" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.1</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="5844978373433584" type="Audio">
+                                                                <action id="0" name="Play" sid="2411223110692058" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="957289951212145" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="8636583155945336" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1.1</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="3919719445153155" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2187,15 +2130,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="8876445057513672" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.2</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="7643715668391829" type="Audio">
+                                                                <action id="0" name="Play" sid="8921898269457081" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="8525898237884608" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="8876445057513672" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1.2</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="7127814901451068" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2217,15 +2164,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="2449027882597785" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.3</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="2814590760947181" type="Audio">
+                                                                <action id="0" name="Play" sid="6875025497197793" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="2025965338177664" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="2449027882597785" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1.3</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="1119650956367764" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2247,15 +2198,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="5643015028441521" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.4</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="5678311806884703" type="Audio">
+                                                                <action id="0" name="Play" sid="4087511358868524" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="3446676298692506" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="5643015028441521" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1.4</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="1273726256305914" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2277,15 +2232,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="6729956192485422" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.5</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="4367546874951087" type="Audio">
+                                                                <action id="0" name="Play" sid="6122499424473981" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="6821753699495351" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="6729956192485422" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1.5</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="3872305129737547" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2307,15 +2266,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="6077376936436116" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.6</param>
-                                                                </action>
                                                                 <action id="0" name="Play" sid="4955818516244122" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="8241153089782388" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="6077376936436116" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1.6</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="1575858427273214" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2337,15 +2300,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="535575273473906" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.7</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="5449624711923977" type="Audio">
+                                                                <action id="0" name="Play" sid="7356890786765412" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="3819281132638411" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="535575273473906" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">1.7</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="3475420742797974" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2362,15 +2329,19 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="8413789155526788" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">2.2</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="9478356697375707" type="Audio">
+                                                                <action id="0" name="Play" sid="3861712153315586" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
                                                                     <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                                </action>
+                                                                <action id="18" name="Add gain effect" sid="9569796138779098" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Gain">Sound</param>
+                                                                </action>
+                                                                <action id="5" name="Set playback rate" sid="8413789155526788" type="Audio">
+                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
+                                                                    <param id="1" name="Playback rate">2.2</param>
                                                                 </action>
                                                                 <action id="-16" name="Wait" sid="9464056653024552" type="System">
                                                                     <param id="0" name="Seconds">1</param>
@@ -2389,6 +2360,87 @@
                                         <condition id="-22" name="Else" sid="9532807381085792" type="System" />
                                     </conditions>
                                     <actions>
+                                        <action id="-11" name="Add to" sid="1558444242323994" type="ArrayOut">
+                                            <param id="0" name="Instance variable">XCount</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="1" name="Set size" sid="4114689708839337" type="ArrayOut">
+                                            <param id="0" name="Width">1+ArrayOut.XCount</param>
+                                            <param id="1" name="Height">ArrayHeight</param>
+                                            <param id="2" name="Depth">1</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="4391532063564166" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">0</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Timer</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="2086378600619806" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">1</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Keyboard.LastKeyCode</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="2599819787230863" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">2</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Wave2</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="9054745248527762" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">3</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Score</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="6431971690516095" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">4</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Bank</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="954172447326182" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">5</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Triangle.Angle</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="1093810417782454" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">6</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Decay</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="6883737950796066" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">7</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">BankDecay</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="4159349947522594" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">8</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">WaveTimer</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="6619631115556611" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">9</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Target.X</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="831533274408704" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">10</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Target.Y</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="4590920705473172" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">11</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Gamepad.LastButton(GAMEPADNR)+1</param>
+                                        </action>
                                         <action id="0" name="Play" sid="3944553093785093" type="Audio">
                                             <param id="0" name="Audio file">select_blip_error1</param>
                                             <param id="2" name="Loop">0</param>
@@ -2403,10 +2455,14 @@
                 </event-group>
                 <event-group description="" sid="5240430855795671" title="D2">
                     <sub-events>
-                        <event-block sid="5738857288902388">
+                        <event-block any="1" sid="5738857288902388">
                             <conditions>
                                 <condition id="0" name="On key pressed" sid="4502734020660089" type="Keyboard">
                                     <param id="0" name="Key">40 (Down arrow)</param>
+                                </condition>
+                                <condition id="6" name="On button pressed" sid="401086301693506" type="Gamepad">
+                                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                                    <param id="1" name="Button">0</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -2438,15 +2494,49 @@
                                             <actions>
                                                 <action id="-10" name="Add to" sid="9876310835895248" type="System">
                                                     <param id="0" name="Variable">Bank</param>
-                                                    <param id="1" name="Value">((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier</param>
+                                                    <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier)</param>
+                                                </action>
+                                                <action id="-10" name="Add to" sid="2685994503939597" type="System">
+                                                    <param id="0" name="Variable">BankDecay</param>
+                                                    <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor)</param>
+                                                </action>
+                                                <action id="-9" name="Set value" sid="3519007249999982" type="System">
+                                                    <param id="0" name="Variable">Sound</param>
+                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier))*2</param>
+                                                </action>
+                                                <action id="-10" name="Add to" sid="3137623493928484" type="System">
+                                                    <param id="0" name="Variable">Score</param>
+                                                    <param id="1" name="Value">Bank</param>
+                                                </action>
+                                                <action id="-9" name="Set value" sid="8967294197472409" type="System">
+                                                    <param id="0" name="Variable">Decay</param>
+                                                    <param id="1" name="Value">BankDecay</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="1381971017189267" type="Target">
+                                                    <param id="0" name="Object">Points</param>
+                                                    <param id="1" name="Layer">4</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                                <action id="0" name="Set text" sid="5359893488033498" type="Points">
+                                                    <param id="0" name="Text">round(Bank)</param>
+                                                </action>
+                                                <action id="4" name="Set font color" sid="481563802021648" type="Points">
+                                                    <param id="0" name="Color">rgb(0, 166, 255)</param>
+                                                </action>
+                                                <action id="-15" name="Set visible" sid="7573363782042422" type="Points">
+                                                    <param id="0" name="Visibility">1</param>
+                                                </action>
+                                                <action id="-9" name="Set value" sid="1449257811822476" type="System">
+                                                    <param id="0" name="Variable">Bank</param>
+                                                    <param id="1" name="Value">0</param>
                                                 </action>
                                                 <action id="-11" name="Add to" sid="9646644944313962" type="ArrayOut">
                                                     <param id="0" name="Instance variable">XCount</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
-                                                <action id="1" name="Set size" sid="5399333492519121" type="ArrayOut">
+                                                <action id="1" name="Set size" sid="8548813570188462" type="ArrayOut">
                                                     <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                                    <param id="1" name="Height">9</param>
+                                                    <param id="1" name="Height">ArrayHeight</param>
                                                     <param id="2" name="Depth">1</param>
                                                 </action>
                                                 <action id="4" name="Set at XYZ" sid="3621185661020374" type="ArrayOut">
@@ -2465,7 +2555,7 @@
                                                     <param id="0" name="X">ArrayOut.XCount</param>
                                                     <param id="1" name="Y">2</param>
                                                     <param id="2" name="Z">0</param>
-                                                    <param id="3" name="Value">Wave</param>
+                                                    <param id="3" name="Value">Wave2</param>
                                                 </action>
                                                 <action id="4" name="Set at XYZ" sid="5973165561755577" type="ArrayOut">
                                                     <param id="0" name="X">ArrayOut.XCount</param>
@@ -2503,23 +2593,23 @@
                                                     <param id="2" name="Z">0</param>
                                                     <param id="3" name="Value">WaveTimer</param>
                                                 </action>
-                                                <action id="0" name="Spawn another object" sid="1381971017189267" type="Target">
-                                                    <param id="0" name="Object">Points</param>
-                                                    <param id="1" name="Layer">4</param>
-                                                    <param id="2" name="Image point">0</param>
+                                                <action id="4" name="Set at XYZ" sid="5297279563398626" type="ArrayOut">
+                                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                                    <param id="1" name="Y">9</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">Target.X</param>
                                                 </action>
-                                                <action id="0" name="Set text" sid="5359893488033498" type="Points">
-                                                    <param id="0" name="Text">round(Bank)</param>
+                                                <action id="4" name="Set at XYZ" sid="3277227585044756" type="ArrayOut">
+                                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                                    <param id="1" name="Y">10</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">Target.Y</param>
                                                 </action>
-                                                <action id="4" name="Set font color" sid="481563802021648" type="Points">
-                                                    <param id="0" name="Color">rgb(0, 166, 255)</param>
-                                                </action>
-                                                <action id="-15" name="Set visible" sid="7573363782042422" type="Points">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                                <action id="-10" name="Add to" sid="3137623493928484" type="System">
-                                                    <param id="0" name="Variable">Score</param>
-                                                    <param id="1" name="Value">Bank</param>
+                                                <action id="4" name="Set at XYZ" sid="3078056139347151" type="ArrayOut">
+                                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                                    <param id="1" name="Y">11</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">Gamepad.LastButton(GAMEPADNR)+1</param>
                                                 </action>
                                                 <action id="0" name="Spawn another object" sid="7174110982322427" type="Centre">
                                                     <param id="0" name="Object">Particles2</param>
@@ -2527,19 +2617,15 @@
                                                     <param id="2" name="Image point">0</param>
                                                 </action>
                                                 <action id="-9" name="Destroy" sid="5286652413807505" type="Target" />
-                                                <action id="-9" name="Set value" sid="8967294197472409" type="System">
-                                                    <param id="0" name="Variable">Decay</param>
-                                                    <param id="1" name="Value">BankDecay</param>
-                                                </action>
-                                                <action id="-9" name="Set value" sid="1449257811822476" type="System">
-                                                    <param id="0" name="Variable">Bank</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
                                                 <action id="0" name="Play" sid="3858947825300007" type="Audio">
                                                     <param id="0" name="Audio file">boom</param>
                                                     <param id="2" name="Loop">0</param>
                                                     <param id="3" name="Volume">0</param>
                                                     <param id="1" name="Tag (optional)">&quot;boom&quot;</param>
+                                                </action>
+                                                <action id="18" name="Add gain effect" sid="7469628043303586" type="Audio">
+                                                    <param id="0" name="Tag">&quot;boom&quot;</param>
+                                                    <param id="1" name="Gain">Sound</param>
                                                 </action>
                                                 <action id="-7" name="Set size" sid="9415231050716899" type="ig4">
                                                     <param id="0" name="Width">0</param>
@@ -2566,11 +2652,92 @@
                                         <condition id="-22" name="Else" sid="433078471058788" type="System" />
                                     </conditions>
                                     <actions>
+                                        <action id="-11" name="Add to" sid="1041432962215486" type="ArrayOut">
+                                            <param id="0" name="Instance variable">XCount</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="1" name="Set size" sid="3946513424085955" type="ArrayOut">
+                                            <param id="0" name="Width">1+ArrayOut.XCount</param>
+                                            <param id="1" name="Height">ArrayHeight</param>
+                                            <param id="2" name="Depth">1</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="7751874583140268" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">0</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Timer</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="9895013729202428" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">1</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Keyboard.LastKeyCode</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="308757710039738" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">2</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Wave2</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="4807898155823115" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">3</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Score</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="7591264758954209" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">4</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Bank</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="9834896761522881" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">5</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Triangle.Angle</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="6327885592810744" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">6</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Decay</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="938284850994785" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">7</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">BankDecay</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="4243346369766525" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">8</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">WaveTimer</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="4175196450028768" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">9</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Target.X</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="6403840022512576" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">10</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Target.Y</param>
+                                        </action>
+                                        <action id="4" name="Set at XYZ" sid="4197698988607904" type="ArrayOut">
+                                            <param id="0" name="X">ArrayOut.XCount</param>
+                                            <param id="1" name="Y">11</param>
+                                            <param id="2" name="Z">0</param>
+                                            <param id="3" name="Value">Gamepad.LastButton(GAMEPADNR)+1</param>
+                                        </action>
                                         <action id="0" name="Play" sid="940442047253408" type="Audio">
                                             <param id="0" name="Audio file">select_blip_error1</param>
                                             <param id="2" name="Loop">0</param>
                                             <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                            <param id="1" name="Tag (optional)">&quot;cash&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2596,12 +2763,12 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action behavior="Timer" id="0" name="Start timer" sid="6824989808251598" type="Polygon">
+                                <action behavior="Timer" disabled="1" id="0" name="Start timer" sid="6824989808251598" type="Polygon">
                                     <param id="0" name="Duration">RotateSpeed</param>
                                     <param id="1" name="Type">0</param>
                                     <param id="2" name="Tag">&quot;GO&quot;</param>
                                 </action>
-                                <action behavior="Timer" id="0" name="Start timer" sid="3864995187225812" type="Polygon">
+                                <action behavior="Timer" disabled="1" id="0" name="Start timer" sid="3864995187225812" type="Polygon">
                                     <param id="0" name="Duration">RotateSpeed-0.1</param>
                                     <param id="1" name="Type">0</param>
                                     <param id="2" name="Tag">&quot;BANK&quot;</param>
@@ -2622,9 +2789,9 @@
                                     <param id="0" name="Instance variable">XCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="1" name="Set size" sid="5414441345600294" type="ArrayOut">
+                                <action id="1" name="Set size" sid="6808684345362026" type="ArrayOut">
                                     <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                    <param id="1" name="Height">9</param>
+                                    <param id="1" name="Height">ArrayHeight</param>
                                     <param id="2" name="Depth">1</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="7574403215249567" type="ArrayOut">
@@ -2637,13 +2804,13 @@
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">1</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value">&quot;M&quot;&amp; TurnCounter</param>
+                                    <param id="3" name="Value">TurnCounter/100</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="5767970544998745" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value">Wave</param>
+                                    <param id="3" name="Value">Wave2</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="6556392347721202" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
@@ -2706,12 +2873,12 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action behavior="Timer" id="0" name="Start timer" sid="6728379272235347" type="Polygon">
+                                <action behavior="Timer" disabled="1" id="0" name="Start timer" sid="6728379272235347" type="Polygon">
                                     <param id="0" name="Duration">RotateSpeed</param>
                                     <param id="1" name="Type">0</param>
                                     <param id="2" name="Tag">&quot;GO&quot;</param>
                                 </action>
-                                <action behavior="Timer" id="0" name="Start timer" sid="9015873158678402" type="Polygon">
+                                <action behavior="Timer" disabled="1" id="0" name="Start timer" sid="9015873158678402" type="Polygon">
                                     <param id="0" name="Duration">RotateSpeed-0.1</param>
                                     <param id="1" name="Type">0</param>
                                     <param id="2" name="Tag">&quot;BANK&quot;</param>
@@ -2732,9 +2899,9 @@
                                     <param id="0" name="Instance variable">XCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="1" name="Set size" sid="6600665832086427" type="ArrayOut">
+                                <action id="1" name="Set size" sid="7060994271954768" type="ArrayOut">
                                     <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                    <param id="1" name="Height">9</param>
+                                    <param id="1" name="Height">ArrayHeight</param>
                                     <param id="2" name="Depth">1</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="555738667250156" type="ArrayOut">
@@ -2743,17 +2910,17 @@
                                     <param id="2" name="Z">0</param>
                                     <param id="3" name="Value">Timer</param>
                                 </action>
-                                <action id="4" name="Set at XYZ" sid="949071296483206" type="ArrayOut">
+                                <action id="4" name="Set at XYZ" sid="5910973090700269" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">1</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value">&quot;M&quot;&amp; TurnCounter</param>
+                                    <param id="3" name="Value">TurnCounter/100</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="6075350893849435" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value">Wave</param>
+                                    <param id="3" name="Value">Wave2</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="9672803003598409" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
@@ -2848,6 +3015,10 @@
                                             <param id="0" name="Start Mode">0</param>
                                             <param id="1" name="Force use current">0</param>
                                         </action>
+                                        <action id="-12" name="Set group active" sid="3971342846922664" type="System">
+                                            <param id="0" name="Group name">&quot;Move&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
                                         <action id="-15" name="Set visible" sid="5599497413846612" type="Pop">
                                             <param id="0" name="Visibility">1</param>
                                         </action>
@@ -2907,6 +3078,10 @@
                                             <param id="0" name="Variable">CurrentTarget</param>
                                             <param id="1" name="Value">WaveBegin</param>
                                         </action>
+                                        <action id="-9" name="Set value" sid="4335578353599395" type="System">
+                                            <param id="0" name="Variable">Score</param>
+                                            <param id="1" name="Value">ArrayOut.At(WAveBeginArrayOut,3,0)</param>
+                                        </action>
                                         <action id="-9" name="Set value" sid="1541228839883159" type="System">
                                             <param id="0" name="Variable">SpawnTime</param>
                                             <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
@@ -2920,9 +3095,9 @@
                                             <param id="1" name="Value">0</param>
                                         </action>
                                         <action id="-9" name="Destroy" sid="5784690717676995" type="Target" />
-                                        <action id="1" name="Set size" sid="265595529675037" type="ArrayOut">
+                                        <action id="1" name="Set size" sid="2251984630498209" type="ArrayOut">
                                             <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                            <param id="1" name="Height">9</param>
+                                            <param id="1" name="Height">ArrayHeight</param>
                                             <param id="2" name="Depth">1</param>
                                         </action>
                                         <action id="4" name="Set at XYZ" sid="37000134130548" type="ArrayOut">
@@ -2935,13 +3110,13 @@
                                             <param id="0" name="X">ArrayOut.XCount</param>
                                             <param id="1" name="Y">1</param>
                                             <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value"> &quot;L&quot;</param>
+                                            <param id="3" name="Value">0.2</param>
                                         </action>
                                         <action id="4" name="Set at XYZ" sid="3767504296756628" type="ArrayOut">
                                             <param id="0" name="X">ArrayOut.XCount</param>
                                             <param id="1" name="Y">2</param>
                                             <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">Wave</param>
+                                            <param id="3" name="Value">Wave2</param>
                                         </action>
                                         <action id="4" name="Set at XYZ" sid="3386271516923786" type="ArrayOut">
                                             <param id="0" name="X">ArrayOut.XCount</param>
@@ -2999,40 +3174,13 @@
                                 <condition behavior="Grow" id="4" name="On tween end" sid="6166221378760276" type="Target" />
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" sid="282039443132181" type="Target" />
-                                <action id="-7" name="Set size" sid="6221193031459699" type="ig4">
-                                    <param id="0" name="Width">0</param>
-                                    <param id="1" name="Height">0</param>
-                                </action>
-                                <action id="-7" name="Set size" sid="8594347222146324" type="ig6">
-                                    <param id="0" name="Width">0</param>
-                                    <param id="1" name="Height">0</param>
-                                </action>
-                                <action id="-7" name="Set size" sid="9874777622122686" type="ig8">
-                                    <param id="0" name="Width">0</param>
-                                    <param id="1" name="Height">0</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="6805190781953282" type="System">
-                                    <param id="0" name="Variable">BankDecay</param>
-                                    <param id="1" name="Value">Decay</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="6829676857037816" type="System">
-                                    <param id="0" name="Variable">Bank</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="0" name="Play" sid="1388531770237321" type="Audio">
-                                    <param id="0" name="Audio file">lose</param>
-                                    <param id="2" name="Loop">0</param>
-                                    <param id="3" name="Volume">0</param>
-                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                                </action>
                                 <action id="-11" name="Add to" sid="2198998198452824" type="ArrayOut">
                                     <param id="0" name="Instance variable">XCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="1" name="Set size" sid="8212232799640233" type="ArrayOut">
+                                <action id="1" name="Set size" sid="6801653315473202" type="ArrayOut">
                                     <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                    <param id="1" name="Height">9</param>
+                                    <param id="1" name="Height">ArrayHeight</param>
                                     <param id="2" name="Depth">1</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="810254664505787" type="ArrayOut">
@@ -3045,13 +3193,13 @@
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">1</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value"> &quot;B&quot;</param>
+                                    <param id="3" name="Value">0.3</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="1478649639815846" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Z">0</param>
-                                    <param id="3" name="Value">Wave</param>
+                                    <param id="3" name="Value">Wave2</param>
                                 </action>
                                 <action id="4" name="Set at XYZ" sid="7483810307733609" type="ArrayOut">
                                     <param id="0" name="X">ArrayOut.XCount</param>
@@ -3088,6 +3236,45 @@
                                     <param id="1" name="Y">8</param>
                                     <param id="2" name="Z">0</param>
                                     <param id="3" name="Value">WaveTimer</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="4870648916931407" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">9</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Target.X</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="972045974938507" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">10</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Target.Y</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="282039443132181" type="Target" />
+                                <action id="-7" name="Set size" sid="6221193031459699" type="ig4">
+                                    <param id="0" name="Width">0</param>
+                                    <param id="1" name="Height">0</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="8594347222146324" type="ig6">
+                                    <param id="0" name="Width">0</param>
+                                    <param id="1" name="Height">0</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="9874777622122686" type="ig8">
+                                    <param id="0" name="Width">0</param>
+                                    <param id="1" name="Height">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="6805190781953282" type="System">
+                                    <param id="0" name="Variable">BankDecay</param>
+                                    <param id="1" name="Value">Decay</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="6829676857037816" type="System">
+                                    <param id="0" name="Variable">Bank</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Play" sid="1388531770237321" type="Audio">
+                                    <param id="0" name="Audio file">lose</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -3130,6 +3317,84 @@
         </event-group>
         <event-group description="" sid="1451601781114732" title="Output">
             <sub-events>
+                <event-group description="" sid="4310569674973503" title="rotateend">
+                    <sub-events>
+                        <event-block sid="5946033725107312">
+                            <conditions>
+                                <condition behavior="Rotate" id="4" name="On tween end" sid="3838927213568755" type="Centre" />
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Set group active" sid="9171938714764797" type="System">
+                                    <param id="0" name="Group name">&quot;Move&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="1588379383334508" type="ArrayOut">
+                                    <param id="0" name="Instance variable">XCount</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="1" name="Set size" sid="8903927658804647" type="ArrayOut">
+                                    <param id="0" name="Width">1+ArrayOut.XCount</param>
+                                    <param id="1" name="Height">ArrayHeight</param>
+                                    <param id="2" name="Depth">1</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="8904047909275857" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">0</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value"> Timer</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="1199521054573316" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">1</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">0.1</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="1737833718917362" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">2</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Wave2</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="2744034147067811" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">3</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Score</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="7293775068946198" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">4</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Bank</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="2312156732232706" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">5</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">AngleT</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="1051800459154274" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">6</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">Decay</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="5982578255994611" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">7</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">BankDecay</param>
+                                </action>
+                                <action id="4" name="Set at XYZ" sid="8039445531167649" type="ArrayOut">
+                                    <param id="0" name="X">ArrayOut.XCount</param>
+                                    <param id="1" name="Y">8</param>
+                                    <param id="2" name="Z">0</param>
+                                    <param id="3" name="Value">WaveTimer</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
                 <event-block sid="3078259402833903">
                     <conditions>
                         <condition id="10" name="On item missing" sid="1792613909132553" type="LocalStorage">
@@ -3159,89 +3424,19 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="5946033725107312">
-                    <conditions>
-                        <condition behavior="Rotate" id="4" name="On tween end" sid="3838927213568755" type="Centre" />
-                    </conditions>
-                    <actions>
-                        <action id="-11" name="Add to" sid="1588379383334508" type="ArrayOut">
-                            <param id="0" name="Instance variable">XCount</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="1" name="Set size" sid="8276320271132153" type="ArrayOut">
-                            <param id="0" name="Width">1+ArrayOut.XCount</param>
-                            <param id="1" name="Height">9</param>
-                            <param id="2" name="Depth">1</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="8904047909275857" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value"> Timer</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="1199521054573316" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">1</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">&quot;V&quot;</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="1737833718917362" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">2</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">Wave</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="2744034147067811" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">3</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">Score</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="7293775068946198" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">4</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">Bank</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="2312156732232706" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">5</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">AngleT</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="1051800459154274" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">6</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">Decay</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="5982578255994611" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">7</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">BankDecay</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="8039445531167649" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">8</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">WaveTimer</param>
-                        </action>
-                    </actions>
-                </event-block>
                 <event-block any="1" sid="7854317095719001">
                     <conditions>
                         <condition id="-3" name="On end of layout" sid="801037435971303" type="System" />
-                        <condition id="9" name="On suspended" sid="59942926916875" type="Browser" />
+                        <condition disabled="1" id="9" name="On suspended" sid="59942926916875" type="Browser" />
                     </conditions>
                     <actions>
                         <action id="-11" name="Add to" sid="2473291948844317" type="ArrayOut">
                             <param id="0" name="Instance variable">XCount</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="1" name="Set size" sid="325181411795745" type="ArrayOut">
+                        <action id="1" name="Set size" sid="3219008806461902" type="ArrayOut">
                             <param id="0" name="Width">1+ArrayOut.XCount</param>
-                            <param id="1" name="Height">9</param>
+                            <param id="1" name="Height">ArrayHeight</param>
                             <param id="2" name="Depth">1</param>
                         </action>
                         <action id="4" name="Set at XYZ" sid="9403050498233403" type="ArrayOut">
@@ -3279,14 +3474,14 @@
                         <action id="20" name="Invoke download of string" sid="5952139622892834" type="Browser">
                             <param id="0" name="String">ArrayOut.AsJSON</param>
                             <param id="1" name="MIME type">&quot;application/json&quot;</param>
-                            <param id="2" name="Filename">&quot;data.txt&quot;</param>
+                            <param id="2" name="Filename">Date.UnixTimestamp &amp; &quot;data.txt&quot;</param>
                         </action>
                         <action id="0" name="Write file" sid="1591874979329106" type="NWjs">
-                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;\Desktop\&quot; &amp;&quot;gamedata\&quot;&amp; &quot;data&quot; &amp; Date.Month &amp; &quot;-&quot; &amp; Date.Day &amp; &quot;_&quot; &amp; Date.Hours &amp; &quot;,&quot; &amp; date.Minutes &amp; &quot;,&quot; &amp; Date.Seconds &amp; &quot;,&quot; &amp; date.Milliseconds &amp; &quot;.txt&quot;</param>
+                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;\Desktop\&quot; &amp;&quot;gamedata\&quot;&amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
                             <param id="1" name="Contents">ArrayOut.AsJSON</param>
                         </action>
                         <action id="0" name="Write file" sid="2899456389783076" type="NWjs">
-                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;/Desktop/&quot; &amp;&quot;gamedata/&quot;&amp; &quot;data&quot; &amp; Date.Month &amp; &quot;-&quot; &amp; Date.Day &amp; &quot;_&quot; &amp; Date.Hours &amp; &quot;,&quot; &amp; date.Minutes &amp; &quot;,&quot; &amp; Date.Seconds &amp; &quot;,&quot; &amp; date.Milliseconds &amp; &quot;.txt&quot;</param>
+                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;/Desktop/&quot; &amp;&quot;gamedata/&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
                             <param id="1" name="Contents">ArrayOut.AsJSON</param>
                         </action>
                     </actions>
@@ -3300,9 +3495,9 @@
                             <param id="0" name="Instance variable">XCount</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="1" name="Set size" sid="4688896603076945" type="ArrayOut">
+                        <action id="1" name="Set size" sid="4303681096038047" type="ArrayOut">
                             <param id="0" name="Width">1+ArrayOut.XCount</param>
-                            <param id="1" name="Height">9</param>
+                            <param id="1" name="Height">ArrayHeight</param>
                             <param id="2" name="Depth">1</param>
                         </action>
                         <action id="4" name="Set at XYZ" sid="9546937536013846" type="ArrayOut">
@@ -3321,7 +3516,7 @@
                             <param id="0" name="X">ArrayOut.XCount</param>
                             <param id="1" name="Y">2</param>
                             <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">Wave</param>
+                            <param id="3" name="Value">Wave2</param>
                         </action>
                         <action id="4" name="Set at XYZ" sid="8859696746690037" type="ArrayOut">
                             <param id="0" name="X">ArrayOut.XCount</param>
@@ -3386,7 +3581,7 @@
             </conditions>
             <actions>
                 <action id="-9" name="Set value" sid="9247563588530827" type="System">
-                    <param id="0" name="Variable">Array</param>
+                    <param id="0" name="Variable">ArrayVar</param>
                     <param id="1" name="Value">ArrayIn.Width</param>
                 </action>
                 <action id="-12" name="Set group active" sid="4814923205831185" type="System">
@@ -3400,16 +3595,27 @@
                 <condition id="-14" name="Compare variable" sid="9336214029955325" type="System">
                     <param id="0" name="Variable">CurrentTarget</param>
                     <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Array</param>
+                    <param id="2" name="Value">ArrayVar</param>
                 </condition>
             </conditions>
             <actions>
+                <action id="-12" name="Set group active" sid="8755240282651311" type="System">
+                    <param id="0" name="Group name">&quot;New Wave&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
                 <action id="-16" name="Wait" sid="4119948654748973" type="System">
                     <param id="0" name="Seconds">7</param>
+                </action>
+                <action id="-12" name="Set group active" sid="8943424527784509" type="System">
+                    <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
+                    <param id="1" name="State">0</param>
                 </action>
                 <action id="-12" name="Set group active" sid="268980778997681" type="System">
                     <param id="0" name="Group name">&quot;Move&quot;</param>
                     <param id="1" name="State">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="6844077022923974" type="System">
+                    <param id="0" name="Seconds">0</param>
                 </action>
                 <action behavior="Rotate" id="3" name="Set target" sid="7889832890152891" type="Centre">
                     <param id="0" name="Target is">2</param>
@@ -3423,10 +3629,10 @@
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
                 </action>
-                <action id="-15" name="Set visible" sid="548285180876256" type="Pop">
+                <action id="-15" name="Set visible" sid="548285180876256" type="DecayTimeout">
                     <param id="0" name="Visibility">1</param>
                 </action>
-                <action id="0" name="Set text" sid="6122807867551261" type="Pop">
+                <action id="0" name="Set text" sid="6122807867551261" type="DecayTimeout">
                     <param id="0" name="Text">&quot;Level Complete!&quot;</param>
                 </action>
                 <action id="-16" name="Wait" sid="2791402709790785" type="System">
@@ -3502,6 +3708,229 @@
                     </actions>
                 </event-block>
             </sub-events>
+        </event-block>
+        <event-block any="1" sid="7009634222222618">
+            <conditions>
+                <condition id="7" name="On button released" sid="5183364531957806" type="Gamepad">
+                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                    <param id="1" name="Button">14</param>
+                </condition>
+                <condition id="7" name="On button released" sid="8905688665072002" type="Gamepad">
+                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                    <param id="1" name="Button">15</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="1615292958060033" type="ArrayOut">
+                    <param id="0" name="Instance variable">XCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="1" name="Set size" sid="926774821231216" type="ArrayOut">
+                    <param id="0" name="Width">1+ArrayOut.XCount</param>
+                    <param id="1" name="Height">ArrayHeight</param>
+                    <param id="2" name="Depth">1</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="9431915803286184" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">0</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Timer</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="8420450398001434" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">2</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Wave2</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="5222507923825016" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Score</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="6816896629710259" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Bank</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="7744384574705228" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">5</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Triangle.Angle</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="3063323327353148" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">6</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Decay</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="3899854900139989" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">7</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">BankDecay</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="7634597160209308" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">8</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">WaveTimer</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="302971997143657" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">11</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">-Gamepad.LastButton(GAMEPADNR)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="6364667673420535">
+            <conditions>
+                <condition id="7" name="On button released" sid="223765632244969" type="Gamepad">
+                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                    <param id="1" name="Button">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="6860075122552717" type="ArrayOut">
+                    <param id="0" name="Instance variable">XCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="1" name="Set size" sid="6847429117038918" type="ArrayOut">
+                    <param id="0" name="Width">1+ArrayOut.XCount</param>
+                    <param id="1" name="Height">ArrayHeight</param>
+                    <param id="2" name="Depth">1</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="8528934817438437" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">0</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Timer</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="5325416391841571" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">2</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Wave2</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="9735788894920809" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Score</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="5020412536106962" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Bank</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="3417468891612489" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">5</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Triangle.Angle</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="8864352591507613" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">6</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Decay</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="1555912142513625" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">7</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">BankDecay</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="2267371137980814" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">8</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">WaveTimer</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="1293713362956408" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">11</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">-(Gamepad.LastButton(GAMEPADNR)+1)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="320844166222923">
+            <conditions>
+                <condition id="7" name="On button released" sid="2717828045216648" type="Gamepad">
+                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                    <param id="1" name="Button">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="6927711622651314" type="ArrayOut">
+                    <param id="0" name="Instance variable">XCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="1" name="Set size" sid="6437554786515003" type="ArrayOut">
+                    <param id="0" name="Width">1+ArrayOut.XCount</param>
+                    <param id="1" name="Height">ArrayHeight</param>
+                    <param id="2" name="Depth">1</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="3381975028565918" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">0</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Timer</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="1203322834875874" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">2</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Wave2</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="2230599089262118" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Score</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="3916754776763373" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Bank</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="2287879624173485" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">5</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Triangle.Angle</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="7032256914797524" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">6</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Decay</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="1321352080035121" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">7</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">BankDecay</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="9793397843152421" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">8</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">WaveTimer</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="7220028153902597" type="ArrayOut">
+                    <param id="0" name="X">ArrayOut.XCount</param>
+                    <param id="1" name="Y">11</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">-(Gamepad.LastButton(GAMEPADNR)+1)</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

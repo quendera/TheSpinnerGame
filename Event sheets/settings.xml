@@ -161,15 +161,48 @@
                 <action id="0" name="Set text" sid="2032968415468977" type="LowerCushion">
                     <param id="0" name="Text">&quot;Departure Cushion (in fraction of rotation time): &quot; &amp; DepartureCushion</param>
                 </action>
-                <action id="10" name="Request fullscreen" sid="9803316735591002" type="Browser">
-                    <param id="0" name="Mode">0</param>
-                </action>
                 <action id="0" name="Set text" sid="8954679090239815" type="GamepadStatus">
                     <param id="0" name="Text">&quot;Controller Status: Off&quot; </param>
                 </action>
                 <action id="-9" name="Set value" sid="5140837536448877" type="System">
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Value">Vertices.SelectedText</param>
+                </action>
+                <action id="-9" name="Set value" sid="2282197571918258" type="System">
+                    <param id="0" name="Variable">GrowSpeed</param>
+                    <param id="1" name="Value">SliderGrowthSpeed.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="874646261919841" type="System">
+                    <param id="0" name="Variable">BankTimeout</param>
+                    <param id="1" name="Value">BankTimeoutSlider.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="2700206895554037" type="System">
+                    <param id="0" name="Variable">CashinTimeout</param>
+                    <param id="1" name="Value">CashinTimeoutSlider.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="2178712969183346" type="System">
+                    <param id="0" name="Variable">RotateSpeed</param>
+                    <param id="1" name="Value">SliderRotateSpeed.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="8450177024020624" type="System">
+                    <param id="0" name="Variable">DecayMenu</param>
+                    <param id="1" name="Value">SliderDecayStart.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="463965925512475" type="System">
+                    <param id="0" name="Variable">DecayRate</param>
+                    <param id="1" name="Value">SliderDecayRate.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="6773533483448782" type="System">
+                    <param id="0" name="Variable">ArrivalCushion</param>
+                    <param id="1" name="Value">ArrivalCushion.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="2919846834045123" type="System">
+                    <param id="0" name="Variable">DepartureCushion</param>
+                    <param id="1" name="Value">DepartureCushion.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="8102517983585262" type="System">
+                    <param id="0" name="Variable">GAMEPADNR</param>
+                    <param id="1" name="Value">0</param>
                 </action>
             </actions>
         </event-block>
@@ -322,11 +355,26 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="6" name="Stop" sid="9752362153561774" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
                 <action id="-2" name="Go to layout" sid="6017168805123354" type="System">
                     <param id="0" name="Layout">game layout</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9550277202678482">
+            <conditions>
+                <condition id="7" name="On button released" sid="6741822518041596" type="Gamepad">
+                    <param id="0" name="Gamepad">GAMEPADNR</param>
+                    <param id="1" name="Button">4</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="5492296810706169" type="System">
+                    <param id="0" name="Variable">Vertices</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="8300777531239846" type="System">
+                    <param id="0" name="Layout">tutorial</param>
                 </action>
             </actions>
         </event-block>
@@ -348,9 +396,6 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="6" name="Stop" sid="1839672070191324" type="Audio">
-                            <param id="0" name="Tag">&quot;menu&quot;</param>
-                        </action>
                         <action id="-2" name="Go to layout" sid="6149751381067168" type="System">
                             <param id="0" name="Layout">game layout</param>
                         </action>
@@ -361,9 +406,6 @@
                         <condition id="-22" name="Else" sid="8626794072216989" type="System" />
                     </conditions>
                     <actions>
-                        <action id="6" name="Stop" sid="5446055639747967" type="Audio">
-                            <param id="0" name="Tag">&quot;menu&quot;</param>
-                        </action>
                         <action id="-2" name="Go to layout" sid="3156932029259932" type="System">
                             <param id="0" name="Layout">menu layout</param>
                         </action>
@@ -379,9 +421,6 @@
                 <condition id="0" name="On clicked" sid="1778592642292861" type="ButtonSettings" />
             </conditions>
             <actions>
-                <action id="6" name="Stop" sid="1219556572140094" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
                 <action id="-2" name="Go to layout" sid="4671617973593194" type="System">
                     <param id="0" name="Layout">Calibration</param>
                 </action>
@@ -395,9 +434,6 @@
                 <condition id="0" name="On clicked" sid="3957682754787219" type="tutorialbutton" />
             </conditions>
             <actions>
-                <action id="6" name="Stop" sid="5438202067659105" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
                 <action id="-2" name="Go to layout" sid="2792875935521852" type="System">
                     <param id="0" name="Layout">tutorial</param>
                 </action>
@@ -411,9 +447,6 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="6" name="Stop" sid="9883593567346923" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
                 <action id="-2" name="Go to layout" sid="9752755175769556" type="System">
                     <param id="0" name="Layout">Calibration</param>
                 </action>
@@ -508,7 +541,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="6190767528638919">
+        <event-block disabled="1" sid="6190767528638919">
             <conditions>
                 <condition id="-14" name="Compare variable" sid="1031380950528685" type="System">
                     <param id="0" name="Variable">Vertices</param>
@@ -531,7 +564,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="1911817560042019">
+        <event-block disabled="1" sid="1911817560042019">
             <conditions>
                 <condition id="-14" name="Compare variable" sid="7913721723178751" type="System">
                     <param id="0" name="Variable">Vertices</param>
@@ -554,7 +587,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="261625035173819">
+        <event-block disabled="1" sid="261625035173819">
             <conditions>
                 <condition id="-14" name="Compare variable" sid="3357807342835271" type="System">
                     <param id="0" name="Variable">Vertices</param>
@@ -577,7 +610,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="9622429930756825">
+        <event-block disabled="1" sid="9622429930756825">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="5204181866246435" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;4.1&quot;</param>
@@ -591,7 +624,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="4235492384129051">
+        <event-block disabled="1" sid="4235492384129051">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="7085306060014217" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;4.2&quot;</param>
@@ -605,7 +638,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="2916576968172379">
+        <event-block disabled="1" sid="2916576968172379">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="2805889263164043" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;4.3&quot;</param>
@@ -619,7 +652,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="1855360940437936">
+        <event-block disabled="1" sid="1855360940437936">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="6941888446237141" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;6.1&quot;</param>
@@ -633,7 +666,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="234910232384886">
+        <event-block disabled="1" sid="234910232384886">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="8432776474628336" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;6.2&quot;</param>
@@ -647,7 +680,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="1295339368862062">
+        <event-block disabled="1" sid="1295339368862062">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="6716804698849539" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;6.3&quot;</param>
@@ -661,7 +694,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="5348434490381687">
+        <event-block disabled="1" sid="5348434490381687">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="3561103810409694" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;8.1&quot;</param>
@@ -675,7 +708,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="908125313114133">
+        <event-block disabled="1" sid="908125313114133">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="3569739581238989" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;8.2&quot;</param>
@@ -689,7 +722,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="7066926472630416">
+        <event-block disabled="1" sid="7066926472630416">
             <conditions>
                 <condition id="4" name="Compare selected item text" sid="2671262339219972" type="Inputfile">
                     <param id="0" name="Text to compare">&quot;8.3&quot;</param>
@@ -700,6 +733,16 @@
                 <action id="-9" name="Set value" sid="7867374546947013" type="System">
                     <param id="0" name="Variable">inputtag</param>
                     <param id="1" name="Value">83</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7821745620746751">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6500621907327925" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="3511075277105356" type="Text2">
+                    <param id="0" name="Text">Gamepad.Button(GAMEPADNR,1)</param>
                 </action>
             </actions>
         </event-block>
