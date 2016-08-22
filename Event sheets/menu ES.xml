@@ -79,7 +79,7 @@
                     <param id="0" name="Text">&quot;&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="9940579497779587" type="Instructions">
-                    <param id="0" name="Text">&quot;SELECT THE LEVEL, ENTER YOUR NAME AND PRESS 1 TO START.&quot;</param>
+                    <param id="0" name="Text">&quot;ENTER YOUR NAME AND PRESS 1 TO START or ENTER SETTINGS TO CUSTOMISE YOUR EXPERIENCE&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="4254676036209983" type="Version">
                     <param id="0" name="Text">&quot;Version: &quot; &amp; projectversion</param>
@@ -120,7 +120,7 @@
                     <param id="3" name="Y">800</param>
                 </action>
                 <action id="0" name="Set text" sid="4399857657010841" type="SelectedLevel">
-                    <param id="0" name="Text">&quot;Select a Level by pressing an unlocked polygon!&quot;</param>
+                    <param id="0" name="Text">&quot;Select a Level by pressing a polygon!&quot;</param>
                 </action>
                 <action id="-3" name="Create object" sid="6839292314667167" type="System">
                     <param id="0" name="Object to create">YourHighScore</param>
@@ -271,7 +271,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="8774602289377159">
+        <event-block disabled="1" sid="8774602289377159">
             <conditions>
                 <condition id="17" name="On tap object" sid="5582624934563851" type="Touch">
                     <param id="0" name="Object">b3</param>
@@ -313,6 +313,10 @@
                 <action id="0" name="Set text" sid="5422748470261384" type="SelectedLevel">
                     <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
                 </action>
+                <action id="-9" name="Set value" sid="5326303911350941" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">43</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="9734979382076131">
@@ -335,6 +339,10 @@
                 <action id="0" name="Set text" sid="9339201267230725" type="SelectedLevel">
                     <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
                 </action>
+                <action id="-9" name="Set value" sid="6469381087700779" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">63</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="3480461441024548">
@@ -356,6 +364,10 @@
                 </action>
                 <action id="0" name="Set text" sid="5104191525737273" type="SelectedLevel">
                     <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
+                </action>
+                <action id="-9" name="Set value" sid="6733909612688476" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">83</param>
                 </action>
             </actions>
         </event-block>

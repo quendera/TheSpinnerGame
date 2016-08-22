@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>controller spinner no buffer</name>
+    <name>lab</name>
     <description>wip</description>
-    <version>2.7.1</version>
+    <version>3.0.1</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
@@ -30,11 +30,13 @@
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TextBox" version="1">Text box</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+        <plugin author="Scirra" id="filechooser" version="1">File chooser</plugin>
         <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
         <plugin author="Scirra" id="sliderbar" version="1">Slider bar</plugin>
         <plugin author="Armaldio" id="social" version="1">Mandrill</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
@@ -62,7 +64,7 @@
         <prop name="Orientations">Landscape</prop>
         <prop name="Pause on unfocus">No</prop>
         <prop name="Physics engine">Box2D asm.js</prop>
-        <prop name="Preview browser">NW.js</prop>
+        <prop name="Preview browser">Chrome</prop>
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
@@ -77,7 +79,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6476482545983579" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\8galaxy.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\stars8.png">
                             <collision-poly>
                                 <point x="0.14899" y="0.14899" />
                                 <point x="0.5" y="0.00252525" />
@@ -175,7 +177,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1429972150281914" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\6galaxy.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\stars6.png">
                             <collision-poly>
                                 <point x="0.183526" y="0.15875" />
                                 <point x="0.5" y="0" />
@@ -199,7 +201,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2807216574537869" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\4galaxy.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\stars4.png">
                             <collision-poly>
                                 <point x="0.5" y="0" />
                                 <point x="1" y="0.5" />
@@ -219,7 +221,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8597478436531109" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.667308" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\galaxy3.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.667929" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\stars4.png">
                             <collision-poly>
                                 <point x="0.5" y="0.00222222" />
                                 <point x="1" y="1" />
@@ -878,12 +880,64 @@
         <object-type name="SettingsVertices" sid="2674480672667205">
             <plugin id="Text" />
         </object-type>
+        <object-type name="FileChooser" sid="5894644566037202">
+            <plugin id="filechooser" />
+        </object-type>
+        <object-type name="TriangleBack" sid="235496477134783">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Pin" sid="6550601699760796">
+                    <behavior id="Pin" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="482347408320533">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4046158712112703" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.222222" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\circleturbinacortada2.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="0.5" y="0.9975" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Input" sid="1275439263588817">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Inputfile" sid="5912205330690273">
+            <plugin id="List" />
+            <instance-variables>
+                <instance-variable name="v41" sid="80809501243289" type="string" />
+                <instance-variable name="v42" sid="7980467142104168" type="string" />
+                <instance-variable name="v43" sid="1205739174911449" type="string" />
+                <instance-variable name="v61" sid="9768196825328157" type="string" />
+                <instance-variable name="v62" sid="8609812202912891" type="string" />
+                <instance-variable name="v63" sid="2295359907714286" type="string" />
+                <instance-variable name="v81" sid="4867980777827407" type="string" />
+                <instance-variable name="v82" sid="6356662931238477" type="string" />
+                <instance-variable name="v83" sid="5388438261960605" type="string" />
+            </instance-variables>
+        </object-type>
+        <object-type global="1" name="Array" sid="7154293208985594">
+            <plugin id="Arr" />
+            <instance-variables>
+                <instance-variable name="XCount" sid="2596123640097245" type="number" />
+            </instance-variables>
+        </object-type>
+        <object-type name="tutorialbutton" sid="4971032485248511">
+            <plugin id="Button" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
         <layout>menu layout.xml</layout>
         <layout>settings.xml</layout>
         <layout>game layout.xml</layout>
+        <layout>tutorial.xml</layout>
         <layout>Calibration.xml</layout>
     </layout-folder>
     <event-folder>
@@ -891,6 +945,7 @@
         <event-sheet>menu ES.xml</event-sheet>
         <event-sheet>Calibration.xml</event-sheet>
         <event-sheet>settings.xml</event-sheet>
+        <event-sheet>tutorial ES.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="11">
@@ -964,23 +1019,15 @@
             <file name="loading-logo.png" />
         </file-folder>
         <file-folder name="Inputs">
-            <file name="MLinput.txt" />
-            <file name="test.txt" />
-            <file name="4test.txt" />
-            <file name="final8test.txt" />
-            <file name="final3test.txt" />
-            <file name="final4test.txt" />
-            <file name="final6test.txt" />
-            <file name="calibratetest.txt" />
-            <file name="final4test2016.txt" />
-            <file name="final6test2016.txt" />
-            <file name="final8test2016.txt" />
-            <file name="abs4test.txt" />
-            <file name="abs6test.txt" />
-            <file name="abs8test.txt" />
-            <file name="norm4test.txt" />
-            <file name="norm6test.txt" />
-            <file name="norm8test.txt" />
+            <file name="joint41.txt" />
+            <file name="joint42.txt" />
+            <file name="joint43.txt" />
+            <file name="joint61.txt" />
+            <file name="joint62.txt" />
+            <file name="joint63.txt" />
+            <file name="joint81.txt" />
+            <file name="joint82.txt" />
+            <file name="joint83.txt" />
         </file-folder>
     </files-folder>
 </c2project>

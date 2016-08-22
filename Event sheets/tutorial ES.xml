@@ -1,58 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>game ES</name>
+    <name>tutorial ES</name>
     <events>
-        <variable constant="0" name="InputFile" sid="8439793730091524" static="0" type="text"></variable>
-        <variable constant="0" name="Array" sid="3146732013373107" static="0" type="number">0</variable>
-        <variable constant="0" name="Bank" sid="8425479342281176" static="0" type="number">0</variable>
-        <variable constant="0" name="ScoreMultiplier" sid="8157274277484364" static="0" type="number">0</variable>
-        <variable constant="0" name="WaveInSeconds" sid="4665340492081656" static="0" type="number">0</variable>
-        <variable constant="0" name="CurrentTarget" sid="3524887013073726" static="0" type="number">0</variable>
-        <variable constant="0" name="IsSwiping" sid="6986200308196045" static="0" type="number">0</variable>
-        <variable constant="0" name="inputtag" sid="4936953176516843" static="0" type="number">0</variable>
-        <variable constant="0" name="LivesPlus1" sid="7137186137910001" static="0" type="number">0</variable>
-        <variable constant="0" name="ArrivalCushion" sid="2505483263433415" static="0" type="number">0.6</variable>
-        <variable constant="0" name="minthreshold" sid="1706555934723994" static="0" type="number">0</variable>
-        <variable constant="0" name="DepartureCushion" sid="4267624484214975" static="0" type="number">0.4</variable>
-        <variable constant="0" name="Anglecounter" sid="5533676090468189" static="0" type="number">0</variable>
-        <variable constant="0" name="GAMEPADNR" sid="7502674986831925" static="0" type="number">0</variable>
-        <variable constant="0" name="vertexcounter" sid="4377341150044906" static="0" type="number">0</variable>
-        <variable constant="0" name="WaveTimer" sid="9351539086041364" static="0" type="number">0</variable>
-        <variable comment="total score" constant="0" name="Score" sid="8217409286693331" static="0" type="number">0</variable>
-        <variable constant="0" name="TurnCounter" sid="6654269330304775" static="0" type="number">0</variable>
-        <variable constant="0" name="maxbank" sid="3897661336221864" static="0" type="number">0</variable>
-        <variable constant="0" name="SpawnCount" sid="9466068727064721" static="0" type="number">0</variable>
-        <variable constant="0" name="AngleT" sid="4977592897124348" static="0" type="number">0</variable>
-        <variable constant="0" name="KeyCode" sid="8602646543059054" static="0" type="number">0</variable>
-        <variable constant="0" name="SpawnTime" sid="5419693737867305" static="0" type="number">0</variable>
-        <variable constant="0" name="NextWave" sid="9835766702126065" static="0" type="number">0</variable>
-        <variable constant="0" name="DecayRateMenu" sid="3159733732923691" static="0" type="number">0</variable>
-        <variable constant="0" name="DecayRate" sid="5222719999120359" static="0" type="number">0</variable>
-        <variable constant="0" name="ScaleFactor" sid="5146200472250834" static="0" type="number">0</variable>
-        <variable comment="Speed at which the wheel rotates" constant="0" name="RotateSpeed" sid="2940482200698114" static="0" type="number">0.4</variable>
-        <variable comment="Game timer in the format S.MS (where we get our timestamp from)" constant="0" name="Timer" sid="6732439182797215" static="0" type="number">0</variable>
-        <variable constant="0" name="TimeDelay" sid="7804236353212392" static="0" type="number">0</variable>
-        <variable constant="0" name="CashinTimeout" sid="9316892086330884" static="0" type="number">0</variable>
-        <variable constant="0" name="BankTimeout" sid="523964124431667" static="0" type="number">0</variable>
-        <variable constant="0" name="TouchEnd" sid="3572855258866507" static="0" type="number">0</variable>
-        <variable constant="0" name="TouchStart" sid="7245534674334736" static="0" type="number">0</variable>
-        <variable constant="0" name="WaveBegin" sid="9298606220744276" static="0" type="number">0</variable>
-        <variable constant="0" name="Countdown" sid="8222521569233748" static="0" type="number">300</variable>
-        <variable constant="0" name="Lives" sid="9972076849473098" static="0" type="number">0</variable>
-        <variable constant="0" name="Wave" sid="885920826875397" static="0" type="number">0</variable>
-        <variable constant="0" name="BankDecay" sid="7337956432948755" static="0" type="number">0</variable>
-        <variable constant="0" name="GrowSpeed" sid="4310533128642156" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayCount" sid="4366658811813811" static="0" type="number">0</variable>
-        <variable constant="0" name="InputData" sid="8887172461514531" static="0" type="text"></variable>
-        <variable constant="0" name="DecayMenu" sid="7461544818644895" static="0" type="number">0</variable>
-        <variable constant="0" name="Decay" sid="1260026678336282" static="0" type="number">0</variable>
-        <variable constant="0" name="Name" sid="6412032019206318" static="0" type="text"></variable>
-        <variable comment="Value determines number of vertices (from 1-10)" constant="0" name="Vertices" sid="282269479086004" static="0" type="number">0</variable>
-        <variable constant="0" name="Highscore" sid="7035507841088011" static="0" type="number">0</variable>
-        <event-group description="" sid="4169754301003438" title="Layout">
+        <event-group description="" sid="1358698337571311" title="Layout2">
             <sub-events>
-                <event-group description="" sid="7596922844523389" title="On start actions">
+                <event-group description="" sid="7596922844523389" title="On start actions2">
                     <sub-events>
                         <comment>Destroy objects to reset layout; Play music; Create object (yet to be defined); Start timer; Save the player name; Reset multiplier to 1 (0 multiplier makes no sense)</comment>
                         <event-block sid="5397106331908741">
@@ -86,7 +39,6 @@
                                 <action id="-9" name="Destroy" sid="7186636234073844" type="ArrayIn" />
                                 <action id="-9" name="Destroy" sid="9192413781456691" type="ArrayOut" />
                                 <action id="-9" name="Destroy" sid="5731783222723488" type="ArrayBuffer" />
-                                <action id="-9" name="Destroy" sid="5103599614045508" type="TriangleBack" />
                                 <action id="-9" name="Set value" sid="4491227558919464" type="System">
                                     <param id="0" name="Variable">Array</param>
                                     <param id="1" name="Value">999</param>
@@ -194,10 +146,6 @@
                                 <action id="-9" name="Set value" sid="1928443185835557" type="System">
                                     <param id="0" name="Variable">Anglecounter</param>
                                     <param id="1" name="Value">180</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="4117647156900631" type="System">
-                                    <param id="0" name="Variable">vertexcounter</param>
-                                    <param id="1" name="Value">0</param>
                                 </action>
                                 <action id="0" name="Play" sid="9493006145775999" type="Audio">
                                     <param id="0" name="Audio file">Lost signal main theme (WIP) (online-audio-converter.com)</param>
@@ -805,7 +753,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description='Draws the polygon based on variable &quot;Vertices&quot; (inactive on start so vertices can load first)' sid="8896841130103541" title="Draw">
+                <event-group description='Draws the polygon based on variable &quot;Vertices&quot; (inactive on start so vertices can load first)' sid="8896841130103541" title="Draw2">
                     <sub-events>
                         <event-block sid="8632981065300501">
                             <conditions>
@@ -847,10 +795,8 @@
                             <sub-events>
                                 <event-block sid="6801814721657517">
                                     <conditions>
-                                        <condition id="-10" name="For" sid="3930523660299599" type="System">
-                                            <param id="0" name="Name">&quot;&quot;</param>
-                                            <param id="1" name="Start index">1</param>
-                                            <param id="2" name="End index">Vertices</param>
+                                        <condition id="-12" name="Repeat" sid="3930523660299599" type="System">
+                                            <param id="0" name="Count">Vertices</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -879,7 +825,7 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-group description="" sid="8440378292049142" title="Input">
+        <event-group description="" sid="3717261632831207" title="Input2">
             <sub-events>
                 <event-block sid="8706316043662561">
                     <conditions>
@@ -949,7 +895,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-group description="" sid="5031799030764237" title="Spawn and Reset">
+                <event-group description="" sid="5031799030764237" title="Spawn and Reset2">
                     <sub-events>
                         <event-block sid="3519419607393503">
                             <conditions>
@@ -1013,7 +959,7 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-group description="" sid="8193913164658087" title="New Wave">
+        <event-group description="" sid="9334247321882298" title="New Wave2">
             <sub-events>
                 <event-block sid="8534368053333772">
                     <conditions>
@@ -1148,7 +1094,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="5028891714324331" title="Timers">
+        <event-group description="" sid="4059933683521445" title="Timers2">
             <sub-events>
                 <event-block sid="6793597218970005">
                     <conditions>
@@ -1398,7 +1344,7 @@
                     </actions>
                 </event-block>
                 <comment>Use a type of cooldown to prevent movement while </comment>
-                <event-group description="" sid="6453888553922811" title="go">
+                <event-group description="" sid="6453888553922811" title="go2">
                     <sub-events>
                         <event-block sid="2271429352859199">
                             <conditions>
@@ -1466,7 +1412,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-group description="" sid="7052907121565513" title="Every tick actions">
+                <event-group description="" sid="7052907121565513" title="Every tick actions2">
                     <sub-events>
                         <event-block sid="1111682081981004">
                             <conditions>
@@ -1489,7 +1435,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-group description="" sid="6212510203919189" title="Decay">
+                        <event-group description="" sid="6212510203919189" title="Decay2">
                             <sub-events>
                                 <event-block sid="461035369686379">
                                     <conditions>
@@ -1532,7 +1478,7 @@
                                 </event-block>
                             </sub-events>
                         </event-group>
-                        <event-group description="" sid="9013065317034459" title="Wave Timer">
+                        <event-group description="" sid="9013065317034459" title="Wave Timer2">
                             <sub-events>
                                 <event-block sid="461035369686379">
                                     <conditions>
@@ -1573,7 +1519,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-group description="" sid="7685276560887619" title="DecayTimeout">
+                        <event-group description="" sid="7685276560887619" title="DecayTimeout2">
                             <sub-events>
                                 <event-block sid="6234883672123278">
                                     <conditions>
@@ -1592,7 +1538,7 @@
                                         </action>
                                     </actions>
                                     <sub-events>
-                                        <event-group description="" sid="8087795942039277" title="Clock">
+                                        <event-group description="" sid="8087795942039277" title="Clock2">
                                             <sub-events>
                                                 <event-block sid="9512341913683477">
                                                     <conditions>
@@ -1660,63 +1606,63 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-block sid="3005153126850952">
+        <event-block sid="5282279970077909">
             <conditions>
-                <condition id="13" name="Gamepads are supported" sid="711751304826498" type="Gamepad" />
+                <condition id="13" name="Gamepads are supported" sid="7899771661965982" type="Gamepad" />
             </conditions>
             <actions>
-                <action id="-9" name="Set value" sid="9637318357499206" type="System">
+                <action id="-9" name="Set value" sid="535527236610552" type="System">
                     <param id="0" name="Variable">Gamepad</param>
                     <param id="1" name="Value">1</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="1037104621035061">
+        <event-block sid="547787375416463">
             <conditions>
-                <condition id="0" name="On ended" sid="9947878660282827" type="Audio">
+                <condition id="0" name="On ended" sid="3811559575296474" type="Audio">
                     <param id="0" name="Tag">&quot;boom&quot;</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="453130698808234" type="Points" />
+                <action id="-9" name="Destroy" sid="7317014677458705" type="Points" />
             </actions>
         </event-block>
-        <event-block sid="91060693692516">
+        <event-block sid="2846112151689659">
             <conditions>
-                <condition id="0" name="On ended" sid="1179430609824135" type="Audio">
+                <condition id="0" name="On ended" sid="1931224332916123" type="Audio">
                     <param id="0" name="Tag">&quot;test&quot;</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="5989076460100394" type="Points" />
+                <action id="-9" name="Destroy" sid="3411550449282027" type="Points" />
             </actions>
         </event-block>
-        <event-block sid="6346351307840011">
+        <event-block sid="2303887986711123">
             <conditions>
-                <condition id="-4" name="Trigger once while true" sid="2088281823738282" type="System" />
+                <condition id="-4" name="Trigger once while true" sid="8253645470767245" type="System" />
             </conditions>
             <actions />
             <sub-events>
-                <event-block sid="5677848838758812">
+                <event-block sid="8352409576038372">
                     <conditions>
-                        <condition id="4" name="Has gamepads" sid="4104597766314571" type="Gamepad" />
+                        <condition id="4" name="Has gamepads" sid="8182076465351864" type="Gamepad" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="879347473642642" type="System">
+                        <action id="-9" name="Set value" sid="1881889808107092" type="System">
                             <param id="0" name="Variable">Gamepad</param>
                             <param id="1" name="Value">2</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="8653921143030543">
+                <event-block sid="3405659760258168">
                     <conditions>
-                        <condition id="-22" name="Else" sid="7990586907698118" type="System" />
+                        <condition id="-22" name="Else" sid="5510353790872458" type="System" />
                     </conditions>
                     <actions />
                 </event-block>
             </sub-events>
         </event-block>
-        <event-group description="" sid="2743127929838197" title="Movement">
+        <event-group description="" sid="4561395433937549" title="Movement2">
             <sub-events>
                 <event-block sid="7330064218571053">
                     <conditions>
@@ -1748,7 +1694,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-group description="" sid="6510247732111874" title="R2">
+                <event-group description="" sid="6510247732111874" title="R3">
                     <sub-events>
                         <event-block any="1" sid="9573903977879303">
                             <conditions>
@@ -1828,7 +1774,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="9732246817605021" title="L2">
+                <event-group description="" sid="9732246817605021" title="L3">
                     <sub-events>
                         <event-block any="1" sid="6315835006256548">
                             <conditions>
@@ -1908,7 +1854,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="1592941481776946" title="U2">
+                <event-group description="" sid="1592941481776946" title="U3">
                     <sub-events>
                         <event-block sid="1736263906644289">
                             <conditions>
@@ -2051,7 +1997,7 @@
                                                 </action>
                                             </actions>
                                             <sub-events>
-                                                <event-group description="" sid="89498577699174" title="Sound2">
+                                                <event-group description="" sid="89498577699174" title="Sound3">
                                                     <sub-events>
                                                         <event-block sid="7956731201045306">
                                                             <conditions>
@@ -2401,7 +2347,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="5240430855795671" title="D2">
+                <event-group description="" sid="5240430855795671" title="D3">
                     <sub-events>
                         <event-block sid="5738857288902388">
                             <conditions>
@@ -2578,7 +2524,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="6552649188963522" title="Move">
+                <event-group description="" sid="6552649188963522" title="Move2">
                     <sub-events>
                         <comment>Timer serves as a means of preventing desync between the wheel and the fixed angle (prevents movement until the wheel has reached the next significant angle</comment>
                         <event-block sid="9551859788941002">
@@ -2805,195 +2751,10 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-group description="" sid="9382044862357088" title="Target Behaviours">
+        <event-group description="" sid="4641764747501953" title="Target Behaviours2">
             <sub-events>
-                <event-group description="" sid="2489434886859669" title="Score">
+                <event-group description="" sid="2489434886859669" title="Score2">
                     <sub-events>
-                        <event-block any="1" sid="7715626933489624">
-                            <conditions>
-                                <condition id="-14" name="Compare variable" sid="6143824514500614" type="System">
-                                    <param id="0" name="Variable">Decay</param>
-                                    <param id="1" name="Comparison">2</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions />
-                            <sub-events>
-                                <event-block sid="7045429900544319">
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" sid="1866818850229003" type="System">
-                                            <param id="0" name="Variable">Lives</param>
-                                            <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Set value" sid="5113532419432111" type="System">
-                                            <param id="0" name="Variable">Score</param>
-                                            <param id="1" name="Value">0</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="557966896266687" type="System">
-                                            <param id="0" name="Group name">&quot;Move&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action behavior="Rotate" id="3" name="Set target" sid="8356851659697694" type="Centre">
-                                            <param id="0" name="Target is">2</param>
-                                            <param id="1" name="Relativity">0</param>
-                                            <param id="2" name="Value">0</param>
-                                        </action>
-                                        <action behavior="Rotate" id="1" name="Set duration" sid="4284310844324104" type="Centre">
-                                            <param id="0" name="Duration">1</param>
-                                        </action>
-                                        <action behavior="Rotate" id="10" name="Start" sid="1891658953158297" type="Centre">
-                                            <param id="0" name="Start Mode">0</param>
-                                            <param id="1" name="Force use current">0</param>
-                                        </action>
-                                        <action id="-15" name="Set visible" sid="5599497413846612" type="Pop">
-                                            <param id="0" name="Visibility">1</param>
-                                        </action>
-                                        <action id="0" name="Set text" sid="9040608075384362" type="Pop">
-                                            <param id="0" name="Text">&quot;Game Over!&quot;</param>
-                                        </action>
-                                        <action id="-16" name="Wait" sid="2531635714871953" type="System">
-                                            <param id="0" name="Seconds">4</param>
-                                        </action>
-                                        <action id="-42" name="Signal" sid="5621854208173888" type="System">
-                                            <param id="0" name="Tag">&quot;end&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="2311735588868965">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="184310105569223" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-12" name="Set group active" sid="1188981433839261" type="System">
-                                            <param id="0" name="Group name">&quot;Decay&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="4225819629379187" type="System">
-                                            <param id="0" name="Group name">&quot;Move&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="9952845291582842" type="System">
-                                            <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="228696246189142" type="System">
-                                            <param id="0" name="Group name">&quot;DecayTimeout&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="814495809681526" type="System">
-                                            <param id="0" name="Group name">&quot;Wave Timer&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="4123700472027992" type="System">
-                                            <param id="0" name="Group name">&quot;go&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="-11" name="Subtract from" sid="101942590163828" type="System">
-                                            <param id="0" name="Variable">Lives</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="3940186544641697" type="System">
-                                            <param id="0" name="Variable">Decay</param>
-                                            <param id="1" name="Value">DecayMenu</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="2554924730709204" type="System">
-                                            <param id="0" name="Variable">BankDecay</param>
-                                            <param id="1" name="Value">Decay</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="3594874516944579" type="System">
-                                            <param id="0" name="Variable">CurrentTarget</param>
-                                            <param id="1" name="Value">WaveBegin</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="1541228839883159" type="System">
-                                            <param id="0" name="Variable">SpawnTime</param>
-                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="6204361020075609" type="System">
-                                            <param id="0" name="Variable">WaveTimer</param>
-                                            <param id="1" name="Value">0</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="6267570645605717" type="System">
-                                            <param id="0" name="Variable">Bank</param>
-                                            <param id="1" name="Value">0</param>
-                                        </action>
-                                        <action id="-9" name="Destroy" sid="5784690717676995" type="Target" />
-                                        <action id="1" name="Set size" sid="265595529675037" type="ArrayOut">
-                                            <param id="0" name="Width">1+ArrayOut.XCount</param>
-                                            <param id="1" name="Height">9</param>
-                                            <param id="2" name="Depth">1</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="37000134130548" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">0</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value"> Timer</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="8291916415743746" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">1</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value"> &quot;L&quot;</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="3767504296756628" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">2</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">Wave</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="3386271516923786" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">3</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">Score</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="7475453911602353" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">4</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">Bank</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="9969269727348085" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">5</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">round(Triangle.Angle)</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="2411728393113645" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">6</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">Decay</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="9618023763143612" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">7</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">BankDecay</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="9422416428617771" type="ArrayOut">
-                                            <param id="0" name="X">ArrayOut.XCount</param>
-                                            <param id="1" name="Y">8</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">WaveTimer</param>
-                                        </action>
-                                        <action id="0" name="Play" sid="8421821456524252" type="Audio">
-                                            <param id="0" name="Audio file">lose sound 2 - 1_0</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                                        </action>
-                                        <action behavior="Timer" id="0" name="Start timer" sid="8947981681659089" type="Polygon">
-                                            <param id="0" name="Duration">1</param>
-                                            <param id="1" name="Type">0</param>
-                                            <param id="2" name="Tag">&quot;wait&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
                         <event-block sid="1010288370680168">
                             <conditions>
                                 <condition behavior="Grow" id="4" name="On tween end" sid="6166221378760276" type="Target" />
@@ -3128,37 +2889,8 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="1451601781114732" title="Output">
+        <event-group description="" sid="8532792981065959" title="Output2">
             <sub-events>
-                <event-block sid="3078259402833903">
-                    <conditions>
-                        <condition id="10" name="On item missing" sid="1792613909132553" type="LocalStorage">
-                            <param id="0" name="Key">&quot;highscore&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set item" sid="9878167482909205" type="LocalStorage">
-                            <param id="0" name="Key">&quot;highscore&quot;</param>
-                            <param id="1" name="Value">&quot;0&quot;</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="9922165724582607">
-                    <conditions>
-                        <condition id="9" name="On item exists" sid="6565443626308122" type="LocalStorage">
-                            <param id="0" name="Key">&quot;highscore&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="1" name="Get item" sid="953130387976729" type="LocalStorage">
-                            <param id="0" name="Key">&quot;highscore&quot;</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="5290266147429859" type="System">
-                            <param id="0" name="Variable">Highscore</param>
-                            <param id="1" name="Value">LocalStorage.ItemValue</param>
-                        </action>
-                    </actions>
-                </event-block>
                 <event-block sid="5946033725107312">
                     <conditions>
                         <condition behavior="Rotate" id="4" name="On tween end" sid="3838927213568755" type="Centre" />
@@ -3363,145 +3095,18 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block sid="6717566225933861">
+        <event-block sid="487318924163603">
             <conditions>
-                <condition id="-4" name="Trigger once while true" sid="6960772301073608" type="System" />
+                <condition id="-4" name="Trigger once while true" sid="525351397186933" type="System" />
             </conditions>
             <actions>
-                <action id="-41" name="Wait for signal" sid="8706650959739799" type="System">
+                <action id="-41" name="Wait for signal" sid="7741505132642279" type="System">
                     <param id="0" name="Tag">&quot;end&quot;</param>
                 </action>
-                <action id="-2" name="Go to layout" sid="3101797841705877" type="System">
+                <action id="-2" name="Go to layout" sid="414331046278622" type="System">
                     <param id="0" name="Layout">menu layout</param>
                 </action>
             </actions>
-        </event-block>
-        <event-block any="1" sid="427223429870351">
-            <conditions>
-                <condition id="-14" name="Compare variable" sid="8271067428652662" type="System">
-                    <param id="0" name="Variable">Timer</param>
-                    <param id="1" name="Comparison">5</param>
-                    <param id="2" name="Value">10</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Set value" sid="9247563588530827" type="System">
-                    <param id="0" name="Variable">Array</param>
-                    <param id="1" name="Value">ArrayIn.Width</param>
-                </action>
-                <action id="-12" name="Set group active" sid="4814923205831185" type="System">
-                    <param id="0" name="Group name">&quot;New Wave&quot;</param>
-                    <param id="1" name="State">1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="3385659476885102">
-            <conditions>
-                <condition id="-14" name="Compare variable" sid="9336214029955325" type="System">
-                    <param id="0" name="Variable">CurrentTarget</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Array</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-16" name="Wait" sid="4119948654748973" type="System">
-                    <param id="0" name="Seconds">7</param>
-                </action>
-                <action id="-12" name="Set group active" sid="268980778997681" type="System">
-                    <param id="0" name="Group name">&quot;Move&quot;</param>
-                    <param id="1" name="State">0</param>
-                </action>
-                <action behavior="Rotate" id="3" name="Set target" sid="7889832890152891" type="Centre">
-                    <param id="0" name="Target is">2</param>
-                    <param id="1" name="Relativity">0</param>
-                    <param id="2" name="Value">0</param>
-                </action>
-                <action behavior="Rotate" id="1" name="Set duration" sid="6381492603703044" type="Centre">
-                    <param id="0" name="Duration">1</param>
-                </action>
-                <action behavior="Rotate" id="10" name="Start" sid="4655421790554004" type="Centre">
-                    <param id="0" name="Start Mode">0</param>
-                    <param id="1" name="Force use current">0</param>
-                </action>
-                <action id="-15" name="Set visible" sid="548285180876256" type="Pop">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-                <action id="0" name="Set text" sid="6122807867551261" type="Pop">
-                    <param id="0" name="Text">&quot;Level Complete!&quot;</param>
-                </action>
-                <action id="-16" name="Wait" sid="2791402709790785" type="System">
-                    <param id="0" name="Seconds">5</param>
-                </action>
-                <action id="-42" name="Signal" sid="3790822948948478" type="System">
-                    <param id="0" name="Tag">&quot;end&quot;</param>
-                </action>
-            </actions>
-            <sub-events>
-                <event-block sid="2399042305140596">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="8699930742503683" type="System">
-                            <param id="0" name="Variable">Vertices</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">4</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set item" sid="5667811240140589" type="LocalStorage">
-                            <param id="0" name="Key">&quot;4cleared&quot;</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6192779493277985">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="9245507432461401" type="System">
-                            <param id="0" name="Variable">Vertices</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">6</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set item" sid="9931119029118797" type="LocalStorage">
-                            <param id="0" name="Key">&quot;6cleared&quot;</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6493762754261741">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="9409764336800041" type="System">
-                            <param id="0" name="Variable">Vertices</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">8</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set item" sid="2087397693524362" type="LocalStorage">
-                            <param id="0" name="Key">&quot;8cleared&quot;</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="2586647596234413">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="3165959265342547" type="System">
-                            <param id="0" name="Variable">Score</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">Highscore</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set item" sid="6387205578915544" type="LocalStorage">
-                            <param id="0" name="Key">&quot;highscore&quot;</param>
-                            <param id="1" name="Value">round(Score)</param>
-                        </action>
-                        <action id="0" name="Submit score" sid="9818182803182114" type="ScirraArcade">
-                            <param id="0" name="Leaderboard ID">&quot;Leaderboard&quot;</param>
-                            <param id="1" name="Score">Score</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>

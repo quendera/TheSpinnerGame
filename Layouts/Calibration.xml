@@ -93,6 +93,17 @@
             <effects />
         </layer>
     </layers>
-    <nonworld-instances />
+    <nonworld-instances>
+        <instance type="Array" uid="26">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <XCount>0</XCount>
+            </instance-variables>
+        </instance>
+    </nonworld-instances>
     <effects />
 </c2layout>
