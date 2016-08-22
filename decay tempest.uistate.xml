@@ -10,10 +10,14 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="1">menu layout</layout>
-        <layout order="3">game layout</layout>
-        <event-sheet order="0">menu ES</event-sheet>
-        <event-sheet active="1" order="2">game ES</event-sheet>
+        <layout active="1" order="0">menu layout</layout>
+        <layout order="2">game layout</layout>
+        <layout order="4">Calibration</layout>
+        <layout order="6">settings</layout>
+        <event-sheet order="1">menu ES</event-sheet>
+        <event-sheet order="3">game ES</event-sheet>
+        <event-sheet order="5">Calibration</event-sheet>
+        <event-sheet order="7">settings</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -24,7 +28,10 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <families-expanded root="1" />
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
-        <folder expanded="1" path="object-folder/polygon sprites/" />
+        <folder expanded="0" path="object-folder/polygon sprites/" />
+        <folder expanded="1" path="object-folder/Sliders/" />
+        <folder expanded="0" path="object-folder/Textboxes/" />
+        <folder expanded="0" path="object-folder/System/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="1" path="file-folder/" />
@@ -57,5 +64,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Sprite2/" />
         <folder expanded="1" path="animation-folder/menubar/" />
         <folder expanded="1" path="animation-folder/Centre/" />
+        <folder expanded="1" path="animation-folder/Sprite3/" />
+        <folder expanded="1" path="animation-folder/CalibrationTarget/" />
+        <folder expanded="1" path="animation-folder/Ok/" />
+        <folder expanded="1" path="animation-folder/NoOk/" />
     </folders-expanded>
 </c2uistate>

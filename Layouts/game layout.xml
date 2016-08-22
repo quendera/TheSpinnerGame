@@ -741,8 +741,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>2189</x>
-                        <y>780</y>
+                        <x>2195</x>
+                        <y>795</y>
                         <z>0</z>
                         <width>789</width>
                         <height>913</height>
@@ -812,7 +812,7 @@
                                 <target>0</target>
                                 <target-mode>Relative</target-mode>
                                 <duration>0</duration>
-                                <enforce-mode>Compromise</enforce-mode>
+                                <enforce-mode>Enforce</enforce-mode>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
@@ -1112,29 +1112,40 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="vr" uid="39">
+                <instance type="CalibrationTarget" uid="99">
                     <properties>
-                        <text>Text</text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-37,400,0</font>
-                        <color>255,255,255</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                        <line-height>0</line-height>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <VertexCount>0</VertexCount>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Move">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>Linear</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>0</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>206</x>
-                        <y>356</y>
+                        <x>1967</x>
+                        <y>-449</y>
                         <z>0</z>
-                        <width>433</width>
-                        <height>232</height>
+                        <width>133.979995728</width>
+                        <height>139.519989014</height>
                         <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
+                        <hotspotX>0.501567423</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
