@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2uistate>
+    <!--This is a UI state file - its content describes the user interface settings when the event sheet was last open.
+It is entirely optional and the project will load without it.  If you are placing the project under source control,
+you probably do not want to add any .uistate.xml files to the repository.-->
+    <show-addaction-links>1</show-addaction-links>
+    <scroll-pos>6100</scroll-pos>
+    <conditions-column>361</conditions-column>
+    <actions-namecolumn>109</actions-namecolumn>
+    <condition-namecolumns>
+        <nest>80</nest>
+        <nest>162</nest>
+        <nest>103</nest>
+        <nest>118</nest>
+        <nest>67</nest>
+        <nest>97</nest>
+        <nest>110</nest>
+        <nest>104</nest>
+        <nest>90</nest>
+        <nest>26</nest>
+        <nest>26</nest>
+        <nest>26</nest>
+        <nest>26</nest>
+        <nest>26</nest>
+        <nest>18</nest>
+    </condition-namecolumns>
+    <events>
+        <event collapsed="1" sid="6212510203919189" />
+        <event collapsed="1" sid="9013065317034459" />
+        <event collapsed="1" sid="4750746225385781" />
+        <event collapsed="1" sid="355904590118327" />
+        <event collapsed="1" sid="5077080885216087" />
+        <event collapsed="1" sid="5055110016205374" />
+        <event collapsed="1" sid="4226082443120985" />
+    </events>
+</c2uistate>

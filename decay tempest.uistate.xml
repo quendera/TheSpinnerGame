@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2uistate>
+    <!--This is a UI state file - its content describes the user interface settings when the project was last open.
+It is entirely optional and the project will load without it.  If you are placing the project under source control,
+you probably do not want to add any .uistate.xml files to the repository.-->
+    <configurations>
+        <active>
+            <configuration name="HTML5" />
+        </active>
+        <display name="HTML5" />
+    </configurations>
+    <open-tabs>
+        <layout order="1">menu layout</layout>
+        <layout order="3">game layout</layout>
+        <event-sheet order="0">menu ES</event-sheet>
+        <event-sheet active="1" order="2">game ES</event-sheet>
+    </open-tabs>
+    <properties>
+        <property expanded="1" name="About" />
+        <property expanded="1" name="Project settings" />
+        <property expanded="0" name="Window Size" />
+        <property expanded="1" name="Configuration Settings" />
+    </properties>
+    <families-expanded root="1" />
+    <folders-expanded>
+        <folder expanded="1" path="object-folder/" />
+        <folder expanded="1" path="object-folder/polygon sprites/" />
+        <folder expanded="1" path="layout-folder/" />
+        <folder expanded="1" path="event-folder/" />
+        <folder expanded="1" path="file-folder/" />
+        <folder expanded="1" path="sound-folder/" />
+        <folder expanded="1" path="music-folder/" />
+        <folder expanded="1" path="file-folder/Icons/" />
+        <folder expanded="1" path="file-folder/Inputs/" />
+        <folder expanded="1" path="music-folder/assets/" />
+        <folder expanded="1" path="animation-folder/g8/" />
+        <folder expanded="1" path="animation-folder/i8/" />
+        <folder expanded="1" path="animation-folder/b8/" />
+        <folder expanded="1" path="animation-folder/b3/" />
+        <folder expanded="1" path="animation-folder/g6/" />
+        <folder expanded="1" path="animation-folder/g4/" />
+        <folder expanded="1" path="animation-folder/g3/" />
+        <folder expanded="1" path="animation-folder/b4/" />
+        <folder expanded="1" path="animation-folder/b6/" />
+        <folder expanded="1" path="animation-folder/i4/" />
+        <folder expanded="1" path="animation-folder/i6/" />
+        <folder expanded="1" path="animation-folder/ig4/" />
+        <folder expanded="1" path="animation-folder/ig6/" />
+        <folder expanded="1" path="animation-folder/ig8/" />
+        <folder expanded="1" path="animation-folder/b6locked/" />
+        <folder expanded="1" path="animation-folder/b8locked/" />
+        <folder expanded="1" path="animation-folder/Sprite/" />
+        <folder expanded="1" path="animation-folder/Circle/" />
+        <folder expanded="1" path="animation-folder/Target/" />
+        <folder expanded="1" path="animation-folder/Triangle/" />
+        <folder expanded="1" path="animation-folder/Title/" />
+        <folder expanded="1" path="animation-folder/Sprite2/" />
+        <folder expanded="1" path="animation-folder/menubar/" />
+        <folder expanded="1" path="animation-folder/Centre/" />
+    </folders-expanded>
+</c2uistate>
