@@ -780,8 +780,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>829</x>
-                        <y>724</y>
+                        <x>786</x>
+                        <y>611</y>
                         <z>0</z>
                         <width>259</width>
                         <height>35</height>
@@ -805,8 +805,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>803</x>
-                        <y>636</y>
+                        <x>760</x>
+                        <y>523</y>
                         <z>0</z>
                         <width>296</width>
                         <height>89</height>
@@ -815,6 +815,88 @@
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="FileChooser" uid="87">
+                    <properties>
+                        <accept></accept>
+                        <select>Single</select>
+                        <initial-visibility>Visible</initial-visibility>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1000</x>
+                        <y>208</y>
+                        <z>0</z>
+                        <width>350</width>
+                        <height>87</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="Input" uid="17">
+                    <properties>
+                        <text>Input File:</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-40,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>773</x>
+                        <y>683</y>
+                        <z>0</z>
+                        <width>319</width>
+                        <height>116</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Inputfile" uid="18">
+                    <properties>
+                        <items>Item 1;Item 2;Item 3</items>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <type>Dropdown list</type>
+                        <multi-select>No</multi-select>
+                        <auto-font-size>Yes</auto-font-size>
+                        <id-optional></id-optional>
+                    </properties>
+                    <instance-variables>
+                        <v41>&quot;4.1&quot;</v41>
+                        <v42>&quot;4.2&quot;</v42>
+                        <v43>&quot;4.3&quot;</v43>
+                        <v61>&quot;6.1&quot;</v61>
+                        <v62>&quot;6.2&quot;</v62>
+                        <v63>&quot;6.3&quot;</v63>
+                        <v81>&quot;8.1&quot;</v81>
+                        <v82>&quot;8.2&quot;</v82>
+                        <v83>&quot;8.3&quot;</v83>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>794</x>
+                        <y>766</y>
+                        <z>0</z>
+                        <width>260</width>
+                        <height>35</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                     </world>
                 </instance>
             </instances>

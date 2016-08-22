@@ -18,7 +18,7 @@
                 <action id="-9" name="Destroy" sid="9746386471713579" type="SliderDecayStart" />
                 <action id="-9" name="Destroy" sid="9126284567447597" type="SliderDecayRate" />
                 <action id="-9" name="Destroy" sid="2447075690735014" type="TextBox" />
-                <action id="-9" name="Destroy" sid="6679522168071211" type="ArrayOut" />
+                <action id="-9" name="Destroy" sid="6679522168071211" type="ArrayP1" />
                 <action id="-9" name="Destroy" sid="2628417291530796" type="Locked" />
                 <action id="-3" name="Create object" sid="5966846240572481" type="System">
                     <param id="0" name="Object to create">SliderDecayStart</param>
@@ -311,10 +311,6 @@
         </event-block>
         <event-block sid="3599970629683893">
             <conditions>
-                <condition id="7" name="On button released" sid="4362761683934243" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Button">9</param>
-                </condition>
                 <condition id="-14" name="Compare variable" sid="2475182490966664" type="System">
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Comparison">5</param>
@@ -382,24 +378,13 @@
                 <action id="6" name="Stop" sid="1219556572140094" type="Audio">
                     <param id="0" name="Tag">&quot;menu&quot;</param>
                 </action>
-                <action id="-2" name="Go to layout" sid="7940114208249343" type="System">
-                    <param id="0" name="Layout">menu layout</param>
-                </action>
             </actions>
         </event-block>
         <event-block sid="7655326906303148">
-            <conditions>
-                <condition id="7" name="On button released" sid="2139870956436147" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Button">8</param>
-                </condition>
-            </conditions>
+            <conditions />
             <actions>
                 <action id="6" name="Stop" sid="9883593567346923" type="Audio">
                     <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
-                <action id="-2" name="Go to layout" sid="9752755175769556" type="System">
-                    <param id="0" name="Layout">Calibration</param>
                 </action>
             </actions>
         </event-block>
@@ -408,10 +393,6 @@
                 <condition id="1" name="On selection changed" sid="7303515943846216" type="List" />
             </conditions>
             <actions>
-                <action id="-9" name="Set value" sid="426205873111638" type="System">
-                    <param id="0" name="Variable">GAMEPADNR</param>
-                    <param id="1" name="Value">List.SelectedText</param>
-                </action>
                 <action id="-9" name="Destroy" sid="4967801545551168" type="Ok" />
                 <action id="-3" name="Create object" sid="4843455595179818" type="System">
                     <param id="0" name="Object to create">NoOk</param>
@@ -422,32 +403,7 @@
             </actions>
         </event-block>
         <event-block any="1" sid="9579825349056475">
-            <conditions>
-                <condition id="5" name="Compare axis" sid="4785038457062147" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Axis">1</param>
-                    <param id="2" name="Comparison">2</param>
-                    <param id="3" name="Value">-25</param>
-                </condition>
-                <condition id="5" name="Compare axis" sid="270578841843897" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Axis">0</param>
-                    <param id="2" name="Comparison">4</param>
-                    <param id="3" name="Value">25</param>
-                </condition>
-                <condition id="5" name="Compare axis" sid="4798200426891032" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Axis">1</param>
-                    <param id="2" name="Comparison">4</param>
-                    <param id="3" name="Value">25</param>
-                </condition>
-                <condition id="5" name="Compare axis" sid="4518227143507017" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Axis">0</param>
-                    <param id="2" name="Comparison">2</param>
-                    <param id="3" name="Value">-25</param>
-                </condition>
-            </conditions>
+            <conditions />
             <actions />
             <sub-events>
                 <event-block sid="3912900406997987">
@@ -474,6 +430,216 @@
                 <action id="-9" name="Set value" sid="9228327763626223" type="System">
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Value">Vertices.SelectedText</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4959051850229698">
+            <conditions>
+                <condition id="0" name="On changed" sid="4231073043381648" type="FileChooser" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1004427475790759" type="System">
+                    <param id="0" name="Variable">InputFile</param>
+                    <param id="1" name="Value">FileChooser.FileURLAt(0)</param>
+                </action>
+                <action id="-9" name="Set value" sid="7886770209106415" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">5</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6190767528638919">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="1031380950528685" type="System">
+                    <param id="0" name="Variable">Vertices</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="10" name="Set item text" sid="1863236517340521" type="Inputfile">
+                    <param id="0" name="Index">0</param>
+                    <param id="1" name="Text">&quot;4.1&quot;</param>
+                </action>
+                <action id="10" name="Set item text" sid="5053427482909079" type="Inputfile">
+                    <param id="0" name="Index">1</param>
+                    <param id="1" name="Text">&quot;4.2&quot;</param>
+                </action>
+                <action id="10" name="Set item text" sid="6152526499035748" type="Inputfile">
+                    <param id="0" name="Index">2</param>
+                    <param id="1" name="Text">&quot;4.3&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1911817560042019">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="7913721723178751" type="System">
+                    <param id="0" name="Variable">Vertices</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">6</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="10" name="Set item text" sid="9195152888533593" type="Inputfile">
+                    <param id="0" name="Index">0</param>
+                    <param id="1" name="Text">&quot;6.1&quot;</param>
+                </action>
+                <action id="10" name="Set item text" sid="2536658971208098" type="Inputfile">
+                    <param id="0" name="Index">1</param>
+                    <param id="1" name="Text">&quot;6.2&quot;</param>
+                </action>
+                <action id="10" name="Set item text" sid="8856049016615419" type="Inputfile">
+                    <param id="0" name="Index">2</param>
+                    <param id="1" name="Text">&quot;6.3&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="261625035173819">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="3357807342835271" type="System">
+                    <param id="0" name="Variable">Vertices</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">8</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="10" name="Set item text" sid="6371699981747358" type="Inputfile">
+                    <param id="0" name="Index">0</param>
+                    <param id="1" name="Text">&quot;8.1&quot;</param>
+                </action>
+                <action id="10" name="Set item text" sid="590628545211671" type="Inputfile">
+                    <param id="0" name="Index">1</param>
+                    <param id="1" name="Text">&quot;8.2&quot;</param>
+                </action>
+                <action id="10" name="Set item text" sid="7717460449704093" type="Inputfile">
+                    <param id="0" name="Index">2</param>
+                    <param id="1" name="Text">&quot;8.3&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9622429930756825">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="5204181866246435" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;4.1&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8242277957533678" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">41</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4235492384129051">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="7085306060014217" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;4.2&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6652220670788459" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">42</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2916576968172379">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="2805889263164043" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;4.3&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="3828398160447392" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">43</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1855360940437936">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="6941888446237141" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;6.1&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1879738562800858" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">61</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="234910232384886">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="8432776474628336" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;6.2&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="2252923656298774" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">62</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1295339368862062">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="6716804698849539" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;6.3&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="3921217751924737" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">63</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5348434490381687">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="3561103810409694" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;8.1&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5242842727815306" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">81</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="908125313114133">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="3569739581238989" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;8.2&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9899996268785361" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">82</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7066926472630416">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="2671262339219972" type="Inputfile">
+                    <param id="0" name="Text to compare">&quot;8.3&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7867374546947013" type="System">
+                    <param id="0" name="Variable">inputtag</param>
+                    <param id="1" name="Value">83</param>
                 </action>
             </actions>
         </event-block>

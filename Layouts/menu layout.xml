@@ -106,78 +106,6 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="b3" uid="37">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                        <behavior-instance type="LiteTween">
-                            <properties>
-                                <active-on-start>No</active-on-start>
-                                <tweened-property>Angle</tweened-property>
-                                <function>Linear</function>
-                                <target>180</target>
-                                <target-mode>Absolute</target-mode>
-                                <duration>5</duration>
-                                <enforce-mode>Enforce</enforce-mode>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>-352</x>
-                        <y>896</y>
-                        <z>0</z>
-                        <width>180</width>
-                        <height>180</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="b4" uid="56">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                        <behavior-instance type="LiteTween">
-                            <properties>
-                                <active-on-start>No</active-on-start>
-                                <tweened-property>Angle</tweened-property>
-                                <function>Linear</function>
-                                <target>-180</target>
-                                <target-mode>Absolute</target-mode>
-                                <duration>5</duration>
-                                <enforce-mode>Enforce</enforce-mode>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>704</x>
-                        <y>640</y>
-                        <z>0</z>
-                        <width>200</width>
-                        <height>200</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="b6" uid="57">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -207,42 +135,6 @@
                         <z>0</z>
                         <width>208.092483521</width>
                         <height>200</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="b8" uid="58">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                        <behavior-instance type="LiteTween">
-                            <properties>
-                                <active-on-start>No</active-on-start>
-                                <tweened-property>Angle</tweened-property>
-                                <function>Linear</function>
-                                <target>-180</target>
-                                <target-mode>Absolute</target-mode>
-                                <duration>5</duration>
-                                <enforce-mode>Enforce</enforce-mode>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>1248</x>
-                        <y>640</y>
-                        <z>0</z>
-                        <width>192</width>
-                        <height>192</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -302,6 +194,30 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="SliderGrowthSpeed" uid="74">
+                    <properties>
+                        <value>5</value>
+                        <minimum>1</minimum>
+                        <maximum>10</maximum>
+                        <step>0.1</step>
+                        <tooltip>Growth Speed</tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2048</x>
+                        <y>352</y>
+                        <z>0</z>
+                        <width>215</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
                 <instance type="Game" uid="27">
                     <properties>
                         <type>Button</type>
@@ -321,6 +237,30 @@
                         <z>0</z>
                         <width>250</width>
                         <height>80</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="SliderRotateSpeed" uid="28">
+                    <properties>
+                        <value>0.4</value>
+                        <minimum>0.1</minimum>
+                        <maximum>1</maximum>
+                        <step>0.1</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2080</x>
+                        <y>576</y>
+                        <z>0</z>
+                        <width>215</width>
+                        <height>30</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -497,42 +437,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="b8locked" uid="55">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                        <behavior-instance type="LiteTween">
-                            <properties>
-                                <active-on-start>No</active-on-start>
-                                <tweened-property>Position</tweened-property>
-                                <function>EaseOutBounce</function>
-                                <target>100,100</target>
-                                <target-mode>Absolute</target-mode>
-                                <duration>2.5</duration>
-                                <enforce-mode>Compromise</enforce-mode>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>-288</x>
-                        <y>-32</y>
-                        <z>0</z>
-                        <width>200</width>
-                        <height>200</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="Locked" uid="61">
                     <properties>
                         <text>Clear the previous level to play!</text>
@@ -553,31 +457,6 @@
                         <z>0</z>
                         <width>128</width>
                         <height>128</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="g4" uid="69">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>-192</x>
-                        <y>576</y>
-                        <z>0</z>
-                        <width>200</width>
-                        <height>200</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -685,6 +564,54 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="BankTimeoutSlider" uid="95">
+                    <properties>
+                        <value>0.4</value>
+                        <minimum>0</minimum>
+                        <maximum>2</maximum>
+                        <step>0.1</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2720</x>
+                        <y>32</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>25</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="CashinTimeoutSlider" uid="96">
+                    <properties>
+                        <value>0.4</value>
+                        <minimum>0</minimum>
+                        <maximum>2</maximum>
+                        <step>0.1</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2848</x>
+                        <y>288</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>25</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
                 <instance type="BankTimeoutText" uid="97">
                     <properties>
                         <text>Bank Timeout</text>
@@ -739,6 +666,78 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="ButtonSettings" uid="100">
+                    <properties>
+                        <type>Button</type>
+                        <text>Settings</text>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <auto-font-size>Yes</auto-font-size>
+                        <id-optional></id-optional>
+                        <checked>No</checked>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1558</x>
+                        <y>875</y>
+                        <z>0</z>
+                        <width>288</width>
+                        <height>96</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="SliderDecayStart" uid="101">
+                    <properties>
+                        <value>300</value>
+                        <minimum>100</minimum>
+                        <maximum>500</maximum>
+                        <step>25</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>2274</x>
+                        <y>1398</y>
+                        <z>0</z>
+                        <width>224</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="SliderDecayRate" uid="102">
+                    <properties>
+                        <value>10</value>
+                        <minimum>0</minimum>
+                        <maximum>50</maximum>
+                        <step>1</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>39</x>
+                        <y>1314</y>
+                        <z>0</z>
+                        <width>192</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
                 <instance type="DecayRate" uid="103">
                     <properties>
                         <text>Decay Rate</text>
@@ -791,6 +790,54 @@
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="DepartureCushion" uid="39">
+                    <properties>
+                        <value>0.4</value>
+                        <minimum>0</minimum>
+                        <maximum>0.5</maximum>
+                        <step>0.05</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-800</x>
+                        <y>1568</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>25</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="ArrivalCushion" uid="77">
+                    <properties>
+                        <value>0.6</value>
+                        <minimum>0.5</minimum>
+                        <maximum>1</maximum>
+                        <step>0.05</step>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-1568</x>
+                        <y>1376</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>25</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                     </world>
                 </instance>
                 <instance type="UpperCushion" uid="78">
@@ -970,7 +1017,7 @@
         </layer>
     </layers>
     <nonworld-instances>
-        <instance type="ArrayVisualization" uid="41">
+        <instance type="ArrayBuffer" uid="41">
             <properties>
                 <width>10</width>
                 <height>1</height>
@@ -982,6 +1029,51 @@
                 <Slot3>0</Slot3>
                 <Slot4>0</Slot4>
             </instance-variables>
+        </instance>
+        <instance type="Array" uid="26">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <XCount>0</XCount>
+            </instance-variables>
+        </instance>
+        <instance type="ArrayP2" uid="66">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+        <instance type="ArrayP3" uid="69">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+        <instance type="ArrayP4" uid="72">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+        <instance type="ArrayP5" uid="75">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+        <instance type="ArrayP6" uid="110">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
         </instance>
     </nonworld-instances>
     <effects />
