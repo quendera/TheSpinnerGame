@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>controller spinner no buffer</name>
+    <name>visualizer</name>
     <description>wip</description>
-    <version>2.7.1</version>
+    <version>1.0.1</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
@@ -12,11 +12,9 @@
     <used-plugins>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
-        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="List" version="1">List</plugin>
         <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
         <plugin author="Scirra" id="NodeWebkit" version="1">NW.js</plugin>
@@ -24,15 +22,11 @@
         <plugin author="Yann Granjon" id="Polygon" version="1">Polygon</plugin>
         <plugin author="Rex.Rainbow" id="Rex_CSV2Array" version="0.100000001">CSV to Array</plugin>
         <plugin author="Rex.Rainbow" id="Rex_Date" version="1">Date</plugin>
-        <plugin author="Scirra" id="ScirraArcadeV4" version="1">Scirra Arcade</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TextBox" version="1">Text box</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
-        <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
-        <plugin author="Scirra" id="sliderbar" version="1">Slider bar</plugin>
-        <plugin author="Armaldio" id="social" version="1">Mandrill</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
@@ -465,32 +459,6 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder name="Sliders">
-            <object-type name="BankTimeoutSlider" sid="23949880727728">
-                <plugin id="sliderbar" />
-            </object-type>
-            <object-type name="CashinTimeoutSlider" sid="5443920362613997">
-                <plugin id="sliderbar" />
-            </object-type>
-            <object-type name="SliderGrowthSpeed" sid="6268038697563149">
-                <plugin id="sliderbar" />
-            </object-type>
-            <object-type name="SliderRotateSpeed" sid="7439479622420208">
-                <plugin id="sliderbar" />
-            </object-type>
-            <object-type name="SliderDecayRate" sid="9936458295857544">
-                <plugin id="sliderbar" />
-            </object-type>
-            <object-type name="SliderDecayStart" sid="1496592674250237">
-                <plugin id="sliderbar" />
-            </object-type>
-            <object-type name="DepartureCushion" sid="8989548468586132">
-                <plugin id="sliderbar" />
-            </object-type>
-            <object-type name="ArrivalCushion" sid="8044057058698597">
-                <plugin id="sliderbar" />
-            </object-type>
-        </object-folder>
         <object-folder name="Textboxes">
             <object-type name="CashTimeoutText" sid="3616751182309678">
                 <plugin id="Text" />
@@ -569,15 +537,6 @@
             <object-type name="AJAX" sid="176610706732099">
                 <plugin id="AJAX" />
             </object-type>
-            <object-type name="Audio" sid="9541066816692243">
-                <plugin id="Audio" />
-            </object-type>
-            <object-type name="Keyboard" sid="2575931861939836">
-                <plugin id="Keyboard" />
-            </object-type>
-            <object-type name="Gamepad" sid="8234680684535929">
-                <plugin id="gamepad" />
-            </object-type>
             <object-type name="CSVToArray" sid="1879519664582604">
                 <plugin id="Rex_CSV2Array" />
             </object-type>
@@ -587,17 +546,11 @@
                     <instance-variable name="Variable1" sid="504317818491916" type="number" />
                 </instance-variables>
             </object-type>
-            <object-type name="Mandrill" sid="6190623839993524">
-                <plugin id="social" />
-            </object-type>
             <object-type name="LocalStorage" sid="5270260468167194">
                 <plugin id="LocalStorage" />
             </object-type>
             <object-type name="NWjs" sid="4928616499819893">
                 <plugin id="NodeWebkit" />
-            </object-type>
-            <object-type name="ScirraArcade" sid="6435721104376942">
-                <plugin id="ScirraArcadeV4" />
             </object-type>
             <object-type name="Function" sid="8356106543827538">
                 <plugin id="Function" />
@@ -783,7 +736,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type global="1" name="ArrayBuffer" sid="3387988547366903">
+        <object-type global="1" name="ArrayVisualization" sid="3387988547366903">
             <plugin id="Arr" />
             <instance-variables>
                 <instance-variable name="Slot1" sid="5646656726578194" type="number" />
@@ -850,28 +803,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="ButtonSettings" sid="7493783610571424">
-            <plugin id="Button" />
-        </object-type>
-        <object-type name="Ok" sid="848248821456272">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8535093256805771" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="NoOk" sid="265288790443679">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="359363800803515" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="GamepadStatus" sid="2772084826557642">
-            <plugin id="Text" />
-        </object-type>
         <object-type name="Vertices" sid="5819236679037438">
             <plugin id="List" />
         </object-type>
@@ -882,35 +813,16 @@
     <families />
     <layout-folder>
         <layout>menu layout.xml</layout>
-        <layout>settings.xml</layout>
         <layout>game layout.xml</layout>
-        <layout>Calibration.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>game ES.xml</event-sheet>
         <event-sheet>menu ES.xml</event-sheet>
-        <event-sheet>Calibration.xml</event-sheet>
-        <event-sheet>settings.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="11">
             <properties>
                 <use-mouse-input>Yes</use-mouse-input>
-            </properties>
-        </global-instance>
-        <global-instance type="Keyboard" uid="21" />
-        <global-instance type="Audio" uid="31">
-            <properties>
-                <timescale-audio>Off</timescale-audio>
-                <saveload>None</saveload>
-                <play-in-background>No</play-in-background>
-                <positioned-audio></positioned-audio>
-                <panning-model>HRTF</panning-model>
-                <distance-model>Inverse</distance-model>
-                <listener-z-height>600</listener-z-height>
-                <reference-distance>600</reference-distance>
-                <maximum-distance>10000</maximum-distance>
-                <roll-off-factor>1</roll-off-factor>
             </properties>
         </global-instance>
         <global-instance type="AJAX" uid="44" />
@@ -920,40 +832,13 @@
                 <eval-mode>No</eval-mode>
             </properties>
         </global-instance>
-        <global-instance type="Mandrill" uid="4">
-            <properties>
-                <api-key>GP5XLKqSZKM7aIzPDS2s4A</api-key>
-            </properties>
-        </global-instance>
         <global-instance type="LocalStorage" uid="6" />
-        <global-instance type="ScirraArcade" uid="10" />
         <global-instance type="Browser" uid="73" />
         <global-instance type="NWjs" uid="60" />
         <global-instance type="Function" uid="35" />
-        <global-instance type="Gamepad" uid="76">
-            <properties>
-                <analog-deadzone>25</analog-deadzone>
-            </properties>
-        </global-instance>
     </global-instances>
-    <sounds-folder>
-        <file name="1.ogg" />
-    </sounds-folder>
-    <music-folder>
-        <music-folder name="assets">
-            <file name="boom.ogg" />
-            <file name="lose.ogg" />
-            <file name="menu.ogg" />
-            <file name="Lost signal main theme (WIP).m4a" />
-            <file name="Lost signal main theme (WIP) (online-audio-converter.com).ogg" />
-            <file name="Pickup_03.ogg" />
-            <file name="lose sound 2 - 1_0.m4a" />
-            <file name="lose sound 2 - 1_0.ogg" />
-            <file name="select_blip_error1.m4a" />
-            <file name="select_blip_error1.ogg" />
-            <file name="clock.ogg" />
-        </music-folder>
-    </music-folder>
+    <sounds-folder />
+    <music-folder />
     <files-folder>
         <file-folder name="Icons">
             <file name="icon-16.png" />
@@ -962,25 +847,6 @@
             <file name="icon-128.png" />
             <file name="icon-256.png" />
             <file name="loading-logo.png" />
-        </file-folder>
-        <file-folder name="Inputs">
-            <file name="MLinput.txt" />
-            <file name="test.txt" />
-            <file name="4test.txt" />
-            <file name="final8test.txt" />
-            <file name="final3test.txt" />
-            <file name="final4test.txt" />
-            <file name="final6test.txt" />
-            <file name="calibratetest.txt" />
-            <file name="final4test2016.txt" />
-            <file name="final6test2016.txt" />
-            <file name="final8test2016.txt" />
-            <file name="abs4test.txt" />
-            <file name="abs6test.txt" />
-            <file name="abs8test.txt" />
-            <file name="norm4test.txt" />
-            <file name="norm6test.txt" />
-            <file name="norm8test.txt" />
         </file-folder>
     </files-folder>
 </c2project>

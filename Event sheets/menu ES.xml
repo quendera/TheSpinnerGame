@@ -22,18 +22,11 @@
                 <action id="-9" name="Destroy" sid="325942073823767" type="b8locked" />
                 <action id="-9" name="Destroy" sid="2720059253073605" type="Locked" />
                 <action id="-9" name="Destroy" sid="9042484609365951" type="b8" />
-                <action id="33" name="Stop all" sid="723979965530756" type="Audio" />
                 <action id="-3" name="Create object" sid="889927861610184" type="System">
                     <param id="0" name="Object to create">ArrayOut</param>
                     <param id="1" name="Layer">0</param>
                     <param id="2" name="X">0</param>
                     <param id="3" name="Y">0</param>
-                </action>
-                <action id="0" name="Play" sid="6518674529549345" type="Audio">
-                    <param id="0" name="Audio file">Lost signal main theme (WIP) (online-audio-converter.com)</param>
-                    <param id="2" name="Loop">1</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;menu&quot;</param>
                 </action>
                 <action behavior="LiteTween" id="10" name="Start" sid="7101842544462356" type="b3">
                     <param id="0" name="Start Mode">2</param>
@@ -156,9 +149,7 @@
             </actions>
         </event-block>
         <event-block sid="442497125970995">
-            <conditions>
-                <condition id="13" name="Gamepads are supported" sid="4103144434484186" type="Gamepad" />
-            </conditions>
+            <conditions />
             <actions>
                 <action id="-9" name="Set value" sid="8354996611094162" type="System">
                     <param id="0" name="Variable">Gamepad</param>
@@ -167,9 +158,7 @@
             </actions>
         </event-block>
         <event-block sid="5066946409960469">
-            <conditions>
-                <condition id="4" name="Has gamepads" sid="3750829068685711" type="Gamepad" />
-            </conditions>
+            <conditions />
             <actions>
                 <action id="-9" name="Set value" sid="3545238878348061" type="System">
                     <param id="0" name="Variable">Gamepad</param>
@@ -282,12 +271,6 @@
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Value">3</param>
                 </action>
-                <action id="0" name="Play" sid="2595645224682186" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                </action>
                 <action id="0" name="Set text" sid="3165138234197269" type="SelectedLevel">
                     <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
                 </action>
@@ -303,12 +286,6 @@
                 <action id="-9" name="Set value" sid="4780635257995182" type="System">
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Value">4</param>
-                </action>
-                <action id="0" name="Play" sid="6480731522061624" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="5422748470261384" type="SelectedLevel">
                     <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
@@ -326,12 +303,6 @@
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Value">6</param>
                 </action>
-                <action id="0" name="Play" sid="6530566270001919" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                </action>
                 <action id="0" name="Set text" sid="9339201267230725" type="SelectedLevel">
                     <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
                 </action>
@@ -348,12 +319,6 @@
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Value">8</param>
                 </action>
-                <action id="0" name="Play" sid="4704117256821664" type="Audio">
-                    <param id="0" name="Audio file">menu</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                </action>
                 <action id="0" name="Set text" sid="5104191525737273" type="SelectedLevel">
                     <param id="0" name="Text">&quot;LEVEL &quot; &amp; Vertices</param>
                 </action>
@@ -361,10 +326,6 @@
         </event-block>
         <event-block sid="6722429832157528">
             <conditions>
-                <condition id="7" name="On button released" sid="3056564149339489" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Button">9</param>
-                </condition>
                 <condition id="-14" name="Compare variable" sid="8297852495415798" type="System">
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Comparison">5</param>
@@ -372,9 +333,6 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="6" name="Stop" sid="5584145274526035" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
                 <action id="-2" name="Go to layout" sid="760943073304518" type="System">
                     <param id="0" name="Layout">game layout</param>
                 </action>
@@ -382,9 +340,6 @@
         </event-block>
         <event-block sid="8892486385533281">
             <conditions>
-                <condition id="3" name="On key released" sid="7854003259549725" type="Keyboard">
-                    <param id="0" name="Key">49 (1)</param>
-                </condition>
                 <condition id="-14" name="Compare variable" sid="8057749060787376" type="System">
                     <param id="0" name="Variable">Vertices</param>
                     <param id="1" name="Comparison">5</param>
@@ -392,37 +347,8 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="6" name="Stop" sid="3915038126312241" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
                 <action id="-2" name="Go to layout" sid="9951913708914998" type="System">
                     <param id="0" name="Layout">game layout</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="9877882126073127">
-            <conditions>
-                <condition id="7" name="On button released" sid="1472039292600254" type="Gamepad">
-                    <param id="0" name="Gamepad">GAMEPADNR</param>
-                    <param id="1" name="Button">8</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="6" name="Stop" sid="1089707940274551" type="Audio">
-                    <param id="0" name="Tag">&quot;menu&quot;</param>
-                </action>
-                <action id="-2" name="Go to layout" sid="8373469207782352" type="System">
-                    <param id="0" name="Layout">Calibration</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="8698148544989021">
-            <conditions>
-                <condition id="0" name="On clicked" sid="6605317165980681" type="ButtonSettings" />
-            </conditions>
-            <actions>
-                <action id="-2" name="Go to layout" sid="1939129153393992" type="System">
-                    <param id="0" name="Layout">settings</param>
                 </action>
             </actions>
         </event-block>
