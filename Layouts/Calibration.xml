@@ -69,7 +69,7 @@
                                 <function>Linear</function>
                                 <target>100,100</target>
                                 <target-mode>Absolute</target-mode>
-                                <duration>2.5</duration>
+                                <duration>0</duration>
                                 <enforce-mode>Enforce</enforce-mode>
                             </properties>
                         </behavior-instance>
@@ -80,10 +80,10 @@
                         <x>530</x>
                         <y>480</y>
                         <z>0</z>
-                        <width>133.13999939</width>
-                        <height>138.647994995</height>
+                        <width>133.979995728</width>
+                        <height>139.519989014</height>
                         <depth>0</depth>
-                        <hotspotX>0.501577258</hotspotX>
+                        <hotspotX>0.501567423</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
