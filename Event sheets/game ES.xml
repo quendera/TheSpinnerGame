@@ -288,32 +288,32 @@
                                     <param id="0" name="Variable">BankDecay</param>
                                     <param id="1" name="Value">Decay</param>
                                 </action>
-                                <action id="-3" name="Create object" sid="662557780085707" type="System">
-                                    <param id="0" name="Object to create">Corners</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">0</param>
-                                    <param id="3" name="Y">0</param>
-                                </action>
-                                <action id="-3" name="Create object" sid="834497706965886" type="System">
-                                    <param id="0" name="Object to create">Corners</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">1920</param>
-                                    <param id="3" name="Y">0</param>
-                                </action>
-                                <action id="-3" name="Create object" sid="697084226110157" type="System">
-                                    <param id="0" name="Object to create">Corners</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">0</param>
-                                    <param id="3" name="Y">1080</param>
-                                </action>
-                                <action id="-3" name="Create object" sid="397679908908535" type="System">
-                                    <param id="0" name="Object to create">Corners</param>
-                                    <param id="1" name="Layer">2</param>
-                                    <param id="2" name="X">1920</param>
-                                    <param id="3" name="Y">1080</param>
-                                </action>
                                 <action id="0" name="Set cursor style" sid="932922019770544" type="Mouse">
                                     <param id="0" name="Cursor style">7</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="467588578521835" type="System">
+                                    <param id="0" name="Object to create">Corners</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">100</param>
+                                    <param id="3" name="Y">100</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="725470098692962" type="System">
+                                    <param id="0" name="Object to create">Corners</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">100</param>
+                                    <param id="3" name="Y">980</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="790220828436315" type="System">
+                                    <param id="0" name="Object to create">Corners</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">1820</param>
+                                    <param id="3" name="Y">980</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="738970788757947" type="System">
+                                    <param id="0" name="Object to create">Corners</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">1820</param>
+                                    <param id="3" name="Y">100</param>
                                 </action>
                                 <action id="5" name="Check item exists" sid="764651794826546" type="LocalStorage">
                                     <param id="0" name="Key">&quot;highscore&quot;</param>
@@ -2439,17 +2439,17 @@
                             <param id="6" name="Attachment fileName">&quot;&quot;</param>
                             <param id="7" name="Attachment in base64">&quot;&quot;</param>
                         </action>
-                        <action id="20" name="Invoke download of string" sid="5952139622892834" type="Browser">
+                        <action disabled="1" id="20" name="Invoke download of string" sid="5952139622892834" type="Browser">
                             <param id="0" name="String">ArrayOut.AsJSON</param>
                             <param id="1" name="MIME type">&quot;application/json&quot;</param>
                             <param id="2" name="Filename">Date.UnixTimestamp &amp; &quot;data.txt&quot;</param>
                         </action>
                         <action id="0" name="Write file" sid="1591874979329106" type="NWjs">
-                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;\Desktop\&quot; &amp;&quot;gamedata\&quot;&amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
+                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;\Desktop\&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
                             <param id="1" name="Contents">ArrayOut.AsJSON</param>
                         </action>
                         <action id="0" name="Write file" sid="2899456389783076" type="NWjs">
-                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;/Desktop/&quot; &amp;&quot;gamedata/&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
+                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;/Desktop/&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
                             <param id="1" name="Contents">ArrayOut.AsJSON</param>
                         </action>
                     </actions>

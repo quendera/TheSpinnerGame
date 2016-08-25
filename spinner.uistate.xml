@@ -12,11 +12,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <open-tabs>
         <layout order="0">menu layout</layout>
         <layout order="2">game layout</layout>
-        <layout active="1" order="4">Calibration</layout>
+        <layout order="4">Calibration</layout>
         <layout order="6">settings</layout>
         <layout order="8">tutorial</layout>
         <event-sheet order="1">menu ES</event-sheet>
-        <event-sheet order="3">game ES</event-sheet>
+        <event-sheet active="1" order="3">game ES</event-sheet>
         <event-sheet order="5">Calibration ES</event-sheet>
         <event-sheet order="7">settings</event-sheet>
         <event-sheet order="9">tutorial ES</event-sheet>
@@ -74,5 +74,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/TriangleBack/" />
         <folder expanded="1" path="animation-folder/Square/" />
         <folder expanded="1" path="animation-folder/Corners/" />
+        <folder expanded="1" path="animation-folder/Sprite4/" />
+        <folder expanded="1" path="animation-folder/CalibrationTargetRim/" />
     </folders-expanded>
 </c2uistate>

@@ -138,29 +138,29 @@
                 <action id="0" name="Set text" sid="4254676036209983" type="Version">
                     <param id="0" name="Text">&quot;v&quot; &amp; projectversion</param>
                 </action>
-                <action id="-3" name="Create object" sid="651784566949309" type="System">
+                <action id="-3" name="Create object" sid="560180699898263" type="System">
                     <param id="0" name="Object to create">Corners</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">0</param>
-                    <param id="3" name="Y">0</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">100</param>
+                    <param id="3" name="Y">100</param>
                 </action>
-                <action id="-3" name="Create object" sid="848645737621242" type="System">
+                <action id="-3" name="Create object" sid="623706082865391" type="System">
                     <param id="0" name="Object to create">Corners</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">1920</param>
-                    <param id="3" name="Y">0</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">100</param>
+                    <param id="3" name="Y">980</param>
                 </action>
-                <action id="-3" name="Create object" sid="881962471616235" type="System">
+                <action id="-3" name="Create object" sid="203162053628369" type="System">
                     <param id="0" name="Object to create">Corners</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">0</param>
-                    <param id="3" name="Y">1080</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">1820</param>
+                    <param id="3" name="Y">980</param>
                 </action>
-                <action id="-3" name="Create object" sid="276064371359614" type="System">
+                <action id="-3" name="Create object" sid="476578667718085" type="System">
                     <param id="0" name="Object to create">Corners</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">1920</param>
-                    <param id="3" name="Y">1080</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">1820</param>
+                    <param id="3" name="Y">100</param>
                 </action>
             </actions>
         </event-block>
