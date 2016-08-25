@@ -357,17 +357,28 @@
                                         <condition id="-14" name="Compare variable" sid="149520373670473" type="System">
                                             <param id="0" name="Variable">inputtag</param>
                                             <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="1" name="Request project file" sid="5037301371935247" type="AJAX">
+                                            <param id="0" name="Tag">&quot;input&quot;</param>
+                                            <param id="1" name="File">6Vert1.txt</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="259887285885895">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="445956409201032" type="System">
+                                            <param id="0" name="Variable">inputtag</param>
+                                            <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">5</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Request URL" sid="5037301371935247" type="AJAX">
+                                        <action id="0" name="Request URL" sid="712105210746177" type="AJAX">
                                             <param id="0" name="Tag">&quot;input&quot;</param>
                                             <param id="1" name="URL">InputFile</param>
-                                        </action>
-                                        <action id="-9" name="Set value" sid="2326203508059837" type="System">
-                                            <param id="0" name="Variable">inputtag</param>
-                                            <param id="1" name="Value">1</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1655,13 +1666,16 @@
                                                     <param id="0" name="Name">&quot;log&quot;</param>
                                                     <param id="1" name="Parameter {n}"></param>
                                                 </action>
-                                                <action id="-8" name="Set angle" sid="9238018236969511" type="Particles">
-                                                    <param id="0" name="Angle">90</param>
-                                                </action>
-                                                <action id="0" name="Spawn another object" sid="2127576738294802" type="Target">
-                                                    <param id="0" name="Object">Particles</param>
+                                                <action id="0" name="Spawn another object" sid="433126633815477" type="Target">
+                                                    <param id="0" name="Object">Particles2</param>
                                                     <param id="1" name="Layer">4</param>
                                                     <param id="2" name="Image point">0</param>
+                                                </action>
+                                                <action id="5" name="Set size" sid="407127743451740" type="Particles2">
+                                                    <param id="0" name="Size">Sound</param>
+                                                </action>
+                                                <action id="18" name="Set timeout" sid="298510296677299" type="Particles2">
+                                                    <param id="0" name="Timeout">0.7</param>
                                                 </action>
                                                 <action id="0" name="Spawn another object" sid="5644304207131977" type="Target">
                                                     <param id="0" name="Object">Points</param>
@@ -1671,8 +1685,8 @@
                                                 <action id="0" name="Set text" sid="4492616794309295" type="Points">
                                                     <param id="0" name="Text">round(Bank)</param>
                                                 </action>
-                                                <action id="4" name="Set font color" sid="5903619249193283" type="Points">
-                                                    <param id="0" name="Color">rgb(0, 255, 0)</param>
+                                                <action id="4" name="Set font color" sid="735942058756854" type="Points">
+                                                    <param id="0" name="Color">rgb(0, 166, 255)</param>
                                                 </action>
                                                 <action id="-15" name="Set visible" sid="4265431263710555" type="Points">
                                                     <param id="0" name="Visibility">1</param>
@@ -1706,7 +1720,7 @@
                                                                 <action id="0" name="Play" sid="962838123833420" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">-(20-Sound)</param>
+                                                                    <param id="3" name="Volume">0</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
                                                                 </action>
                                                                 <action id="5" name="Set playback rate" sid="612703342890609" type="Audio">
@@ -1825,11 +1839,25 @@
                                                 <action id="0" name="Set text" sid="5359893488033498" type="Points">
                                                     <param id="0" name="Text">round(Bank)</param>
                                                 </action>
-                                                <action id="4" name="Set font color" sid="481563802021648" type="Points">
-                                                    <param id="0" name="Color">rgb(0, 166, 255)</param>
+                                                <action id="4" name="Set font color" sid="5903619249193283" type="Points">
+                                                    <param id="0" name="Color">rgb(0, 255, 0)</param>
                                                 </action>
                                                 <action id="-15" name="Set visible" sid="7573363782042422" type="Points">
                                                     <param id="0" name="Visibility">1</param>
+                                                </action>
+                                                <action id="-8" name="Set angle" sid="370161425622427" type="Particles">
+                                                    <param id="0" name="Angle">90</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="600222889026433" type="Centre">
+                                                    <param id="0" name="Object">Particles</param>
+                                                    <param id="1" name="Layer">4</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                                <action id="5" name="Set size" sid="779630490944009" type="Particles">
+                                                    <param id="0" name="Size">Bank/3</param>
+                                                </action>
+                                                <action id="18" name="Set timeout" sid="416272039634682" type="Particles">
+                                                    <param id="0" name="Timeout">0.7</param>
                                                 </action>
                                                 <action id="-9" name="Set value" sid="1449257811822476" type="System">
                                                     <param id="0" name="Variable">Bank</param>
@@ -1854,19 +1882,10 @@
                                                 <action id="0" name="Play" sid="3858947825300007" type="Audio">
                                                     <param id="0" name="Audio file">boom</param>
                                                     <param id="2" name="Loop">0</param>
-                                                    <param id="3" name="Volume">-(20-Sound)</param>
+                                                    <param id="3" name="Volume">0</param>
                                                     <param id="1" name="Tag (optional)">&quot;boom&quot;</param>
                                                 </action>
-                                                <action id="0" name="Spawn another object" sid="7174110982322427" type="Centre">
-                                                    <param id="0" name="Object">Particles2</param>
-                                                    <param id="1" name="Layer">4</param>
-                                                    <param id="2" name="Image point">0</param>
-                                                </action>
                                                 <action id="-9" name="Destroy" sid="5286652413807505" type="Target" />
-                                                <action id="18" name="Add gain effect" sid="7469628043303586" type="Audio">
-                                                    <param id="0" name="Tag">&quot;boom&quot;</param>
-                                                    <param id="1" name="Gain">Sound</param>
-                                                </action>
                                                 <action id="-7" name="Set size" sid="9415231050716899" type="ig4">
                                                     <param id="0" name="Width">0</param>
                                                     <param id="1" name="Height">0</param>
@@ -2214,6 +2233,9 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="12" name="Download" sid="743674282098316" type="ArrayOut">
+                            <param id="0" name="Filename">&quot;data.txt&quot;</param>
+                        </action>
                         <action id="-42" name="Signal" sid="3211329585364334" type="System">
                             <param id="0" name="Tag">&quot;end&quot;</param>
                         </action>
@@ -2398,33 +2420,6 @@
                         <condition disabled="1" id="9" name="On suspended" sid="59942926916875" type="Browser" />
                     </conditions>
                     <actions>
-                        <action id="-11" name="Add to" sid="2473291948844317" type="ArrayOut">
-                            <param id="0" name="Instance variable">XCount</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="1" name="Set size" sid="3219008806461902" type="ArrayOut">
-                            <param id="0" name="Width">1+ArrayOut.XCount</param>
-                            <param id="1" name="Height">ArrayHeight</param>
-                            <param id="2" name="Depth">1</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="9403050498233403" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value"> Timer</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="3279634381895774" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">2</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">&quot;Final Score:&quot; &amp; Score</param>
-                        </action>
-                        <action id="4" name="Set at XYZ" sid="3120456017205006" type="ArrayOut">
-                            <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">1</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">&quot;END&quot;</param>
-                        </action>
                         <action id="33" name="Stop all" sid="5023481152706527" type="Audio" />
                         <action disabled="1" id="12" name="Download" sid="2973518438366447" type="ArrayOut">
                             <param id="0" name="Filename">&quot;data.txt&quot;</param>
@@ -2483,6 +2478,17 @@
                 <action id="-41" name="Wait for signal" sid="8706650959739799" type="System">
                     <param id="0" name="Tag">&quot;end&quot;</param>
                 </action>
+                <action id="-9" name="Set value" sid="745617709280968" type="System">
+                    <param id="0" name="Variable">CurrEvent</param>
+                    <param id="1" name="Value">0.8</param>
+                </action>
+                <action id="0" name="Call function" sid="947499517551337" type="Function">
+                    <param id="0" name="Name">&quot;log&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-16" name="Wait" sid="574796152917514" type="System">
+                    <param id="0" name="Seconds">1.0</param>
+                </action>
                 <action id="-2" name="Go to layout" sid="3101797841705877" type="System">
                     <param id="0" name="Layout">menu layout</param>
                 </action>
@@ -2533,6 +2539,79 @@
                 </action>
                 <action id="-16" name="Wait" sid="6844077022923974" type="System">
                     <param id="0" name="Seconds">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="611336397122587" type="System">
+                    <param id="0" name="Variable">CurrEvent</param>
+                    <param id="1" name="Value">0.5</param>
+                </action>
+                <action id="0" name="Call function" sid="458246977043497" type="Function">
+                    <param id="0" name="Name">&quot;log&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-10" name="Add to" sid="750406749526950" type="System">
+                    <param id="0" name="Variable">Score</param>
+                    <param id="1" name="Value">Bank</param>
+                </action>
+                <action id="-9" name="Set value" sid="919409574350736" type="System">
+                    <param id="0" name="Variable">Decay</param>
+                    <param id="1" name="Value">BankDecay</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="521854090870885" type="Target">
+                    <param id="0" name="Object">Points</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Set text" sid="729014622299831" type="Points">
+                    <param id="0" name="Text">round(Bank)</param>
+                </action>
+                <action id="4" name="Set font color" sid="423335808065673" type="Points">
+                    <param id="0" name="Color">rgb(0, 160, 255)</param>
+                </action>
+                <action id="-15" name="Set visible" sid="858784446066404" type="Points">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="965623123303831" type="Centre">
+                    <param id="0" name="Object">Particles2</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="494085479211355" type="Target" />
+                <action id="0" name="Play" sid="250841956154730" type="Audio">
+                    <param id="0" name="Audio file">boom</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="664823026428381" type="System">
+                    <param id="0" name="Variable">Bank</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-7" name="Set size" sid="900142784286244" type="i8">
+                    <param id="0" name="Width">Decay</param>
+                    <param id="1" name="Height">Decay</param>
+                </action>
+                <action id="-7" name="Set size" sid="180231676503798" type="i6">
+                    <param id="0" name="Width">Decay</param>
+                    <param id="1" name="Height">Decay</param>
+                </action>
+                <action id="-7" name="Set size" sid="843007151630448" type="i4">
+                    <param id="0" name="Width">Decay</param>
+                    <param id="1" name="Height">Decay</param>
+                </action>
+                <action id="-7" name="Set size" sid="588993831950452" type="ig4">
+                    <param id="0" name="Width">BankDecay</param>
+                    <param id="1" name="Height">BankDecay</param>
+                </action>
+                <action id="-7" name="Set size" sid="885429003030323" type="ig6">
+                    <param id="0" name="Width">BankDecay</param>
+                    <param id="1" name="Height">BankDecay</param>
+                </action>
+                <action id="-7" name="Set size" sid="462344589079111" type="ig8">
+                    <param id="0" name="Width">BankDecay</param>
+                    <param id="1" name="Height">BankDecay</param>
+                </action>
+                <action id="6" name="Stop" sid="835902782886931" type="Audio">
+                    <param id="0" name="Tag">&quot;clock&quot;</param>
                 </action>
                 <action behavior="Rotate" id="3" name="Set target" sid="7889832890152891" type="Centre">
                     <param id="0" name="Target is">2</param>
