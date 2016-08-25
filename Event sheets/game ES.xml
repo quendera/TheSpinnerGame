@@ -2172,10 +2172,6 @@
                                     <param id="0" name="Variable">CurrEvent</param>
                                     <param id="1" name="Value">0.3</param>
                                 </action>
-                                <action id="0" name="Call function" sid="614683263714975" type="Function">
-                                    <param id="0" name="Name">&quot;log&quot;</param>
-                                    <param id="1" name="Parameter {n}"></param>
-                                </action>
                                 <action id="-9" name="Destroy" sid="282039443132181" type="Target" />
                                 <action id="-7" name="Set size" sid="6221193031459699" type="ig4">
                                     <param id="0" name="Width">0</param>
@@ -2196,6 +2192,10 @@
                                 <action id="-9" name="Set value" sid="6829676857037816" type="System">
                                     <param id="0" name="Variable">Bank</param>
                                     <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Call function" sid="614683263714975" type="Function">
+                                    <param id="0" name="Name">&quot;log&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
                                 </action>
                                 <action id="0" name="Play" sid="1388531770237321" type="Audio">
                                     <param id="0" name="Audio file">lose</param>
