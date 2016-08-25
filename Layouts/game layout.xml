@@ -85,6 +85,28 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="Corners" uid="158">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>16</x>
+                        <y>-1658</y>
+                        <z>0</z>
+                        <width>75</width>
+                        <height>75</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -639,8 +661,8 @@
                         <x>-3152</x>
                         <y>1470</y>
                         <z>0</z>
-                        <width>800</width>
-                        <height>800</height>
+                        <width>300</width>
+                        <height>300</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>

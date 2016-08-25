@@ -2,7 +2,7 @@
 <c2layout>
     <name>Calibration</name>
     <sid>4115181201818762</sid>
-    <event-sheet>Calibration</event-sheet>
+    <event-sheet>Calibration ES</event-sheet>
     <size>
         <width>1920</width>
         <height>1080</height>
@@ -29,28 +29,6 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="Sprite3" uid="72">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>968.5</x>
-                        <y>539</y>
-                        <z>0</z>
-                        <width>1989</width>
-                        <height>1147</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="CalibrationTarget" uid="75">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
@@ -84,6 +62,233 @@
                         <height>139.519989014</height>
                         <depth>0</depth>
                         <hotspotX>0.501567423</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="calibration" uid="63">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Size</tweened-property>
+                                <function>Linear</function>
+                                <target>0,0</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>20</duration>
+                                <enforce-mode>Compromise</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-484</x>
+                        <y>204</y>
+                        <z>0</z>
+                        <width>500</width>
+                        <height>500</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Corners" uid="159">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-486</x>
+                        <y>-496</y>
+                        <z>0</z>
+                        <width>75</width>
+                        <height>75</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="TriangleBack" uid="162">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                        <behavior-instance type="Fade">
+                            <properties>
+                                <active-at-start>Yes</active-at-start>
+                                <fade-in-time>1</fade-in-time>
+                                <wait-time>0</wait-time>
+                                <fade-out-time>0</fade-out-time>
+                                <destroy>No</destroy>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>992</x>
+                        <y>-440</y>
+                        <z>0</z>
+                        <width>150</width>
+                        <height>315</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.222222224</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="b6" uid="163">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Angle</tweened-property>
+                                <function>Linear</function>
+                                <target>180</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>5</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-1221</x>
+                        <y>-512</y>
+                        <z>0</z>
+                        <width>800</width>
+                        <height>800</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Sprite2" uid="72">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>974</x>
+                        <y>444</y>
+                        <z>0</z>
+                        <width>1980</width>
+                        <height>1290</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
+            <effects />
+        </layer>
+        <layer name="Layer 1" sid="534619074024289">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <global>0</global>
+            <use-render-cells>0</use-render-cells>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances>
+                <instance type="Polygon" uid="160">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <effect>(none)</effect>
+                        <collisions>Enabled</collisions>
+                        <debug-mode>Disabled</debug-mode>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="TurnLeft">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Angle</tweened-property>
+                                <function>EaseOutSmoothstep</function>
+                                <target>45</target>
+                                <target-mode>Relative</target-mode>
+                                <duration>2</duration>
+                                <enforce-mode>Compromise</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="TurnRight">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Angle</tweened-property>
+                                <function>EaseOutSmoothstep</function>
+                                <target></target>
+                                <target-mode>Relative</target-mode>
+                                <duration>2</duration>
+                                <enforce-mode>Compromise</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Reset">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Angle</tweened-property>
+                                <function>Linear</function>
+                                <target>0</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>2</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>960</x>
+                        <y>540</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>61</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>

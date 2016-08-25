@@ -3,8 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>settings</name>
     <events>
-        <variable constant="0" name="Device2" sid="7535931521353341" static="0" type="text"></variable>
-        <variable constant="0" name="Gamepad2" sid="499923015912455" static="0" type="number">0</variable>
         <event-block sid="2622720429316127">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="8262874777921476" type="System" />

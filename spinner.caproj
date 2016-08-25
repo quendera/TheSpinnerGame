@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>spinner</name>
+    <name>lab</name>
     <description>wip</description>
-    <version>3.0.3</version>
+    <version>3.1.0</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
@@ -19,6 +19,7 @@
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="List" version="1">List</plugin>
         <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="NodeWebkit" version="1">NW.js</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Yann Granjon" id="Polygon" version="1">Polygon</plugin>
@@ -466,6 +467,33 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="calibration" sid="491031691994219">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="113638818283402">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                    <behavior-type name="LiteTween" sid="267998741162747">
+                        <behavior id="lunarray_LiteTween" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="118885799043827" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\sponge6.png">
+                            <collision-poly>
+                                <point x="0.182081" y="0.1575" />
+                                <point x="0.5" y="0" />
+                                <point x="0.817919" y="0.1575" />
+                                <point x="1" y="0.5" />
+                                <point x="0.817919" y="0.8425" />
+                                <point x="0.5" y="1" />
+                                <point x="0.182081" y="0.8425" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder name="Sliders">
             <object-type name="BankTimeoutSlider" sid="23949880727728">
@@ -612,6 +640,9 @@
             <object-type name="Browser" sid="2612061261343523">
                 <plugin id="Browser" />
             </object-type>
+            <object-type name="Mouse" sid="719518021106986">
+                <plugin id="Mouse" />
+            </object-type>
         </object-folder>
         <object-type name="Circle" sid="600832520585249">
             <plugin id="Sprite" />
@@ -710,7 +741,7 @@
             </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2861243312281895" speed="5">
-                    <frame duration="1" hotspotX="0.500403" hotspotY="0.50057" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\titleGALAXY.png">
+                    <frame duration="1" hotspotX="0.500539" hotspotY="0.504951" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\title3.png">
                         <collision-poly>
                             <point x="0.138542" y="0.246296" />
                             <point x="0.856771" y="0.25463" />
@@ -969,6 +1000,25 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="Corners" sid="113995199929510">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="174245448030282" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\Tiago\Google Drive\CCU\Games\GAME\Assets\eye3.png">
+                        <collision-poly>
+                            <point x="0.146667" y="0.146667" />
+                            <point x="0.5" y="0" />
+                            <point x="0.853333" y="0.146667" />
+                            <point x="1" y="0.5" />
+                            <point x="0.853333" y="0.853333" />
+                            <point x="0.5" y="1" />
+                            <point x="0.146667" y="0.853333" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
@@ -981,7 +1031,7 @@
     <event-folder>
         <event-sheet>game ES.xml</event-sheet>
         <event-sheet>menu ES.xml</event-sheet>
-        <event-sheet>Calibration.xml</event-sheet>
+        <event-sheet>Calibration ES.xml</event-sheet>
         <event-sheet>settings.xml</event-sheet>
         <event-sheet>tutorial ES.xml</event-sheet>
     </event-folder>
@@ -1028,6 +1078,7 @@
                 <analog-deadzone>25</analog-deadzone>
             </properties>
         </global-instance>
+        <global-instance type="Mouse" uid="64" />
     </global-instances>
     <sounds-folder>
         <file name="1.ogg" />

@@ -768,7 +768,7 @@
                 </instance>
                 <instance type="Vertices" uid="85">
                     <properties>
-                        <items>4;6;</items>
+                        <items>6;</items>
                         <tooltip>Vertices</tooltip>
                         <initial-visibility>Visible</initial-visibility>
                         <enabled>Yes</enabled>

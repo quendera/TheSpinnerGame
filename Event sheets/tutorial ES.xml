@@ -493,18 +493,8 @@
                         <action id="-15" name="Set visible" sid="1413329883617719" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="1102445954282359" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="9791189838554446" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="1619711053861975" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                         <action id="-10" name="Add to" sid="6872639447752489" type="System">
                             <param id="0" name="Variable">Progress</param>
@@ -545,18 +535,8 @@
                         <action id="-15" name="Set visible" sid="985878134571674" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="8833881620461379" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="572756808745922" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="6809480180505255" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -623,18 +603,8 @@
                         <action id="-15" name="Set visible" sid="3377712692795498" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="2781703612835351" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="6684991645087982" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="6372813020591309" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -837,18 +807,8 @@
                                 <action id="-15" name="Set visible" sid="6287409255026399" type="Continue">
                                     <param id="0" name="Visibility">1</param>
                                 </action>
-                                <action behavior="Flash" id="0" name="Flash" sid="3660552833786579" type="Continue">
-                                    <param id="0" name="&apos;On&apos; time">0.5</param>
-                                    <param id="1" name="&apos;Off&apos; time">0.5</param>
-                                    <param id="2" name="Duration">2</param>
-                                </action>
                                 <action id="-15" name="Set visible" sid="318346799612457" type="Square">
                                     <param id="0" name="Visibility">1</param>
-                                </action>
-                                <action behavior="Flash" id="0" name="Flash" sid="7320831544945939" type="Square">
-                                    <param id="0" name="&apos;On&apos; time">0.5</param>
-                                    <param id="1" name="&apos;Off&apos; time">0.5</param>
-                                    <param id="2" name="Duration">2</param>
                                 </action>
                                 <action id="-9" name="Destroy" sid="7418626803366087" type="Points" />
                                 <action id="-12" name="Set group active" sid="3635723305177825" type="System">
@@ -916,18 +876,8 @@
                         <action id="-15" name="Set visible" sid="1200055258182326" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="135216344469392" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="9012134174018552" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="1085157812319944" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1084,18 +1034,8 @@
                         <action id="-15" name="Set visible" sid="4447007738431123" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="1896477821825254" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="3076888111872645" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="6350992128707261" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1269,18 +1209,8 @@
                         <action id="-15" name="Set visible" sid="5537460545756602" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="6856979384734586" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="3354644299890576" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="4232612016071308" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1402,18 +1332,8 @@
                         <action id="-15" name="Set visible" sid="7396579044321466" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="7719991986855101" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="7342832457410925" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="5971005524078829" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                         <action behavior="Timer" id="1" name="Stop timer" sid="8037389305720731" type="Polygon">
                             <param id="0" name="Tag">&quot;4&quot;</param>
@@ -1567,18 +1487,8 @@
                         <action id="-15" name="Set visible" sid="9739875520625335" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="1396887647359031" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="6354072542948323" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="1309628476290901" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1782,18 +1692,8 @@
                         <action id="-15" name="Set visible" sid="7351917479143357" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="8680790786665271" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="6368428440493417" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="7751339817430335" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                         <action behavior="Timer" id="1" name="Stop timer" sid="6398493588170143" type="Polygon">
                             <param id="0" name="Tag">&quot;4&quot;</param>
@@ -1914,18 +1814,8 @@
                         <action id="-15" name="Set visible" sid="7817446459383216" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="8850717308205083" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="2419477086039654" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="9313785878518659" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2009,18 +1899,8 @@
                         <action id="-15" name="Set visible" sid="1042918225439586" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="5090382739214106" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="4179647327667471" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="3211929045019953" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2117,18 +1997,8 @@
                         <action id="-15" name="Set visible" sid="8981541261799012" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="8429510198084668" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="2555117264724841" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="6330895142044148" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2433,18 +2303,8 @@
                         <action id="-15" name="Set visible" sid="4757714307164624" type="Continue">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="3035272858252231" type="Continue">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
-                        </action>
                         <action id="-15" name="Set visible" sid="121303160448763" type="Square">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action behavior="Flash" id="0" name="Flash" sid="2775947705241881" type="Square">
-                            <param id="0" name="&apos;On&apos; time">0.5</param>
-                            <param id="1" name="&apos;Off&apos; time">0.5</param>
-                            <param id="2" name="Duration">2</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2951,6 +2811,10 @@
                                                     <param id="0" name="Variable">BankDecay</param>
                                                     <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor)*2</param>
                                                 </action>
+                                                <action id="-9" name="Set value" sid="640266517889304" type="System">
+                                                    <param id="0" name="Variable">Sound</param>
+                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier))*4</param>
+                                                </action>
                                                 <action id="-11" name="Add to" sid="5362397275629188" type="ArrayOut">
                                                     <param id="0" name="Instance variable">XCount</param>
                                                     <param id="1" name="Value">1</param>
@@ -3049,333 +2913,39 @@
                                                     <param id="0" name="Width">BankDecay</param>
                                                     <param id="1" name="Height">BankDecay</param>
                                                 </action>
+                                                <action id="0" name="Play" sid="686697398416073" type="Audio">
+                                                    <param id="0" name="Audio file">1</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">-(20-Sound)</param>
+                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
+                                                </action>
                                             </actions>
                                             <sub-events>
                                                 <event-group description="" sid="89498577699174" title="Sound3">
                                                     <sub-events>
-                                                        <event-block sid="7956731201045306">
+                                                        <event-block sid="873073843728667">
                                                             <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="6798862431737121" type="System">
+                                                                <condition id="-14" name="Compare variable" sid="149831614177011" type="System">
                                                                     <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
+                                                                    <param id="1" name="Comparison">4</param>
                                                                     <param id="2" name="Value">0</param>
                                                                 </condition>
-                                                                <condition id="-14" name="Compare variable" sid="5178436883099972" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">10</param>
-                                                                </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="5" name="Set playback rate" sid="9990757438596496" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">0.8</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="4038705750417865" type="Audio">
+                                                                <action id="0" name="Play" sid="246928810602954" type="Audio">
                                                                     <param id="0" name="Audio file">1</param>
                                                                     <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
+                                                                    <param id="3" name="Volume">-(20-Sound)</param>
                                                                     <param id="1" name="Tag (optional)">&quot;test&quot;</param>
                                                                 </action>
-                                                                <action id="-16" name="Wait" sid="1775469776358215" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="6838952728952329" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="5432697983027033">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="2250432178505435" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">10</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="2870883509725314" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">20</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="4606961163553642" type="Audio">
+                                                                <action id="5" name="Set playback rate" sid="858832440402842" type="Audio">
                                                                     <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">0.9</param>
+                                                                    <param id="1" name="Playback rate">exp((Bank/100)*0.4)</param>
                                                                 </action>
-                                                                <action id="0" name="Play" sid="2115757880132535" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="5714036840801804" type="System">
+                                                                <action id="-16" name="Wait" sid="611364372707109" type="System">
                                                                     <param id="0" name="Seconds">1</param>
                                                                 </action>
-                                                                <action id="-9" name="Destroy" sid="3742727696505395" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="1942802668624032">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="9738128402610854" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">20</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="1650527292111448" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">30</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="1777928512199457" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="4945468944495766" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="1349748789236809" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="1160627855876755" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="7518612034891103">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="4787530123022552" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">30</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="1912727399422471" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">40</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="8636583155945336" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.1</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="5844978373433584" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="3919719445153155" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="7900995621996053" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="4239520861609071">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="9425161135341336" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">40</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="3687386866403777" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">50</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="8876445057513672" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.2</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="7643715668391829" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="7127814901451068" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="6244634538777379" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="8548384795095685">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="6929747329727649" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">50</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="3481231134595094" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">60</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="2449027882597785" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.3</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="2814590760947181" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="1119650956367764" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="4598384454797574" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="3945551888967937">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="7256997213121693" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">60</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="6657853484824429" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">70</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="5643015028441521" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.4</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="5678311806884703" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="1273726256305914" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="6927044631156188" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="4372720187987614">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="6070801265255888" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">70</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="8501207025454255" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">80</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="6729956192485422" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.5</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="4367546874951087" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="3872305129737547" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="1832891472874953" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="1172019500784435">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="6726024137010977" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">80</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="4500575245870545" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">90</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="6077376936436116" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.6</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="4955818516244122" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="1575858427273214" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="201199537182263" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="6209173450972761">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="2089171272238505" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">90</param>
-                                                                </condition>
-                                                                <condition id="-14" name="Compare variable" sid="5336397770514449" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Value">100</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="535575273473906" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">1.7</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="5449624711923977" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="3475420742797974" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="4562383429856882" type="Points" />
-                                                            </actions>
-                                                        </event-block>
-                                                        <event-block sid="7399272872903529">
-                                                            <conditions>
-                                                                <condition id="-14" name="Compare variable" sid="6681226516864968" type="System">
-                                                                    <param id="0" name="Variable">Bank</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Value">100</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="5" name="Set playback rate" sid="8413789155526788" type="Audio">
-                                                                    <param id="0" name="Tag">&quot;test&quot;</param>
-                                                                    <param id="1" name="Playback rate">2.2</param>
-                                                                </action>
-                                                                <action id="0" name="Play" sid="9478356697375707" type="Audio">
-                                                                    <param id="0" name="Audio file">1</param>
-                                                                    <param id="2" name="Loop">0</param>
-                                                                    <param id="3" name="Volume">0</param>
-                                                                    <param id="1" name="Tag (optional)">&quot;test&quot;</param>
-                                                                </action>
-                                                                <action id="-16" name="Wait" sid="9464056653024552" type="System">
-                                                                    <param id="0" name="Seconds">1</param>
-                                                                </action>
-                                                                <action id="-9" name="Destroy" sid="4110171961290163" type="Points" />
+                                                                <action id="-9" name="Destroy" sid="454451187394401" type="Points" />
                                                             </actions>
                                                         </event-block>
                                                     </sub-events>
