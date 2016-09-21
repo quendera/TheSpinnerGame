@@ -26,30 +26,38 @@
                 <action id="0" name="Set cursor style" sid="516660841556665" type="Mouse">
                     <param id="0" name="Cursor style">7</param>
                 </action>
-                <action id="0" name="Start timer" sid="8057322491632351" type="Date">
-                    <param id="0" name="Name">&quot;C&quot;</param>
+                <action id="-9" name="Destroy" sid="331662565165775" type="Date" />
+                <action id="-9" name="Destroy" sid="872619606366238" type="Array" />
+                <action id="-3" name="Create object" sid="905078556959946" type="System">
+                    <param id="0" name="Object to create">Date</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
                 </action>
-                <action id="1" name="Set size" sid="9527802500066428" type="Array">
-                    <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">3</param>
-                    <param id="2" name="Depth">1</param>
-                </action>
-                <action id="4" name="Set at XYZ" sid="666892602402413" type="Array">
-                    <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">0</param>
-                    <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
-                </action>
-                <action id="4" name="Set at XYZ" sid="4490951887672415" type="Array">
-                    <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">1</param>
-                    <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">Date.UnixTimestamp</param>
+                <action id="-3" name="Create object" sid="750224345485711" type="System">
+                    <param id="0" name="Object to create">Array</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
                 </action>
                 <action id="0" name="Clear" sid="5335744622042061" type="Array" />
                 <action id="-10" name="Set value" sid="2676380353459329" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">0</param>
+                </action>
+                <action id="1" name="Set size" sid="9527802500066428" type="Array">
+                    <param id="0" name="Width">1+Array.XCount</param>
+                    <param id="1" name="Height">7</param>
+                    <param id="2" name="Depth">1</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="4490951887672415" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">0</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Date.UnixTimestamp</param>
+                </action>
+                <action id="0" name="Start timer" sid="8057322491632351" type="Date">
+                    <param id="0" name="Name">&quot;C&quot;</param>
                 </action>
                 <action id="-9" name="Set value" sid="774302579119945" type="System">
                     <param id="0" name="Variable">crossnr</param>
@@ -93,7 +101,7 @@
                     <param id="0" name="Visibility">1</param>
                 </action>
                 <action id="0" name="Set text" sid="9744296619144923" type="DecayTimeout">
-                    <param id="0" name="Text">&quot;Point your nose to the arrow and keep your head fixed while following the green target with your eyes.&quot;</param>
+                    <param id="0" name="Text">&quot;Point your nose to the cross and keep your head fixed while following the green target with your eyes.&quot;</param>
                 </action>
                 <action id="-16" name="Wait" sid="3798965013758882" type="System">
                     <param id="0" name="Seconds">15</param>
@@ -125,31 +133,31 @@
                 <action id="-15" name="Set visible" sid="5527489821393812" type="DecayTimeout">
                     <param id="0" name="Visibility">0</param>
                 </action>
-                <action id="-3" name="Create object" sid="390424787974878" type="System">
+                <action disabled="1" id="-3" name="Create object" sid="390424787974878" type="System">
                     <param id="0" name="Object to create">CalibrationTargetRim</param>
                     <param id="1" name="Layer">0</param>
                     <param id="2" name="X">560</param>
                     <param id="3" name="Y">140</param>
                 </action>
-                <action id="-3" name="Create object" sid="774149627081327" type="System">
+                <action disabled="1" id="-3" name="Create object" sid="774149627081327" type="System">
                     <param id="0" name="Object to create">CalibrationTargetRim</param>
                     <param id="1" name="Layer">0</param>
                     <param id="2" name="X">560</param>
                     <param id="3" name="Y">940</param>
                 </action>
-                <action id="-3" name="Create object" sid="836256928242363" type="System">
+                <action disabled="1" id="-3" name="Create object" sid="836256928242363" type="System">
                     <param id="0" name="Object to create">CalibrationTargetRim</param>
                     <param id="1" name="Layer">0</param>
                     <param id="2" name="X">1360</param>
                     <param id="3" name="Y">940</param>
                 </action>
-                <action id="-3" name="Create object" sid="194550480769784" type="System">
+                <action disabled="1" id="-3" name="Create object" sid="194550480769784" type="System">
                     <param id="0" name="Object to create">CalibrationTargetRim</param>
                     <param id="1" name="Layer">0</param>
                     <param id="2" name="X">1360</param>
                     <param id="3" name="Y">140</param>
                 </action>
-                <action id="-3" name="Create object" sid="135833791077463" type="System">
+                <action disabled="1" id="-3" name="Create object" sid="135833791077463" type="System">
                     <param id="0" name="Object to create">CalibrationTargetRim</param>
                     <param id="1" name="Layer">0</param>
                     <param id="2" name="X">960</param>
@@ -196,17 +204,17 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="860801500541270" type="Array">
+                <action id="4" name="Set at XYZ" sid="998941511248156" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="181331990893754" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">4</param>
                     <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.X</param>
-                </action>
-                <action id="4" name="Set at XYZ" sid="602035730819476" type="Array">
-                    <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">5</param>
-                    <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.Y</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
                 </action>
                 <action id="0" name="Call function" sid="387707385179771" type="Function">
                     <param id="0" name="Name">&quot;Point0&quot;</param>
@@ -249,17 +257,17 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="207360324086836" type="Array">
+                <action id="4" name="Set at XYZ" sid="855146194060462" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="993719038750317" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">4</param>
                     <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.X</param>
-                </action>
-                <action id="4" name="Set at XYZ" sid="525088834660409" type="Array">
-                    <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">5</param>
-                    <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.Y</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
                 </action>
                 <action id="0" name="Call function" sid="703601299296253" type="Function">
                     <param id="0" name="Name">&quot;Point0&quot;</param>
@@ -302,17 +310,17 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="325797662069621" type="Array">
+                <action id="4" name="Set at XYZ" sid="199553036437286" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="453478234401361" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">4</param>
                     <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.X</param>
-                </action>
-                <action id="4" name="Set at XYZ" sid="605355995579075" type="Array">
-                    <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">5</param>
-                    <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.Y</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
                 </action>
                 <action id="0" name="Call function" sid="609496475206849" type="Function">
                     <param id="0" name="Name">&quot;Point0&quot;</param>
@@ -355,17 +363,17 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="538777354669620" type="Array">
+                <action id="4" name="Set at XYZ" sid="817273757399563" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="411275478323606" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">4</param>
                     <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.X</param>
-                </action>
-                <action id="4" name="Set at XYZ" sid="938867778301898" type="Array">
-                    <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">5</param>
-                    <param id="2" name="Z">0</param>
-                    <param id="3" name="Value">CalibrationTarget.Y</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
                 </action>
                 <action id="0" name="Call function" sid="456248470295560" type="Function">
                     <param id="0" name="Name">&quot;Point0&quot;</param>
@@ -417,32 +425,44 @@
                 <action id="-15" name="Set visible" sid="484747145915874" type="CalibrationTarget">
                     <param id="0" name="Visibility">1</param>
                 </action>
-                <action id="-11" name="Add to" sid="944817884280235" type="Array">
+                <action id="-11" name="Add to" sid="511779873217619" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="507325299824582" type="Array">
+                <action id="1" name="Set size" sid="113484299204363" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">3</param>
+                    <param id="1" name="Height">5</param>
                     <param id="2" name="Depth">1</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="953708809669784" type="Array">
+                <action id="4" name="Set at XYZ" sid="986219404944360" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">0</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="568410762064773" type="Array">
+                <action id="4" name="Set at XYZ" sid="989166680236683" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">1</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.X</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="491966523217540" type="Array">
+                <action id="4" name="Set at XYZ" sid="595775886589610" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">2</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="895753580316443" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="499426403398484" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
                 </action>
                 <action id="-16" name="Wait" sid="425574812922156" type="System">
                     <param id="0" name="Seconds">WaitTime</param>
@@ -460,33 +480,34 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="-15" name="Set visible" sid="281128911080984" type="CalibrationTarget">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-                <action behavior="Move" id="4" name="Set tweened property" sid="829684020770450" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="4" name="Set tweened property" sid="829684020770450" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="621116699930244" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="621116699930244" type="CalibrationTarget">
                     <param id="0" name="Target is">0</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">1360</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="549816806456595" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="549816806456595" type="CalibrationTarget">
                     <param id="0" name="Target is">1</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">140</param>
                 </action>
-                <action behavior="Move" id="10" name="Start" sid="840742397995485" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="10" name="Start" sid="840742397995485" type="CalibrationTarget">
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="747374562626764" type="CalibrationTarget">
+                    <param id="0" name="X">1360</param>
+                    <param id="1" name="Y">140</param>
                 </action>
                 <action id="-11" name="Add to" sid="165208703104771" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="835801954138373" type="Array">
+                <action id="1" name="Set size" sid="805223226450164" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">3</param>
+                    <param id="1" name="Height">5</param>
                     <param id="2" name="Depth">1</param>
                 </action>
                 <action id="4" name="Set at XYZ" sid="258882460440684" type="Array">
@@ -507,6 +528,18 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
                 </action>
+                <action id="4" name="Set at XYZ" sid="150572619194661" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="517381163009260" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
+                </action>
                 <action id="-16" name="Wait" sid="402080324861801" type="System">
                     <param id="0" name="Seconds">WaitTime</param>
                 </action>
@@ -523,30 +556,34 @@
                 </condition>
             </conditions>
             <actions>
-                <action behavior="Move" id="4" name="Set tweened property" sid="261393945001441" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="4" name="Set tweened property" sid="261393945001441" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="5664964261933907" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="5664964261933907" type="CalibrationTarget">
                     <param id="0" name="Target is">0</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">1360</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="2674621260925574" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="2674621260925574" type="CalibrationTarget">
                     <param id="0" name="Target is">1</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">940</param>
                 </action>
-                <action behavior="Move" id="10" name="Start" sid="6521156919200275" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="10" name="Start" sid="6521156919200275" type="CalibrationTarget">
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="877799813439092" type="CalibrationTarget">
+                    <param id="0" name="X">1360</param>
+                    <param id="1" name="Y">940</param>
                 </action>
                 <action id="-11" name="Add to" sid="7516017847812354" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="813350391861286" type="Array">
+                <action id="1" name="Set size" sid="284155903374812" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">3</param>
+                    <param id="1" name="Height">5</param>
                     <param id="2" name="Depth">1</param>
                 </action>
                 <action id="4" name="Set at XYZ" sid="1222963475629492" type="Array">
@@ -567,6 +604,18 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
                 </action>
+                <action id="4" name="Set at XYZ" sid="465222053015837" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="694441570007870" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
+                </action>
                 <action id="-16" name="Wait" sid="2944428383685642" type="System">
                     <param id="0" name="Seconds">WaitTime</param>
                 </action>
@@ -583,30 +632,34 @@
                 </condition>
             </conditions>
             <actions>
-                <action behavior="Move" id="4" name="Set tweened property" sid="2082401427906123" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="4" name="Set tweened property" sid="2082401427906123" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="6048894156601386" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="6048894156601386" type="CalibrationTarget">
                     <param id="0" name="Target is">0</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">560</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="8864111239815932" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="8864111239815932" type="CalibrationTarget">
                     <param id="0" name="Target is">1</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">940</param>
                 </action>
-                <action behavior="Move" id="10" name="Start" sid="7484996136979037" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="10" name="Start" sid="7484996136979037" type="CalibrationTarget">
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="823248316064546" type="CalibrationTarget">
+                    <param id="0" name="X">560</param>
+                    <param id="1" name="Y">940</param>
                 </action>
                 <action id="-11" name="Add to" sid="8741068333924005" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="6607749269164347" type="Array">
+                <action id="1" name="Set size" sid="982427640595750" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">3</param>
+                    <param id="1" name="Height">5</param>
                     <param id="2" name="Depth">1</param>
                 </action>
                 <action id="4" name="Set at XYZ" sid="3663895921748503" type="Array">
@@ -627,6 +680,18 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
                 </action>
+                <action id="4" name="Set at XYZ" sid="257564257759672" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="985233690268316" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
+                </action>
                 <action id="-16" name="Wait" sid="9522295828348451" type="System">
                     <param id="0" name="Seconds">WaitTime</param>
                 </action>
@@ -643,30 +708,34 @@
                 </condition>
             </conditions>
             <actions>
-                <action behavior="Move" id="4" name="Set tweened property" sid="5192240155703165" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="4" name="Set tweened property" sid="5192240155703165" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="6304574434437983" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="6304574434437983" type="CalibrationTarget">
                     <param id="0" name="Target is">0</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">560</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="1424591357854237" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="1424591357854237" type="CalibrationTarget">
                     <param id="0" name="Target is">1</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">140</param>
                 </action>
-                <action behavior="Move" id="10" name="Start" sid="5812649451902014" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="10" name="Start" sid="5812649451902014" type="CalibrationTarget">
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="149772607401822" type="CalibrationTarget">
+                    <param id="0" name="X">560</param>
+                    <param id="1" name="Y">140</param>
                 </action>
                 <action id="-11" name="Add to" sid="7876482303441061" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="3775707484773927" type="Array">
+                <action id="1" name="Set size" sid="769729262690124" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">3</param>
+                    <param id="1" name="Height">5</param>
                     <param id="2" name="Depth">1</param>
                 </action>
                 <action id="4" name="Set at XYZ" sid="5418561065754122" type="Array">
@@ -687,6 +756,18 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
                 </action>
+                <action id="4" name="Set at XYZ" sid="604148414909342" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="661707539569365" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
+                </action>
                 <action id="-16" name="Wait" sid="5513344209848339" type="System">
                     <param id="0" name="Seconds">WaitTime</param>
                 </action>
@@ -703,30 +784,34 @@
                 </condition>
             </conditions>
             <actions>
-                <action behavior="Move" id="4" name="Set tweened property" sid="7024380142915276" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="4" name="Set tweened property" sid="7024380142915276" type="CalibrationTarget">
                     <param id="0" name="Tweened property">0</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="8934879177995117" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="8934879177995117" type="CalibrationTarget">
                     <param id="0" name="Target is">0</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">960</param>
                 </action>
-                <action behavior="Move" id="3" name="Set target" sid="6781006952034157" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="3" name="Set target" sid="6781006952034157" type="CalibrationTarget">
                     <param id="0" name="Target is">1</param>
                     <param id="1" name="Relativity">0</param>
                     <param id="2" name="Value">540</param>
                 </action>
-                <action behavior="Move" id="10" name="Start" sid="8897643008986606" type="CalibrationTarget">
+                <action behavior="Move" disabled="1" id="10" name="Start" sid="8897643008986606" type="CalibrationTarget">
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="969110386444114" type="CalibrationTarget">
+                    <param id="0" name="X">960</param>
+                    <param id="1" name="Y">540</param>
                 </action>
                 <action id="-11" name="Add to" sid="9709570662872006" type="Array">
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="5582313559912765" type="Array">
+                <action id="1" name="Set size" sid="519668966913580" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">3</param>
+                    <param id="1" name="Height">5</param>
                     <param id="2" name="Depth">1</param>
                 </action>
                 <action id="4" name="Set at XYZ" sid="6593621231904414" type="Array">
@@ -746,6 +831,18 @@
                     <param id="1" name="Y">2</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="503471208769574" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">3</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.X</param>
+                </action>
+                <action id="4" name="Set at XYZ" sid="501692450964677" type="Array">
+                    <param id="0" name="X">Array.XCount</param>
+                    <param id="1" name="Y">4</param>
+                    <param id="2" name="Z">0</param>
+                    <param id="3" name="Value">Sprite4.Y</param>
                 </action>
                 <action id="-16" name="Wait" sid="538197913269813" type="System">
                     <param id="0" name="Seconds">WaitTime</param>
@@ -825,7 +922,7 @@
                 </action>
                 <action id="1" name="Set size" sid="838616237296378" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">5</param>
+                    <param id="1" name="Height">7</param>
                     <param id="2" name="Depth">1</param>
                 </action>
                 <action id="4" name="Set at XYZ" sid="862247279126581" type="Array">
@@ -836,13 +933,13 @@
                 </action>
                 <action id="4" name="Set at XYZ" sid="740467030488434" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">3</param>
+                    <param id="1" name="Y">5</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Height</param>
                 </action>
                 <action id="4" name="Set at XYZ" sid="195000882119086" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">4</param>
+                    <param id="1" name="Y">6</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Width</param>
                 </action>
@@ -895,26 +992,26 @@
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="535748070284528" type="Array">
+                <action id="1" name="Set size" sid="912266910518641" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">5</param>
+                    <param id="1" name="Height">7</param>
                     <param id="2" name="Depth">1</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="984997381006155" type="Array">
+                <action id="4" name="Set at XYZ" sid="124149438914875" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">0</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="131872915017865" type="Array">
+                <action id="4" name="Set at XYZ" sid="780104465790462" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">3</param>
+                    <param id="1" name="Y">5</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Height</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="427862243072740" type="Array">
+                <action id="4" name="Set at XYZ" sid="894054807931339" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">4</param>
+                    <param id="1" name="Y">6</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Width</param>
                 </action>
@@ -929,26 +1026,26 @@
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="265686356626287" type="Array">
+                <action id="1" name="Set size" sid="733712083386003" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">5</param>
+                    <param id="1" name="Height">7</param>
                     <param id="2" name="Depth">1</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="439571943733837" type="Array">
+                <action id="4" name="Set at XYZ" sid="901546958760019" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">0</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">Date.Timer(&quot;C&quot;)</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="789060052828488" type="Array">
+                <action id="4" name="Set at XYZ" sid="928402884083484" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">3</param>
+                    <param id="1" name="Y">5</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Height</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="833506910961128" type="Array">
+                <action id="4" name="Set at XYZ" sid="390703516672508" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">4</param>
+                    <param id="1" name="Y">6</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Width</param>
                 </action>
@@ -969,12 +1066,12 @@
                     <param id="0" name="Instance variable">XCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="1" name="Set size" sid="2084327554019501" type="Array">
+                <action id="1" name="Set size" sid="817134428026538" type="Array">
                     <param id="0" name="Width">1+Array.XCount</param>
-                    <param id="1" name="Height">5</param>
+                    <param id="1" name="Height">7</param>
                     <param id="2" name="Depth">1</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="6934695612359435" type="Array">
+                <action id="4" name="Set at XYZ" sid="801334680018297" type="Array">
                     <param id="0" name="X">Array.XCount</param>
                     <param id="1" name="Y">0</param>
                     <param id="2" name="Z">0</param>
@@ -992,19 +1089,19 @@
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">CalibrationTarget.Y</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="222989306108677" type="Array">
+                <action id="4" name="Set at XYZ" sid="634752240980703" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">3</param>
+                    <param id="1" name="Y">5</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Height</param>
                 </action>
-                <action id="4" name="Set at XYZ" sid="542887399501879" type="Array">
+                <action id="4" name="Set at XYZ" sid="595791696046183" type="Array">
                     <param id="0" name="X">Array.XCount</param>
-                    <param id="1" name="Y">4</param>
+                    <param id="1" name="Y">6</param>
                     <param id="2" name="Z">0</param>
                     <param id="3" name="Value">calibration.Width</param>
                 </action>
-                <action id="12" name="Download" sid="6920161700799779" type="Array">
+                <action disabled="1" id="12" name="Download" sid="6920161700799779" type="Array">
                     <param id="0" name="Filename">&quot;Calibration.txt&quot;</param>
                 </action>
                 <action id="-9" name="Destroy" sid="8937848051790132" type="Date" />

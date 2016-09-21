@@ -3,6 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>game ES</name>
     <events>
+        <variable constant="0" name="TargetID" sid="269448630680556" static="0" type="number">0</variable>
+        <variable constant="0" name="TargetsOnScreen" sid="258386623536484" static="0" type="number">0</variable>
         <variable constant="0" name="ControllerType" sid="220201554924285" static="0" type="number">0</variable>
         <variable constant="0" name="LastGamepad" sid="3481543107706897" static="0" type="number">0</variable>
         <variable constant="0" name="LastKeyboard" sid="5588304215377256" static="0" type="number">0</variable>
@@ -25,6 +27,7 @@
         <variable constant="0" name="GAMEPADNR" sid="7502674986831925" static="0" type="number">0</variable>
         <variable constant="0" name="vertexcounter" sid="4377341150044906" static="0" type="number">0</variable>
         <variable constant="0" name="WaveTimer" sid="9351539086041364" static="0" type="number">0</variable>
+        <variable constant="0" name="CurrBubbleValue" sid="598454012407772" static="0" type="number">0</variable>
         <variable comment="total score" constant="0" name="Score" sid="8217409286693331" static="0" type="number">0</variable>
         <variable constant="0" name="TurnCounter" sid="6654269330304775" static="0" type="number">0</variable>
         <variable constant="0" name="maxbank" sid="3897661336221864" static="0" type="number">0</variable>
@@ -172,7 +175,7 @@
                                 </action>
                                 <action id="-9" name="Set value" sid="2491809142694872" type="System">
                                     <param id="0" name="Variable">ScaleFactor</param>
-                                    <param id="1" name="Value">4</param>
+                                    <param id="1" name="Value">12</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="9773347767438991" type="System">
                                     <param id="0" name="Variable">Wave</param>
@@ -188,7 +191,7 @@
                                 </action>
                                 <action id="-9" name="Set value" sid="5929707112651264" type="System">
                                     <param id="0" name="Variable">ScoreMultiplier</param>
-                                    <param id="1" name="Value">10</param>
+                                    <param id="1" name="Value">3</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="2111167384345141" type="System">
                                     <param id="0" name="Variable">TurnCounter</param>
@@ -212,7 +215,7 @@
                                 </action>
                                 <action id="-9" name="Set value" sid="2797479113538493" type="System">
                                     <param id="0" name="Variable">ArrayHeight</param>
-                                    <param id="1" name="Value">13</param>
+                                    <param id="1" name="Value">14</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="8328041471489689" type="System">
                                     <param id="0" name="Variable">WAveBeginArrayOut</param>
@@ -266,13 +269,13 @@
                                     <param id="2" name="X">Polygon.CenterX</param>
                                     <param id="3" name="Y">Polygon.CenterY+225</param>
                                 </action>
-                                <action id="-3" name="Create object" sid="8353789073293985" type="System">
+                                <action disabled="1" id="-3" name="Create object" sid="8353789073293985" type="System">
                                     <param id="0" name="Object to create">Score</param>
                                     <param id="1" name="Layer">4</param>
                                     <param id="2" name="X">720</param>
                                     <param id="3" name="Y">100</param>
                                 </action>
-                                <action id="-3" name="Create object" sid="306534992712839" type="System">
+                                <action disabled="1" id="-3" name="Create object" sid="306534992712839" type="System">
                                     <param id="0" name="Object to create">LivesText</param>
                                     <param id="1" name="Layer">4</param>
                                     <param id="2" name="X">1200</param>
@@ -361,7 +364,7 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="1" name="Request project file" sid="5037301371935247" type="AJAX">
+                                        <action id="1" name="Request project file" sid="611816547899233" type="AJAX">
                                             <param id="0" name="Tag">&quot;input&quot;</param>
                                             <param id="1" name="File">6Vert1.txt</param>
                                         </action>
@@ -377,7 +380,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Request URL" sid="712105210746177" type="AJAX">
-                                            <param id="0" name="Tag">&quot;input&quot;</param>
+                                            <param id="0" name="Tag">&quot;input2&quot;</param>
                                             <param id="1" name="URL">InputFile</param>
                                         </action>
                                     </actions>
@@ -618,13 +621,13 @@
                             <param id="0" name="X">0</param>
                             <param id="1" name="Y">4</param>
                             <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">BankTimeout</param>
+                            <param id="3" name="Value">ArrayHeight</param>
                         </action>
                         <action id="4" name="Set at XYZ" sid="2705823770061031" type="ArrayOut">
                             <param id="0" name="X">0</param>
                             <param id="1" name="Y">5</param>
                             <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">CashinTimeout</param>
+                            <param id="3" name="Value">AJAX.Tag</param>
                         </action>
                         <action id="4" name="Set at XYZ" sid="6025976202658187" type="ArrayOut">
                             <param id="0" name="X">0</param>
@@ -668,11 +671,139 @@
                             <param id="2" name="Z">0</param>
                             <param id="3" name="Value">ControllerType</param>
                         </action>
+                        <action id="4" name="Set at XYZ" sid="243826202858132" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">13</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">projectversion</param>
+                        </action>
                         <action id="-12" name="Set group active" sid="406512517011956" type="System">
                             <param id="0" name="Group name">&quot;New Wave&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
                         <action behavior="Timer" id="0" name="Start timer" sid="4513757174345484" type="Polygon">
+                            <param id="0" name="Duration">1</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;StartWait&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="557448183283166">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="449271964645492" type="AJAX">
+                            <param id="0" name="Tag">&quot;input2&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="459104562978735" type="System">
+                            <param id="0" name="Variable">InputData</param>
+                            <param id="1" name="Value">AJAX.LastData</param>
+                        </action>
+                        <action id="2" name="Put csv data into array" sid="710268121390891" type="CSVToArray">
+                            <param id="0" name="Data">InputData</param>
+                            <param id="1" name="Array">ArrayIn</param>
+                            <param id="2" name="Mapping">0</param>
+                            <param id="3" name="Z">0</param>
+                        </action>
+                        <action behavior="Rotate" id="3" name="Set target" sid="117337330872691" type="Centre">
+                            <param id="0" name="Target is">2</param>
+                            <param id="1" name="Relativity">1</param>
+                            <param id="2" name="Value">360/Polygon.VertexCount</param>
+                        </action>
+                        <action id="1" name="Set size" sid="412102960645157" type="ArrayOut">
+                            <param id="0" name="Width">1+ArrayOut.XCount</param>
+                            <param id="1" name="Height">ArrayHeight</param>
+                            <param id="2" name="Depth">1</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="662844400246473" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">Name</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="125092103692417" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">1</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">Date.UnixTimestamp</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="521627027184661" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">2</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">Device &amp; &quot;,&quot; &amp; Browser.Product &amp; &quot;,&quot; &amp; Browser.Version</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="463136722908388" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">3</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">Vertices</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="754499922996895" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">4</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">ArrayHeight</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="646879809713724" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">5</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">AJAX.Tag</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="155312804966669" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">6</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">RotateSpeed</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="406748048040236" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">7</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">GrowSpeed</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="352463744179095" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">8</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">Decay</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="245386993081831" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">9</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">DecayRate</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="285746910629113" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">10</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">ArrivalCushion</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="754997205782450" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">11</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">DepartureCushion</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="624182237642050" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">12</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">ControllerType</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="922273177758481" type="ArrayOut">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">13</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">projectversion</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="493479995728031" type="System">
+                            <param id="0" name="Group name">&quot;New Wave&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="984835791220132" type="Polygon">
                             <param id="0" name="Duration">1</param>
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;StartWait&quot;</param>
@@ -761,16 +892,16 @@
                             <param id="0" name="Variable">Decay</param>
                             <param id="1" name="Value">BankDecay</param>
                         </action>
-                        <action id="0" name="Spawn another object" sid="501791757043312" type="Target">
-                            <param id="0" name="Object">Points</param>
-                            <param id="1" name="Layer">4</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
                         <action id="0" name="Set text" sid="9171177143010193" type="Points">
                             <param id="0" name="Text">round(Bank)</param>
                         </action>
                         <action id="4" name="Set font color" sid="999224730820127" type="Points">
                             <param id="0" name="Color">rgb(0, 160, 255)</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="501791757043312" type="Target">
+                            <param id="0" name="Object">Points</param>
+                            <param id="1" name="Layer">4</param>
+                            <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-15" name="Set visible" sid="2052953353252393" type="Points">
                             <param id="0" name="Visibility">1</param>
@@ -781,6 +912,10 @@
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-9" name="Destroy" sid="8386287458426422" type="Target" />
+                        <action id="-9" name="Set value" sid="739885875222792" type="System">
+                            <param id="0" name="Variable">TargetsOnScreen</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                         <action id="0" name="Play" sid="2585572000949995" type="Audio">
                             <param id="0" name="Audio file">boom</param>
                             <param id="2" name="Loop">0</param>
@@ -877,8 +1012,16 @@
                             <param id="0" name="Variable">NextWave</param>
                             <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
                         </action>
+                        <action id="-10" name="Set value" sid="456745374080773" type="Target">
+                            <param id="0" name="Instance variable">ID</param>
+                            <param id="1" name="Value">CurrentTarget</param>
+                        </action>
                         <action id="-10" name="Add to" sid="742381656612793" type="System">
                             <param id="0" name="Variable">CurrentTarget</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="951408613245908" type="System">
+                            <param id="0" name="Variable">TargetsOnScreen</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="-9" name="Set value" sid="481857669325598" type="System">
@@ -1063,7 +1206,7 @@
                             <param id="0" name="Width">Decay</param>
                             <param id="1" name="Height">Decay</param>
                         </action>
-                        <action id="-7" name="Set size" sid="7555127840447638" type="i6">
+                        <action id="-7" name="Set size" sid="374250508600806" type="i6">
                             <param id="0" name="Width">Decay</param>
                             <param id="1" name="Height">Decay</param>
                         </action>
@@ -1075,7 +1218,7 @@
                             <param id="0" name="Width">BankDecay</param>
                             <param id="1" name="Height">BankDecay</param>
                         </action>
-                        <action id="-7" name="Set size" sid="1469875563626629" type="ig6">
+                        <action id="-7" name="Set size" sid="317168749233824" type="ig6">
                             <param id="0" name="Width">BankDecay</param>
                             <param id="1" name="Height">BankDecay</param>
                         </action>
@@ -1258,11 +1401,11 @@
                                     <param id="0" name="Variable">Timer</param>
                                     <param id="1" name="Value">dt</param>
                                 </action>
-                                <action id="0" name="Set text" sid="5124069022140999" type="LivesText">
+                                <action disabled="1" id="0" name="Set text" sid="5124069022140999" type="LivesText">
                                     <param id="0" name="Text">&quot;Lives:&quot; &amp; newline &amp; Lives</param>
                                 </action>
-                                <action id="0" name="Set text" sid="3542767850083421" type="Score">
-                                    <param id="0" name="Text">&quot;Score:&quot; &amp; newline &amp; round(Score)</param>
+                                <action disabled="1" id="0" name="Set text" sid="3542767850083421" type="Score">
+                                    <param id="0" name="Text">&quot;Score:&quot; &amp; newline &amp; round(Score)/100 &amp; &quot;€&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1285,7 +1428,7 @@
                                             <param id="0" name="Width">Decay</param>
                                             <param id="1" name="Height">Decay</param>
                                         </action>
-                                        <action id="-7" name="Set size" sid="5188658968649901" type="i6">
+                                        <action id="-7" name="Set size" sid="753578701552021" type="i6">
                                             <param id="0" name="Width">Decay</param>
                                             <param id="1" name="Height">Decay</param>
                                         </action>
@@ -1297,7 +1440,7 @@
                                             <param id="0" name="Width">BankDecay</param>
                                             <param id="1" name="Height">BankDecay</param>
                                         </action>
-                                        <action id="-7" name="Set size" sid="5481077886638687" type="ig6">
+                                        <action id="-7" name="Set size" sid="774915242795823" type="ig6">
                                             <param id="0" name="Width">BankDecay</param>
                                             <param id="1" name="Height">BankDecay</param>
                                         </action>
@@ -1357,7 +1500,7 @@
                                         <condition id="-14" name="Compare variable" sid="9663498236580102" type="System">
                                             <param id="0" name="Variable">Decay</param>
                                             <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Value">154</param>
+                                            <param id="2" name="Value">100</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -1393,6 +1536,10 @@
                                         <action id="-41" name="Wait for signal" sid="43728860351439" type="System">
                                             <param id="0" name="Tag">&quot;clock&quot;</param>
                                         </action>
+                                        <action id="5" name="Set playback rate" sid="715018938495952" type="Audio">
+                                            <param id="0" name="Tag">&quot;clock&quot;</param>
+                                            <param id="1" name="Playback rate">0.5</param>
+                                        </action>
                                         <action id="0" name="Play" sid="2568282717847409" type="Audio">
                                             <param id="0" name="Audio file">clock</param>
                                             <param id="2" name="Loop">0</param>
@@ -1415,7 +1562,7 @@
                                         <condition id="-14" name="Compare variable" sid="5396780878346745" type="System">
                                             <param id="0" name="Variable">Decay</param>
                                             <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">155</param>
+                                            <param id="2" name="Value">100</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -1644,11 +1791,11 @@
                                                 </action>
                                                 <action id="-10" name="Add to" sid="2294140249276166" type="System">
                                                     <param id="0" name="Variable">BankDecay</param>
-                                                    <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor)*2</param>
+                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor))*2</param>
                                                 </action>
                                                 <action id="-9" name="Set value" sid="9037122435729697" type="System">
                                                     <param id="0" name="Variable">Sound</param>
-                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier))*4</param>
+                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier))*5</param>
                                                 </action>
                                                 <action id="-9" name="Set value" sid="262152027256723" type="System">
                                                     <param id="0" name="Variable">CurrEvent</param>
@@ -1661,6 +1808,10 @@
                                                 <action id="-9" name="Set value" sid="2458144994503146" type="System">
                                                     <param id="0" name="Variable">LastGamepad</param>
                                                     <param id="1" name="Value">(Gamepad.LastButton(GAMEPADNR)+1)</param>
+                                                </action>
+                                                <action id="-9" name="Set value" sid="910987825757367" type="System">
+                                                    <param id="0" name="Variable">TargetID</param>
+                                                    <param id="1" name="Value">Target.ID</param>
                                                 </action>
                                                 <action id="0" name="Call function" sid="4513514588440623" type="Function">
                                                     <param id="0" name="Name">&quot;log&quot;</param>
@@ -1682,8 +1833,8 @@
                                                     <param id="1" name="Layer">4</param>
                                                     <param id="2" name="Image point">0</param>
                                                 </action>
-                                                <action id="0" name="Set text" sid="4492616794309295" type="Points">
-                                                    <param id="0" name="Text">round(Bank)</param>
+                                                <action id="0" name="Set text" sid="204813570985878" type="Points">
+                                                    <param id="0" name="Text">round(((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier)*2)*10)/10</param>
                                                 </action>
                                                 <action id="4" name="Set font color" sid="735942058756854" type="Points">
                                                     <param id="0" name="Color">rgb(0, 166, 255)</param>
@@ -1692,11 +1843,15 @@
                                                     <param id="0" name="Visibility">1</param>
                                                 </action>
                                                 <action id="-9" name="Destroy" sid="5686990442169759" type="Target" />
+                                                <action id="-11" name="Subtract from" sid="234628707574810" type="System">
+                                                    <param id="0" name="Variable">TargetsOnScreen</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
                                                 <action id="-7" name="Set size" sid="9236728204685216" type="ig4">
                                                     <param id="0" name="Width">BankDecay</param>
                                                     <param id="1" name="Height">BankDecay</param>
                                                 </action>
-                                                <action id="-7" name="Set size" sid="8394570760938324" type="ig6">
+                                                <action id="-7" name="Set size" sid="483736905759532" type="ig6">
                                                     <param id="0" name="Width">BankDecay</param>
                                                     <param id="1" name="Height">BankDecay</param>
                                                 </action>
@@ -1811,17 +1966,17 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="-10" name="Add to" sid="9876310835895248" type="System">
+                                                <action id="-10" name="Add to" sid="115805193064805" type="System">
                                                     <param id="0" name="Variable">Bank</param>
                                                     <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier)</param>
                                                 </action>
-                                                <action id="-10" name="Add to" sid="2685994503939597" type="System">
+                                                <action id="-10" name="Add to" sid="593291065993313" type="System">
                                                     <param id="0" name="Variable">BankDecay</param>
-                                                    <param id="1" name="Value">(((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor)</param>
+                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor))</param>
                                                 </action>
-                                                <action id="-9" name="Set value" sid="3519007249999982" type="System">
+                                                <action id="-9" name="Set value" sid="592863648750739" type="System">
                                                     <param id="0" name="Variable">Sound</param>
-                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier))*4</param>
+                                                    <param id="1" name="Value">((((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier))*5</param>
                                                 </action>
                                                 <action id="-10" name="Add to" sid="3137623493928484" type="System">
                                                     <param id="0" name="Variable">Score</param>
@@ -1837,7 +1992,7 @@
                                                     <param id="2" name="Image point">0</param>
                                                 </action>
                                                 <action id="0" name="Set text" sid="5359893488033498" type="Points">
-                                                    <param id="0" name="Text">round(Bank)</param>
+                                                    <param id="0" name="Text">round(Bank*10)/10</param>
                                                 </action>
                                                 <action id="4" name="Set font color" sid="5903619249193283" type="Points">
                                                     <param id="0" name="Color">rgb(0, 255, 0)</param>
@@ -1875,9 +2030,17 @@
                                                     <param id="0" name="Variable">LastGamepad</param>
                                                     <param id="1" name="Value">(Gamepad.LastButton(GAMEPADNR)+1)</param>
                                                 </action>
+                                                <action id="-9" name="Set value" sid="929321410696356" type="System">
+                                                    <param id="0" name="Variable">TargetID</param>
+                                                    <param id="1" name="Value">Target.ID</param>
+                                                </action>
                                                 <action id="0" name="Call function" sid="8845006971909495" type="Function">
                                                     <param id="0" name="Name">&quot;log&quot;</param>
                                                     <param id="1" name="Parameter {n}"></param>
+                                                </action>
+                                                <action id="5" name="Set playback rate" sid="591536611528689" type="Audio">
+                                                    <param id="0" name="Tag">&quot;boom&quot;</param>
+                                                    <param id="1" name="Playback rate">exp((Bank/100)*0.4)</param>
                                                 </action>
                                                 <action id="0" name="Play" sid="3858947825300007" type="Audio">
                                                     <param id="0" name="Audio file">boom</param>
@@ -1886,6 +2049,10 @@
                                                     <param id="1" name="Tag (optional)">&quot;boom&quot;</param>
                                                 </action>
                                                 <action id="-9" name="Destroy" sid="5286652413807505" type="Target" />
+                                                <action id="-11" name="Subtract from" sid="203435172474978" type="System">
+                                                    <param id="0" name="Variable">TargetsOnScreen</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
                                                 <action id="-7" name="Set size" sid="9415231050716899" type="ig4">
                                                     <param id="0" name="Width">0</param>
                                                     <param id="1" name="Height">0</param>
@@ -2159,6 +2326,10 @@
                                             <param id="1" name="Value">0</param>
                                         </action>
                                         <action id="-9" name="Destroy" sid="5784690717676995" type="Target" />
+                                        <action id="-9" name="Set value" sid="586395934462483" type="System">
+                                            <param id="0" name="Variable">TargetsOnScreen</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
                                         <action id="-9" name="Set value" sid="117762724291691" type="System">
                                             <param id="0" name="Variable">CurrEvent</param>
                                             <param id="1" name="Value">0.2</param>
@@ -2192,6 +2363,10 @@
                                     <param id="1" name="Value">0.3</param>
                                 </action>
                                 <action id="-9" name="Destroy" sid="282039443132181" type="Target" />
+                                <action id="-11" name="Subtract from" sid="775533231510426" type="System">
+                                    <param id="0" name="Variable">TargetsOnScreen</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
                                 <action id="-7" name="Set size" sid="6221193031459699" type="ig4">
                                     <param id="0" name="Width">0</param>
                                     <param id="1" name="Height">0</param>
@@ -2203,6 +2378,10 @@
                                 <action id="-7" name="Set size" sid="9874777622122686" type="ig8">
                                     <param id="0" name="Width">0</param>
                                     <param id="1" name="Height">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="751889661926912" type="System">
+                                    <param id="0" name="Variable">TargetID</param>
+                                    <param id="1" name="Value">Target.ID</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="6805190781953282" type="System">
                                     <param id="0" name="Variable">BankDecay</param>
@@ -2233,9 +2412,6 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="12" name="Download" sid="743674282098316" type="ArrayOut">
-                            <param id="0" name="Filename">&quot;data.txt&quot;</param>
-                        </action>
                         <action id="-42" name="Signal" sid="3211329585364334" type="System">
                             <param id="0" name="Tag">&quot;end&quot;</param>
                         </action>
@@ -2352,11 +2528,17 @@
                             <param id="0" name="X">ArrayOut.XCount</param>
                             <param id="1" name="Y">11</param>
                             <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">TargetID</param>
+                        </action>
+                        <action id="4" name="Set at XYZ" sid="438076168950432" type="ArrayOut">
+                            <param id="0" name="X">ArrayOut.XCount</param>
+                            <param id="1" name="Y">12</param>
+                            <param id="2" name="Z">0</param>
                             <param id="3" name="Value">LastGamepad</param>
                         </action>
                         <action id="4" name="Set at XYZ" sid="2426288832452087" type="ArrayOut">
                             <param id="0" name="X">ArrayOut.XCount</param>
-                            <param id="1" name="Y">12</param>
+                            <param id="1" name="Y">13</param>
                             <param id="2" name="Z">0</param>
                             <param id="3" name="Value">LastKeyboard</param>
                         </action>
@@ -2439,12 +2621,12 @@
                             <param id="1" name="MIME type">&quot;application/json&quot;</param>
                             <param id="2" name="Filename">Date.UnixTimestamp &amp; &quot;data.txt&quot;</param>
                         </action>
-                        <action id="0" name="Write file" sid="1591874979329106" type="NWjs">
-                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;\Desktop\&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
+                        <action disabled="1" id="0" name="Write file" sid="2899456389783076" type="NWjs">
+                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;/Desktop/&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
                             <param id="1" name="Contents">ArrayOut.AsJSON</param>
                         </action>
-                        <action id="0" name="Write file" sid="2899456389783076" type="NWjs">
-                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;/Desktop/&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
+                        <action id="0" name="Write file" sid="1591874979329106" type="NWjs">
+                            <param id="0" name="Path">NWjs.UserFolder &amp; &quot;\Desktop\&quot; &amp; &quot;gamedata&quot; &amp;  Date.UnixTimestamp &amp; &quot;.txt&quot;</param>
                             <param id="1" name="Contents">ArrayOut.AsJSON</param>
                         </action>
                     </actions>
@@ -2520,18 +2702,19 @@
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Value">ArrayVar</param>
                 </condition>
+                <condition id="-4" name="Trigger once while true" sid="939455869949632" type="System" />
             </conditions>
             <actions>
                 <action id="-12" name="Set group active" sid="8755240282651311" type="System">
                     <param id="0" name="Group name">&quot;New Wave&quot;</param>
                     <param id="1" name="State">0</param>
                 </action>
-                <action id="-16" name="Wait" sid="4119948654748973" type="System">
-                    <param id="0" name="Seconds">7</param>
-                </action>
                 <action id="-12" name="Set group active" sid="8943424527784509" type="System">
                     <param id="0" name="Group name">&quot;Spawn and Reset&quot;</param>
                     <param id="1" name="State">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="4119948654748973" type="System">
+                    <param id="0" name="Seconds">7</param>
                 </action>
                 <action id="-12" name="Set group active" sid="268980778997681" type="System">
                     <param id="0" name="Group name">&quot;Move&quot;</param>
@@ -2544,6 +2727,10 @@
                     <param id="0" name="Variable">CurrEvent</param>
                     <param id="1" name="Value">0.5</param>
                 </action>
+                <action id="-9" name="Set value" sid="262297573852195" type="System">
+                    <param id="0" name="Variable">TargetID</param>
+                    <param id="1" name="Value">Target.ID</param>
+                </action>
                 <action id="0" name="Call function" sid="458246977043497" type="Function">
                     <param id="0" name="Name">&quot;log&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
@@ -2551,6 +2738,10 @@
                 <action id="-10" name="Add to" sid="750406749526950" type="System">
                     <param id="0" name="Variable">Score</param>
                     <param id="1" name="Value">Bank</param>
+                </action>
+                <action id="-9" name="Set value" sid="713536836941159" type="System">
+                    <param id="0" name="Variable">DecayRate</param>
+                    <param id="1" name="Value">0</param>
                 </action>
                 <action id="-9" name="Set value" sid="919409574350736" type="System">
                     <param id="0" name="Variable">Decay</param>
@@ -2570,17 +2761,10 @@
                 <action id="-15" name="Set visible" sid="858784446066404" type="Points">
                     <param id="0" name="Visibility">1</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="965623123303831" type="Centre">
-                    <param id="0" name="Object">Particles2</param>
-                    <param id="1" name="Layer">4</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
                 <action id="-9" name="Destroy" sid="494085479211355" type="Target" />
-                <action id="0" name="Play" sid="250841956154730" type="Audio">
-                    <param id="0" name="Audio file">boom</param>
-                    <param id="2" name="Loop">0</param>
-                    <param id="3" name="Volume">0</param>
-                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                <action id="-9" name="Set value" sid="722816922602678" type="System">
+                    <param id="0" name="Variable">TargetsOnScreen</param>
+                    <param id="1" name="Value">0</param>
                 </action>
                 <action id="-9" name="Set value" sid="664823026428381" type="System">
                     <param id="0" name="Variable">Bank</param>
@@ -2602,7 +2786,7 @@
                     <param id="0" name="Width">BankDecay</param>
                     <param id="1" name="Height">BankDecay</param>
                 </action>
-                <action id="-7" name="Set size" sid="885429003030323" type="ig6">
+                <action id="-7" name="Set size" sid="351091978036751" type="ig6">
                     <param id="0" name="Width">BankDecay</param>
                     <param id="1" name="Height">BankDecay</param>
                 </action>
@@ -2625,12 +2809,8 @@
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
                 </action>
-                <action id="-15" name="Set visible" sid="548285180876256" type="DecayTimeout">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-                <action id="0" name="Set text" sid="6122807867551261" type="DecayTimeout">
-                    <param id="0" name="Text">&quot;Level Complete!&quot;</param>
-                </action>
+                <action id="-9" name="Destroy" sid="6122807867551261" type="DecayTimeout" />
+                <action id="-9" name="Destroy" sid="479772647826501" type="Feedback" />
                 <action id="-16" name="Wait" sid="2791402709790785" type="System">
                     <param id="0" name="Seconds">5</param>
                 </action>
@@ -2720,10 +2900,6 @@
                 <action id="-9" name="Set value" sid="3639827752821908" type="System">
                     <param id="0" name="Variable">LastGamepad</param>
                     <param id="1" name="Value">-(Gamepad.LastButton(GAMEPADNR))</param>
-                </action>
-                <action id="-9" name="Set value" sid="9914934477182358" type="System">
-                    <param id="0" name="Variable">CurrEvent</param>
-                    <param id="1" name="Value">1</param>
                 </action>
                 <action id="0" name="Call function" sid="8932952964698261" type="Function">
                     <param id="0" name="Name">&quot;log&quot;</param>

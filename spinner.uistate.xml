@@ -10,16 +10,16 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="0">menu layout</layout>
-        <layout order="2">game layout</layout>
-        <layout order="4">Calibration</layout>
-        <layout order="6">settings</layout>
-        <layout order="8">tutorial</layout>
-        <event-sheet order="1">menu ES</event-sheet>
-        <event-sheet active="1" order="3">game ES</event-sheet>
-        <event-sheet order="5">Calibration ES</event-sheet>
-        <event-sheet order="7">settings</event-sheet>
-        <event-sheet order="9">tutorial ES</event-sheet>
+        <layout active="1" order="0">menu layout</layout>
+        <layout order="1">game layout</layout>
+        <layout order="2">tutorial</layout>
+        <layout order="3">Calibration</layout>
+        <layout order="4">settings</layout>
+        <event-sheet order="5">menu ES</event-sheet>
+        <event-sheet order="6">game ES</event-sheet>
+        <event-sheet order="7">tutorial ES</event-sheet>
+        <event-sheet order="8">Calibration ES</event-sheet>
+        <event-sheet order="9">settings ES</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -31,8 +31,8 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
         <folder expanded="1" path="object-folder/polygon sprites/" />
-        <folder expanded="0" path="object-folder/Sliders/" />
-        <folder expanded="0" path="object-folder/Textboxes/" />
+        <folder expanded="1" path="object-folder/Sliders/" />
+        <folder expanded="1" path="object-folder/Textboxes/" />
         <folder expanded="1" path="object-folder/System/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />

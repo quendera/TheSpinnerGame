@@ -160,6 +160,9 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <ID>0</ID>
+                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Grow">
                             <properties>

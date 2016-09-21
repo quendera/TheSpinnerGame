@@ -39,11 +39,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>974</x>
-                        <y>444</y>
+                        <x>960</x>
+                        <y>540</y>
                         <z>0</z>
-                        <width>1980</width>
-                        <height>1290</height>
+                        <width>1920</width>
+                        <height>1080</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -133,6 +133,9 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <ID>0</ID>
+                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Grow">
                             <properties>

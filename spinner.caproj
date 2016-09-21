@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>lab</name>
+    <name>spinner</name>
     <description>wip</description>
-    <version>3.2.1</version>
+    <version>3.3.3</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
     <app-id>woop</app-id>
     <unique-id>2m2oqhlgof90t</unique-id>
-    <saved-with-version>23300</saved-with-version>
+    <saved-with-version>23500</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
@@ -673,6 +673,9 @@
         </object-type>
         <object-type name="Target" sid="68903613971262">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="ID" sid="485406005988926" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Grow" sid="3757359237227629">
                     <behavior id="lunarray_LiteTween" />
@@ -1062,7 +1065,7 @@
         <event-sheet>game ES.xml</event-sheet>
         <event-sheet>menu ES.xml</event-sheet>
         <event-sheet>Calibration ES.xml</event-sheet>
-        <event-sheet>settings.xml</event-sheet>
+        <event-sheet>settings ES.xml</event-sheet>
         <event-sheet>tutorial ES.xml</event-sheet>
     </event-folder>
     <global-instances>
@@ -1138,17 +1141,7 @@
             <file name="loading-logo.png" />
         </file-folder>
         <file-folder name="Inputs">
-            <file name="joint41.txt" />
-            <file name="joint42.txt" />
-            <file name="joint43.txt" />
-            <file name="joint61.txt" />
-            <file name="joint62.txt" />
-            <file name="joint63.txt" />
-            <file name="joint81.txt" />
-            <file name="joint82.txt" />
-            <file name="joint83.txt" />
             <file name="tutorial.txt" />
-            <file name="4Vert1.txt" />
             <file name="6Vert1.txt" />
         </file-folder>
     </files-folder>
