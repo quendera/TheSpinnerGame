@@ -955,6 +955,30 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="ListStartingWave" uid="167">
+                    <properties>
+                        <items>1;2;3;4;5;6;7;</items>
+                        <tooltip>Starting Wave</tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <type>Dropdown list</type>
+                        <multi-select>No</multi-select>
+                        <auto-font-size>Yes</auto-font-size>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1532</x>
+                        <y>691</y>
+                        <z>0</z>
+                        <width>201</width>
+                        <height>39</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>

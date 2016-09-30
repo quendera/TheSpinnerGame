@@ -10,13 +10,13 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout active="1" order="0">menu layout</layout>
+        <layout order="0">menu layout</layout>
         <layout order="1">game layout</layout>
         <layout order="2">tutorial</layout>
         <layout order="3">Calibration</layout>
         <layout order="4">settings</layout>
         <event-sheet order="5">menu ES</event-sheet>
-        <event-sheet order="6">game ES</event-sheet>
+        <event-sheet active="1" order="6">game ES</event-sheet>
         <event-sheet order="7">tutorial ES</event-sheet>
         <event-sheet order="8">Calibration ES</event-sheet>
         <event-sheet order="9">settings ES</event-sheet>

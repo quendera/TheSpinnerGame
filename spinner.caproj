@@ -2,13 +2,13 @@
 <c2project>
     <name>spinner</name>
     <description>wip</description>
-    <version>3.3.3</version>
+    <version>3.3.4</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
     <app-id>woop</app-id>
     <unique-id>2m2oqhlgof90t</unique-id>
-    <saved-with-version>23500</saved-with-version>
+    <saved-with-version>23600</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
@@ -1051,6 +1051,9 @@
                     </frame>
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="ListStartingWave" sid="105487049815474">
+            <plugin id="List" />
         </object-type>
     </object-folder>
     <families />

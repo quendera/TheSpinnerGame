@@ -479,5 +479,44 @@
                 <action id="1" name="Close" sid="517697900027899" type="Browser" />
             </actions>
         </event-block>
+        <event-block sid="876081178645232">
+            <conditions>
+                <condition id="3" name="On key released" sid="953461763132679" type="Keyboard">
+                    <param id="0" name="Key">67 (C)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Clear storage" sid="230558137406968" type="LocalStorage" />
+            </actions>
+        </event-block>
+        <event-block sid="991996600782973">
+            <conditions>
+                <condition id="3" name="On storage cleared" sid="928323566902340" type="LocalStorage" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set item" sid="351447467398540" type="LocalStorage">
+                    <param id="0" name="Key">&quot;highscore&quot;</param>
+                    <param id="1" name="Value">&quot;0&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="153482689833555" type="System">
+                    <param id="0" name="Variable">Highscore</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+                <action id="0" name="Set text" sid="920994495629343" type="YourHighScore">
+                    <param id="0" name="Text">&quot;Your High Score: &quot; &amp; round(Highscore)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="796494463651877">
+            <conditions>
+                <condition id="1" name="On selection changed" sid="792237036880088" type="ListStartingWave" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="718204966167351" type="System">
+                    <param id="0" name="Variable">StartingWave</param>
+                    <param id="1" name="Value">ListStartingWave.SelectedIndex</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

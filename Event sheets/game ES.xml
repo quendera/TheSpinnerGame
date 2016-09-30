@@ -8,6 +8,7 @@
         <variable constant="0" name="ControllerType" sid="220201554924285" static="0" type="number">0</variable>
         <variable constant="0" name="LastGamepad" sid="3481543107706897" static="0" type="number">0</variable>
         <variable constant="0" name="LastKeyboard" sid="5588304215377256" static="0" type="number">0</variable>
+        <variable constant="0" name="StartingWave" sid="930385912729485" static="0" type="number">1</variable>
         <variable constant="0" name="CurrEvent" sid="3477989290071608" static="0" type="number">0</variable>
         <variable constant="0" name="Sound" sid="1799224369730348" static="0" type="number">0</variable>
         <variable constant="0" name="InputFile" sid="8439793730091524" static="0" type="text"></variable>
@@ -687,6 +688,178 @@
                             <param id="2" name="Tag">&quot;StartWait&quot;</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="964104665928751">
+                            <conditions>
+                                <condition id="-4" name="Trigger once while true" sid="718249926108135" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="155230944519684">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="732598126378739" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="158660677294333" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">73</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="686711291182272" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="163089465173022" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="676064187325304" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="363222285718043">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="711654340823686" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="218681091706716" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">181</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="514246129114244" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="676535310790778" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="689003261799772" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="394887169119898">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="474529515964396" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="475584509600843" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">325</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="667826808587753" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="355744575407241" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="863498016091960" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="145254015446435">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="544832658878683" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">4</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="389353505724637" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">505</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="674951536649730" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="258935011317109" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="161437165269946" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="277504307980133">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="722771467706271" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="712555754961589" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">685</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="575371280024849" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="623110461535050" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="813389285353837" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="532745299347497">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="739552356219619" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="352750046548682" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">901</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="315972596666391" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="275794348504248" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="118879537866338" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="557448183283166">
                     <conditions>
@@ -809,6 +982,178 @@
                             <param id="2" name="Tag">&quot;StartWait&quot;</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="708462260675262">
+                            <conditions>
+                                <condition id="-4" name="Trigger once while true" sid="804925132261032" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="712700553898434">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="242112947144896" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="264052292001611" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">73</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="838481162518195" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="769809036249959" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="644445947489162" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="150245063460492">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="110854909808488" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="944008954047872" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">181</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="651289232789356" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="467873262201575" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="904759506789057" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="488970331756290">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="785269989604537" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="349222328037719" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">325</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="162989061355337" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="239538936841642" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="955971581827751" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="414709154004428">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="918120063878363" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">4</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="421891863036598" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">505</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="549233680370422" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="815159024799765" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="696721631437357" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="426946085471021">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="700773434306447" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="117280079641198" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">685</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="964727570545528" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="785236975147106" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="505191797964619" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="261880177240655">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="224223956678290" type="System">
+                                            <param id="0" name="Variable">StartingWave</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="678846266903410" type="System">
+                                            <param id="0" name="Variable">CurrentTarget</param>
+                                            <param id="1" name="Value">901</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="389672897558655" type="System">
+                                            <param id="0" name="Variable">SpawnTime</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,0,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="477435947419959" type="System">
+                                            <param id="0" name="Variable">Wave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="607085940143777" type="System">
+                                            <param id="0" name="Variable">NextWave</param>
+                                            <param id="1" name="Value">ArrayIn.At(CurrentTarget+1,2,0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
@@ -1098,8 +1443,8 @@
                             <param id="0" name="Variable">Wave</param>
                             <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
                         </action>
-                        <action id="0" name="Set text" sid="387330217493598" type="Feedback">
-                            <param id="0" name="Text">&quot;Wave &quot; &amp; Wave  &amp; &quot; of &quot; &amp; ArrayIn.At(ArrayIn.Width-3, 2,0)</param>
+                        <action id="0" name="Set text" sid="871756898154565" type="Feedback">
+                            <param id="0" name="Text">&quot;Wave &quot; &amp; Wave &amp; &quot; of &quot; &amp; ArrayIn.At(ArrayIn.Width-3, 2,0) &amp; newline &amp; &quot;Total Score:&quot; &amp; round(Score)</param>
                         </action>
                         <action id="-15" name="Set visible" sid="8680898965255983" type="Feedback">
                             <param id="0" name="Visibility">1</param>
@@ -1160,17 +1505,17 @@
                             <param id="0" name="Group name">&quot;rotateend&quot;</param>
                             <param id="1" name="State">0</param>
                         </action>
-                        <action id="-9" name="Set value" sid="9492284178459031" type="System">
-                            <param id="0" name="Variable">Wave</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="6791300543021802" type="System">
-                            <param id="0" name="Variable">Wave2</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
                         <action id="-9" name="Set value" sid="2163737665408043" type="System">
                             <param id="0" name="Variable">WaveTimer</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="259564456851716" type="System">
+                            <param id="0" name="Variable">Wave</param>
+                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="330221839061463" type="System">
+                            <param id="0" name="Variable">Wave2</param>
+                            <param id="1" name="Value">ArrayIn.At(CurrentTarget,2,0)</param>
                         </action>
                         <action id="-9" name="Set value" sid="4768835411798101" type="System">
                             <param id="0" name="Variable">SpawnTime</param>
@@ -1189,7 +1534,7 @@
                             <param id="1" name="Force use current">0</param>
                         </action>
                         <action id="0" name="Set text" sid="1478947203162006" type="Feedback">
-                            <param id="0" name="Text">&quot;Wave &quot; &amp; Wave &amp; &quot; of &quot; &amp; ArrayIn.At(ArrayIn.Width-3, 2,0)</param>
+                            <param id="0" name="Text">&quot;Wave &quot; &amp; Wave &amp; &quot; of &quot; &amp; ArrayIn.At(ArrayIn.Width-3, 2,0) &amp; newline &amp; &quot;Total Score:&quot; &amp; round(Score)</param>
                         </action>
                         <action id="-15" name="Set visible" sid="7155726777038439" type="Feedback">
                             <param id="0" name="Visibility">1</param>
