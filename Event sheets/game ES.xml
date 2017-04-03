@@ -706,7 +706,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" sid="158660677294333" type="System">
                                             <param id="0" name="Variable">CurrentTarget</param>
-                                            <param id="1" name="Value">73</param>
+                                            <param id="1" name="Value">72</param>
                                         </action>
                                         <action id="-9" name="Set value" sid="686711291182272" type="System">
                                             <param id="0" name="Variable">SpawnTime</param>
@@ -733,7 +733,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" sid="218681091706716" type="System">
                                             <param id="0" name="Variable">CurrentTarget</param>
-                                            <param id="1" name="Value">181</param>
+                                            <param id="1" name="Value">180</param>
                                         </action>
                                         <action id="-9" name="Set value" sid="514246129114244" type="System">
                                             <param id="0" name="Variable">SpawnTime</param>
@@ -760,7 +760,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" sid="475584509600843" type="System">
                                             <param id="0" name="Variable">CurrentTarget</param>
-                                            <param id="1" name="Value">325</param>
+                                            <param id="1" name="Value">324</param>
                                         </action>
                                         <action id="-9" name="Set value" sid="667826808587753" type="System">
                                             <param id="0" name="Variable">SpawnTime</param>
@@ -787,7 +787,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" sid="389353505724637" type="System">
                                             <param id="0" name="Variable">CurrentTarget</param>
-                                            <param id="1" name="Value">505</param>
+                                            <param id="1" name="Value">504</param>
                                         </action>
                                         <action id="-9" name="Set value" sid="674951536649730" type="System">
                                             <param id="0" name="Variable">SpawnTime</param>
@@ -814,7 +814,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" sid="712555754961589" type="System">
                                             <param id="0" name="Variable">CurrentTarget</param>
-                                            <param id="1" name="Value">685</param>
+                                            <param id="1" name="Value">684</param>
                                         </action>
                                         <action id="-9" name="Set value" sid="575371280024849" type="System">
                                             <param id="0" name="Variable">SpawnTime</param>
@@ -841,7 +841,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" sid="352750046548682" type="System">
                                             <param id="0" name="Variable">CurrentTarget</param>
-                                            <param id="1" name="Value">901</param>
+                                            <param id="1" name="Value">900</param>
                                         </action>
                                         <action id="-9" name="Set value" sid="315972596666391" type="System">
                                             <param id="0" name="Variable">SpawnTime</param>
@@ -3139,6 +3139,12 @@
                     <param id="0" name="Width">BankDecay</param>
                     <param id="1" name="Height">BankDecay</param>
                 </action>
+                <action id="0" name="Set text" sid="931982800950965" type="Feedback">
+                    <param id="0" name="Text">&quot;Total Score:&quot; &amp; round(Score)</param>
+                </action>
+                <action id="-15" name="Set visible" sid="961303569254845" type="Feedback">
+                    <param id="0" name="Visibility">1</param>
+                </action>
                 <action id="6" name="Stop" sid="835902782886931" type="Audio">
                     <param id="0" name="Tag">&quot;clock&quot;</param>
                 </action>
@@ -3154,11 +3160,15 @@
                     <param id="0" name="Start Mode">0</param>
                     <param id="1" name="Force use current">0</param>
                 </action>
-                <action id="-9" name="Destroy" sid="6122807867551261" type="DecayTimeout" />
-                <action id="-9" name="Destroy" sid="479772647826501" type="Feedback" />
+                <action id="0" name="Set item" sid="573146964830205" type="LocalStorage">
+                    <param id="0" name="Key">&quot;highscore&quot;</param>
+                    <param id="1" name="Value">round(Score)</param>
+                </action>
                 <action id="-16" name="Wait" sid="2791402709790785" type="System">
                     <param id="0" name="Seconds">5</param>
                 </action>
+                <action id="-9" name="Destroy" sid="6122807867551261" type="DecayTimeout" />
+                <action id="-9" name="Destroy" sid="479772647826501" type="Feedback" />
                 <action id="-42" name="Signal" sid="3790822948948478" type="System">
                     <param id="0" name="Tag">&quot;end&quot;</param>
                 </action>
@@ -3206,25 +3216,6 @@
                         <action id="0" name="Set item" sid="2087397693524362" type="LocalStorage">
                             <param id="0" name="Key">&quot;8cleared&quot;</param>
                             <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="2586647596234413">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="3165959265342547" type="System">
-                            <param id="0" name="Variable">Score</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">Highscore</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set item" sid="6387205578915544" type="LocalStorage">
-                            <param id="0" name="Key">&quot;highscore&quot;</param>
-                            <param id="1" name="Value">round(Score)</param>
-                        </action>
-                        <action id="0" name="Submit score" sid="9818182803182114" type="ScirraArcade">
-                            <param id="0" name="Leaderboard ID">&quot;Leaderboard&quot;</param>
-                            <param id="1" name="Score">Score</param>
                         </action>
                     </actions>
                 </event-block>

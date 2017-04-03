@@ -123,6 +123,10 @@
                     <param id="0" name="Variable">inputtag</param>
                     <param id="1" name="Value">1</param>
                 </action>
+                <action id="-9" name="Set value" sid="195469834639606" type="System">
+                    <param id="0" name="Variable">StartingWave</param>
+                    <param id="1" name="Value">0</param>
+                </action>
                 <action id="-3" name="Create object" sid="1572893501847743" type="System">
                     <param id="0" name="Object to create">TextBox</param>
                     <param id="1" name="Layer">1</param>
@@ -137,7 +141,7 @@
                     <param id="0" name="Text">&quot;&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="9940579497779587" type="Instructions">
-                    <param id="0" name="Text">&quot;L1 /Keyboard 3- Tutorial&quot; &amp; newline &amp; &quot;Select /Keyboard 2- Calibration&quot; &amp; newline &amp; &quot;Start /Keyboard 1- Play&quot; &amp; newline &amp; &quot;Keyboard 4 -Settings&quot;</param>
+                    <param id="0" name="Text">&quot;L1 /Keyboard 3- Tutorial&quot; &amp; newline &amp; &quot;Select /Keyboard 2- Calibration&quot; &amp; newline &amp; &quot;Start /Keyboard 1- Play&quot; &amp; newline &amp; &quot;Keyboard 4 -Settings&quot;  &amp; newline &amp; &quot;Keyboard 5 -Rest&quot;</param>
                 </action>
                 <action id="0" name="Set text" sid="4254676036209983" type="Version">
                     <param id="0" name="Text">&quot;v&quot; &amp; projectversion</param>
@@ -296,6 +300,18 @@
                 </action>
             </actions>
         </event-block>
+        <event-block any="1" sid="984475698688020">
+            <conditions>
+                <condition id="3" name="On key released" sid="678410203982135" type="Keyboard">
+                    <param id="0" name="Key">53 (5)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="226838201479880" type="System">
+                    <param id="0" name="Layout">Rest</param>
+                </action>
+            </actions>
+        </event-block>
         <event-block sid="885582423119988">
             <conditions>
                 <condition id="7" name="On button released" sid="361999450893766" type="Gamepad">
@@ -405,8 +421,8 @@
                     <param id="0" name="Variable">Highscore</param>
                     <param id="1" name="Value">LocalStorage.ItemValue</param>
                 </action>
-                <action id="0" name="Set text" sid="8528300487958834" type="YourHighScore">
-                    <param id="0" name="Text">&quot;Your High Score: &quot; &amp; round(Highscore)</param>
+                <action id="0" name="Set text" sid="563449815067471" type="YourHighScore">
+                    <param id="0" name="Text">&quot;Your Latest Score: &quot; &amp; round(Highscore)</param>
                 </action>
             </actions>
         </event-block>
@@ -424,8 +440,8 @@
                     <param id="0" name="Variable">Highscore</param>
                     <param id="1" name="Value">LocalStorage.ItemValue</param>
                 </action>
-                <action id="0" name="Set text" sid="6919258121193893" type="YourHighScore">
-                    <param id="0" name="Text">&quot;Your High Score: &quot; &amp; round(Highscore)</param>
+                <action id="0" name="Set text" sid="485359763776125" type="YourHighScore">
+                    <param id="0" name="Text">&quot;Your Latest Score: &quot; &amp; round(Highscore)</param>
                 </action>
             </actions>
         </event-block>
@@ -503,7 +519,7 @@
                     <param id="1" name="Value">LocalStorage.ItemValue</param>
                 </action>
                 <action id="0" name="Set text" sid="920994495629343" type="YourHighScore">
-                    <param id="0" name="Text">&quot;Your High Score: &quot; &amp; round(Highscore)</param>
+                    <param id="0" name="Text">&quot;Your Latest Score: &quot; &amp; round(Highscore)</param>
                 </action>
             </actions>
         </event-block>

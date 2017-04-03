@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>tutorial ES</name>
     <events>
+        <variable constant="0" name="CHECKDECAY" sid="929669842428935" static="0" type="number">0</variable>
         <variable constant="0" name="BubblesPopped" sid="8630575792109866" static="0" type="number">0</variable>
         <variable constant="0" name="BubblesPopped3" sid="6872442263293622" static="0" type="number">0</variable>
         <variable constant="0" name="BubblesPopped2" sid="2692699070972671" static="0" type="number">0</variable>
@@ -185,6 +186,10 @@
                                     <param id="0" name="Variable">DecayRate</param>
                                     <param id="1" name="Value">10</param>
                                 </action>
+                                <action id="-9" name="Set value" sid="315157332289599" type="System">
+                                    <param id="0" name="Variable">CHECKDECAY</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
                                 <action id="-15" name="Set visible" sid="4597881620570709" type="Square">
                                     <param id="0" name="Visibility">0</param>
                                 </action>
@@ -244,6 +249,10 @@
                                 </action>
                                 <action id="-12" name="Set group active" sid="6308021328505926" type="System">
                                     <param id="0" name="Group name">&quot;DecayTimeout2&quot;</param>
+                                    <param id="1" name="State">0</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="415946756976927" type="System">
+                                    <param id="0" name="Group name">&quot;DecayTimeout3&quot;</param>
                                     <param id="1" name="State">0</param>
                                 </action>
                                 <action id="-12" name="Set group active" sid="9165409827624777" type="System">
@@ -874,7 +883,7 @@
                                 </action>
                                 <action id="-10" name="Add to" sid="864325621036736" type="System">
                                     <param id="0" name="Variable">BankDecay</param>
-                                    <param id="1" name="Value">((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*ScaleFactor</param>
+                                    <param id="1" name="Value">((Target.Grow.Progress-minthreshold)/(1-minthreshold))*ScoreMultiplier*(maxbank-BankDecay)/maxbank*50</param>
                                 </action>
                                 <action id="-8" name="Set angle" sid="7732060641218209" type="Particles">
                                     <param id="0" name="Angle">90</param>
@@ -918,217 +927,261 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-block sid="4395738053473975">
+                <event-group description="" sid="716267239737861" title="TIMER6">
+                    <sub-events>
+                        <event-block sid="4395738053473975">
+                            <conditions>
+                                <condition behavior="Timer" id="0" name="On timer" sid="7505681539860276" type="Polygon">
+                                    <param id="0" name="Tag">&quot;6&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Timer" id="1" name="Stop timer" sid="9279838104878611" type="Polygon">
+                                    <param id="0" name="Tag">&quot;5&quot;</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="9787069967173571" type="System">
+                                    <param id="0" name="Object to create">Target</param>
+                                    <param id="1" name="Layer">3</param>
+                                    <param id="2" name="X">Polygon.CenterX</param>
+                                    <param id="3" name="Y">Polygon.CenterY</param>
+                                </action>
+                                <action behavior="Grow" id="1" name="Set duration" sid="6206857726829994" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="1" name="Set duration" sid="9492251754360639" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="2105429147103103" type="Target">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexX(2)</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="7314614919033402" type="Target">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexY(2)</param>
+                                </action>
+                                <action behavior="Travel" id="10" name="Start" sid="197825198613612" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action behavior="Grow" id="10" name="Start" sid="4455265046495076" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="8396136635792685" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="3497241786581936" type="System">
+                                    <param id="0" name="Object to create">Target</param>
+                                    <param id="1" name="Layer">3</param>
+                                    <param id="2" name="X">Polygon.CenterX</param>
+                                    <param id="3" name="Y">Polygon.CenterY</param>
+                                </action>
+                                <action behavior="Grow" id="1" name="Set duration" sid="4553470594584575" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="1" name="Set duration" sid="5379706730211207" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="1054930847016173" type="Target">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexX(4)</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="5440417160175313" type="Target">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexY(4)</param>
+                                </action>
+                                <action behavior="Travel" id="10" name="Start" sid="6500959026422888" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action behavior="Grow" id="10" name="Start" sid="9619230903471575" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="4240031283009803" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="1824640605076457" type="System">
+                                    <param id="0" name="Object to create">Target</param>
+                                    <param id="1" name="Layer">3</param>
+                                    <param id="2" name="X">Polygon.CenterX</param>
+                                    <param id="3" name="Y">Polygon.CenterY</param>
+                                </action>
+                                <action behavior="Grow" id="1" name="Set duration" sid="8161732924626722" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="1" name="Set duration" sid="7675771028330689" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="4454633207298092" type="Target">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexX(1)</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="7346774811509377" type="Target">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexY(1)</param>
+                                </action>
+                                <action behavior="Travel" id="10" name="Start" sid="8411313662602131" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action behavior="Grow" id="10" name="Start" sid="2229085236531094" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="6567081962588516" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="7723396652161529" type="System">
+                                    <param id="0" name="Object to create">Target</param>
+                                    <param id="1" name="Layer">3</param>
+                                    <param id="2" name="X">Polygon.CenterX</param>
+                                    <param id="3" name="Y">Polygon.CenterY</param>
+                                </action>
+                                <action behavior="Grow" id="1" name="Set duration" sid="7513291639206518" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="1" name="Set duration" sid="6071527640654614" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="6266964895688854" type="Target">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexX(2)</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="9742391217740113" type="Target">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexY(2)</param>
+                                </action>
+                                <action behavior="Travel" id="10" name="Start" sid="8496273651595556" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action behavior="Grow" id="10" name="Start" sid="5584438454360987" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="1572985798893884" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="2936830675339094" type="System">
+                                    <param id="0" name="Object to create">Target</param>
+                                    <param id="1" name="Layer">3</param>
+                                    <param id="2" name="X">Polygon.CenterX</param>
+                                    <param id="3" name="Y">Polygon.CenterY</param>
+                                </action>
+                                <action behavior="Grow" id="1" name="Set duration" sid="9693117028167924" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="1" name="Set duration" sid="8404703711094518" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="3624093446053206" type="Target">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexX(5)</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="8597280380126047" type="Target">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexY(5)</param>
+                                </action>
+                                <action behavior="Travel" id="10" name="Start" sid="6443539739815477" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action behavior="Grow" id="10" name="Start" sid="7637385904869356" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="9279314146857484" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="6329470368625786" type="System">
+                                    <param id="0" name="Object to create">Target</param>
+                                    <param id="1" name="Layer">3</param>
+                                    <param id="2" name="X">Polygon.CenterX</param>
+                                    <param id="3" name="Y">Polygon.CenterY</param>
+                                </action>
+                                <action behavior="Grow" id="1" name="Set duration" sid="5163045664801006" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="1" name="Set duration" sid="6474041637007595" type="Target">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="356473641858326" type="Target">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexX(0)</param>
+                                </action>
+                                <action behavior="Travel" id="3" name="Set target" sid="4361421715310162" type="Target">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Polygon.VertexY(0)</param>
+                                </action>
+                                <action behavior="Travel" id="10" name="Start" sid="3542357179487691" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action behavior="Grow" id="10" name="Start" sid="4152380402300117" type="Target">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                                <action behavior="Timer" id="0" name="Start timer" sid="67925349079486" type="Polygon">
+                                    <param id="0" name="Duration">GrowSpeed</param>
+                                    <param id="1" name="Type">0</param>
+                                    <param id="2" name="Tag">&quot;6&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-block sid="739746891189362">
                     <conditions>
-                        <condition behavior="Timer" id="0" name="On timer" sid="7505681539860276" type="Polygon">
-                            <param id="0" name="Tag">&quot;6&quot;</param>
+                        <condition id="-14" name="Compare variable" sid="882320763959676" type="System">
+                            <param id="0" name="Variable">CHECKDECAY</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action behavior="Timer" id="1" name="Stop timer" sid="9279838104878611" type="Polygon">
-                            <param id="0" name="Tag">&quot;5&quot;</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="9787069967173571" type="System">
-                            <param id="0" name="Object to create">Target</param>
-                            <param id="1" name="Layer">3</param>
-                            <param id="2" name="X">Polygon.CenterX</param>
-                            <param id="3" name="Y">Polygon.CenterY</param>
-                        </action>
-                        <action behavior="Grow" id="1" name="Set duration" sid="6206857726829994" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="1" name="Set duration" sid="9492251754360639" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="2105429147103103" type="Target">
-                            <param id="0" name="Target is">0</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexX(2)</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="7314614919033402" type="Target">
-                            <param id="0" name="Target is">1</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexY(2)</param>
-                        </action>
-                        <action behavior="Travel" id="10" name="Start" sid="197825198613612" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action behavior="Grow" id="10" name="Start" sid="4455265046495076" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action id="-16" name="Wait" sid="8396136635792685" type="System">
-                            <param id="0" name="Seconds">2</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="3497241786581936" type="System">
-                            <param id="0" name="Object to create">Target</param>
-                            <param id="1" name="Layer">3</param>
-                            <param id="2" name="X">Polygon.CenterX</param>
-                            <param id="3" name="Y">Polygon.CenterY</param>
-                        </action>
-                        <action behavior="Grow" id="1" name="Set duration" sid="4553470594584575" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="1" name="Set duration" sid="5379706730211207" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="1054930847016173" type="Target">
-                            <param id="0" name="Target is">0</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexX(4)</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="5440417160175313" type="Target">
-                            <param id="0" name="Target is">1</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexY(4)</param>
-                        </action>
-                        <action behavior="Travel" id="10" name="Start" sid="6500959026422888" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action behavior="Grow" id="10" name="Start" sid="9619230903471575" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action id="-16" name="Wait" sid="4240031283009803" type="System">
-                            <param id="0" name="Seconds">2</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="1824640605076457" type="System">
-                            <param id="0" name="Object to create">Target</param>
-                            <param id="1" name="Layer">3</param>
-                            <param id="2" name="X">Polygon.CenterX</param>
-                            <param id="3" name="Y">Polygon.CenterY</param>
-                        </action>
-                        <action behavior="Grow" id="1" name="Set duration" sid="8161732924626722" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="1" name="Set duration" sid="7675771028330689" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="4454633207298092" type="Target">
-                            <param id="0" name="Target is">0</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexX(1)</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="7346774811509377" type="Target">
-                            <param id="0" name="Target is">1</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexY(1)</param>
-                        </action>
-                        <action behavior="Travel" id="10" name="Start" sid="8411313662602131" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action behavior="Grow" id="10" name="Start" sid="2229085236531094" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action id="-16" name="Wait" sid="6567081962588516" type="System">
-                            <param id="0" name="Seconds">2</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="7723396652161529" type="System">
-                            <param id="0" name="Object to create">Target</param>
-                            <param id="1" name="Layer">3</param>
-                            <param id="2" name="X">Polygon.CenterX</param>
-                            <param id="3" name="Y">Polygon.CenterY</param>
-                        </action>
-                        <action behavior="Grow" id="1" name="Set duration" sid="7513291639206518" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="1" name="Set duration" sid="6071527640654614" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="6266964895688854" type="Target">
-                            <param id="0" name="Target is">0</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexX(2)</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="9742391217740113" type="Target">
-                            <param id="0" name="Target is">1</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexY(2)</param>
-                        </action>
-                        <action behavior="Travel" id="10" name="Start" sid="8496273651595556" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action behavior="Grow" id="10" name="Start" sid="5584438454360987" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action id="-16" name="Wait" sid="1572985798893884" type="System">
-                            <param id="0" name="Seconds">2</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="2936830675339094" type="System">
-                            <param id="0" name="Object to create">Target</param>
-                            <param id="1" name="Layer">3</param>
-                            <param id="2" name="X">Polygon.CenterX</param>
-                            <param id="3" name="Y">Polygon.CenterY</param>
-                        </action>
-                        <action behavior="Grow" id="1" name="Set duration" sid="9693117028167924" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="1" name="Set duration" sid="8404703711094518" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="3624093446053206" type="Target">
-                            <param id="0" name="Target is">0</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexX(5)</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="8597280380126047" type="Target">
-                            <param id="0" name="Target is">1</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexY(5)</param>
-                        </action>
-                        <action behavior="Travel" id="10" name="Start" sid="6443539739815477" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action behavior="Grow" id="10" name="Start" sid="7637385904869356" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action id="-16" name="Wait" sid="9279314146857484" type="System">
-                            <param id="0" name="Seconds">2</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="6329470368625786" type="System">
-                            <param id="0" name="Object to create">Target</param>
-                            <param id="1" name="Layer">3</param>
-                            <param id="2" name="X">Polygon.CenterX</param>
-                            <param id="3" name="Y">Polygon.CenterY</param>
-                        </action>
-                        <action behavior="Grow" id="1" name="Set duration" sid="5163045664801006" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="1" name="Set duration" sid="6474041637007595" type="Target">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="356473641858326" type="Target">
-                            <param id="0" name="Target is">0</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexX(0)</param>
-                        </action>
-                        <action behavior="Travel" id="3" name="Set target" sid="4361421715310162" type="Target">
-                            <param id="0" name="Target is">1</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Polygon.VertexY(0)</param>
-                        </action>
-                        <action behavior="Travel" id="10" name="Start" sid="3542357179487691" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action behavior="Grow" id="10" name="Start" sid="4152380402300117" type="Target">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                        <action behavior="Timer" id="0" name="Start timer" sid="67925349079486" type="Polygon">
-                            <param id="0" name="Duration">GrowSpeed</param>
-                            <param id="1" name="Type">0</param>
-                            <param id="2" name="Tag">&quot;6&quot;</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="593649383560887">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="407932235705890" type="System">
+                                    <param id="0" name="Variable">Progress</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Set group active" sid="884400415116824" type="System">
+                                    <param id="0" name="Group name">&quot;Clock2&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="134065702182885" type="Continue">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="122234254882744" type="Square">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action behavior="Timer" id="1" name="Stop timer" sid="696206127287710" type="Polygon">
+                                    <param id="0" name="Tag">&quot;4&quot;</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="595265138742313" type="System">
+                                    <param id="0" name="Variable">Progress</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block any="1" sid="692771710234239">
                     <conditions>
@@ -1303,7 +1356,7 @@
                                     <param id="2" name="Tag">&quot;3&quot;</param>
                                 </action>
                                 <action id="0" name="Set text" sid="2971224142804255" type="TutorialText">
-                                    <param id="0" name="Text">&quot;The bigger the bubbles are, the more water you get and the more the planet grows! The number that appears is the value of the bubble you just collected (and also your reward in cents).&quot; &amp; newline &amp;  newline &amp;  &quot;Use the &apos;X&apos; button on your controller to collect a minimum of 6 bubbles.&quot; &amp; &quot;Remember that your goal is to maximize your score (you can get up to 3 points per bubble).&quot;</param>
+                                    <param id="0" name="Text">&quot;The bigger the bubbles are, the more water you get and the more the planet grows! The number that appears is the value of the bubble you just collected (and also your reward in cents).&quot; &amp; newline &amp;  newline &amp;  &quot;Use the &apos;X&apos; button on your controller to collect a minimum of 6 bubbles. &quot; &amp; &quot;Remember that your goal is to maximize your score (you can get up to 3 points per bubble).&quot;</param>
                                 </action>
                                 <action id="-16" name="Wait" sid="4258290808358335" type="System">
                                     <param id="0" name="Seconds">5</param>
@@ -1598,6 +1651,9 @@
                                 <action id="0" name="Set text" sid="6753507403870866" type="TutorialText">
                                     <param id="0" name="Text">&quot;Fortunately, there is a way to double your water.&quot; &amp; newline &amp;  newline &amp; &quot;Try pressing the &apos;O&apos; (circle) over a bubble to save it in a bank that doubles your amount of water (earning you up to 6 points)&quot; &amp; newline &amp; newline &amp;  &quot;The translucent area behind the sponge illustrates the amount of accumulated water in your bank.&quot;</param>
                                 </action>
+                                <action id="-16" name="Wait" sid="277959745859685" type="System">
+                                    <param id="0" name="Seconds">8</param>
+                                </action>
                                 <action id="-12" name="Set group active" sid="3903154301727062" type="System">
                                     <param id="0" name="Group name">&quot;Score2&quot;</param>
                                     <param id="1" name="State">0</param>
@@ -1878,26 +1934,6 @@
                                     <param id="1" name="Type">0</param>
                                     <param id="2" name="Tag">&quot;4&quot;</param>
                                 </action>
-                                <action id="-16" name="Wait" sid="851598086933264" type="System">
-                                    <param id="0" name="Seconds">20</param>
-                                </action>
-                                <action id="-10" name="Add to" sid="628205245746930" type="System">
-                                    <param id="0" name="Variable">Progress</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-12" name="Set group active" sid="382301106449836" type="System">
-                                    <param id="0" name="Group name">&quot;Clock2&quot;</param>
-                                    <param id="1" name="State">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" sid="363930249916893" type="Continue">
-                                    <param id="0" name="Visibility">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" sid="373467423182170" type="Square">
-                                    <param id="0" name="Visibility">1</param>
-                                </action>
-                                <action behavior="Timer" id="1" name="Stop timer" sid="404547096212688" type="Polygon">
-                                    <param id="0" name="Tag">&quot;4&quot;</param>
-                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="5030398548327348">
@@ -1987,13 +2023,7 @@
                                     <param id="0" name="Seconds">20</param>
                                 </action>
                                 <action id="0" name="Set text" sid="223455953460103" type="TutorialText">
-                                    <param id="0" name="Text">&quot;The planet is shrinking again!&quot; &amp; newline &amp; newline &amp; &quot;Try using banking and collecting to keep the planet alive.&quot; &amp; newline &amp; newline &amp;  &quot;Notice how, because banking doubles the value of water in each bubble, it&apos;s much easier to survive by banking and collecting then by just collecting.&quot;</param>
-                                </action>
-                                <action id="-16" name="Wait" sid="4927690449249918" type="System">
-                                    <param id="0" name="Seconds">20</param>
-                                </action>
-                                <action id="0" name="Set text" sid="892514519491591" type="TutorialText">
-                                    <param id="0" name="Text">&quot;Note that a full bank still does not prevent the planet from drying out. You must secure a bubble to secure your water and increase the size of the planet!&quot;</param>
+                                    <param id="0" name="Text">&quot;Notice how, because banking doubles the value of water in each bubble, it&apos;s much easier to survive by banking and collecting than by just collecting.&quot; &amp; newline &amp; newline &amp;  &quot;IMPORTANT: A full bank still does not prevent the planet from drying out. You must secure a bubble to secure your water and increase the size of the planet!&quot;</param>
                                 </action>
                                 <action id="-16" name="Wait" sid="477005789236895" type="System">
                                     <param id="0" name="Seconds">10</param>
@@ -2134,6 +2164,10 @@
                                 <action id="0" name="Set text" sid="4504063335396008" type="TutorialText">
                                     <param id="0" name="Text">&quot;Try to prevent planet sponge from disappearing for one minute using Banking (&apos;O&apos;) and Collecting (&apos;X&apos;)&quot;</param>
                                 </action>
+                                <action id="-12" name="Set group active" sid="365259784902191" type="System">
+                                    <param id="0" name="Group name">&quot;TIMER6&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
                                 <action behavior="Timer" id="0" name="Start timer" sid="1330180266854111" type="Polygon">
                                     <param id="0" name="Duration">1.0</param>
                                     <param id="1" name="Type">0</param>
@@ -2191,18 +2225,18 @@
                                     <param id="0" name="Width">BankDecay</param>
                                     <param id="1" name="Height">BankDecay</param>
                                 </action>
-                                <action id="-16" name="Wait" sid="2399017141386664" type="System">
-                                    <param id="0" name="Seconds">60</param>
+                                <action id="-12" name="Set group active" sid="324103447811673" type="System">
+                                    <param id="0" name="Group name">&quot;DecayTimeout2&quot;</param>
+                                    <param id="1" name="State">0</param>
                                 </action>
-                                <action id="-10" name="Add to" sid="790837061836162" type="System">
-                                    <param id="0" name="Variable">Progress</param>
-                                    <param id="1" name="Value">1</param>
+                                <action id="-12" name="Set group active" sid="978923658056786" type="System">
+                                    <param id="0" name="Group name">&quot;DecayTimeout3&quot;</param>
+                                    <param id="1" name="State">1</param>
                                 </action>
-                                <action id="-15" name="Set visible" sid="8981541261799012" type="Continue">
-                                    <param id="0" name="Visibility">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" sid="2555117264724841" type="Square">
-                                    <param id="0" name="Visibility">1</param>
+                                <action behavior="Timer" id="0" name="Start timer" sid="906269636556948" type="Polygon">
+                                    <param id="0" name="Duration">60</param>
+                                    <param id="1" name="Type">0</param>
+                                    <param id="2" name="Tag">&quot;1min&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -2282,7 +2316,7 @@
                                     <param id="1" name="Height">BankDecay</param>
                                 </action>
                                 <action id="-16" name="Wait" sid="9017713446803613" type="System">
-                                    <param id="0" name="Seconds">2</param>
+                                    <param id="0" name="Seconds">8</param>
                                 </action>
                                 <action id="-10" name="Add to" sid="5302135459327134" type="System">
                                     <param id="0" name="Variable">Progress</param>
@@ -2306,6 +2340,10 @@
                                 <condition id="-9" name="Is visible" sid="4793462968223101" type="Continue" />
                             </conditions>
                             <actions>
+                                <action id="-12" name="Set group active" sid="214468809178141" type="System">
+                                    <param id="0" name="Group name">&quot;TIMER6&quot;</param>
+                                    <param id="1" name="State">0</param>
+                                </action>
                                 <action behavior="Timer" id="1" name="Stop timer" sid="9734698477907081" type="Polygon">
                                     <param id="0" name="Tag">&quot;6&quot;</param>
                                 </action>
@@ -2367,7 +2405,7 @@
                                     <param id="1" name="State">0</param>
                                 </action>
                                 <action id="0" name="Set text" sid="239071595885928" type="TutorialText">
-                                    <param id="0" name="Text">&quot;Before each adventure we will ask you to follow our guidelines in a simple task&quot;  &amp; newline &amp; newline &amp; &quot;When calibration begins you will see an arrow such as this one. Your nose should be pointing to this arrow for as long as it remains on the screen.&quot;</param>
+                                    <param id="0" name="Text">&quot;Before each adventure we will ask you to follow our guidelines in a simple task&quot;  &amp; newline &amp; newline &amp; &quot;When calibration begins you will see a cross such as this one. Your nose should be pointing to this arrow for as long as it remains on the screen.&quot;</param>
                                 </action>
                                 <action id="-3" name="Create object" sid="815236160517467" type="System">
                                     <param id="0" name="Object to create">Sprite4</param>
@@ -2379,7 +2417,7 @@
                                     <param id="0" name="Seconds">12</param>
                                 </action>
                                 <action id="0" name="Set text" sid="569232994938308" type="TutorialText">
-                                    <param id="0" name="Text">&quot;While keeping your head fixed on the cross, you should track green targets (like this one) using only your eyes&quot;   &amp; newline &amp; &quot;The green targets will only appear inside the white circles&quot;&amp; newline &amp; newline &amp; &quot;If you have any questions about the calibration or the game please ask them now to the experimenters&quot;</param>
+                                    <param id="0" name="Text">&quot;While keeping your head fixed on the cross, you should track green targets (like this one) using only your eyes&quot;   &amp; newline &amp; newline &amp; &quot;If you have any questions about the calibration or the game please ask them now to the experimenters&quot;</param>
                                 </action>
                                 <action disabled="1" id="-3" name="Create object" sid="555496386839395" type="System">
                                     <param id="0" name="Object to create">CalibrationTargetRim</param>
@@ -2501,6 +2539,10 @@
                             <actions>
                                 <action behavior="Timer" id="1" name="Stop timer" sid="189171578640410" type="Polygon">
                                     <param id="0" name="Tag">&quot;6&quot;</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="804404188407986" type="System">
+                                    <param id="0" name="Group name">&quot;TIMER6&quot;</param>
+                                    <param id="1" name="State">0</param>
                                 </action>
                                 <action id="-9" name="Destroy" sid="649644871792021" type="Target" />
                                 <action id="-2" name="Go to layout" sid="289474175563140" type="System">
@@ -2653,6 +2695,10 @@
                                             <param id="3" name="Volume">0</param>
                                             <param id="1" name="Tag (optional)">&quot;&quot;</param>
                                         </action>
+                                        <action id="-12" name="Set group active" sid="231070948991231" type="System">
+                                            <param id="0" name="Group name">&quot;TIMER6&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
                                         <action id="-16" name="Wait" sid="4703955996064981" type="System">
                                             <param id="0" name="Seconds">0</param>
                                         </action>
@@ -2690,6 +2736,134 @@
                                             <param id="0" name="Visibility">0</param>
                                         </action>
                                         <action id="6" name="Stop" sid="3786133328039858" type="Audio">
+                                            <param id="0" name="Tag">&quot;clock&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                        <event-group description="" sid="123226246382817" title="DecayTimeout3">
+                            <sub-events>
+                                <event-block sid="332871436444654">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="412545344471208" type="System">
+                                            <param id="0" name="Variable">Decay</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">100</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="489714236224869" type="DecayTimeout">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="852187071807174" type="DecayTimeout">
+                                            <param id="0" name="Text">round(Decay/10)</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-group description="" sid="270728816143128" title="Clock3">
+                                            <sub-events>
+                                                <event-block sid="521774300619943">
+                                                    <conditions>
+                                                        <condition id="-1" name="Every tick" sid="596856042614189" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-42" name="Signal" sid="664563246495774" type="System">
+                                                            <param id="0" name="Tag">&quot;clock&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-group>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="856132665682600">
+                                    <conditions>
+                                        <condition id="-1" name="Every tick" sid="733225124771737" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-41" name="Wait for signal" sid="637133857157284" type="System">
+                                            <param id="0" name="Tag">&quot;clock&quot;</param>
+                                        </action>
+                                        <action id="5" name="Set playback rate" sid="214191739540234" type="Audio">
+                                            <param id="0" name="Tag">&quot;clock&quot;</param>
+                                            <param id="1" name="Playback rate">0.5</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="909021420988573" type="Audio">
+                                            <param id="0" name="Audio file">clock</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;clock&quot;</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="427286383197050" type="System">
+                                            <param id="0" name="Group name">&quot;Clock2&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="574739216087058">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="238381623332912" type="System">
+                                            <param id="0" name="Variable">Decay</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0.2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Timer" id="1" name="Stop timer" sid="835442681789373" type="Polygon">
+                                            <param id="0" name="Tag">&quot;1min&quot;</param>
+                                        </action>
+                                        <action behavior="Timer" id="1" name="Stop timer" sid="176077353947268" type="Polygon">
+                                            <param id="0" name="Tag">&quot;6&quot;</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="837292669493996" type="System">
+                                            <param id="0" name="Group name">&quot;TIMER6&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="408074958171301" type="Audio">
+                                            <param id="0" name="Audio file">lose</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">0</param>
+                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="342571553561306" type="System">
+                                            <param id="0" name="Variable">Progress</param>
+                                            <param id="1" name="Value">13</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="618634993001231" type="Continue">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" sid="519386099980054" type="Square">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="213127454563737" type="System">
+                                            <param id="0" name="Group name">&quot;Decay2&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="372089046796440" type="System">
+                                            <param id="0" name="Group name">&quot;DecayTimeout3&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="962595431027904">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="593520358797488" type="System">
+                                            <param id="0" name="Variable">Decay</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0.7</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="274982341042439" type="System">
+                                            <param id="0" name="Variable">Decay</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">100</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="696411095013849" type="DecayTimeout">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                        <action id="6" name="Stop" sid="579465989877730" type="Audio">
                                             <param id="0" name="Tag">&quot;clock&quot;</param>
                                         </action>
                                     </actions>
@@ -3363,6 +3537,55 @@
                 </action>
                 <action id="-2" name="Go to layout" sid="414331046278622" type="System">
                     <param id="0" name="Layout">menu layout</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="506020118150250">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="591092729677988" type="Polygon">
+                    <param id="0" name="Tag">&quot;1min&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="645660041099960" type="System">
+                    <param id="0" name="Variable">Progress</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="210326278635497" type="Continue">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="416583456257848" type="Square">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="314601717843408">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="468726099331036" type="System">
+                    <param id="0" name="Variable">Decay</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">500</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="464584273507756" type="System">
+                    <param id="0" name="Variable">CHECKDECAY</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="442042794832225">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="963843708631189" type="System">
+                    <param id="0" name="Variable">Decay</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">500</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="623337578362727" type="System">
+                    <param id="0" name="Variable">CHECKDECAY</param>
+                    <param id="1" name="Value">0</param>
                 </action>
             </actions>
         </event-block>

@@ -2,7 +2,7 @@
 <c2project>
     <name>spinner</name>
     <description>wip</description>
-    <version>3.3.4</version>
+    <version>3.4.4</version>
     <author>Tiago Quendera</author>
     <author-email></author-email>
     <author-website>http://</author-website>
@@ -1055,6 +1055,14 @@
         <object-type name="ListStartingWave" sid="105487049815474">
             <plugin id="List" />
         </object-type>
+        <object-type name="Sprite5" sid="944298541272859">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="411521709100579" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
@@ -1063,6 +1071,7 @@
         <layout>game layout.xml</layout>
         <layout>tutorial.xml</layout>
         <layout>Calibration.xml</layout>
+        <layout>Rest.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>game ES.xml</event-sheet>
@@ -1070,6 +1079,7 @@
         <event-sheet>Calibration ES.xml</event-sheet>
         <event-sheet>settings ES.xml</event-sheet>
         <event-sheet>tutorial ES.xml</event-sheet>
+        <event-sheet>Rest ES.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="11">
