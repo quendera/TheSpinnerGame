@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/sprites/icon.png" type="Texture" id=1]
+
+[node name="slider" type="Area2D"]
+
+position = Vector2( 987.669, 522.208 )
+scale = Vector2( 22.1254, 14.5364 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+position = Vector2( -0.619144, -2.59163 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+
+position = Vector2( -1.27831, -4.08514 )
+scale = Vector2( 0.174441, 0.494776 )
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
+
+position = Vector2( 0.285107, -2.53165 )
+scale = Vector2( 1.98269, 1.93894 )
+build_mode = 0
+polygon = PoolVector2Array( -0.854527, 7.19237, -3.70312, -3.41424, -0.779563, -8.87353, 1.89392, -3.41425 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+
+position = Vector2( -2.14272, 25.8755 )
+scale = Vector2( 0.139589, 0.135642 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias = 0.0
+disable_collision = true
+softness = 0.0
+
+

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/game.gd" type="Script" id=1]
+[ext_resource path="res://scenes/polygon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/slider.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/spinner.gd" type="Script" id=5]
+[ext_resource path="res://spawner.gd" type="Script" id=6]
+
+[node name="game" type="Node2D"]
+
+position = Vector2( 960.943, 541.489 )
+scale = Vector2( 30.016, 16.848 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="polygon" parent="." instance=ExtResource( 2 )]
+
+position = Vector2( -0.120871, 0.266491 )
+scale = Vector2( 0.23, 0.3 )
+polygon = PoolVector2Array( -202.828, -177.584, -122.061, -158.911, -51.1587, -105.088, -122.678, -20.5098, -191.73, -152.32, -167.685, -183.076 )
+offset = Vector2( 125.673, 100.752 )
+texture_scale = Vector2( 1.5, 1.5 )
+_sections_unfolded = [ "Material", "Texture", "Transform", "Visibility", "Z" ]
+
+[node name="ball" parent="." instance=ExtResource( 3 )]
+
+position = Vector2( -0.44945, 3.35455 )
+scale = Vector2( 0.112352, 0.167468 )
+
+[node name="slider" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( -4.28076, -3.49972 )
+scale = Vector2( 0.574544, 0.577887 )
+script = ExtResource( 5 )
+
+[node name="Spawner" type="Node2D" parent="."]
+
+script = ExtResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="Spawner"]
+
+
