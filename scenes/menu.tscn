@@ -5,7 +5,7 @@
 
 [node name="menu_root" type="Node2D"]
 
-position = Vector2( 540, 361.272 )
+position = Vector2( 1000, 600 )
 scale = Vector2( -16.875, -11.2897 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]

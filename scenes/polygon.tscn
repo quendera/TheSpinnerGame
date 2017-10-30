@@ -4,7 +4,6 @@
 
 [node name="polygon" type="Polygon2D"]
 
-scale = Vector2( 10, 10 )
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )

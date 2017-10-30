@@ -5,7 +5,6 @@
 
 [node name="ball" type="Area2D"]
 
-position = Vector2( 5.57728, 5.97564 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -14,19 +13,18 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
-position = Vector2( 1.39644, -9.10645 )
-scale = Vector2( 1.12791, 1.07572 )
 build_mode = 0
 polygon = PoolVector2Array( -20.4011, -2.63546, -6.08094, -5.16255, 0.377197, -3.19703, 0.657967, 4.94582, -5.23857, 10.2808, -10.8543, 11.9655, -18.1548, 5.22661, -19.8395, 0.733997 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="."]
 
-position = Vector2( -9.7743, -6.44338 )
-scale = Vector2( 0.301389, 0.292558 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="tween" type="Tween" parent="."]
 
