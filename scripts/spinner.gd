@@ -1,17 +1,40 @@
 extends Area2D
-# class member variables go here, for example:
+
+var init_rot = Vector2()
+export var rot_int = 3
+func _ready():
+	init_rot = global.centre - global.vertices[0]
+	global_rotation = 2*PI
+	position = global.centre
+	scale = Vector2(10,10)
+	
 func _input(event):
 	if event.is_action_pressed("rotate_right"):
-		turn(20)
+				
+		rot_int += 1
+		if rot_int > 5:
+			rot_int = 0
 		
+		turn(PI/3)
 	if event.is_action_pressed("rotate_left"):
-		turn(-20)
 		
-	if event.is_action_pressed("collect") or event.is_action_pressed("progress"):
+		rot_int +=-1
+		if rot_int < 0:
+			rot_int = 5
+		
+		turn(-(PI/3))
+	if event.is_action_pressed("collect") :
+		self.collect()
 		turn(0)
 		
-	if event.is_action_pressed("spawn"):
+		
+	if event.is_action_pressed("progress"):
 		turn(0)
 		
+
 func turn(side):
+	global_rotation += side
 	get_tree().get_root().get_node("game").go(side)
+	
+func collect():
+	get_tree().call_group("balls", "get_collected", rot_int)

@@ -10,9 +10,11 @@ func _ready():
 #EVERY FRAME(DT):
 func _process(delta):
 	dt = dt + delta
-	
+	$Label.set_text("Score: "+ str(global.score))
 
 func go(side):
 	get_tree().call_group("balls", "step")
-	$Spawner.spawn()
-	#print(side)
+	
+	var get_len = get_tree().get_nodes_in_group("balls").size()
+	if  get_len == 0:
+		$Spawner.spawn()

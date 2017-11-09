@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/ball.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/target.png" type="Texture" id=2]
 
 [node name="ball" type="Area2D"]
 
@@ -14,23 +14,14 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z" ]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-
-build_mode = 0
-polygon = PoolVector2Array( -20.4011, -2.63546, -6.08094, -5.16255, 0.377197, -3.19703, 0.657967, 4.94582, -5.23857, 10.2808, -10.8543, 11.9655, -18.1548, 5.22661, -19.8395, 0.733997 )
-_sections_unfolded = [ "Transform" ]
+cur_rot = 0
+age = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 
+position = Vector2( 0.346273, -0.489941 )
+scale = Vector2( 0.502308, 0.502308 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="tween" type="Tween" parent="."]
-
-playback_process_mode = 1
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
 
 
