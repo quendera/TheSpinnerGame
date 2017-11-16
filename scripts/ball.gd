@@ -1,46 +1,37 @@
 extends Node2D
 
 var idx
-export var cur_rot = 0
-var target_v = Vector2()
-var path_v
-export var age = 0
-
+var cur_rot = 0
+var cur_rad = 0
+var age = 0
+var move_time = .05
 
 #DATA
 var data = {"time":0, "target_id":0, "target_tx":0, "steps" : 1, "slider_pos" : 0}
 var data_dict = {"time":[], "target_id":[], "target_tx":[], "steps":[], "slider_pos":[]}
 
-
-
-func _onready():
-	var tr = PoolVector2Array([[1,2],[1,2]])
-	
-	
 func _ready():
 	position = global.centre
 	self.set_scale(Vector2(0,0))
 	add_to_group("balls")
+	
+func _process(delta):
+	var moveDir = age-cur_rad
+	cur_rad += moveDir*delta/move_time
+	position = Vector2(global.cx-cur_rad/12*sin(cur_rot*PI/3)*320,global.cy+cur_rad/12*cos(cur_rot*PI/3)*320)
+	scale = Vector2(1,1)*cur_rad/12*1.25
 
 func create(rot, subwave, wave, ball_id):
 	cur_rot = int(rot)
 	idx = ball_id
-	target_v = global.centre - global.vertices[cur_rot]
-	path_v = global.centre-target_v
-	global_rotation = atan2(path_v.x, path_v.y)
 	
 func step():
-	scale = Vector2(1,1)
-	position += path_v/1.5
-	#print(scale)
 	age += 1
 	if age > 12:
 		kill()
-		
 
-func collect():
-	log_data()
-	
+#func collect():
+#	log_data()
 
 func kill():
 	log_data()
@@ -60,8 +51,6 @@ func save_data():
 	file.close()
 	
 func get_collected(angle):
-	
-	if angle == cur_rot and age > 5:
-		global.score += age
-		print(global.score)
+	if angle == cur_rot and age > 6:
+		global.score += age - 6
 		kill()

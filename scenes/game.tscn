@@ -1,23 +1,38 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
-[ext_resource path="res://scenes/polygon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/slider.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/Circle.gd" type="Script" id=2]
+[ext_resource path="res://scripts/poly.gd" type="Script" id=3]
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=4]
+[ext_resource path="res://scenes/slider.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/spinner.gd" type="Script" id=6]
 
 [node name="game" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="polygon" parent="." instance=ExtResource( 2 )]
+[node name="Circle" type="Node2D" parent="."]
 
-[node name="slider" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 2 )
 
-scale = Vector2( 0.574544, 0.577887 )
+[node name="polygon" type="Polygon2D" parent="."]
+
+visible = false
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Texture", "Transform" ]
 
 [node name="Spawner" type="Node2D" parent="."]
 
@@ -30,6 +45,23 @@ arr = {
 [node name="Position2D" type="Position2D" parent="Spawner"]
 
 _sections_unfolded = [ "Transform" ]
+
+[node name="slider" type="Area2D" parent="." instance=ExtResource( 5 )]
+
+position = Vector2( 0, 8 )
+scale = Vector2( 0.574544, 0.577887 )
+z = 1000
+z_as_relative = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+_sections_unfolded = [ "Collision", "Transform", "Z" ]
+rot_int = 3
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
