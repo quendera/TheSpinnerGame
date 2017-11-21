@@ -14,8 +14,6 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z" ]
-cur_rot = 0
-age = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 
