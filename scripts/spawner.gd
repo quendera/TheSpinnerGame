@@ -44,7 +44,7 @@ func mySpawn():
 	#var counter = 0
 	global.start_step = 0
 	if sw >= sw_order.size():
-		save_data()
+		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
 	else:
 		for i in range(ball_per_sw):
@@ -72,16 +72,9 @@ func log_data(offset,flip):
 	data_line["sw_flip"] = flip
 	for key in data_line.keys():
 		global.data[key].push_back(data_line[key])
-	
-func save_data():
-	var file = File.new()
-	file.open(global.save_file_name, file.WRITE)
-	#file.seek_end()
-	file.store_line(to_json(global.data))
-	file.close()
 
 func _notification(what):
 	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
-		save_data()
+		get_tree().get_root().get_node("game").save_data()
 		#get_tree().get_root().get_node("menu_root")._on_game_over()
 		get_tree().quit()

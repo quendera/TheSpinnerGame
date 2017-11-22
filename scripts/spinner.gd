@@ -38,6 +38,9 @@ func _input(event):
 		keyID = 3
 		advance = 1
 		global.start_step = 1
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().get_root().get_node("game").save_data()
+		get_tree().get_root().get_node("menu_root")._on_game_over()
 	if keyID >= 0:
 		log_data()
 	rot_int = fposmod(rot_int+angVel,6)
