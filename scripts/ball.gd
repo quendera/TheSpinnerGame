@@ -50,5 +50,5 @@ func log_data():
 
 func get_collected(angle):
 	if angle == cur_rot: # and age > curr_wv:
-		global.score += max(0,age - curr_wv)
+		global.score += max(0,age - curr_wv + 1)
 		kill()
