@@ -1,5 +1,13 @@
 extends Node2D
 
+#var poly_array = []
+var circScale = 34
+var pad = .1
+#var weight = .9
+var order = [[pad/2,pad,pad],[pad/2,1-pad,pad],[1-pad/2,1-pad,-pad],[1-pad/2,pad,-pad]]
+var poly_class = preload("res://scripts/trapCell.gd") #scenes/hexCell.tscn")
+var poly_instance
+
 func init(lev,player_name):
 	global.curr_wv = lev
 	global.dt = 0
@@ -17,8 +25,11 @@ func init(lev,player_name):
 #ON START:
 func _ready():
 	$Spawner.mySpawn()
-	#pass #set_process(true)
-	#global.curr_wv = m
+	for i in range(12):
+		for j in range(6):#*i)):
+			poly_instance = poly_class.new()
+			poly_instance.create(i,j)
+			add_child(poly_instance)
 
 #EVERY FRAME(DT):
 func _process(delta):

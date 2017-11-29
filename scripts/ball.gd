@@ -49,6 +49,6 @@ func log_data():
 		global.data[key].push_back(data_line[key])
 
 func get_collected(angle):
-	if angle == cur_rot: # and age > curr_wv:
+	if angle == cur_rot and age > 6:
 		global.score += max(0,age - curr_wv + 1)
 		kill()

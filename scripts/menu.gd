@@ -39,7 +39,7 @@ func update_buttons():
 	var i = 0
 	for button in get_tree().get_nodes_in_group("my_buttons"):
 		button.set_text("Level " + str(i+3) + " High: " + str(hi_scores[i]))
-		button.set_disabled(i > 0 and hi_scores[i-1] < pass_scores[i-1])
+		#button.set_disabled(i > 0 and hi_scores[i-1] < pass_scores[i-1])
 		button.show()
 		i += 1
 	$player_name.show()

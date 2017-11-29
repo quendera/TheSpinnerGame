@@ -1,6 +1,7 @@
 extends Node2D
 
-var ball_scene = preload("res://scenes/ball.tscn")
+#var ball_scene = preload("res://scenes/ball.tscn")
+var ball_scene = preload("res://scripts/triBall.gd")
 var ball_instance
 var input_i #= 0
 var file = File.new()
@@ -47,9 +48,10 @@ func mySpawn():
 		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
 	else:
+		get_tree().get_root().get_node("game").get_node("sw_border").show()
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
-			ball_instance = ball_scene.instance()
+			ball_instance = ball_scene.new()#instance()
 			var send_rot = int(arr[input_i][0])
 			if rand_flip:
 				send_rot = (6-send_rot)
@@ -60,7 +62,9 @@ func mySpawn():
 			get_tree().call_group("balls", "step")
 		log_data(rand_offset,rand_flip)
 		#global.running_max += curr_wv*curr_wv + int(arr[input_i][3])
-		sw += 1                   
+		sw += 1
+	for i in range(6-ball_per_sw):
+		get_tree().call_group("balls", "step")
 	#while counter < 6:
 	#	counter += 1
 	#	get_tree().call_group("balls", "step")

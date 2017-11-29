@@ -5,7 +5,8 @@ var h = 720
 var cx = w/2
 var cy = h/2
 var centre = Vector2(cx,cy)
-var move_time = .03
+var move_time = .05
+var poly_size = cx/22
 var curr_wv
 var score
 var dt
