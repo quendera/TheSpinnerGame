@@ -9,7 +9,6 @@ func _ready():
 	global_rotation = 0
 	position = global.centre
 	set_z(1)
-	#scale = Vector2(10,10)
 	
 func _draw():
 	var coords = PoolVector2Array()
@@ -53,8 +52,8 @@ func _input(event):
 		get_tree().get_root().get_node("menu_root")._on_game_over()
 	if keyID >= 0:
 		log_data()
-	rot_int = fposmod(rot_int+angVel,6)
-	turn(advance*global.start_step)
+		rot_int = fposmod(rot_int+angVel,6)
+		turn(advance*global.start_step)
 
 func log_data():
 	data_line["ke_time"] = global.dt
@@ -65,15 +64,7 @@ func log_data():
 	for key in data_line.keys():
 		global.data[key].push_back(data_line[key])
 
-#func turn(advance):
-#	if advance:
-#		get_tree().call_group("balls", "step")
-#	var get_len = get_tree().get_nodes_in_group("balls").size()
-#	if  get_len == 0:
-#		$Spawner.mySpawn()
-
 func turn(advance):
-	#global_rotation += side*PI/3
 	get_tree().get_root().get_node("game").go(advance)
 
 func collect():

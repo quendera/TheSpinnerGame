@@ -46,22 +46,8 @@ func _process(delta):
 			offsetY = max(.01,cur_rads[i])
 			offsetX = (offsetY*orders[fmod(i+j,2)])/sqrt(3)
 			coords[2*i+j] = Vector2(offsetX,offsetY)*global.poly_size
-#	for i in range(4):
-#		var offsetY
-#		if i > 1:
-#			offsetY = max(.01,cur_rad+order[i][0]-1) #- (2*order[i][0]-1)*pad
-#		else:
-#			offsetY = min(6,max(.01,cur_rad+order[i][0]-1))
-#		var offsetX = (offsetY*order[i][1])/sqrt(3) #- order[i][1]*pad
-#		coords[i] = Vector2(offsetX,offsetY)*global.poly_size
-	if age <= 6 and death_flag == 0:
-		col.r = float(cur_rads[1])/6
-		col.g = col.r
-		col.b = col.r
-	elif death_flag == 0:
-		col.b = 0
-		col.r = cos(float(12-cur_rads[1])/5*PI/2)#col.s = 1
-		col.g = sin(float(12-cur_rads[1])/5*PI/2)#col.h = fposmod(float(-.5-rad)/13,1)
+	if death_flag == 0:
+		col = global.which_color(cur_rads[1])
 	if coords[1][1] < coords[2][1]:
 		set_color(col)
 		set_polygon(coords)
@@ -75,8 +61,9 @@ func create(rot, subwave, wave, ball_id):
 	rotation = float(rot)/3*PI
 	
 func step():
-	age += 1
-	moving = 1
+	if death_flag == 0:
+		age += 1
+		moving = 1
 	if age > 12:#curr_wv*2:
 		log_data()
 		death_flag = -1 #
@@ -85,6 +72,9 @@ func step():
 func kill():
 	#log_data()
 	self.queue_free()
+	#print(get_tree().get_nodes_in_group("balls").size())
+	#if  get_tree().get_nodes_in_group("balls").size() == 1:
+	#	$score_poly.report(global.score) 
 	
 func log_data():
 	data_line["ba_time"] = global.dt
@@ -97,7 +87,8 @@ func log_data():
 
 func get_collected(angle):
 	if angle == cur_rot and age > 6:
-		global.score += max(0,age - curr_wv + 1)
+		#global.score += max(0,age -6)
+		global.sw_score += age - 6
 		log_data()
 		age = 0
 		death_flag = 1 #

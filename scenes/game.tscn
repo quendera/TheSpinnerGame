@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
-[ext_resource path="res://scripts/Circle.gd" type="Script" id=2]
-[ext_resource path="res://scripts/spawner.gd" type="Script" id=3]
+[ext_resource path="res://scripts/spawner.gd" type="Script" id=2]
+[ext_resource path="res://scripts/score_poly.gd" type="Script" id=3]
 [ext_resource path="res://scripts/dividers.gd" type="Script" id=4]
 [ext_resource path="res://scripts/triSpin.gd" type="Script" id=5]
 [ext_resource path="res://scripts/sw_border.gd" type="Script" id=6]
@@ -11,11 +11,6 @@
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Circle" type="Node2D" parent="."]
-
-visible = false
-script = ExtResource( 2 )
 
 [node name="Label2" type="Label" parent="."]
 
@@ -79,15 +74,24 @@ _sections_unfolded = [ "Rect", "Theme", "Visibility", "custom_constants", "custo
 
 [node name="Spawner" type="Node2D" parent="."]
 
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GUI" type="CanvasLayer" parent="."]
+[node name="score_poly" type="Polygon2D" parent="."]
 
-layer = 1
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 3 )
 
 [node name="dividers" type="Node2D" parent="."]
 
