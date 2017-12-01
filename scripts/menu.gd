@@ -53,7 +53,7 @@ func _on_game_over():
 	file.close()
 	startLevel.queue_free()
 	update_buttons()
-#
+	
 #func _on_player_name_text_changed( text ):
 #	player_name = text # replace with function body
 

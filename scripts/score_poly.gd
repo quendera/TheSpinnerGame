@@ -1,7 +1,7 @@
 extends Polygon2D
 
 var start_grow = 0
-var grow_time = [.2,.4,.6]#[.5,1,1.5]/2
+var grow_time = .3
 var score = 0
 var end_flag = 0
 var col = Color()
@@ -23,18 +23,20 @@ func create(sub):
 	
 func _process(delta):
 	if end_flag == 1: #global.sw_
-		if global.dt > start_grow + grow_time[2]:
+		if global.dt > start_grow + grow_time*2:
 			position = get_tree().get_root().get_node("game").get_node("vis_score").centers[sw-1]
 			scale = Vector2(float(score+6)/12,float(score+6)/12)
 			end_flag = 2 #global.sw_
 			get_tree().get_root().get_node("game").get_node("Spawner").mySpawn()
-		elif global.dt <= start_grow + grow_time[0]:
-			scaled = (global.dt - start_grow)/grow_time[0]*(score+6)/12
+		elif global.dt <= start_grow + grow_time:
+			#scaled = (1-cos(PI*(global.dt - start_grow)/grow_time[0]))/2*(score+6)/12
+			scaled = sin(PI/2*(global.dt - start_grow)/grow_time)*(score+6)/12
 			col = global.which_color(score+6)
 			self.set_color(col)
 			set_scale(Vector2(scaled,scaled)*12)
-		elif global.dt <= start_grow + grow_time[2] and global.dt >= start_grow + grow_time[1]:
-			var frac = (global.dt - start_grow - grow_time[1])/(grow_time[2]-grow_time[1])
+		elif global.dt <= start_grow + grow_time*2 and global.dt >= start_grow + grow_time:
+			var frac = (global.dt - start_grow - grow_time)/(grow_time)
+			frac = sin(frac*PI/2)#(1-cos(frac*PI))/2
 			set_scale(Vector2(scaled,scaled)*(12*(1-frac)+frac))
 			position = global.centre*(1-frac) + get_tree().get_root().get_node("game").get_node("vis_score").centers[sw-1]*frac
 	

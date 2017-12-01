@@ -44,9 +44,9 @@ func save_data():
 	file.store_line(to_json(global.data))
 	file.close()
 
-func go(advance):
-	if advance:
-		get_tree().call_group("balls", "step")
-#	var get_len = get_tree().get_nodes_in_group("balls").size()
-#	if  get_len == 0:
-#		$score_poly.report(global.score) # global.score)
+#func go(advance):
+#	if advance:
+#		get_tree().call_group("balls", "step")
+##	var get_len = get_tree().get_nodes_in_group("balls").size()
+##	if  get_len == 0:
+##		$score_poly.report(global.score) # global.score)

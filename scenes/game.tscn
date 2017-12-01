@@ -18,9 +18,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 896.0
+margin_left = 300.0
 margin_top = 60.0
-margin_right = 1178.0
+margin_right = 582.0
 margin_bottom = 159.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -38,9 +38,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 896.0
+margin_left = 300.0
 margin_top = 30.0
-margin_right = 1178.0
+margin_right = 582.0
 margin_bottom = 129.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -54,6 +54,7 @@ _sections_unfolded = [ "Rect", "Theme", "custom_colors", "custom_constants", "cu
 
 [node name="Label3" type="Label" parent="."]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

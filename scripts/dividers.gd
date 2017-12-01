@@ -13,7 +13,7 @@ func _draw():
 		self.draw_line(Vector2(-offsetX,-offsetY),Vector2(offsetX,offsetY),Color(0,0,0),5)
 	var coords = PoolVector2Array()
 	coords.resize(7)
-	for i in range(11):
+	for i in range(12):
 		for j in range(7):
 			coords[j] = Vector2(cos(j*PI/3)*global.poly_size*(i+1),sin(j*PI/3)*global.poly_size*(i+1))*2/sqrt(3)
 		self.draw_polyline_colors(coords,PoolColorArray([Color(0,0,0)]),5)

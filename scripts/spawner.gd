@@ -69,12 +69,9 @@ func mySpawn():
 		sw += 1
 	for i in range(6-ball_per_sw):
 		get_tree().call_group("balls", "step")
-	#while counter < 6:
-	#	counter += 1
-	#	get_tree().call_group("balls", "step")
 	
 func log_data(offset,flip):
-	data_line["sw_time"] = global.dt #OS.get_unix_time()
+	data_line["sw_time"] = global.dt
 	data_line["sw_subwave_num"] = sw_order[sw]
 	data_line["sw_offset"] = offset
 	data_line["sw_flip"] = flip
