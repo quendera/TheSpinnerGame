@@ -6,10 +6,11 @@ var col = Color()
 var order = [[0,-1],[0,1],[1,1],[1,-1]]
 
 func _ready():
-	add_to_group("cells")
+	pass
+	#add_to_group("cells")
 
 func create(rad, rot):
-	position =  Vector2(global.cx,global.cy) 
+	position =  global.centre
 	rotation = rot*PI/3
 	radius = rad
 	rot_int = rot

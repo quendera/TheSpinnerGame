@@ -30,8 +30,9 @@ func _ready():
 			add_child(poly_instance)
 
 func _process(delta):
-	if  get_tree().get_nodes_in_group("balls").size() == 0 and global.sw_end_flag == 0:
-		$score_poly.report(global.sw_score)
+	if  get_tree().get_nodes_in_group("balls").size() == 0:# and global.sw_end_flag == 0:
+		#$score_poly.report(global.sw_score)
+		get_tree().call_group("score_poly", "report",$Spawner.sw)
 	global.dt += delta
 	$Label2.set_text("Time: "+ str(floor(global.dt)) + " s")
 	$Label.set_text("Score: "+ str(global.score))

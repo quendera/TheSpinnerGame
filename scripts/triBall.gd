@@ -18,8 +18,6 @@ var cur_rads = [0,0]
 var orders = [-1,1]
 
 func _ready():
-	#position = global.centre
-	#self.set_scale(Vector2(0,0))
 	add_to_group("balls")
 
 func _process(delta):
