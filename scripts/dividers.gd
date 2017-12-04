@@ -2,9 +2,6 @@ extends Node2D
 
 func _ready():
 	position = global.centre
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
 
 func _draw():
 	for i in range(0,3):
