@@ -53,7 +53,7 @@ func mySpawn():
 		score_instance = score_class.new()
 		score_instance.create(sw+1)
 		add_child(score_instance)
-		global.score += max(-5,global.sw_score)
+		global.score += global.sw_score #max(-5,global.sw_score)
 		global.sw_score = -ball_per_sw*6-int(arr[sw_order[sw]*ball_per_sw][3]) + 6
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i

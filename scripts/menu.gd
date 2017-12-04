@@ -57,7 +57,6 @@ func _on_game_over():
 #func _on_player_name_text_changed( text ):
 #	player_name = text # replace with function body
 
-
 func _on_player_name_text_entered( text ):
 	$player_name.release_focus()
 	player_name = text # replace with function body

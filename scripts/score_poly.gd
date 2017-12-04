@@ -5,6 +5,7 @@ var grow_time = .3
 var score = 0
 var end_flag = 0
 var col = Color()
+#var lab = Label.new()
 var scaled = 0
 var sw
 
@@ -22,21 +23,25 @@ func create(sub):
 	sw = sub
 	
 func _process(delta):
-	if end_flag == 1: #global.sw_
+	if end_flag == 1:
 		if global.dt > start_grow + grow_time*2:
 			position = get_tree().get_root().get_node("game").get_node("vis_score").centers[sw-1]
 			scale = Vector2(float(score+6)/12,float(score+6)/12)
-			end_flag = 2 #global.sw_
+			#lab.set_text(String(global.sw_score))
+			#lab.set_global_position(position)
+			#lab.scale = 10 #Vector2(10,10)
+			#lab.show_on_top()
+			end_flag = 2
 			get_tree().get_root().get_node("game").get_node("Spawner").mySpawn()
 		elif global.dt <= start_grow + grow_time:
-			#scaled = (1-cos(PI*(global.dt - start_grow)/grow_time[0]))/2*(score+6)/12
 			scaled = sin(PI/2*(global.dt - start_grow)/grow_time)*(score+6)/12
 			col = global.which_color(score+6)
+			#col.a = .1
 			self.set_color(col)
 			set_scale(Vector2(scaled,scaled)*12)
 		elif global.dt <= start_grow + grow_time*2 and global.dt >= start_grow + grow_time:
 			var frac = (global.dt - start_grow - grow_time)/(grow_time)
-			frac = sin(frac*PI/2)#(1-cos(frac*PI))/2
+			frac = sin(frac*PI/2)
 			set_scale(Vector2(scaled,scaled)*(12*(1-frac)+frac))
 			position = global.centre*(1-frac) + get_tree().get_root().get_node("game").get_node("vis_score").centers[sw-1]*frac
 	
