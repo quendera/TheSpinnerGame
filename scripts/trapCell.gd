@@ -6,6 +6,7 @@ var col = Color()
 var order = [[0,-1],[0,1],[1,1],[1,-1]]
 
 func _ready():
+	#hide()
 	pass
 	#add_to_group("cells")
 
@@ -22,7 +23,7 @@ func create(rad, rot):
 	if rad == 0:
 		coords.remove(0)
 	set_polygon(coords)
-	set_z(-1)
+#	set_z(-1)
 	col = global.which_color(rad+1)
 	col.a = .2
 	self.set_color(col)

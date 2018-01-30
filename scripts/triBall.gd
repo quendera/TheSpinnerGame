@@ -83,7 +83,7 @@ func log_data():
 		global.data[key].push_back(data_line[key])
 
 func get_collected(angle):
-	if angle == cur_rot and age > 6:
+	if angle == cur_rot and age > 6 and death_flag == 0:
 		moving = 1
 		move_start = global.dt
 		global.sw_score += age - 6

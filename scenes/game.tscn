@@ -10,9 +10,9 @@
 [node name="game" type="Node2D"]
 
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -23,8 +23,8 @@ margin_top = 60.0
 margin_right = 582.0
 margin_bottom = 159.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
+mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 percent_visible = 1.0
@@ -32,7 +32,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "Theme", "Visibility", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -43,8 +43,8 @@ margin_top = 30.0
 margin_right = 582.0
 margin_bottom = 129.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
+mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 percent_visible = 1.0
@@ -52,7 +52,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "Theme", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="Label3" type="Label" parent="."]
+[node name="Label3" type="Label" parent="." index="2"]
 
 visible = false
 anchor_left = 0.0
@@ -64,8 +64,8 @@ margin_top = 90.0
 margin_right = 1178.0
 margin_bottom = 189.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
+mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 percent_visible = 1.0
@@ -73,25 +73,25 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "Theme", "Visibility", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="Spawner" type="Node2D" parent="."]
+[node name="Spawner" type="Node2D" parent="." index="3"]
 
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="dividers" type="Node2D" parent="."]
+[node name="dividers" type="Node2D" parent="." index="4"]
 
 script = ExtResource( 3 )
 _sections_unfolded = [ "Z" ]
 
-[node name="triSpinner" type="Node2D" parent="."]
+[node name="triSpinner" type="Node2D" parent="." index="5"]
 
 script = ExtResource( 4 )
 
-[node name="sw_border" type="Node2D" parent="."]
+[node name="sw_border" type="Node2D" parent="." index="6"]
 
 script = ExtResource( 5 )
 
-[node name="vis_score" type="Node2D" parent="."]
+[node name="vis_score" type="Node2D" parent="." index="7"]
 
 script = ExtResource( 6 )
 
