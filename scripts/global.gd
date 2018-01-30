@@ -5,7 +5,7 @@ var h = 720
 var cx = w*.65#/2
 var cy = h/2
 var centre = Vector2(cx,cy)
-var move_time_new = .15
+var move_time_new = .1
 var poly_size = w/44
 var sw_count
 var curr_wv
@@ -32,6 +32,8 @@ func which_color(rad):
 	else: 
 		col.r = min(1,float(rad-12)/5*2+2)
 		col.g = min(1,float(12-rad)/5*2)
+		#col.g = min(1,float(12-rad)/6)
+		#col.r = col.g
 		#col.r = cos(float(11-rad+1)/11*PI)#col.s = 1
 		#col.g = sin(float(11-rad+1)/11*PI)#col.h = fposmod(float(-.5-rad)/13,1)		
 		col.b = 0#col.r

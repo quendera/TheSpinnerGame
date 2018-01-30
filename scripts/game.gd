@@ -13,7 +13,7 @@ func init(lev,player_name):
 	global.score = 0
 	global.start_step = 0
 	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
-	global.data = {"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
+	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
 	"ba_time":[], "ba_position":[], "ba_ID":[], "ba_age":[], #"ba_ID_mv":[], "ba_time_mv":[], 
 	"sw_time":[], "sw_subwave_num":[], "sw_offset":[], "sw_flip" : [], "level":lev,
 	"device_current_time":OS.get_datetime(), "device_OS": OS.get_name(), 
