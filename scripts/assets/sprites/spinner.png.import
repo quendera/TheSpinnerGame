@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spinner.png-9a9792e616615a956960fb2ddad73720.stex"
+path="res://.import/spinner.png-abdcb29e300858fc94dffab020a41b68.stex"
 
 [deps]
 
-source_file="res://assets/sprites/spinner.png"
+source_file="res://scripts/assets/sprites/spinner.png"
 source_md5="1b1812e2ca46fafdc38ee9b05671a195"
 
-dest_files=[ "res://.import/spinner.png-9a9792e616615a956960fb2ddad73720.stex" ]
+dest_files=[ "res://.import/spinner.png-abdcb29e300858fc94dffab020a41b68.stex" ]
 dest_md5="ff6e55c1c47bd82ba7300b2a589c43fa"
 
 [params]
