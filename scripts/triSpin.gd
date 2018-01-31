@@ -55,6 +55,8 @@ func _input(event):
 		if clickPos[1] == 1:
 			#rot_int_old = rot_int
 			rot_int_new = clickPos[0]
+			if global.start_step == 0:
+				rot_int = rot_int_new
 			if rot_int == rot_int_new:
 				advance = 1
 				global.start_step = 1
