@@ -19,8 +19,8 @@ func _draw():
 	var coords = PoolVector2Array()
 	coords.resize(4)
 	for i in range(4):
-		var offsetY = 7+order[i][0]-1 #- (2*order[i][0]-1)*pad
-		var offsetX = (offsetY*order[i][1])/sqrt(3) #- order[i][1]*pad
+		var offsetY = 7+order[i][0]-1
+		var offsetX = (offsetY*order[i][1])/sqrt(3)
 		coords[i] = Vector2(offsetX,offsetY)*global.poly_size
 	draw_polyline_colors(coords,PoolColorArray([Color(1,1,1)]),20,1)
 
@@ -31,7 +31,6 @@ func _process(delta):
 		rot_int = fposmod(rot_int - angVel,6)
 		if rot_int != rot_int_new:
 			turn_start = global.dt
-			#print([rot_int,rot_int_new,angVel])
 			if global.start_step:
 				get_tree().call_group("balls", "step")
 		else:
@@ -52,19 +51,18 @@ func _input(event):
 		var clickPos
 		clickPos = take_action(event.position)
 		if clickPos[1] == 0:
-			advance = 1
-			global.start_step = 1
+			get_tree().call_group("balls", "get_collected", rot_int)
 		if clickPos[1] == 1:
 			#rot_int_old = rot_int
 			rot_int_new = clickPos[0]
 			if rot_int == rot_int_new:
-				get_tree().call_group("balls", "get_collected", rot_int)
+				advance = 1
+				global.start_step = 1
+				get_tree().get_root().get_node("game").get_node("sw_border").hide()
 			else:
 				turn_start = global.dt
 				advance = 1
-				angVel = calc_ang_vel(rot_int,rot_int_new) #min(abs(fmod(clickPos[0]-rot_int,6)),abs(fmod(rot_int-clickPos[0],6)))
-			#rot_int = clickPos[0]
-		print([angVel, rot_int, rot_int_new])
+				angVel = calc_ang_vel(rot_int,rot_int_new)
 		if advance*global.start_step:
 			get_tree().call_group("balls", "step")
 	if event.is_action_pressed("rotate_right") and global.dt > turn_start + global.move_time_new:
@@ -95,7 +93,6 @@ func _input(event):
 		log_data_ke()
 		if advance*global.start_step:
 			get_tree().call_group("balls", "step")
-		#get_tree().get_root().get_node("game").go(advance*global.start_step)
 
 func calc_ang_vel(curr_loc,new_loc):
 	if curr_loc == new_loc:
