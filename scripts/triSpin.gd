@@ -46,26 +46,27 @@ func _process(delta):
 func _input(event):
 	var advance = 0
 	keyID = -1
-	if event is InputEventMouseButton and event.pressed and global.dt > turn_start + global.move_time_new:
+	if event is InputEventScreenTouch and event.pressed and global.dt > turn_start + global.move_time_new:
 		log_data_mo(event.position-position)
-		if(event.button_index == 1):
-			var clickPos
-			clickPos = take_action(event.position)
-			if clickPos[1] == 0:
+		#if(event.button_index == 1):
+		var clickPos
+		clickPos = take_action(event.position)
+		if clickPos[1] == 0:
+			advance = 1
+			global.start_step = 1
+		if clickPos[1] == 1:
+			#rot_int_old = rot_int
+			rot_int_new = clickPos[0]
+			if rot_int == rot_int_new:
+				get_tree().call_group("balls", "get_collected", rot_int)
+			else:
+				turn_start = global.dt
 				advance = 1
-				global.start_step = 1
-			if clickPos[1] == 1:
-				#rot_int_old = rot_int
-				rot_int_new = clickPos[0]
-				if rot_int == rot_int_new:
-					get_tree().call_group("balls", "get_collected", rot_int)
-				else:
-					turn_start = global.dt
-					advance = 1
-					angVel = calc_ang_vel(rot_int,rot_int_new) #min(abs(fmod(clickPos[0]-rot_int,6)),abs(fmod(rot_int-clickPos[0],6)))
-				#rot_int = clickPos[0]
-			if advance*global.start_step:
-				get_tree().call_group("balls", "step")
+				angVel = calc_ang_vel(rot_int,rot_int_new) #min(abs(fmod(clickPos[0]-rot_int,6)),abs(fmod(rot_int-clickPos[0],6)))
+			#rot_int = clickPos[0]
+		print([angVel, rot_int, rot_int_new])
+		if advance*global.start_step:
+			get_tree().call_group("balls", "step")
 	if event.is_action_pressed("rotate_right") and global.dt > turn_start + global.move_time_new:
 		keyID = 0
 		angVel = -1
