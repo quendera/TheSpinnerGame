@@ -16,6 +16,7 @@ var start_step
 var save_file_name
 var data
 var sw_end_flag = 0
+var neon_offset = Vector2(0,-360)
 
 func _ready():
 	pass

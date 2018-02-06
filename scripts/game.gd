@@ -5,6 +5,7 @@ var pad = .1
 var order = [[pad/2,pad,pad],[pad/2,1-pad,pad],[1-pad/2,1-pad,-pad],[1-pad/2,pad,-pad]]
 var poly_class = preload("res://scripts/trapCell.gd") #scenes/hexCell.tscn")
 var poly_instance
+var neon_grid = preload("res://assets/sprites/grid.png")
 
 func init(lev,player_name):
 	global.curr_wv = lev
@@ -23,11 +24,22 @@ func init(lev,player_name):
 
 func _ready():
 	$Spawner.mySpawn()
-	for i in range(12):
-		for j in range(6):
-			poly_instance = poly_class.new()
-			poly_instance.create(i,j)
-			add_child(poly_instance)
+	for i in range(6):
+		var spritefrompreload = Sprite.new()
+		spritefrompreload.set_texture(neon_grid)
+		spritefrompreload.apply_scale(Vector2(.5,.5))
+		#pritefrompreload.region_enabled = true
+		#print(neon_grid.get_size())
+		spritefrompreload.offset = global.neon_offset#neon_grid.get_height()/2*.85)
+		spritefrompreload.rotate(i*PI/3) #pos(Vector2(100, 100))
+		var scale_trans = 180
+		spritefrompreload.translate(global.centre)# + Vector2(scale_trans*sin(i*PI/3),-scale_trans*cos(i*PI/3)))
+		add_child(spritefrompreload)
+#	for i in range(12):
+#		for j in range(6):
+#			poly_instance = poly_class.new()
+#			poly_instance.create(i,j)
+#			add_child(poly_instance)
 
 func _process(delta):
 	if  get_tree().get_nodes_in_group("balls").size() == 0:
