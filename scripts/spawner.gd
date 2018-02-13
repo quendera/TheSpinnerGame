@@ -1,6 +1,7 @@
 extends Node2D
 
-var ball_scene = preload("res://scenes/target.tscn")#scripts/target_grow.gd")#triBall.gd")
+#var ball_scene = preload("res://scenes/target.tscn")#scripts/target_grow.gd")#triBall.gd")
+var ball_scene = preload("res://scripts/triBall.gd")
 var ball_instance
 var input_i #= 0
 var file = File.new()
@@ -57,7 +58,7 @@ func mySpawn():
 		global.sw_score = -ball_per_sw*6-int(arr[sw_order[sw]*ball_per_sw][3]) + 6
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
-			ball_instance = ball_scene.instance()#new()#instance()
+			ball_instance = ball_scene.new()#instance() #
 			var send_rot = int(arr[input_i][0])
 			if rand_flip:
 				send_rot = (6-send_rot)
