@@ -51,9 +51,9 @@ func _process(delta):
 			set_color(col)
 			set_polygon(coords)
 
-func create(rot, subwave, wave, ball_id):
+func create(rot, subwave, ball_id): #wave, 
 	position = global.centre
-	curr_wv = wave
+	#curr_wv = wave
 	cur_rot = int(rot)
 	idx = ball_id
 	coords.resize(4)

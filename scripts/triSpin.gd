@@ -22,7 +22,9 @@ func _draw():
 		var offsetY = 7+order[i][0]-1
 		var offsetX = (offsetY*order[i][1])/sqrt(3)
 		coords[i] = Vector2(offsetX,offsetY)*global.poly_size
-	draw_polyline_colors(coords,PoolColorArray([Color(1,1,1)]),20,1)
+#	for i in range(3):
+#		draw_line(coords[i],coords[i+1],Color(1,1,1),20)
+	draw_polyline(coords,Color(1,1,1),20,1)
 
 func _process(delta):
 	if global.dt < turn_start + global.move_time_new:
