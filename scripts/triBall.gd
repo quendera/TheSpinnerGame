@@ -12,6 +12,7 @@ var death_flag = 0
 var moveDirs = [0,0]
 var cur_rads = [0,0]
 var orders = [-1,1]
+var inset = [.1,-.1]
 var move_start
 var offsetY
 var offsetX
@@ -19,6 +20,7 @@ var offsetX
 func _ready():
 	move_start = global.dt
 	add_to_group("balls")
+	#z_index = 1
 
 func _process(delta):
 	if global.dt <= move_start+global.move_time_new:
@@ -43,7 +45,7 @@ func _process(delta):
 		for i in range(2):
 			for j in range(2):
 				offsetY = max(.01,cur_rads[i])
-				offsetX = (offsetY*orders[fmod(i+j,2)])/sqrt(3)
+				offsetX = (offsetY*orders[fmod(i+j,2)])/sqrt(3) #+inset[fmod(i+j,2)]
 				coords[2*i+j] = Vector2(offsetX,offsetY)*global.poly_size
 		if death_flag == 0:
 			col = global.which_color(cur_rads[1])
@@ -87,5 +89,8 @@ func get_collected(angle):
 		moving = 1
 		move_start = global.dt
 		global.sw_score += age - 6
+		global.score += age - 6
+		#print($"/root/game/score_poly".polygon)
+		$"/root/game/score_poly".polygon = global.pie_hex($"/root/game/score_poly".hex_outline,float(global.score)/$"/root/game/Spawner".accum_points[-1]*6)
 		log_data()
 		death_flag = 1

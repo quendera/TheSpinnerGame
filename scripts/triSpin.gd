@@ -7,24 +7,25 @@ var turn_start = 0
 var data_line = {"ke_time":0, "ke_pos":0, "ke_ID":0, "ke_startstep":0} #"ke_pos_vis":0,
 var data_line_mo = {"mo_time":0,"mo_x":0, "mo_y":0}
 var keyID
-var order = [[0,1],[6,1],[6,-1],[0,-1]]
+var order = [[0,0],[0,1],[6,1],[6,-1],[0,-1],[0,0]]
 
 func _ready():
 	set_process_input(true)
 	global_rotation = 0
 	position = global.centre
+	z_index = 1
 #	set_z(1)
 	
 func _draw():
 	var coords = PoolVector2Array()
-	coords.resize(4)
-	for i in range(4):
+	coords.resize(order.size())
+	for i in range(order.size()):
 		var offsetY = 7+order[i][0]-1
 		var offsetX = (offsetY*order[i][1])/sqrt(3)
 		coords[i] = Vector2(offsetX,offsetY)*global.poly_size
 #	for i in range(3):
 #		draw_line(coords[i],coords[i+1],Color(1,1,1),20)
-	draw_polyline(coords,Color(1,1,1),20,1)
+	draw_polyline(coords,global.which_color(12).inverted(),20,true)
 
 func _process(delta):
 	if global.dt < turn_start + global.move_time_new:
@@ -54,6 +55,7 @@ func _input(event):
 		clickPos = take_action(event.position)
 		if clickPos[1] == 0:
 			get_tree().call_group("balls", "get_collected", rot_int)
+			$"../capture".play()
 		if clickPos[1] == 1:
 			#rot_int_old = rot_int
 			rot_int_new = clickPos[0]
@@ -62,7 +64,8 @@ func _input(event):
 			if rot_int == rot_int_new:
 				advance = 1
 				global.start_step = 1
-				get_tree().get_root().get_node("game").get_node("sw_border").hide()
+	#			get_tree().get_root().get_node("game").get_node("sw_border").hide()
+				$"../sw_border".make_col(Color(1,1,1))
 			else:
 				turn_start = global.dt
 				advance = 1
@@ -89,7 +92,8 @@ func _input(event):
 		keyID = 3
 		advance = 1
 		global.start_step = 1
-		get_tree().get_root().get_node("game").get_node("sw_border").hide()
+#		get_tree().get_root().get_node("game").get_node("sw_border").hide()
+		$"../sw_border".make_col(Color(1,1,1))
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()

@@ -1,103 +1,103 @@
 [gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/target_grow.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/red/upper/u09.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/bottom_grid/1.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/bottom_grid/6.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/bottom_grid/2.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/bottom_grid/4.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/bottom_grid/3.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/bottom_grid/5.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/red/01.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/red/02.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/red/03.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/red/04.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/red/05.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/red/06.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/red/07.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/red/08.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/red/09.png" type="Texture" id=17]
-[ext_resource path="res://assets/sprites/red/10.png" type="Texture" id=18]
-[ext_resource path="res://assets/sprites/red/11.png" type="Texture" id=19]
-[ext_resource path="res://assets/sprites/red/12.png" type="Texture" id=20]
-[ext_resource path="res://assets/sprites/red/upper/u12.png" type="Texture" id=21]
-[ext_resource path="res://assets/sprites/red/upper/u07.png" type="Texture" id=22]
-[ext_resource path="res://assets/sprites/red/upper/u08.png" type="Texture" id=23]
-[ext_resource path="res://assets/sprites/red/upper/u10.png" type="Texture" id=24]
-[ext_resource path="res://assets/sprites/red/upper/u11.png" type="Texture" id=25]
+[ext_resource path="res://assets/sprites/bottom_grid/1.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/bottom_grid/6.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/bottom_grid/2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/bottom_grid/4.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/bottom_grid/3.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/bottom_grid/5.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/red/01.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/red/02.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/red/03.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/red/04.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/red/05.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/red/06.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/red/07.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/red/08.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/red/09.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/red/10.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/red/11.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/red/12.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/red/upper/u12.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/red/upper/u07.png" type="Texture" id=21]
+[ext_resource path="res://assets/sprites/red/upper/u08.png" type="Texture" id=22]
+[ext_resource path="res://assets/sprites/red/upper/u10.png" type="Texture" id=23]
+[ext_resource path="res://assets/sprites/red/upper/u11.png" type="Texture" id=24]
+[ext_resource path="res://assets/sprites/red/upper/u09.png" type="Texture" id=25]
 [ext_resource path="res://scripts/neon_target.gd" type="Script" id=26]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "8",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
 "loop": false,
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "5",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "4",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "12",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "11",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 21 ) ],
 "loop": true,
 "name": "6",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "7",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "9",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 25 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "10",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "8",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="target_grow" type="AnimationPlayer" index="0"]
+[node name="target_grow" type="AnimationPlayer"]
 
 root_node = NodePath("neon_target")
 autoplay = ""
@@ -106,12 +106,13 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 blend_times = [  ]
 script = ExtResource( 1 )
+_sections_unfolded = [ "Playback Options" ]
 
 [node name="neon_target" type="AnimatedSprite" parent="." index="0"]
 
 position = Vector2( 0, -1 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "0"
 script = ExtResource( 26 )
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility" ]

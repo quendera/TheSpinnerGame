@@ -7,6 +7,8 @@ var data_line = {"ba_time":0, "ba_position":0, "ba_ID":0, "ba_age":0} #, "ba_sco
 #var col = Color()
 var death_flag = 0
 
+
+
 func _ready():
 	add_to_group("balls")
 
@@ -57,3 +59,4 @@ func get_collected(angle):
 		global.sw_score += age - 6
 		log_data()
 		death_flag = 1
+

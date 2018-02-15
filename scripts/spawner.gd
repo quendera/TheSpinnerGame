@@ -12,8 +12,9 @@ var ball_per_sw
 var sw_order
 var score_grid = PoolVector2Array()
 var data_line = {"sw_time":0, "sw_subwave_num":0, "sw_offset":0, "sw_flip" : 1}
-var score_class = preload("res://scripts/score_poly.gd")
-var score_instance
+var accum_points = PoolIntArray()
+#var score_class = preload("res://scripts/score_poly.gd")
+#var score_instance
 
 func _ready():
 	randomize()
@@ -29,6 +30,10 @@ func _ready():
 	ball_per_sw = arr.size()/ball_per_sw
 	global.sw_count = sw_order.size()
 	file.close()
+	var accum = 0
+	for i in range(global.sw_count):
+		accum += 6*ball_per_sw + int(arr[sw_order[i]*ball_per_sw][3])
+		accum_points.append(accum)
 
 func _onready():
 	self.set_position($game.center)
@@ -50,12 +55,15 @@ func mySpawn():
 		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
 	else:
-		get_tree().get_root().get_node("game").get_node("sw_border").show()
-		score_instance = score_class.new()
-		score_instance.create(sw+1)
-		add_child(score_instance)
-		global.score += global.sw_score #max(-5,global.sw_score)
-		global.sw_score = -ball_per_sw*6-int(arr[sw_order[sw]*ball_per_sw][3]) + 6
+		#$"../sw_border".show()
+		$"../sw_border".make_col(global.which_color(12).inverted())
+		#score_instance = score_class.new()
+		#score_instance.create(sw+1)
+		#add_child(score_instance)
+		#global.score += global.sw_score #max(-5,global.sw_score)
+		#global.sw_score = -ball_per_sw*6-int(arr[sw_order[sw]*ball_per_sw][3]) + 6
+		#print(global.pie_hex($"../score_total_poly".hex_outline,float(accum_points[sw])/accum_points[-1]*6))
+		$"../score_total_poly".polygon = global.pie_hex($"../score_total_poly".hex_outline,float(accum_points[sw])/accum_points[-1]*6)
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
 			ball_instance = ball_scene.new()#instance() #
