@@ -23,7 +23,8 @@ func create(rad, rot):
 	if rad == 0:
 		coords.remove(0)
 	set_polygon(coords)
+	z_index = -1
 #	set_z(-1)
-	col = global.which_color(rad+1)
-	col.a = .2
+	col = global.which_color(max(0,rad-6)+1)
+	col.a = .2*int(rad > 5)
 	self.set_color(col)
