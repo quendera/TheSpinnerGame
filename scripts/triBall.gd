@@ -88,9 +88,15 @@ func get_collected(angle):
 	if angle == cur_rot and age > 6 and death_flag == 0:
 		moving = 1
 		move_start = global.dt
-		global.sw_score += age - 6
-		global.score += age - 6
+		var sw = $"/root/game/Spawner".sw
+		var point_start = $"/root/game/Spawner".accum_points[-1] - $"/root/game/Spawner".accum_points[sw-1] - global.sw_score
+		var this_point = pow(age - 6,2)
+		get_tree().call_group("score_triangle", "paint",point_start-this_point,point_start,1)
+		global.sw_score += this_point
+		global.score += this_point
+		$"/root/game/score_poly".sw_outline = global.spiral_peel(1 - float($"/root/game/Spawner".accum_points[sw-1] + global.sw_score)/$"/root/game/Spawner".accum_points[-1])
+		$"/root/game/score_poly".update()
 		#print($"/root/game/score_poly".polygon)
-		$"/root/game/score_poly".polygon = global.pie_hex($"/root/game/score_poly".hex_outline,float(global.score)/$"/root/game/Spawner".accum_points[-1]*6)
+		#$"/root/game/score_poly".polygon = global.pie_hex($"/root/game/score_poly".hex_outline,float(global.score)/$"/root/game/Spawner".accum_points[-1]*6)
 		log_data()
 		death_flag = 1
