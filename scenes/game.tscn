@@ -183,40 +183,17 @@ script = ExtResource( 5 )
 
 script = ExtResource( 6 )
 
-[node name="score_poly" type="Polygon2D" parent="." index="9"]
+[node name="score_poly" type="Node2D" parent="." index="9"]
 
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
 script = ExtResource( 7 )
 
-[node name="time_poly" type="Polygon2D" parent="." index="10"]
+[node name="time_poly" type="Node2D" parent="." index="10"]
 
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
 script = ExtResource( 8 )
 
 [node name="score_total_poly" type="Polygon2D" parent="." index="11"]
 
+visible = false
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
