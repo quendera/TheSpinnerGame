@@ -44,6 +44,7 @@ func full_hex(radius,wire):
 	return coords
 	
 func spiral_peel(frac):
+	frac = min(1,frac)
 	frac *= progress_frac[-1]
 	var coords = progress_spiral
 	var ind = progress_frac.bsearch(frac)

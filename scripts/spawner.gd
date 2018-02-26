@@ -35,7 +35,7 @@ func _ready():
 	var accum = 0
 	accum_points.append(accum)
 	for i in range(global.sw_count):
-		accum += 6*6*ball_per_sw + int(arr[sw_order[i]*ball_per_sw][3])
+		accum += int(arr[sw_order[i]*ball_per_sw][3]) #6*6*ball_per_sw + 
 		accum_points.append(accum)
 	#global.progress_rad = global.poly_size*20/sqrt(accum_points[-1])
 #	for i in range(accum_points[-1]):
