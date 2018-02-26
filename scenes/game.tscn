@@ -111,6 +111,7 @@ script = ExtResource( 3 )
 
 [node name="Label2" type="Label" parent="." index="3"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -131,6 +132,7 @@ _sections_unfolded = [ "Rect", "Theme", "Visibility", "custom_constants", "custo
 
 [node name="Label" type="Label" parent="." index="4"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -214,6 +216,6 @@ stream = ExtResource( 10 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0
-bus = "captureBus"
+bus = "Master"
 
 

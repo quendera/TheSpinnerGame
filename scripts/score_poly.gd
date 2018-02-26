@@ -13,9 +13,9 @@ func _ready():
 #	maze_outline = global.maze_hex(global.progress_rad,$"../Spawner".accum_points[-1])
 
 func _draw():
-	rotation = -sw_outline[-1].angle() + PI/2
+	#rotation = -sw_outline[-1].angle() + PI/2
 	draw_polyline(sw_outline,global.which_color(12),5,1)
-	draw_polyline(total_outline,Color(.5,.5,.5),5,1)
+	draw_polyline(total_outline,Color(.1,.1,.1),5,1)
 	
 
 #var start_grow = 0
