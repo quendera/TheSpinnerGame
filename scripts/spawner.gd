@@ -3,12 +3,19 @@ extends Node2D
 #var ball_scene = preload("res://scenes/target.tscn")#scripts/target_grow.gd")#triBall.gd")
 var ball_scene = preload("res://scripts/triBall.gd")
 var ball_instance
-var point_class = preload("res://scripts/score_triangle.gd")
-var point_instance
+var hex_hint_scene = preload("res://scripts/hex_hint.gd")
+var hex_hint_instance
+var hex_hint_slide_scene = preload("res://scripts/hex_hint_slide.gd")
+var hex_hint_slide_instance
+var hex_target_scene = preload("res://scripts/hex_target.gd")
+var hex_target_instance
+#var point_class = preload("res://scripts/score_triangle.gd")
+#var point_instance
 var input_i #= 0
 var file = File.new()
 var arr = {}
 var sw = 0
+var sw_age = 0
 var rand_seq
 var ball_per_sw
 var sw_order
@@ -37,6 +44,10 @@ func _ready():
 	for i in range(global.sw_count):
 		accum += int(arr[sw_order[i]*ball_per_sw][3]) #6*6*ball_per_sw + 
 		accum_points.append(accum)
+	for i in range(ball_per_sw):
+		hex_hint_slide_instance = hex_hint_slide_scene.new()
+		hex_hint_slide_instance.create(0,i)
+		add_child(hex_hint_slide_instance)
 	#global.progress_rad = global.poly_size*20/sqrt(accum_points[-1])
 #	for i in range(accum_points[-1]):
 #		point_instance = point_class.new()#instance()
@@ -66,6 +77,7 @@ func mySpawn():
 		#$"../sw_border".show()
 		$"../sw_border".make_col(global.which_color(12).inverted())
 		$"../score_poly".sw_outline = $"../score_poly".total_outline
+		$"../action_tween".reset()
 		#score_instance = score_class.new()
 		#score_instance.create(sw+1)
 		#add_child(score_instance)
@@ -76,17 +88,27 @@ func mySpawn():
 		#$"../score_total_poly".polygon = global.pie_hex($"../score_total_poly".hex_outline,float(accum_points[sw+1])/accum_points[-1]*6)
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
-			ball_instance = ball_scene.new()#instance() #
 			var send_rot = int(arr[input_i][0])
 			if rand_flip:
 				send_rot = (6-send_rot)
 			send_rot = (send_rot+rand_offset)%6
-			ball_instance.create(send_rot, sw, input_i) #global.curr_wv, input_i)
-			add_child(ball_instance)
-			get_tree().call_group("balls", "step")
-		log_data(rand_offset,rand_flip)
+			get_tree().call_group("hint_slide", "set_next_pos",send_rot,i)
+			# this is for new targets
+#			hex_hint_instance = hex_hint_scene.new()
+#			hex_hint_instance.create(send_rot,i)
+#			add_child(hex_hint_instance)
+			hex_target_instance = hex_target_scene.new()
+			hex_target_instance.create(send_rot,i)
+			add_child(hex_target_instance)
+#			# this is the classical way
+#			ball_instance = ball_scene.new()#instance() #
+#			ball_instance.create(send_rot, sw, input_i) #global.curr_wv, input_i)
+#			add_child(ball_instance)
+#			get_tree().call_group("balls", "step")
+		log_data(rand_offset,rand_flip) #also add scrambled sw?
 		#get_tree().call_group("score_triangle", "paint",accum_points[-1]-accum_points[sw+1],accum_points[-1]-accum_points[sw],0)
 		sw += 1
+		$"../hint_tween".slide_hints()
 		$"../score_poly".total_outline = global.spiral_peel(1 - float(accum_points[sw])/accum_points[-1])
 		$"../score_poly".update()
 	for i in range(6-ball_per_sw):

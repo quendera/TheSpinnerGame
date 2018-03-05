@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scripts/time_poly.gd" type="Script" id=8]
 [ext_resource path="res://scripts/score_total_poly.gd" type="Script" id=9]
 [ext_resource path="res://assets/sounds/capture.wav" type="AudioStream" id=10]
+[ext_resource path="res://scripts/action_tween.gd" type="Script" id=11]
+[ext_resource path="res://scripts/hint_tween.gd" type="Script" id=12]
 
 [sub_resource type="Environment" id=1]
 
@@ -179,10 +181,23 @@ _sections_unfolded = [ "Z" ]
 
 [node name="sw_border" type="Node2D" parent="." index="7"]
 
+visible = false
 script = ExtResource( 5 )
 
-[node name="triSpinner" type="Node2D" parent="." index="8"]
+[node name="triSpinner" type="Polygon2D" parent="." index="8"]
 
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
 script = ExtResource( 6 )
 
 [node name="score_poly" type="Node2D" parent="." index="9"]
@@ -217,5 +232,42 @@ volume_db = 0.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="action_tween" type="Tween" parent="." index="13"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+script = ExtResource( 11 )
+
+[node name="action_timer" type="Timer" parent="." index="14"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = true
+autostart = false
+
+[node name="hint_tween" type="Tween" parent="." index="15"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+script = ExtResource( 12 )
+
+[connection signal="tween_completed" from="action_tween" to="action_tween" method="_on_action_tween_tween_completed"]
+
+[connection signal="tween_step" from="action_tween" to="action_tween" method="_on_action_tween_tween_step"]
+
+[connection signal="timeout" from="action_timer" to="action_tween" method="_on_action_timer_timeout"]
+
+[connection signal="tween_completed" from="hint_tween" to="hint_tween" method="_on_hint_tween_tween_completed"]
+
+[connection signal="tween_step" from="hint_tween" to="hint_tween" method="_on_hint_tween_tween_step"]
 
 
