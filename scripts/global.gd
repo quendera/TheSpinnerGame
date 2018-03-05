@@ -5,7 +5,7 @@ var h = 720
 var cx = w*.65#/2
 var cy = h/2
 var centre = Vector2(cx,cy)
-var move_time_new = .2
+var move_time_new = 1.0/4
 var poly_size = w/47
 var sw_count
 var curr_wv
@@ -14,6 +14,7 @@ var sw_score
 var score
 var progress_loops = 10
 var progress_rad = poly_size/progress_loops*8 #20/sqrt(accum_points[-1])
+var side_offset = float(progress_rad)/1
 var progress_spiral = PoolVector2Array()
 var progress_frac = Array()
 var progress_draw_time = 1
@@ -86,6 +87,19 @@ func maze_hex(radius,numTargets):
 ##slider - 11,153,204
 #targets - 0,224,194 #255,125
 #slider - 
+
+func hex_color(rad,invert=false):
+	var col = Color()
+	col.v = float(rad+2)/(6+2)
+	col.s = 1
+	col.h = 22.0/360
+	if invert:
+		col.h = fmod(col.h+.5,1)
+	return col
+	
+func hint_color(rad):
+	var col = float(rad+2)/(18+2)
+	return Color(col,col,col)
 
 func which_color(rad):
 	var col = Color()

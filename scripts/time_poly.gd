@@ -12,6 +12,7 @@ func _ready():
 	hex_outline = global.progress_spiral #full_hex(radius,1)
 
 func _draw():
+#	rotation = -hex_outline[-1].angle() - PI/2
 	if hex_outline.size() > 1:
 		draw_polyline(hex_outline,color,5,1)
 
@@ -22,7 +23,6 @@ func _process(delta):
 	if coil_len <= 0: #global.dt >= global.total_time:
 		$"..".save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
-	#rotation = -hex_outline[-1].angle() - PI/2
 	if tick > 1:
 		tick -= 1
 		update()

@@ -1,4 +1,4 @@
-extends Node2D
+extends Polygon2D
 
 var rot_int = 3
 var rot_int_new = rot_int
@@ -8,37 +8,52 @@ var data_line = {"ke_time":0, "ke_pos":0, "ke_ID":0, "ke_startstep":0} #"ke_pos_
 var data_line_mo = {"mo_time":0,"mo_x":0, "mo_y":0}
 var keyID
 var order = [[0,0],[0,1],[6,1],[6,-1],[0,-1],[0,0]]
+var coords = PoolVector2Array()
+var colors = PoolColorArray()
 
 func _ready():
 	set_process_input(true)
 	global_rotation = 0
+	offset = Vector2(0,-global.side_offset)
+	coords.resize(4)
+	#coords[0] = Vector2(0,0)
+	coords[1] = global.poly_size*6*Vector2(-1.0/sqrt(3),1)*2+Vector2(-1/sqrt(3),1)*global.side_offset#*3
+	coords[2] = Vector2(-coords[1].x,coords[1].y)
+#	polygon = coords
+	colors.resize(4)
+	colors[0] = global.hex_color(0,true)
+	colors[1] = global.hex_color(6).inverted()
+	colors[2] = colors[1]
+	colors[3] = colors[0]
+	vertex_colors = colors
 	position = global.centre
-	z_index = 1
+	z_index = -1
 #	set_z(1)
 	
 func _draw():
-	var coords = PoolVector2Array()
-	coords.resize(order.size())
-	for i in range(order.size()):
-		var offsetY = 7+order[i][0]-1
-		var offsetX = (offsetY*order[i][1])/sqrt(3)
-		coords[i] = Vector2(offsetX,offsetY)*global.poly_size
-#	for i in range(3):
-#		draw_line(coords[i],coords[i+1],Color(1,1,1),20)
-	draw_polyline(coords,global.which_color(12).inverted(),20,true)
+#	var coords = PoolVector2Array()
+#	coords.resize(order.size())
+#	for i in range(order.size()):
+#		var offsetY = 7+order[i][0]-1
+#		var offsetX = (offsetY*order[i][1])/sqrt(3)
+#		coords[i] = Vector2(offsetX,offsetY)*global.poly_size
+##	for i in range(3):
+##		draw_line(coords[i],coords[i+1],Color(1,1,1),20)
+#	draw_polyline(coords,global.which_color(12).inverted(),20,true)
+	draw_polyline_colors(coords,colors,20,true)
 
-func _process(delta):
-	if global.dt < turn_start + global.move_time_new:
-		global_rotation = (rot_int - angVel*sin((global.dt-turn_start)/global.move_time_new*PI/2))*PI/3 #-angVel for keyboard
-	else:
-		rot_int = fposmod(rot_int - angVel,6)
-		if rot_int != rot_int_new:
-			turn_start = global.dt
-			if global.start_step:
-				get_tree().call_group("balls", "step")
-		else:
-			angVel = 0
-		global_rotation = rot_int*PI/3
+#func _process(delta):
+#	if global.dt < turn_start + global.move_time_new:
+#		global_rotation = (rot_int - angVel*sin((global.dt-turn_start)/global.move_time_new*PI/2))*PI/3 #-angVel for keyboard
+#	else:
+#		rot_int = fposmod(rot_int - angVel,6)
+#		if rot_int != rot_int_new:
+#			turn_start = global.dt
+#			if global.start_step:
+#				get_tree().call_group("balls", "step")
+#		else:
+#			angVel = 0
+#		global_rotation = rot_int*PI/3
 #	var moveDir = fposmod(global_rotation/PI*3 - float(rot_int) ,6)
 #	if moveDir > 3:
 #		moveDir = moveDir-6
@@ -48,30 +63,29 @@ func _process(delta):
 func _input(event):
 	var advance = 0
 	keyID = -1
-	if event is InputEventScreenTouch and event.pressed and global.dt > turn_start + global.move_time_new:
-		log_data_mo(event.position-position)
-		#if(event.button_index == 1):
-		var clickPos
-		clickPos = take_action(event.position)
-		if clickPos[1] == 0:
-			get_tree().call_group("balls", "get_collected", rot_int)
-			$"../capture".play()
-		if clickPos[1] == 1:
-			#rot_int_old = rot_int
-			rot_int_new = clickPos[0]
-			if global.start_step == 0:
-				rot_int = rot_int_new
-			if rot_int == rot_int_new:
-				advance = 1
-				global.start_step = 1
-	#			get_tree().get_root().get_node("game").get_node("sw_border").hide()
-				$"../sw_border".make_col(Color(1,1,1))
-			else:
-				turn_start = global.dt
-				advance = 1
-				angVel = calc_ang_vel(rot_int,rot_int_new)
-		if advance*global.start_step:
-			get_tree().call_group("balls", "step")
+#	if event is InputEventScreenTouch and event.pressed and global.dt > turn_start + global.move_time_new:
+#		log_data_mo(event.position-position)
+#		#if(event.button_index == 1):
+#		var clickPos
+#		clickPos = take_action(event.position)
+#		if clickPos[1] == 0:
+#			get_tree().call_group("balls", "get_collected", rot_int)
+#		if clickPos[1] == 1:
+#			#rot_int_old = rot_int
+#			rot_int_new = clickPos[0]
+#			if global.start_step == 0:
+#				rot_int = rot_int_new
+#			if rot_int == rot_int_new:
+#				advance = 1
+#				global.start_step = 1
+#	#			get_tree().get_root().get_node("game").get_node("sw_border").hide()
+#				$"../sw_border".make_col(Color(1,1,1))
+#			else:
+#				turn_start = global.dt
+#				advance = 1
+#				angVel = calc_ang_vel(rot_int,rot_int_new)
+#		if advance*global.start_step:
+#			get_tree().call_group("balls", "step")
 	if event.is_action_pressed("rotate_right") and global.dt > turn_start + global.move_time_new:
 		keyID = 0
 		angVel = -1

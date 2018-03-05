@@ -15,7 +15,7 @@ func init(lev,player_name):
 	global.score = 0
 	global.start_step = 0
 	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
-	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
+	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"mo_press":[],"mo_lobe":[],"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
 	"ba_time":[], "ba_position":[], "ba_ID":[], "ba_age":[], #"ba_ID_mv":[], "ba_time_mv":[], 
 	"sw_time":[], "sw_subwave_num":[], "sw_offset":[], "sw_flip" : [], "level":lev,
 	"device_current_time":OS.get_datetime(), "device_OS": OS.get_name(), 
@@ -36,20 +36,20 @@ func _ready():
 #		var scale_trans = 180
 #		spritefrompreload.translate(global.centre)# + Vector2(scale_trans*sin(i*PI/3),-scale_trans*cos(i*PI/3)))
 #		add_child(spritefrompreload)
-	for i in range(12):
-		for j in range(6):
-			poly_instance = poly_class.new()
-			poly_instance.create(i,j)
-			add_child(poly_instance)
+#	for i in range(12):
+#		for j in range(6):
+#			poly_instance = poly_class.new()
+#			poly_instance.create(i,j)
+#			add_child(poly_instance)
 
 func _process(delta):
-	if  get_tree().get_nodes_in_group("balls").size() == 0:
+	if !$action_tween.is_active() and (get_tree().get_nodes_in_group("hex_balls").size() + get_tree().get_nodes_in_group("hint_balls").size()) == 0:
 		$Spawner.mySpawn()
 #		get_tree().call_group("score_poly", "report",$Spawner.sw)
 	global.dt += delta
-	$Label2.set_text("Time: "+ str(global.total_time - floor(global.dt)) + " s")
-	$Label.set_text("Score: "+ str(global.score))
-	$Label3.set_text("Wave: "+ str($Spawner.sw) + " of " + str(int($Spawner.arr[$Spawner.arr.size()-1][2])))
+#	$Label2.set_text("Time: "+ str(global.total_time - floor(global.dt)) + " s")
+#	$Label.set_text("Score: "+ str(global.score))
+#	$Label3.set_text("Wave: "+ str($Spawner.sw) + " of " + str(int($Spawner.arr[$Spawner.arr.size()-1][2])))
 
 func save_data():
 	var file = File.new()

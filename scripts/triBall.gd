@@ -91,7 +91,7 @@ func get_collected(angle):
 		var sw = $"/root/game/Spawner".sw
 		var point_start = $"/root/game/Spawner".accum_points[-1] - $"/root/game/Spawner".accum_points[sw-1] - global.sw_score
 		var this_point = pow(age - 6,2)
-		get_tree().call_group("score_triangle", "paint",point_start-this_point,point_start,1)
+		#get_tree().call_group("score_triangle", "paint",point_start-this_point,point_start,1)
 		global.sw_score += this_point
 		global.score += this_point
 		$"/root/game/score_poly".sw_outline = global.spiral_peel(1 - float($"/root/game/Spawner".accum_points[sw-1] + global.sw_score)/$"/root/game/Spawner".accum_points[-1])
