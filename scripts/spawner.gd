@@ -35,7 +35,7 @@ func _ready():
 			arr[i] = target_line
 			i = i+1
 	ball_per_sw = int(arr[arr.size()-1][2])
-	sw_order = range(ball_per_sw)#shuffleList(range(ball_per_sw))
+	sw_order = shuffleList(range(ball_per_sw)) #range(ball_per_sw)#
 	ball_per_sw = arr.size()/ball_per_sw
 	global.sw_count = sw_order.size()
 	file.close()
@@ -44,10 +44,10 @@ func _ready():
 	for i in range(global.sw_count):
 		accum += int(arr[sw_order[i]*ball_per_sw][3]) #6*6*ball_per_sw + 
 		accum_points.append(accum)
-	for i in range(ball_per_sw):
-		hex_hint_slide_instance = hex_hint_slide_scene.new()
-		hex_hint_slide_instance.create(0,i)
-		add_child(hex_hint_slide_instance)
+#	for i in range(ball_per_sw):
+#		hex_hint_slide_instance = hex_hint_slide_scene.new()
+#		hex_hint_slide_instance.create(0,i)
+#		add_child(hex_hint_slide_instance)
 	#global.progress_rad = global.poly_size*20/sqrt(accum_points[-1])
 #	for i in range(accum_points[-1]):
 #		point_instance = point_class.new()#instance()
@@ -94,9 +94,9 @@ func mySpawn():
 			send_rot = (send_rot+rand_offset)%6
 			get_tree().call_group("hint_slide", "set_next_pos",send_rot,i)
 			# this is for new targets
-#			hex_hint_instance = hex_hint_scene.new()
-#			hex_hint_instance.create(send_rot,i)
-#			add_child(hex_hint_instance)
+			hex_hint_instance = hex_hint_scene.new()
+			hex_hint_instance.create(send_rot,i)
+			add_child(hex_hint_instance)
 			hex_target_instance = hex_target_scene.new()
 			hex_target_instance.create(send_rot,i)
 			add_child(hex_target_instance)
