@@ -23,7 +23,7 @@ func create(rot, ball_id):
 	
 func set_shape(wave_age):
 	age = 6-idx+wave_age
-	if age > 0:
+	if age > 0 and wave_age <= 0:
 		cur_rads = [max(age-1,eps),min(6,age)+eps]
 		for i in range(2):
 			for j in range(2):
@@ -31,5 +31,15 @@ func set_shape(wave_age):
 				cols[2*i+j] = global.hint_color(cur_rads[i])
 		polygon = coords
 		vertex_colors = cols
-	if age >= 7:
+#	if age >= 7:
+#		queue_free()
+
+func dimmer(id,val):
+	if idx == id:
+		modulate = Color(1,1,1,val)
+#		for i in range(4):
+#			vertex_colors[i].a = val
+
+func eliminate(id):
+	if idx == id:
 		queue_free()

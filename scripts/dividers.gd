@@ -16,6 +16,6 @@ func _draw():
 #		self.draw_line(Vector2(-offsetX,-offsetY),Vector2(offsetX,offsetY),Color(0,0,0),5)#Color(0,0,0)
 	for i in range(6):
 		coords = global.full_hex(global.poly_size*(i+dist)*4/sqrt(3)+global.side_offset*2/sqrt(3),1)
-		draw_polyline(coords,global.hex_color(i),2) #Color(0,0,0)
+		draw_polyline(coords,global.hint_color(i),2) #Color(0,0,0)
 	coords = global.full_hex(global.poly_size*(6)*4/sqrt(3)+global.side_offset*2/sqrt(3),1)
 	draw_polyline(coords,global.hex_color(6,true),2)

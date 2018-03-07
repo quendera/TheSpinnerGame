@@ -43,7 +43,7 @@ func _ready():
 #			add_child(poly_instance)
 
 func _process(delta):
-	if !$action_tween.is_active() and (get_tree().get_nodes_in_group("hex_balls").size() + get_tree().get_nodes_in_group("hint_balls").size()) == 0:
+	if !$action_tween.is_active() and (get_tree().get_nodes_in_group("hex_balls").size()) == 0: #+ get_tree().get_nodes_in_group("hint_balls").size()
 		$Spawner.mySpawn()
 #		get_tree().call_group("score_poly", "report",$Spawner.sw)
 	global.dt += delta
