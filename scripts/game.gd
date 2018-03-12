@@ -3,8 +3,8 @@ extends Node2D
 var circScale = 34
 var pad = .1
 var order = [[pad/2,pad,pad],[pad/2,1-pad,pad],[1-pad/2,1-pad,-pad],[1-pad/2,pad,-pad]]
-var poly_class = preload("res://scripts/trapCell.gd") #scenes/hexCell.tscn")
-var poly_instance
+#var poly_class = preload("res://scripts/trapCell.gd") #scenes/hexCell.tscn")
+#var poly_instance
 #var neon_grid = preload("res://assets/sprites/grid.png")
 
 func init(lev,player_name):

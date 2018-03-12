@@ -12,10 +12,6 @@ var last_press_loc = Vector2(0,0)
 var curr_press_loc
 var drag_vel
 var motion_thresh = OS.get_screen_dpi()*.1 #pixels
-#var total_drag = Vector2(0,0)
-#var delay_timer = Timer()
-#signal delay_action
-#var delay_msec = 1
 
 func _ready():
 	pass
@@ -45,12 +41,11 @@ func _input(event):
 		
 		
 func reset():
-	wave_age = -6#global.curr_wv
+	wave_age = -6
 	collection_sequence = 0
 	location_queue.resize(1)
 	location_queue[0] = -1
 	action_queue.resize(0)
-	#take_action()
 	$"../move".play()
 	interpolate_property(self,"wave_age",wave_age,0,global.move_time_new,transition,ease_direction)
 	start()
@@ -58,7 +53,7 @@ func reset():
 func add_to_queue(lobe,dragged):
 	if location_queue[-1] == -1:
 		location_queue.append(lobe-1)
-		action_queue.append(0)#2*int(dragged)) #FIX THIS TO ALLOW FIRST COLLECTION
+		action_queue.append(0)
 		if dragged:
 			location_queue.append(lobe-1)
 			action_queue.append(2)
@@ -68,7 +63,6 @@ func add_to_queue(lobe,dragged):
 		if vel == 0:
 			location_queue.append(location_queue[-1])
 			action_queue.append(2*int(dragged))
-#			$"../check_drag_timer".start()
 		else:
 			while vel != 0:
 				location_queue.append(fposmod(location_queue[-1]-vel,6))
@@ -83,17 +77,13 @@ func add_to_queue(lobe,dragged):
 #remove next if problme
 func take_action():
 	if action_queue.size() > 0 and action_queue[0] == 2:
-		#run collection tween
 		get_tree().call_group("hex_balls", "get_collected", location_queue[1])
 		location_queue.remove(0)
 		action_queue.remove(0)
-		interpolate_property(self,"collection_sequence",0,1,global.move_time_new,transition, EASE_OUT)
+		interpolate_property(self,"collection_sequence",.001,1,global.move_time_new,transition, EASE_OUT)
 	else:
 		$"../move".play()
-		interpolate_property(self,"wave_age",wave_age,wave_age+1,global.move_time_new,transition,ease_direction)
-#		get_tree().call_group("balls", "step")
-#		if action_queue != 0:
-#			$"../triSpinner".move_slider(action_queue[0])
+		interpolate_property(self,"wave_age",wave_age+.001,wave_age+1,global.move_time_new,transition,ease_direction)
 	start()
 
 func calc_ang_vel(curr_loc,new_loc):
@@ -131,10 +121,10 @@ func _on_action_tween_tween_completed( object, key ):
 		$"../dividers".update()
 		get_tree().call_group("hint_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_balls", "set_shape", wave_age)
+		get_tree().call_group("hex_slider","set_shape", wave_age,location_queue,action_queue,1)
 		if action_queue.size() != 0:
 			location_queue.remove(0)
 			action_queue.remove(0)
-		$"../triSpinner".global_rotation = location_queue[0]*PI/3
 	if action_queue.size() != 0 or wave_age < 0:
 		take_action()
 
@@ -143,19 +133,9 @@ func _on_action_tween_tween_step( object, key, elapsed, value ):
 		get_tree().call_group("hex_balls", "run_collection", collection_sequence)
 	else:
 		$"../dividers".update()
-		if action_queue.size() > 0 and abs(action_queue[0]) == 1:
-			$"../triSpinner".global_rotation = PI/3*(location_queue[1] + action_queue[0]*(1-fmod(wave_age,1)))
-		if location_queue[0] == -1:
-			pass#grow spinner
-	#	if action_queue.size() > 1 and action_queue[1] == 2 and location_queue[0] == location_queue[2]:
-	#		wave_age = floor(wave_age)
-	#		stop_all()
-	#		action_queue.remove(0)
-	#		location_queue.remove(0)
-	#		take_action()
-	#	else:
 		get_tree().call_group("hint_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_balls", "set_shape", wave_age)
+		get_tree().call_group("hex_slider","set_shape", wave_age,location_queue,action_queue)
 
 func _on_action_timer_timeout():
 	drag_vel = last_press_loc - curr_press_loc
