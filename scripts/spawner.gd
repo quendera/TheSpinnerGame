@@ -1,17 +1,14 @@
 extends Node2D
 
-#var ball_scene = preload("res://scenes/target.tscn")#scripts/target_grow.gd")#triBall.gd")
-var ball_scene = preload("res://scripts/triBall.gd")
-var ball_instance
 var hex_hint_scene = preload("res://scripts/hex_hint.gd")
 var hex_hint_instance
-var hex_hint_slide_scene = preload("res://scripts/hex_hint_slide.gd")
-var hex_hint_slide_instance
+#var hex_hint_slide_scene = preload("res://scripts/hex_hint_slide.gd")
+#var hex_hint_slide_instance
+var hex_slide_scene = preload("res://scripts/hex_slider.gd")
+var hex_slide_instance
 var hex_target_scene = preload("res://scripts/hex_target.gd")
 var hex_target_instance
-#var point_class = preload("res://scripts/score_triangle.gd")
-#var point_instance
-var input_i #= 0
+var input_i
 var file = File.new()
 var arr = {}
 var sw = 0
@@ -22,8 +19,6 @@ var sw_order
 var score_grid = PoolVector2Array()
 var data_line = {"sw_time":0, "sw_subwave_num":0, "sw_offset":0, "sw_flip" : 1}
 var accum_points = PoolIntArray()
-#var score_class = preload("res://scripts/score_poly.gd")
-#var score_instance
 
 func _ready():
 	randomize()
@@ -42,17 +37,13 @@ func _ready():
 	var accum = 0
 	accum_points.append(accum)
 	for i in range(global.sw_count):
-		accum += int(arr[sw_order[i]*ball_per_sw][3]) #6*6*ball_per_sw + 
+		accum += int(arr[sw_order[i]*ball_per_sw][3])  
 		accum_points.append(accum)
-#	for i in range(ball_per_sw):
-#		hex_hint_slide_instance = hex_hint_slide_scene.new()
-#		hex_hint_slide_instance.create(0,i)
-#		add_child(hex_hint_slide_instance)
-	#global.progress_rad = global.poly_size*20/sqrt(accum_points[-1])
-#	for i in range(accum_points[-1]):
-#		point_instance = point_class.new()#instance()
-#		point_instance.create(i) #global.curr_wv, input_i)
-#		add_child(point_instance)
+	for i in range(6):
+		for j in range(2):
+			hex_slide_instance = hex_slide_scene.new()
+			add_child(hex_slide_instance)
+			hex_slide_instance.create(i,j)
 
 func _onready():
 	self.set_position($game.center)
@@ -74,18 +65,9 @@ func mySpawn():
 		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
 	else:
-		#$"../sw_border".show()
-		$"../sw_border".make_col(global.which_color(12).inverted())
 		$"../score_poly".sw_outline = $"../score_poly".total_outline
 		$"../action_tween".reset()
-		#score_instance = score_class.new()
-		#score_instance.create(sw+1)
-		#add_child(score_instance)
-		#global.score += global.sw_score #max(-5,global.sw_score)
-		#get_tree().call_group("score_triangle", "paint",accum_points[-1]-accum_points[sw],accum_points[-1]-accum_points[max(0,sw-1)]-global.sw_score,-1)
-		global.sw_score = 0#-ball_per_sw*6-int(arr[sw_order[sw]*ball_per_sw][3]) + 6
-		#print(global.pie_hex($"../score_total_poly".hex_outline,float(accum_points[sw])/accum_points[-1]*6))
-		#$"../score_total_poly".polygon = global.pie_hex($"../score_total_poly".hex_outline,float(accum_points[sw+1])/accum_points[-1]*6)
+		global.sw_score = 0
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
 			var send_rot = int(arr[input_i][0])

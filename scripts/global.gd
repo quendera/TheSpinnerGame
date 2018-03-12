@@ -6,7 +6,7 @@ var cx = w*.65#/2
 var cy = h/2
 var centre = Vector2(cx,cy)
 var move_time_new = 1.0/4
-var poly_size = w/47
+var poly_size = w/60
 var sw_count
 var curr_wv
 var total_time
@@ -14,7 +14,7 @@ var sw_score
 var score
 var progress_loops = 10
 var progress_rad = poly_size/progress_loops*8 #20/sqrt(accum_points[-1])
-var side_offset = float(progress_rad)/1
+var side_offset = float(progress_rad)
 var progress_spiral = PoolVector2Array()
 var progress_frac = Array()
 var progress_draw_time = 1
@@ -38,7 +38,7 @@ func pie_hex(full,angle):
 		coords[coords.size()-1] = full[coords.size()-2]*angle+full[coords.size()-3]*(1-angle)
 	return coords
 	
-func full_hex(radius,wire):
+func full_hex(radius,wire =0):
 	var coords = PoolVector2Array()
 	for i in range(6+wire):
 		coords.append(Vector2(cos(float(i)/3*PI),sin(float(i)/3*PI))*radius)
