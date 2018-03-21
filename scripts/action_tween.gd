@@ -13,6 +13,7 @@ var curr_press_loc
 var drag_vel
 var motion_thresh = OS.get_screen_dpi()*.1 #pixels
 
+
 func _ready():
 	pass
 #	connect("delay_action",
@@ -98,7 +99,7 @@ func log_data_mo(mo_pos,pressed):
 	if pressed and which_action(mo_pos) > 0:
 		$"../action_timer".start()
 		last_press_loc = mo_pos
-	data_line["mo_time"] = global.dt
+	data_line["mo_time"] = OS.get_ticks_msec()#global.dt
 	data_line["mo_x"] = mo_pos.x
 	data_line["mo_y"] = mo_pos.y
 	data_line["mo_press"] = int(pressed)
@@ -110,7 +111,7 @@ func which_action(click_loc):
 	var lobe = fposmod(6-round(atan2(click_loc.x,click_loc.y)/PI*3),6)
 	var lobe_angle = (lobe)*PI/3
 	var dist = sin(-lobe_angle)*click_loc.x+cos(-lobe_angle)*click_loc.y
-	return (lobe+1)*int(dist < 12*global.poly_size + global.side_offset)
+	return (lobe+1)*int(dist < 6*global.poly_size + global.side_offset)
 
 func _on_action_tween_tween_completed( object, key ):
 	stop_all()
@@ -122,6 +123,8 @@ func _on_action_tween_tween_completed( object, key ):
 		get_tree().call_group("hint_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_slider","set_shape", wave_age,location_queue,action_queue,1)
+		#$"../score_poly".set_shape(wave_age)
+		#$"../Spawner".progress_line_instance.set_shape(wave_age,1)
 		if action_queue.size() != 0:
 			location_queue.remove(0)
 			action_queue.remove(0)
@@ -136,6 +139,8 @@ func _on_action_tween_tween_step( object, key, elapsed, value ):
 		get_tree().call_group("hint_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_slider","set_shape", wave_age,location_queue,action_queue)
+		#$"../score_poly".set_shape(wave_age)
+		#$"../Spawner".progress_line_instance.set_shape(wave_age)
 
 func _on_action_timer_timeout():
 	drag_vel = last_press_loc - curr_press_loc

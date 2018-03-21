@@ -2,29 +2,28 @@ extends Node
 
 var w = 1280
 var h = 720
-var cx = w*.65#/2
-var cy = h/2
-var centre = Vector2(cx,cy)
+var padding = .15
+var centre = Vector2(w-h/sqrt(3),h*.5)
 var move_time_new = 1.0/4
-var poly_size = w/60
+var offset_poly_ratio = .5
+var poly_size = ((1-padding)*h)/2/(6+offset_poly_ratio)#w/50
+var side_offset = poly_size*offset_poly_ratio
 var sw_count
 var curr_wv
 var total_time
 var sw_score
 var score
-var progress_loops = 10
-var progress_rad = poly_size/progress_loops*8 #20/sqrt(accum_points[-1])
-var side_offset = float(progress_rad)
-var progress_spiral = PoolVector2Array()
-var progress_frac = Array()
-var progress_draw_time = 1
-var n_vertex = 6
+#var progress_loops = 10
+#var progress_rad = poly_size#/10.0*8 #20/sqrt(accum_points[-1])
+#var side_offset = float(progress_rad)
+#var progress_spiral = PoolVector2Array()
+#var progress_frac = Array()
+#var progress_draw_time = 1
 var dt
-var start_step
+#var start_step
 var save_file_name
 var data
-var sw_end_flag = 0
-var neon_offset = Vector2(0,-360)
+#var sw_end_flag = 0
 
 func _ready():
 	pass
@@ -44,44 +43,44 @@ func full_hex(radius,wire =0):
 		coords.append(Vector2(cos(float(i)/3*PI),sin(float(i)/3*PI))*radius)
 	return coords
 	
-func spiral_peel(frac):
-	frac = min(1,frac)
-	frac *= progress_frac[-1]
-	var coords = progress_spiral
-	var ind = progress_frac.bsearch(frac)
-	coords.resize(ind+1)
-	if ind > 0:
-		var weight = (progress_frac[ind]-frac)/(progress_frac[ind]-progress_frac[ind-1])
-		coords[-1] = (1-weight)*coords[-1] + (weight)*coords[-2]
-	return coords
-	
-func spiral_hex():
-	progress_spiral.resize(n_vertex*progress_loops+1)
-	progress_frac.resize(n_vertex*progress_loops+1)
-	var offset = progress_rad*Vector2(cos(float(1)/n_vertex*2*PI),sin(float(1)/n_vertex*2*PI))
-	progress_frac[0] = 0
-	for i in range(progress_loops):
-		for j in range(n_vertex):
-			progress_frac[i*n_vertex+j+1] = progress_frac[i*n_vertex+j] + i+1
-			progress_spiral[i*n_vertex+j+1] = Vector2(cos(float(j+1)/n_vertex*2*PI),sin(float(j+1)/n_vertex*2*PI))*(i+1)*progress_rad
-			if j == n_vertex - 1 and i < progress_loops - 1:
-				progress_spiral[i*n_vertex+j+1] += offset
-				progress_frac[i*n_vertex+j+1] += 1
-			elif j == 0 and i > 0:
-				progress_frac[i*n_vertex+j+1] -= 1
-	
-func maze_hex(radius,numTargets):
-	var layers = ceil(sqrt(float(numTargets)/6))
-	var base 
-	var coords = PoolVector2Array()
-	var offset = radius*Vector2(cos(float(1)/3*PI),sin(float(1)/3*PI))
-	for i in range(layers):
-		base = float(numTargets - 6*pow(i,2))/(2*i+1)
-		for j in range(min(6,ceil(base))):
-			coords.append(Vector2(cos(float(j+1)/3*PI),sin(float(j+1)/3*PI))*(i+1)*radius)
-			if j == 5 and i < layers - 1:
-				coords[-1] += offset
-	return coords
+#func spiral_peel(frac):
+#	frac = min(1,frac)
+#	frac *= 1#progress_frac[-1]
+#	var coords = progress_spiral
+#	var ind = progress_frac.bsearch(frac)
+#	coords.resize(ind+1)
+#	if ind > 0:
+#		var weight = (progress_frac[ind]-frac)/(progress_frac[ind]-progress_frac[ind-1])
+#		coords[-1] = (1-weight)*coords[-1] + (weight)*coords[-2]
+#	return coords
+#
+#func spiral_hex():
+#	progress_spiral.resize(n_vertex*progress_loops+1)
+#	progress_frac.resize(n_vertex*progress_loops+1)
+#	var offset = progress_rad*Vector2(cos(float(1)/n_vertex*2*PI),sin(float(1)/n_vertex*2*PI))
+#	progress_frac[0] = 0
+#	for i in range(progress_loops):
+#		for j in range(n_vertex):
+#			progress_frac[i*n_vertex+j+1] = progress_frac[i*n_vertex+j] + i+1
+#			progress_spiral[i*n_vertex+j+1] = Vector2(cos(float(j+1)/n_vertex*2*PI),sin(float(j+1)/n_vertex*2*PI))*(i+1)*progress_rad
+#			if j == n_vertex - 1 and i < progress_loops - 1:
+#				progress_spiral[i*n_vertex+j+1] += offset
+#				progress_frac[i*n_vertex+j+1] += 1
+#			elif j == 0 and i > 0:
+#				progress_frac[i*n_vertex+j+1] -= 1
+#
+#func maze_hex(radius,numTargets):
+#	var layers = ceil(sqrt(float(numTargets)/6))
+#	var base 
+#	var coords = PoolVector2Array()
+#	var offset = radius*Vector2(cos(float(1)/3*PI),sin(float(1)/3*PI))
+#	for i in range(layers):
+#		base = float(numTargets - 6*pow(i,2))/(2*i+1)
+#		for j in range(min(6,ceil(base))):
+#			coords.append(Vector2(cos(float(j+1)/3*PI),sin(float(j+1)/3*PI))*(i+1)*radius)
+#			if j == 5 and i < layers - 1:
+#				coords[-1] += offset
+#	return coords
 	
 ##background - 255,0,59
 ##slider - 11,153,204

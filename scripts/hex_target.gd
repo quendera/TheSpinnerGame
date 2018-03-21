@@ -12,7 +12,7 @@ var this_point
 
 func _ready():
 	add_to_group("hex_balls")
-	offset = Vector2(0,global.side_offset)
+	offset = Vector2(0,global.side_offset/2)
 
 func create(rot, ball_id): 
 	position = global.centre
@@ -41,12 +41,14 @@ func set_shape(wave_age):
 				is_collected = 1
 			for i in range(3):
 				var ang = float(i+(age-6))/3*PI*2
-				coords[i] = Vector2(sin(ang)*(7-age),-cos(ang)*(7-age)+1)/sqrt(3)*global.poly_size*2*6
+				#coords[i] = Vector2(sin(ang)*(age-6+1.0/6)*6,-cos(ang)*(age-6+1.0/6)*6+1)/sqrt(3)*global.poly_size*2*6
+				#cols[i].a = 7-age
+				coords[i] = Vector2(sin(ang)*(7-age),-cos(ang)*(7-age)+1)/sqrt(3)*global.poly_size*6
 				cols[i] = global.hex_color((7-age-int(i == 0))*6)*(7-age) + global.hint_color((7-age-int(i == 0))*6)*(age-6)
 			get_tree().call_group("hint_balls", "dimmer",idx,7-age)
 		else:
 			for i in range(2):
-				coords[i+1] = Vector2((age*orders[i])/sqrt(3),age)*global.poly_size*2
+				coords[i+1] = Vector2((age*orders[i])/sqrt(3),age)*global.poly_size
 				cols[i+1] = global.hex_color(age)
 				#cols[i+1].a = .5
 		polygon = coords
@@ -55,7 +57,7 @@ func set_shape(wave_age):
 		log_data()
 	
 func log_data():
-	data_line["ba_time"] = global.dt
+	data_line["ba_time"] = OS.get_ticks_msec()#global.dt
 	data_line["ba_ID"] = idx
 	data_line["ba_position"] = cur_rot #redundant
 	data_line["ba_age"] = age
@@ -70,10 +72,12 @@ func get_collected(angle):
 		get_node("/root/game/collect"+String(age)).play()
 		#$String(["/root/game/collect",age]).play()
 		var sw = $"/root/game/Spawner".sw
-		var point_start = $"/root/game/Spawner".accum_points[-1] - $"/root/game/Spawner".accum_points[sw-1] - global.sw_score
+		#var point_start = $"/root/game/Spawner".accum_points[-1] - $"/root/game/Spawner".accum_points[sw-1] - global.sw_score
 		this_point = pow(age,2)
-		global.sw_score += this_point
 		global.score += this_point
-		$"/root/game/score_poly".sw_outline = global.spiral_peel(1 - float($"/root/game/Spawner".accum_points[sw-1] + global.sw_score)/$"/root/game/Spawner".accum_points[-1])
-		$"/root/game/score_poly".update()
+		this_point = this_point/$"/root/game/Spawner".curr_wv_points
+		$"/root/game/progress_tween".slide_hints(this_point)
+		#global.sw_score += this_point
+#		$"/root/game/score_poly".sw_outline = global.spiral_peel(1 - float($"/root/game/Spawner".accum_points[sw-1] + global.sw_score)/$"/root/game/Spawner".accum_points[-1])
+#		$"/root/game/score_poly".update()
 

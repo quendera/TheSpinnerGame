@@ -1,21 +1,34 @@
-extends Node2D
+extends Polygon2D
 
-var total_outline
-var sw_outline
-#var maze_outline = PoolVector2Array()
+#var total_outline
+#var sw_outline
 
 func _ready():
-#	color = global.which_color(12).inverted()
 	position = Vector2(global.w*.2,global.h*.25)
-	global.spiral_hex()
-	total_outline = global.progress_spiral #global.full_hex(global.progress_rad,1)
-	sw_outline = global.progress_spiral
-#	maze_outline = global.maze_hex(global.progress_rad,$"../Spawner".accum_points[-1])
+	polygon = global.full_hex(global.poly_size*4)
+	color = global.hint_color(8)
+#	global.spiral_hex()
+#	total_outline = global.progress_spiral #global.full_hex(global.progress_rad,1)
+#	sw_outline = global.progress_spiral
 
-func _draw():
-	#rotation = -sw_outline[-1].angle() + PI/2
-	draw_polyline(sw_outline,global.which_color(12),5,1)
-	draw_polyline(total_outline,Color(.1,.1,.1),5,1)
+#func _draw():
+#	draw_polyline(global.full_hex(global.progress_rad*8,1),global.hint_color(1),2)
+
+func set_shape(wave_age):
+	if wave_age <= 0:
+		wave_age = float(-wave_age)/6
+#		$"../score_sw_poly".set_shape(wave_age,[0,
+#		var sc = (1-(wave_age*float($"../Spawner".accum_points[$"../Spawner".sw]) + \
+#			(1-wave_age)*float($"../Spawner".accum_points[$"../Spawner".sw+1]))/ \
+#			$"../Spawner".accum_points[-1])
+#		polygon = global.full_hex(global.progress_rad*8*sc)
+		scale = Vector2(1,1)*(1-(wave_age*float($"../Spawner".accum_points[$"../Spawner".sw]) + \
+			(1-wave_age)*float($"../Spawner".accum_points[$"../Spawner".sw+1]))/ \
+			$"../Spawner".accum_points[-1])
+#func _draw():
+#	#rotation = -sw_outline[-1].angle() + PI/2
+#	draw_polyline(sw_outline,global.which_color(12),5,1)
+#	draw_polyline(total_outline,Color(.1,.1,.1),5,1)
 	
 
 #var start_grow = 0

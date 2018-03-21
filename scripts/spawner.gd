@@ -8,11 +8,14 @@ var hex_slide_scene = preload("res://scripts/hex_slider.gd")
 var hex_slide_instance
 var hex_target_scene = preload("res://scripts/hex_target.gd")
 var hex_target_instance
+var progress_line_scene = preload("res://scripts/progress_line.gd")
+var progress_line_instance
 var input_i
 var file = File.new()
 var arr = {}
 var sw = 0
 var sw_age = 0
+var curr_wv_points
 var rand_seq
 var ball_per_sw
 var sw_order
@@ -60,14 +63,17 @@ func shuffleList(list):
 func mySpawn():
 	var rand_offset = randi() % 6
 	var rand_flip = randi() % 2
-	global.start_step = 0
+#	global.start_step = 0
 	if sw >= sw_order.size():
 		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
 	else:
-		$"../score_poly".sw_outline = $"../score_poly".total_outline
+#		$"../score_poly".sw_outline = $"../score_poly".total_outline
 		$"../action_tween".reset()
-		global.sw_score = 0
+		curr_wv_points = accum_points[sw+1]-accum_points[sw]
+		progress_line_instance = progress_line_scene.new()
+		add_child(progress_line_instance)
+		$"../progress_tween".reset_hints()#slide_hints(1)
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
 			var send_rot = int(arr[input_i][0])
@@ -91,13 +97,13 @@ func mySpawn():
 		#get_tree().call_group("score_triangle", "paint",accum_points[-1]-accum_points[sw+1],accum_points[-1]-accum_points[sw],0)
 		sw += 1
 		$"../hint_tween".slide_hints()
-		$"../score_poly".total_outline = global.spiral_peel(1 - float(accum_points[sw])/accum_points[-1])
-		$"../score_poly".update()
+#		$"../score_poly".total_outline = global.spiral_peel(1 - float(accum_points[sw])/accum_points[-1])
+#		$"../score_poly".update()
 	for i in range(6-ball_per_sw):
 		get_tree().call_group("balls", "step")
 
 func log_data(offset,flip):
-	data_line["sw_time"] = global.dt
+	data_line["sw_time"] = OS.get_ticks_msec()#global.dt
 	data_line["sw_subwave_num"] = sw_order[sw]
 	data_line["sw_offset"] = offset
 	data_line["sw_flip"] = flip
