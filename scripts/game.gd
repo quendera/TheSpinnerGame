@@ -13,7 +13,7 @@ func init(lev,player_name):
 	global.total_time = 300+int(lev > 4)*300
 	global.sw_score = 0
 	global.score = 0
-	global.start_step = 0
+#	global.start_step = 0
 	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
 	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"mo_press":[],"mo_lobe":[],"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
 	"ba_time":[], "ba_position":[], "ba_ID":[], "ba_age":[], #"ba_ID_mv":[], "ba_time_mv":[], 
@@ -63,3 +63,10 @@ func save_data():
 ##	var get_len = get_tree().get_nodes_in_group("balls").size()
 ##	if  get_len == 0:
 ##		$score_poly.report(global.score) # global.score)
+
+func _on_progress_tween_tween_completed( object, key ):
+	pass # replace with function body
+
+
+func _on_progress_tween_tween_step( object, key, elapsed, value ):
+	pass # replace with function body

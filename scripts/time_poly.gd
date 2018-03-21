@@ -14,7 +14,7 @@ func _ready():
 func _draw():
 #	rotation = -hex_outline[-1].angle() - PI/2
 	if hex_outline.size() > 1:
-		draw_polyline(hex_outline,color,5,1)
+		draw_polyline(hex_outline,color,10,1)
 
 func _process(delta):
 	coil_len = (global.total_time - global.dt)/global.total_time # + float(global.score)/$"../Spawner".accum_points[-1]

@@ -8,7 +8,7 @@ var cols = PoolColorArray()
 var stretch = [1,1]
 
 func _ready():
-	hexcoords = global.full_hex(global.side_offset/sqrt(3),0)
+	hexcoords = global.full_hex(global.side_offset/sqrt(3)/2,0)
 	add_to_group("hex_slider")
 	coords.resize(6)
 	cols.resize(6)
@@ -18,12 +18,12 @@ func create(rot, rad):
 	position = global.centre
 	cur_rot = int(rot)
 	if rad == 1:
-		offset = Vector2(0,1.5*global.side_offset+12*global.poly_size)
-		rotation = cur_rot*PI/3#
+		offset = Vector2(0,.75*global.side_offset+6*global.poly_size)
+		rotation = cur_rot*PI/3
 		color = global.hex_color(6,true)
 		stretch = [-1,1]
 	else:
-		offset = Vector2(global.poly_size*12/sqrt(3)+global.side_offset*sqrt(3)/2,0)
+		offset = Vector2(global.poly_size*6/sqrt(3)+global.side_offset*sqrt(3)/4,0)
 		rotation = (cur_rot+1)*PI/3
 	update_shape()
 
@@ -33,7 +33,7 @@ func update_shape():
 	elif stretch[0] > stretch[1]:
 		stretch = [stretch[1],stretch[0]]
 	for i in range(6):
-		coords[i] = hexcoords[i] + Vector2(stretch[int(i < 2 or i == 5)]*(global.poly_size*12/sqrt(3)+global.side_offset*sqrt(3)/2),0)
+		coords[i] = hexcoords[i] + Vector2(stretch[int(i < 2 or i == 5)]*(global.poly_size*6/sqrt(3)+global.side_offset*sqrt(3)/4),0)
 		if edge == 0:
 			cols[i] = global.hex_color(stretch[int(i < 2 or i == 5)]*3+3,true)
 	polygon = coords
