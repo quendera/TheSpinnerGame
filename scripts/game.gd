@@ -63,10 +63,3 @@ func save_data():
 ##	var get_len = get_tree().get_nodes_in_group("balls").size()
 ##	if  get_len == 0:
 ##		$score_poly.report(global.score) # global.score)
-
-func _on_progress_tween_tween_completed( object, key ):
-	pass # replace with function body
-
-
-func _on_progress_tween_tween_step( object, key, elapsed, value ):
-	pass # replace with function body
