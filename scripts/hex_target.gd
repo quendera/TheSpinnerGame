@@ -26,11 +26,19 @@ func create(rot, ball_id):
 	
 func run_collection(progress):
 	if is_collected == 1:
-		position = global.centre - progress*global.move_time_new/.1*$"/root/game/action_tween".drag_vel #.rotated(float(cur_rot)/3*PI)
-		scale = Vector2(1,1)*(1-progress)#max(0,1-progress*36/this_point)
+		#position = global.centre - progress*global.move_time_new/.1*$"/root/game/action_tween".drag_vel #.rotated(float(cur_rot)/3*PI)
+		#scale = Vector2(1,1)*(1-progress)#max(0,1-progress*36/this_point)
 		get_tree().call_group("hint_balls", "dimmer",idx,1-progress)
+		$"/root/game/hex_pusher".set_shape(progress,age,cur_rot)
 		if progress == 1:
 			log_data()
+		else:
+			progress = max(1-progress,.01)
+			for i in range(2):
+				coords[i+1] = progress*Vector2((age*orders[i])/sqrt(3),age)*global.poly_size
+				cols[i+1] = global.hex_color(age*progress)
+			polygon = coords
+			vertex_colors = cols
 	
 func set_shape(wave_age):
 	age = wave_age-idx
@@ -75,7 +83,7 @@ func get_collected(angle):
 		#var point_start = $"/root/game/Spawner".accum_points[-1] - $"/root/game/Spawner".accum_points[sw-1] - global.sw_score
 		this_point = pow(age,2)
 		global.score += this_point
-		this_point = this_point/$"/root/game/Spawner".curr_wv_points
+		this_point = float(this_point)/$"/root/game/Spawner".curr_wv_points
 		$"/root/game/progress_tween".slide_hints(this_point)
 		#global.sw_score += this_point
 #		$"/root/game/score_poly".sw_outline = global.spiral_peel(1 - float($"/root/game/Spawner".accum_points[sw-1] + global.sw_score)/$"/root/game/Spawner".accum_points[-1])

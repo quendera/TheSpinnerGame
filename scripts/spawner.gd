@@ -8,8 +8,8 @@ var hex_slide_scene = preload("res://scripts/hex_slider.gd")
 var hex_slide_instance
 var hex_target_scene = preload("res://scripts/hex_target.gd")
 var hex_target_instance
-var progress_line_scene = preload("res://scripts/progress_line.gd")
-var progress_line_instance
+#var progress_line_scene = preload("res://scripts/progress_line.gd")
+#var progress_line_instance
 var input_i
 var file = File.new()
 var arr = {}
@@ -63,7 +63,6 @@ func shuffleList(list):
 func mySpawn():
 	var rand_offset = randi() % 6
 	var rand_flip = randi() % 2
-#	global.start_step = 0
 	if sw >= sw_order.size():
 		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
@@ -71,8 +70,8 @@ func mySpawn():
 #		$"../score_poly".sw_outline = $"../score_poly".total_outline
 		$"../action_tween".reset()
 		curr_wv_points = accum_points[sw+1]-accum_points[sw]
-		progress_line_instance = progress_line_scene.new()
-		add_child(progress_line_instance)
+		#progress_line_instance = progress_line_scene.new()
+		#add_child(progress_line_instance)
 		$"../progress_tween".reset_hints()#slide_hints(1)
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
