@@ -5,7 +5,7 @@ var h = 720
 var padding = .15
 var centre = Vector2(w-h/sqrt(3),h*.5)
 var move_time_new = 1.0/4
-var offset_poly_ratio = .5
+var offset_poly_ratio = .3
 var poly_size = ((1-padding)*h)/2/(6+offset_poly_ratio)#w/50
 var side_offset = poly_size*offset_poly_ratio
 var sw_count
