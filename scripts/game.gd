@@ -6,6 +6,8 @@ var order = [[pad/2,pad,pad],[pad/2,1-pad,pad],[1-pad/2,1-pad,-pad],[1-pad/2,pad
 #var poly_class = preload("res://scripts/trapCell.gd") #scenes/hexCell.tscn")
 #var poly_instance
 #var neon_grid = preload("res://assets/sprites/grid.png")
+var HTTP = HTTPClient.new()
+var prt = 80
 
 func init(lev,player_name):
 	global.curr_wv = lev
@@ -56,7 +58,30 @@ func save_data():
 	file.open(global.save_file_name, file.WRITE)
 	file.store_line(to_json(global.data))
 	file.close()
-
+	
+	# SEND TO SERVER
+	var url = "/post.php"
+	var data = file.open(global.save_file_name, file.READ)
+	var error = 0
+	error = HTTP.connect_to_host("199.247.17.106", prt)
+	assert(error == OK)
+	
+	while HTTP.get_status() == HTTPClient.STATUS_CONNECTING or HTTP.get_status() == HTTPClient.STATUS_RESOLVING:
+		HTTP.poll()
+		prt = print(HTTP.get_status())
+		OS.delay_msec(500)
+	
+	assert(HTTP.get_status() == HTTPClient.STATUS_CONNECTED)
+	
+	var QUERY = HTTP.query_string_from_dict(data)
+	var HEADERS = ["Content-Type: application/json"]
+	
+	HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY) 
+	
+	while HTTP.get_status() == HTTPClient.STATUS_REQUESTING:
+		HTTP.poll()
+		prt = print(HTTP.get_status())
+		OS.delay_msec(500)
 #func go(advance):
 #	if advance:
 #		get_tree().call_group("balls", "step")
