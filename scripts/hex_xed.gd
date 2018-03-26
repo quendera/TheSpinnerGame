@@ -5,13 +5,13 @@ var pie_coords = PoolVector2Array()
 
 func _ready():
 	position = Vector2(coords[0].x+global.h*global.padding/2+global.side_offset,global.centre.y)
-	color = global.hex_color(6)
+	color = global.hint_color(6)
 	pie_coords.insert(0,Vector2(0,0))
 	pie_coords.append(coords[3])
 
 func _draw():
 	draw_colored_polygon(global.full_hex((global.poly_size*3*2+global.side_offset)/sqrt(3)),Color(0,0,0))
-	draw_polyline(global.full_hex((global.poly_size*3*2+global.side_offset)/sqrt(3),1),global.hex_color(6,0,.2),2)
+	#draw_polyline(global.full_hex((global.poly_size*3*2+global.side_offset)/sqrt(3),1),global.hint_color(6),2)
 
 func set_shape(val):
 	if val == 1:

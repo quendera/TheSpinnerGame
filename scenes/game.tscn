@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=2]
@@ -12,15 +12,16 @@
 [ext_resource path="res://assets/sounds/miss.wav" type="AudioStream" id=10]
 [ext_resource path="res://scripts/dividers.gd" type="Script" id=11]
 [ext_resource path="res://scripts/score_poly.gd" type="Script" id=12]
-[ext_resource path="res://scripts/score_sw_poly.gd" type="Script" id=13]
-[ext_resource path="res://assets/sounds/capture.wav" type="AudioStream" id=14]
-[ext_resource path="res://scripts/action_tween.gd" type="Script" id=15]
-[ext_resource path="res://scripts/progress_tween.gd" type="Script" id=16]
-[ext_resource path="res://scripts/hint_tween.gd" type="Script" id=17]
-[ext_resource path="res://scripts/hex_xed.gd" type="Script" id=18]
-[ext_resource path="res://scripts/hex_progress.gd" type="Script" id=19]
-[ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=20]
-[ext_resource path="res://scripts/hex_pusher.gd" type="Script" id=21]
+[ext_resource path="res://assets/sounds/capture.wav" type="AudioStream" id=13]
+[ext_resource path="res://scripts/action_tween.gd" type="Script" id=14]
+[ext_resource path="res://scripts/progress_tween.gd" type="Script" id=15]
+[ext_resource path="res://scripts/hint_tween.gd" type="Script" id=16]
+[ext_resource path="res://scripts/hex_xed.gd" type="Script" id=17]
+[ext_resource path="res://scripts/hex_progress.gd" type="Script" id=18]
+[ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=19]
+[ext_resource path="res://scripts/orbit_1.gd" type="Script" id=20]
+[ext_resource path="res://scripts/orbit_2.gd" type="Script" id=21]
+[ext_resource path="res://scripts/orbit_0.gd" type="Script" id=22]
 
 [sub_resource type="Environment" id=1]
 
@@ -279,11 +280,10 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 13 )
 
 [node name="capture" type="AudioStreamPlayer" parent="." index="16"]
 
-stream = ExtResource( 14 )
+stream = ExtResource( 13 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0
@@ -297,7 +297,7 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 
 [node name="action_timer" type="Timer" parent="." index="18"]
 
@@ -314,7 +314,7 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
-script = ExtResource( 16 )
+script = ExtResource( 15 )
 
 [node name="hint_tween" type="Tween" parent="." index="20"]
 
@@ -324,7 +324,7 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
-script = ExtResource( 17 )
+script = ExtResource( 16 )
 
 [node name="hex_xed" type="Polygon2D" parent="." index="21"]
 
@@ -340,10 +340,12 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 18 )
+script = ExtResource( 17 )
+_sections_unfolded = [ "Invert", "Texture", "Visibility" ]
 
 [node name="hex_progress" type="Polygon2D" parent="." index="22"]
 
+visible = false
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
@@ -356,7 +358,7 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 19 )
+script = ExtResource( 18 )
 
 [node name="hex_subwave" type="Polygon2D" parent="." index="23"]
 
@@ -372,9 +374,25 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
+script = ExtResource( 19 )
+
+[node name="orbit_1" type="Polygon2D" parent="." index="24"]
+
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
 script = ExtResource( 20 )
 
-[node name="hex_pusher" type="Polygon2D" parent="." index="24"]
+[node name="orbit_2" type="Polygon2D" parent="." index="25"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -389,6 +407,22 @@ texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
 script = ExtResource( 21 )
+
+[node name="orbit_0" type="Polygon2D" parent="." index="26"]
+
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 22 )
 
 [connection signal="tween_completed" from="action_tween" to="action_tween" method="_on_action_tween_tween_completed"]
 

@@ -13,7 +13,7 @@ _sections_unfolded = [ "Resource" ]
 resource_local_to_scene = true
 _sections_unfolded = [ "Resource" ]
 
-[node name="menu_root" type="Node2D" index="0"]
+[node name="menu_root" type="Node2D"]
 
 position = Vector2( 1000, 600 )
 scale = Vector2( -16.875, -11.2897 )

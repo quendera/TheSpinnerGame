@@ -29,11 +29,12 @@ func run_collection(progress):
 		#position = global.centre - progress*global.move_time_new/.1*$"/root/game/action_tween".drag_vel #.rotated(float(cur_rot)/3*PI)
 		#scale = Vector2(1,1)*(1-progress)#max(0,1-progress*36/this_point)
 		get_tree().call_group("hint_balls", "dimmer",idx,1-progress)
-		$"/root/game/hex_pusher".set_shape(progress,age,cur_rot)
+		get_tree().call_group("hex_slider","push_target",progress,age,cur_rot)
+		#$"/root/game/hex_pusher".set_shape(progress,age,cur_rot)
 		if progress == 1:
 			log_data()
 		else:
-			progress = max(1-progress,.01)
+			progress = max(1-progress*2,.01)
 			for i in range(2):
 				coords[i+1] = progress*Vector2((age*orders[i])/sqrt(3),age)*global.poly_size
 				cols[i+1] = global.hex_color(age*progress)
