@@ -1,4 +1,5 @@
 extends Polygon2D
+#lateral movement and color matching are not perfect
 
 var edge
 var cur_rot
@@ -33,17 +34,29 @@ func update_shape():
 	elif stretch[0] > stretch[1]:
 		stretch = [stretch[1],stretch[0]]
 	for i in range(6):
-		coords[i] = hexcoords[i] + Vector2(stretch[int(i < 2 or i == 5)]*(global.poly_size*6/sqrt(3)+global.side_offset*sqrt(3)/4),0)
+		coords[i] = hexcoords[i] + Vector2(stretch[int(i < 2 or i == 5)]*(global.poly_size*6/sqrt(3))+global.side_offset*sqrt(3)/4*(2*int(i<2 or i == 5) -1),0)
 		if edge == 0:
 			cols[i] = global.hex_color(stretch[int(i < 2 or i == 5)]*3+3,true)
+		else:
+			cols[i] = global.hex_color(max(-stretch[0],stretch[1])*3+3,true)
 	polygon = coords
-	if edge == 0:
-		vertex_colors = cols
+#	if edge == 0:
+	vertex_colors = cols
 	if stretch[0] != stretch[1]:
 		show()
 		
 func lobe_match(loc):
 	return (loc == cur_rot) or (loc == fposmod(cur_rot - (1-edge),6))
+	
+func push_target(prog,age,loc):
+	if lobe_match(loc):
+		prog = 6-age*(1-abs(prog - .5)*2)#max(6-age*(1-abs(prog - .5)*2),.01)
+		if edge:
+			offset = Vector2(0,.75*global.side_offset+prog*global.poly_size)
+			stretch = [-prog/6,prog/6]
+		else:
+			stretch = [-1,-1+prog/3]
+		update_shape()
 	
 func set_shape(age,loc,act,end = 0):
 	if age <= 0:
