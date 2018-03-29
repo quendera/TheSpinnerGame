@@ -2,7 +2,6 @@ extends Tween
 
 var location_queue = PoolIntArray()
 var action_queue = PoolIntArray() #-1: CCW, 0: advance, 1: CW, 2: collect
-var time_queue = PoolIntArray()
 var wave_age
 var collection_sequence
 var transition = TRANS_SINE
@@ -12,11 +11,6 @@ var last_press_loc = Vector2(0,0)
 var curr_press_loc
 var drag_vel
 var motion_thresh = OS.get_screen_dpi()*.1 #pixels
-
-
-func _ready():
-	pass
-#	connect("delay_action",
 
 func _input(event):
 	if event is InputEventScreenTouch:
@@ -61,11 +55,11 @@ func add_to_queue(lobe,dragged):
 		take_action()
 	else:
 		var vel = calc_ang_vel(location_queue[-1],lobe-1)
-		if vel == 0:
+		if vel == 0:# and wave_age + action_queue.size() < 6+$"../Spawner".ball_per_sw:
 			location_queue.append(location_queue[-1])
 			action_queue.append(2*int(dragged))
 		else:
-			while vel != 0:
+			while vel != 0:# and wave_age + action_queue.size() < 6+$"../Spawner".ball_per_sw:
 				location_queue.append(fposmod(location_queue[-1]-vel,6))
 				action_queue.append(vel)
 				vel = calc_ang_vel(location_queue[-1],lobe-1)
@@ -77,14 +71,15 @@ func add_to_queue(lobe,dragged):
 
 #remove next if problme
 func take_action():
-	if action_queue.size() > 0 and action_queue[0] == 2:
-		get_tree().call_group("hex_balls", "get_collected", location_queue[1])
-		location_queue.remove(0)
-		action_queue.remove(0)
-		interpolate_property(self,"collection_sequence",.001,1,global.move_time_new,transition, EASE_OUT)
-	else:
-		$"../move".play()
-		interpolate_property(self,"wave_age",wave_age+.001,wave_age+1,global.move_time_new,transition,ease_direction)
+	if $"../Spawner".balls_left > 0:# or wave_age <= 0:
+		if action_queue.size() > 0 and action_queue[0] == 2:
+			get_tree().call_group("hex_balls", "get_collected", location_queue[1])
+			location_queue.remove(0)
+			action_queue.remove(0)
+			interpolate_property(self,"collection_sequence",.001,1,global.move_time_new,transition, EASE_OUT)
+		else:
+			$"../move".play()
+			interpolate_property(self,"wave_age",wave_age+.001,wave_age+1,global.move_time_new,transition,ease_direction)
 	start()
 
 func calc_ang_vel(curr_loc,new_loc):
@@ -96,7 +91,7 @@ func calc_ang_vel(curr_loc,new_loc):
 		return 1
 
 func log_data_mo(mo_pos,pressed):
-	if pressed and which_action(mo_pos) > 0:
+	if pressed and which_action(mo_pos) > 0 and $"../Spawner".balls_left > 0:
 		$"../action_timer".start()
 		last_press_loc = mo_pos
 	data_line["mo_time"] = OS.get_ticks_msec()#global.dt
@@ -123,8 +118,6 @@ func _on_action_tween_tween_completed( object, key ):
 		get_tree().call_group("hint_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_balls", "set_shape", wave_age)
 		get_tree().call_group("hex_slider","set_shape", wave_age,location_queue,action_queue,1)
-		#$"../score_poly".set_shape(wave_age)
-		#$"../Spawner".progress_line_instance.set_shape(wave_age,1)
 		if action_queue.size() != 0:
 			location_queue.remove(0)
 			action_queue.remove(0)

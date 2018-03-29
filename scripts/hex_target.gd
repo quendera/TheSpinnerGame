@@ -48,6 +48,7 @@ func set_shape(wave_age):
 			if !is_collected:
 				$"/root/game/miss".play()
 				is_collected = 1
+				$"/root/game/Spawner".balls_left -= 1
 			for i in range(3):
 				var ang = float(i+(age-6))/3*PI*2
 				#coords[i] = Vector2(sin(ang)*(age-6+1.0/6)*6,-cos(ang)*(age-6+1.0/6)*6+1)/sqrt(3)*global.poly_size*2*6
@@ -74,9 +75,13 @@ func log_data():
 		global.data[key].push_back(data_line[key])
 	get_tree().call_group("hint_balls", "eliminate",idx)
 	queue_free()
+	#if (get_tree().get_nodes_in_group("hex_balls").size()) == 1: #+ get_tree().get_nodes_in_group("hint_balls").size()
+	if $"/root/game/Spawner".balls_left == 0:
+		$"/root/game/progress_tween".finish_hints()#Spawner".mySpawn()
 
 func get_collected(angle):
 	if angle == cur_rot and age > 0 and age <= 6 and is_collected == 0:
+		$"/root/game/Spawner".balls_left -= 1
 		is_collected = 1
 		get_node("/root/game/collect"+String(age)).play()
 		#$String(["/root/game/collect",age]).play()

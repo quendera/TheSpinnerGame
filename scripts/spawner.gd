@@ -18,6 +18,7 @@ var sw_age = 0
 var curr_wv_points
 var rand_seq
 var ball_per_sw
+var balls_left
 var sw_order
 var score_grid = PoolVector2Array()
 var data_line = {"sw_time":0, "sw_subwave_num":0, "sw_offset":0, "sw_flip" : 1}
@@ -67,6 +68,7 @@ func mySpawn():
 		get_tree().get_root().get_node("game").save_data()
 		get_tree().get_root().get_node("menu_root")._on_game_over()
 	else:
+		balls_left = ball_per_sw
 #		$"../score_poly".sw_outline = $"../score_poly".total_outline
 		$"../action_tween".reset()
 		curr_wv_points = accum_points[sw+1]-accum_points[sw]
@@ -95,7 +97,7 @@ func mySpawn():
 		log_data(rand_offset,rand_flip) #also add scrambled sw?
 		#get_tree().call_group("score_triangle", "paint",accum_points[-1]-accum_points[sw+1],accum_points[-1]-accum_points[sw],0)
 		sw += 1
-		$"../hint_tween".slide_hints()
+		#$"../hint_tween".slide_hints()
 #		$"../score_poly".total_outline = global.spiral_peel(1 - float(accum_points[sw])/accum_points[-1])
 #		$"../score_poly".update()
 	for i in range(6-ball_per_sw):

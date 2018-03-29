@@ -45,8 +45,8 @@ func _ready():
 #			add_child(poly_instance)
 
 func _process(delta):
-	if !$action_tween.is_active() and (get_tree().get_nodes_in_group("hex_balls").size()) == 0: #+ get_tree().get_nodes_in_group("hint_balls").size()
-		$Spawner.mySpawn()
+	#if !$action_tween.is_active() and (get_tree().get_nodes_in_group("hex_balls").size()) == 0: #+ get_tree().get_nodes_in_group("hint_balls").size()
+	#	$progress_tween.finish_hints()#$Spawner.mySpawn()
 #		get_tree().call_group("score_poly", "report",$Spawner.sw)
 	global.dt += delta
 #	$Label2.set_text("Time: "+ str(global.total_time - floor(global.dt)) + " s")
