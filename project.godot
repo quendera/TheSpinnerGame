@@ -12,7 +12,6 @@ config_version=3
 
 config/name="Spinner"
 run/main_scene="res://scenes/menu.tscn"
-config/icon="res://assets/sprites/icon.png"
 
 [autoload]
 

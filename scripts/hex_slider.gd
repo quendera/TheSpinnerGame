@@ -22,7 +22,7 @@ func create(rot, rad):
 		offset = Vector2(0,.75*global.side_offset+6*global.poly_size)
 		rotation = cur_rot*PI/3
 		color = global.hex_color(6,true)
-		stretch = [-1,1]
+		stretch = [0,0]
 	else:
 		offset = Vector2(global.poly_size*6/sqrt(3)+global.side_offset*sqrt(3)/4,0)
 		rotation = (cur_rot+1)*PI/3
@@ -61,8 +61,10 @@ func push_target(prog,age,loc):
 func set_shape(age,loc,act,end = 0):
 	if age <= 0:
 		if !edge:
-			if stretch[0] != stretch[1]:
-				stretch[0] = 1+age/3
+			#if stretch[0] != stretch[1]:
+			#	stretch[0] = 1+age/3
+			if stretch[0] > stretch[1] -2:
+				stretch = [-1,1+age/3]
 		else:
 			if stretch[0]+2 != stretch[1]:
 				stretch = [-age/6-1,1+age/6]
@@ -70,9 +72,11 @@ func set_shape(age,loc,act,end = 0):
 		if !lobe_match(loc[1]):
 				if edge:
 					stretch = [age-1,1-age]
-		else:
-			if !edge:
-				stretch = [1-2*age,1]
+				else:
+					stretch = [-1,1-age*2]
+		#else:
+		#	if !edge:
+		#		stretch = [1-2*age,1]
 	else:
 		if lobe_match(loc[1]):
 			if edge and abs(act[0]) == 1:

@@ -345,7 +345,6 @@ _sections_unfolded = [ "Invert", "Texture", "Visibility" ]
 
 [node name="hex_progress" type="Polygon2D" parent="." index="22"]
 
-visible = false
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
@@ -378,6 +377,7 @@ script = ExtResource( 19 )
 
 [node name="orbit_1" type="Polygon2D" parent="." index="24"]
 
+visible = false
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
@@ -394,6 +394,7 @@ script = ExtResource( 20 )
 
 [node name="orbit_2" type="Polygon2D" parent="." index="25"]
 
+visible = false
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
@@ -410,6 +411,7 @@ script = ExtResource( 21 )
 
 [node name="orbit_0" type="Polygon2D" parent="." index="26"]
 
+visible = false
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
