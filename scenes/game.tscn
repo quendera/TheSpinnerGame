@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=2]
@@ -11,17 +11,13 @@
 [ext_resource path="res://assets/sounds/move.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/miss.wav" type="AudioStream" id=10]
 [ext_resource path="res://scripts/dividers.gd" type="Script" id=11]
-[ext_resource path="res://scripts/score_poly.gd" type="Script" id=12]
-[ext_resource path="res://assets/sounds/capture.wav" type="AudioStream" id=13]
-[ext_resource path="res://scripts/action_tween.gd" type="Script" id=14]
-[ext_resource path="res://scripts/progress_tween.gd" type="Script" id=15]
-[ext_resource path="res://scripts/hint_tween.gd" type="Script" id=16]
-[ext_resource path="res://scripts/hex_xed.gd" type="Script" id=17]
-[ext_resource path="res://scripts/hex_progress.gd" type="Script" id=18]
-[ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=19]
-[ext_resource path="res://scripts/orbit_1.gd" type="Script" id=20]
-[ext_resource path="res://scripts/orbit_2.gd" type="Script" id=21]
-[ext_resource path="res://scripts/orbit_0.gd" type="Script" id=22]
+[ext_resource path="res://assets/sounds/capture.wav" type="AudioStream" id=12]
+[ext_resource path="res://scripts/action_tween.gd" type="Script" id=13]
+[ext_resource path="res://scripts/progress_tween.gd" type="Script" id=14]
+[ext_resource path="res://scripts/hex_xed.gd" type="Script" id=15]
+[ext_resource path="res://scripts/hex_progress.gd" type="Script" id=16]
+[ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=17]
+[ext_resource path="res://scripts/burn_progress.gd" type="Script" id=18]
 
 [sub_resource type="Environment" id=1]
 
@@ -102,7 +98,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Adjustments", "Glow", "Glow/levels", "Resource", "Tonemap" ]
 
-[node name="game" type="Node2D" index="0"]
+[node name="game" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
@@ -110,6 +106,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 
 environment = SubResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="Spawner" type="Node2D" parent="." index="1"]
 
@@ -248,48 +245,32 @@ bus = "Master"
 script = ExtResource( 11 )
 _sections_unfolded = [ "Z" ]
 
-[node name="score_poly" type="Polygon2D" parent="." index="14"]
+[node name="capture" type="AudioStreamPlayer" parent="." index="14"]
 
-visible = false
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-script = ExtResource( 12 )
-
-[node name="score_sw_poly" type="Polygon2D" parent="." index="15"]
-
-visible = false
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-
-[node name="capture" type="AudioStreamPlayer" parent="." index="16"]
-
-stream = ExtResource( 13 )
+stream = ExtResource( 12 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="action_tween" type="Tween" parent="." index="17"]
+[node name="action_tween" type="Tween" parent="." index="15"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+script = ExtResource( 13 )
+
+[node name="action_timer" type="Timer" parent="." index="16"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = true
+autostart = false
+
+[node name="progress_tween" type="Tween" parent="." index="17"]
 
 repeat = false
 playback_process_mode = 1
@@ -299,34 +280,40 @@ playback/repeat = false
 playback/speed = 1.0
 script = ExtResource( 14 )
 
-[node name="action_timer" type="Timer" parent="." index="18"]
+[node name="hex_xed" type="Polygon2D" parent="." index="18"]
 
-process_mode = 1
-wait_time = 0.1
-one_shot = true
-autostart = false
-
-[node name="progress_tween" type="Tween" parent="." index="19"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
 script = ExtResource( 15 )
+_sections_unfolded = [ "Invert", "Texture", "Visibility" ]
 
-[node name="hint_tween" type="Tween" parent="." index="20"]
+[node name="hex_progress" type="Polygon2D" parent="." index="19"]
 
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
 script = ExtResource( 16 )
 
-[node name="hex_xed" type="Polygon2D" parent="." index="21"]
+[node name="hex_subwave" type="Polygon2D" parent="." index="20"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -341,9 +328,8 @@ texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
 script = ExtResource( 17 )
-_sections_unfolded = [ "Invert", "Texture", "Visibility" ]
 
-[node name="hex_progress" type="Polygon2D" parent="." index="22"]
+[node name="burn_progress" type="Polygon2D" parent="." index="21"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -359,81 +345,10 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 18 )
 
-[node name="hex_subwave" type="Polygon2D" parent="." index="23"]
-
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-script = ExtResource( 19 )
-
-[node name="orbit_1" type="Polygon2D" parent="." index="24"]
-
-visible = false
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-script = ExtResource( 20 )
-
-[node name="orbit_2" type="Polygon2D" parent="." index="25"]
-
-visible = false
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-script = ExtResource( 21 )
-
-[node name="orbit_0" type="Polygon2D" parent="." index="26"]
-
-visible = false
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-script = ExtResource( 22 )
-
 [connection signal="tween_completed" from="action_tween" to="action_tween" method="_on_action_tween_tween_completed"]
 
 [connection signal="tween_step" from="action_tween" to="action_tween" method="_on_action_tween_tween_step"]
 
 [connection signal="timeout" from="action_timer" to="action_tween" method="_on_action_timer_timeout"]
-
-[connection signal="tween_completed" from="hint_tween" to="hint_tween" method="_on_hint_tween_tween_completed"]
-
-[connection signal="tween_step" from="hint_tween" to="hint_tween" method="_on_hint_tween_tween_step"]
 
 

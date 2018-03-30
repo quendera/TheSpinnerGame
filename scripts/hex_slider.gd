@@ -3,13 +3,12 @@ extends Polygon2D
 
 var edge
 var cur_rot
-var hexcoords = PoolVector2Array()
+var hexcoords = global.full_hex(global.side_offset/sqrt(3)/2,0)
 var coords = PoolVector2Array()
 var cols = PoolColorArray()
 var stretch = [1,1]
 
 func _ready():
-	hexcoords = global.full_hex(global.side_offset/sqrt(3)/2,0)
 	add_to_group("hex_slider")
 	coords.resize(6)
 	cols.resize(6)
@@ -58,7 +57,7 @@ func push_target(prog,age,loc):
 			stretch = [-1,-1+prog/3]
 		update_shape()
 	
-func set_shape(age,loc,act,end = 0):
+func set_shape(age,loc = 0,act = 0,end = 0):
 	if age <= 0:
 		if !edge:
 			#if stretch[0] != stretch[1]:
