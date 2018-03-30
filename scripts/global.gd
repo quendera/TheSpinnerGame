@@ -13,7 +13,7 @@ var curr_wv
 var total_time
 var sw_score
 var score
-var dt
+#var dt
 var save_file_name
 var data
 

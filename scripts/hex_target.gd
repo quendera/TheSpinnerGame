@@ -3,7 +3,7 @@ extends Polygon2D
 var idx
 var cur_rot
 var age
-var data_line = {"ba_time":0, "ba_position":0, "ba_ID":0, "ba_age":0} #, "ba_score":0
+#var data_line = {"ba_time":0, "ba_position":0, "ba_ID":0, "ba_age":0} #, "ba_score":0
 var coords = PoolVector2Array()
 var cols = PoolColorArray()
 var orders = [-1,1]
@@ -30,6 +30,7 @@ func run_collection(progress):
 		#scale = Vector2(1,1)*(1-progress)#max(0,1-progress*36/this_point)
 		get_tree().call_group("hint_balls", "dimmer",idx,1-progress)
 		get_tree().call_group("hex_slider","push_target",progress,age,cur_rot)
+		$"/root/game/burn_progress".set_shape(progress,pow(age,2))
 		#$"/root/game/hex_pusher".set_shape(progress,age,cur_rot)
 		if progress == 1:
 			log_data()
@@ -67,16 +68,17 @@ func set_shape(wave_age):
 		log_data()
 	
 func log_data():
-	data_line["ba_time"] = OS.get_ticks_msec()#global.dt
-	data_line["ba_ID"] = idx
-	data_line["ba_position"] = cur_rot #redundant
-	data_line["ba_age"] = age
-	for key in data_line.keys():
-		global.data[key].push_back(data_line[key])
+	global.data["ba_time"].push_back(OS.get_ticks_msec())#global.dt
+	global.data["ba_ID"].push_back(idx)
+	global.data["ba_position"].push_back(cur_rot) #redundant
+	global.data["ba_age"].push_back(age)
+	#for key in data_line.keys():
+	#	global.data[key].push_back(data_line[key])
 	get_tree().call_group("hint_balls", "eliminate",idx)
 	queue_free()
 	#if (get_tree().get_nodes_in_group("hex_balls").size()) == 1: #+ get_tree().get_nodes_in_group("hint_balls").size()
 	if $"/root/game/Spawner".balls_left == 0:
+		$"/root/game/Spawner".balls_left = $"/root/game/Spawner".ball_per_sw
 		$"/root/game/progress_tween".finish_hints()#Spawner".mySpawn()
 
 func get_collected(angle):
