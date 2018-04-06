@@ -63,8 +63,8 @@ func mySpawn():
 	var rand_flip = randi() % 2
 	if sw >= sw_order.size():
 		curr_wv_points = 0
-		$"../progress_tween".reset_hints()
-		$"../game".save_data()
+		#$"../progress_tween".reset_hints()
+		$"..".save_data()
 	else:
 		$"../action_tween".reset()
 		curr_wv_points = accum_points[sw+1]-accum_points[sw]

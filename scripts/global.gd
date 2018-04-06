@@ -4,7 +4,8 @@ var w = 1280
 var h = 720
 var padding = .15
 var centre = Vector2(w-h/sqrt(3),h*.5)
-var move_time_new = 1.0/3
+var harp_pluck_len = .01
+var move_time_new = 36*harp_pluck_len #1.0/3
 var offset_poly_ratio = .3
 var poly_size = ((1-padding)*h)/2/(6+offset_poly_ratio)#w/50
 var side_offset = poly_size*offset_poly_ratio
@@ -16,6 +17,7 @@ var score
 #var dt
 var save_file_name
 var data
+var pitch = AudioServer.get_bus_effect(1,0)
 
 func full_hex(radius,wire =0):
 	var coords = PoolVector2Array()
@@ -107,14 +109,6 @@ func hint_color(rad):
 #				coords[-1] += offset
 #	return coords
 
-#func pie_hex(full,angle):
-#	var coords = PoolVector2Array(full)
-#	coords.insert(0,Vector2(0,0))
-#	coords.resize(ceil(angle)+2)
-#	angle = fmod(angle,1)
-#	if angle > 0:
-#		coords[coords.size()-1] = full[coords.size()-2]*angle+full[coords.size()-3]*(1-angle)
-#	return coords
 
 #var progress_loops = 10
 #var progress_rad = poly_size#/10.0*8 #20/sqrt(accum_points[-1])
