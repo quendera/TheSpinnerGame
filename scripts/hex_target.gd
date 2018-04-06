@@ -44,10 +44,10 @@ func run_collection(progress):
 	
 func set_shape(wave_age):
 	age = wave_age-idx
-	if age > 0:
+	if age > 0: # and !is_collected
 		if age > 6 and age < 7:
 			if !is_collected:
-				$"/root/game/miss".play()
+				$"/root/game/typewriter".play() #was miss
 				is_collected = 1
 				$"/root/game/Spawner".balls_left -= 1
 			for i in range(3):
@@ -79,21 +79,23 @@ func log_data():
 	#if (get_tree().get_nodes_in_group("hex_balls").size()) == 1: #+ get_tree().get_nodes_in_group("hint_balls").size()
 	if $"/root/game/Spawner".balls_left == 0:
 		$"/root/game/Spawner".balls_left = $"/root/game/Spawner".ball_per_sw
-		$"/root/game/progress_tween".finish_hints()#Spawner".mySpawn()
+		$"/root/game/progress_tween".finish_hints_discrete()#Spawner".mySpawn()
 
 func get_collected(angle):
 	if angle == cur_rot and age > 0 and age <= 6 and is_collected == 0:
 		$"/root/game/Spawner".balls_left -= 1
 		is_collected = 1
-		get_node("/root/game/collect"+String(age)).play()
+		#get_node("/root/game/collect"+String(age)).play()
 		#$String(["/root/game/collect",age]).play()
 		var sw = $"/root/game/Spawner".sw
 		#var point_start = $"/root/game/Spawner".accum_points[-1] - $"/root/game/Spawner".accum_points[sw-1] - global.sw_score
 		this_point = pow(age,2)
+		for i in range(this_point):
+			#$"/root/game/progress_tween".interpolate_callback($"/root/game/hex_progress",i*global.harp_pluck_len,"play_note",pow(2,(i + $"/root/game/progress_tween".sw_score*36*$"/root/game/Spawner".ball_per_sw)/36.0-2))
+			$"/root/game/progress_tween".interpolate_callback($"/root/game/hex_progress",i*global.harp_pluck_len,"play_note",i)
 		global.score += this_point
-		this_point = float(this_point)/$"/root/game/Spawner".curr_wv_points
+		this_point = float(this_point)/36.0/$"/root/game/Spawner".ball_per_sw#$"/root/game/Spawner".curr_wv_points
 		$"/root/game/progress_tween".slide_hints(this_point)
 		#global.sw_score += this_point
 #		$"/root/game/score_poly".sw_outline = global.spiral_peel(1 - float($"/root/game/Spawner".accum_points[sw-1] + global.sw_score)/$"/root/game/Spawner".accum_points[-1])
 #		$"/root/game/score_poly".update()
-

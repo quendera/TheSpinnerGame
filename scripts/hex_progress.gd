@@ -4,7 +4,7 @@ var coords = global.full_hex((global.poly_size*3*2)/sqrt(3))
 var pie_coords = PoolVector2Array()
 
 func _ready():
-	color = global.hex_color(6,1)
+	color = global.hex_color(6)
 	#polygon = global.full_hex((global.poly_size*3*2)/sqrt(3))
 	#antialiased = true
 	position = $"../hex_xed".position#Vector2(coords[0].x+global.h*global.padding/2+global.side_offset,global.centre.y)
@@ -24,6 +24,10 @@ func set_shape(val):
 		pie_coords[1] = coords[fmod(3+ceil(val),6)]*fmod(val,1) + coords[3+floor(val)]*(1-fmod(val,1))
 		pie_coords[-1] = Vector2(pie_coords[1].x,-pie_coords[1].y)
 		polygon = pie_coords
+		
+func play_note(pitch):
+	global.pitch.pitch_scale = pow(2,(pitch/36.0/$"/root/game/Spawner".ball_per_sw + $"/root/game/progress_tween".sw_score)*2-3)
+	$"/root/game/harp".play()
 #
 #func _draw():
 #	coords = polygon

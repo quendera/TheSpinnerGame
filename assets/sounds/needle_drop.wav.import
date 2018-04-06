@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/needle_drop.wav-4259d2a801b4ec26f76d40509090d1e2.sample"
+
+[deps]
+
+source_file="res://assets/sounds/needle_drop.wav"
+source_md5="bc930b8452bc5ebd779735101cc13d8e"
+
+dest_files=[ "res://.import/needle_drop.wav-4259d2a801b4ec26f76d40509090d1e2.sample" ]
+dest_md5="29a1dfc1a79fbd3d5585fa2cb56f8a9c"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
