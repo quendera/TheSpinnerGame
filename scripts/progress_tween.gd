@@ -11,6 +11,8 @@ var click_len = .0
 var fail_time_ratio = 3#(1-fail_thresh)/fail_thresh
 var num_sounds
 var start_time
+var note_count = 0
+var scale_time = global.move_time_new*6
 
 func _ready():
 	start()
@@ -23,6 +25,7 @@ func reset_hints():
 	norm = ($"../Spawner".curr_wv_points/($"../Spawner".ball_per_sw*36.0)) #sqrt
 	#interpolate_property($"../hex_subwave","scale",Vector2(0,0),norm*Vector2(1,1),global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new)
 	interpolate_method($"../hex_subwave","total_points",0,norm,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new)#$"../Spawner".curr_wv_points*click_len
+	$"../hex_subwave_capture".color = global.hex_color(6) 
 
 func reset_sliders(wave_age):
 	get_tree().call_group("hex_slider","set_shape", wave_age)
@@ -57,9 +60,25 @@ func finish_hints_discrete():
 	start_time = 0#global.move_time_new
 	if num_sounds == 0:
 		$"../hex_progress".set_shape(float($"../Spawner".sw)/$"../Spawner".accum_points.size())
+	elif round(sw_score*36*$"../Spawner".ball_per_sw) == $"../Spawner".curr_wv_points:
+		$"../hex_subwave_capture".color = global.hex_color(6,1) 
+		#interpolate_method($"../hex_perfect","dim_hex",1,0,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		interpolate_method($"../hex_subwave_capture","collected_points",sw_score,0,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		interpolate_method($"../hex_subwave","total_points",sw_score,0,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw-1)/$"../Spawner".accum_points.size(),float($"../Spawner".sw)/$"../Spawner".accum_points.size(),scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		interpolate_method($"../hex_progress_perfect","set_shape",0,1,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		#$"../perfect".play() too subtle
+		for i in range($"../hex_progress_perfect".notes_per_scale):
+			interpolate_callback($"../hex_progress_perfect",start_time,"play_midi",i)
+			start_time += scale_time/float($"../hex_progress_perfect".notes_per_scale)
+		$"../hex_progress_perfect".scale_count += 1
+		#note_count += notes_per_scale
+		#interpolate_property($"../hex_subwave_capture",color,global.hex_color(6,1),global
+		#interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw-1+float(i+1)/num_sounds)/$"../Spawner".accum_points.size())
+		##interpolate_method($"../hex_subwave","set_shape",1,0,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	else:
 		for i in range(num_sounds):
-			interpolate_callback($"../hex_subwave",start_time,"collected_points",sw_score*(1-float(i+1)/num_sounds))
+			interpolate_callback($"../hex_subwave_capture",start_time,"collected_points",sw_score*(1-float(i+1)/num_sounds))
 			interpolate_callback($"../hex_subwave",start_time,"total_points",norm-sw_score*(float(i+1)/num_sounds))
 			interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw-1+float(i+1)/num_sounds)/$"../Spawner".accum_points.size())
 			interpolate_callback($"../hex_progress",start_time,"play_note",-i)
@@ -70,7 +89,7 @@ func finish_hints_discrete():
 	frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/(fail_thresh*$"../Spawner".accum_points[-1])
 	num_sounds = ceil((norm-sw_score)*36*$"../Spawner".ball_per_sw/points_per_click)
 	if num_sounds == 0:
-		interpolate_callback($"../collect6",start_time,"play")
+		pass#interpolate_callback($"../collect6",start_time,"play")
 	else:
 		for i in range(num_sounds):
 			interpolate_callback($"../hex_subwave",start_time,"total_points",(norm-sw_score)*(1-float(i+1)/num_sounds))
@@ -85,7 +104,7 @@ func finish_hints_discrete():
 func slide_hints(new):
 	#interpolate_property($"../hex_subwave","scale",Vector2(1,1)*norm*sqrt(1-sw_score),Vector2(1,1)*norm*sqrt(max(0,1-sw_score-new)),global.move_time_new/2,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new/2)
 	#$"../hex_subwave".add_line()
-	interpolate_method($"../hex_subwave","collected_points",sw_score,sw_score+new,global.move_time_new/2,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new/2)
+	interpolate_method($"../hex_subwave_capture","collected_points",sw_score,sw_score+new,global.move_time_new/2,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new/2)
 	#sw_score = min(1,sw_score + new)
 	sw_score += new
 
