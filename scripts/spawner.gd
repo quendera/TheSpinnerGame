@@ -9,6 +9,7 @@ var hex_target_instance
 var input_i
 var file = File.new()
 var arr = {}
+var notes = PoolIntArray()
 var sw = 0
 var sw_age = 0
 var curr_wv_points
@@ -24,17 +25,19 @@ func _ready():
 	randomize()
 	var i = 0
 	file.open("res://assets/files/spawn.txt", File.READ)
+	var target_line
 	while (!file.eof_reached()):
-		var target_line = file.get_csv_line()
+		target_line = file.get_csv_line()
 		if target_line.size() > 1 and int(target_line[1]) == global.curr_wv:
 			arr[i] = target_line
 			i = i+1
+	file.close()
+	read_music()
 	ball_per_sw = int(arr[arr.size()-1][2])
 	sw_order = shuffleList(range(ball_per_sw)) 
 	ball_per_sw = arr.size()/ball_per_sw
 	balls_left = ball_per_sw
 	global.sw_count = sw_order.size()
-	file.close()
 	var accum = 0
 	accum_points.append(accum)
 	for i in range(global.sw_count):
@@ -46,8 +49,8 @@ func _ready():
 			add_child(hex_slide_instance)
 			hex_slide_instance.create(i,j)
 
-func _onready():
-	self.set_position($game.center)
+#func _onready():
+#	self.set_position($game.center)
 
 func shuffleList(list):
     var shuffledList = []
@@ -99,3 +102,12 @@ func _notification(what):
 		get_tree().get_root().get_node("game").save_data()
 		#get_tree().get_root().get_node("menu_root")._on_game_over()
 		get_tree().quit()
+		
+func read_music():#fname):
+	file.open("res://assets/files/bach.txt", File.READ)
+	var target_line
+	while (!file.eof_reached()):
+		target_line = file.get_csv_line()
+		if target_line.size() > 0:
+			notes.push_back(int(target_line[0]))
+	file.close()

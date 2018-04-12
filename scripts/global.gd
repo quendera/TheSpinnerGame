@@ -17,12 +17,28 @@ var score
 #var dt
 var save_file_name
 var data
+#var delay = AudioServer.get_bus_effect(1,0)
 var pitch = AudioServer.get_bus_effect(1,0)
 
 func full_hex(radius,wire =0):
 	var coords = PoolVector2Array()
 	for i in range(6+wire):
 		coords.append(Vector2(cos(float(i)/3*PI),sin(float(i)/3*PI))*radius)
+	return coords
+	
+func pie_hex(full,angle):
+	angle *= 6
+	var coords = PoolVector2Array(full)
+	if angle >= 6:
+		coords.resize(6)
+	elif angle > 0.01:
+		coords.insert(0,Vector2(0,0))
+		coords.resize(ceil(angle)+2)
+		angle = fmod(angle,1)
+		if angle > 0:
+			coords[coords.size()-1] = full[coords.size()-2]*angle+full[coords.size()-3]*(1-angle)
+	else:
+		coords.resize(0)
 	return coords
 
 func hex_color(rad,invert=false,dim = 1):

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/woodclick.wav-4c0b3745512899c2377678c8c082adda.sample"
+
+[deps]
+
+source_file="res://assets/sounds/woodclick.wav"
+source_md5="72483831e62daf9b81d52e58d73c9a5d"
+
+dest_files=[ "res://.import/woodclick.wav-4c0b3745512899c2377678c8c082adda.sample" ]
+dest_md5="a1a3048ab45e3c3d53a1bbca5ca44337"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

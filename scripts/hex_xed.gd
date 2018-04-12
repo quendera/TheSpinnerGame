@@ -3,7 +3,7 @@ extends Polygon2D
 var coords = global.full_hex((global.poly_size*3*2+global.side_offset*2)/sqrt(3))
 var mask = global.full_hex((global.poly_size*3*2)/sqrt(3))
 var pie_coords = PoolVector2Array()
-var tracers = PoolVector2Array()
+#var tracers = PoolVector2Array()
 var show_lines = false
 var how_far
 var cur_bright
@@ -15,7 +15,7 @@ func _ready():
 	how_far = 0
 	cur_bright = 0
 	color = Color(cur_bright,cur_bright,cur_bright)#global.hint_color(6)
-	tracers.resize(3)
+#	tracers.resize(3)
 	
 func _process(delta):
 	cur_bright = cur_bright*(1-delta*5)
@@ -24,8 +24,8 @@ func _process(delta):
 	color = Color(cur_bright+.5,cur_bright+.5,cur_bright+.5) #global.hex_color(6#fmod(color.r+delta*how_far*randf(),1)#
 	$"../hex_subwave".color = color
 
-func _draw():
-	draw_colored_polygon(mask,Color(0,0,0))
+#func _draw():
+#	draw_colored_polygon(mask,Color(0,0,0))
 #	if show_lines:
 #		draw_line(Vector2(0,0),coords[3],Color(.5,.5,.5),10)
 	#	draw_polyline(tracers,global.hint_color(6),5)
@@ -48,7 +48,7 @@ func set_shape(val):
 		pie_coords[1] = coords[fmod(3+ceil(val),6)]*fmod(val,1) + coords[3+floor(val)]*(1-fmod(val,1))
 		pie_coords[-1] = Vector2(pie_coords[1].x,-pie_coords[1].y)
 		polygon = pie_coords
-		tracers[0] = pie_coords[1]
-		tracers[2] = pie_coords[-1]
+#		tracers[0] = pie_coords[1]
+#		tracers[2] = pie_coords[-1]
 		cur_bright = 1
-		update()
+#		update()

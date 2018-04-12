@@ -30,7 +30,7 @@ func run_collection(progress):
 		#scale = Vector2(1,1)*(1-progress)#max(0,1-progress*36/this_point)
 		get_tree().call_group("hint_balls", "dimmer",idx,1-progress)
 		get_tree().call_group("hex_slider","push_target",progress,age,cur_rot)
-		$"/root/game/burn_progress".set_shape(progress,pow(age,2))
+		#$"/root/game/burn_progress".set_shape(progress,pow(age,2))
 		#$"/root/game/hex_pusher".set_shape(progress,age,cur_rot)
 		if progress == 1:
 			log_data()
@@ -47,7 +47,7 @@ func set_shape(wave_age):
 	if age > 0: # and !is_collected
 		if age > 6 and age < 7:
 			if !is_collected:
-				$"/root/game/typewriter".play() #was miss
+				$"/root/game/miss".play() #was miss
 				is_collected = 1
 				$"/root/game/Spawner".balls_left -= 1
 			for i in range(3):
@@ -90,8 +90,10 @@ func get_collected(angle):
 		var sw = $"/root/game/Spawner".sw
 		#var point_start = $"/root/game/Spawner".accum_points[-1] - $"/root/game/Spawner".accum_points[sw-1] - global.sw_score
 		this_point = pow(age,2)
+		#global.delay.set_feedback_level_db(this_point/36.0-1.05)
+		#$"/root/game/harp".play()
+		#$"/root/game/progress_tween".interpolate_method($"/root/game/hex_progress","set_pitch",0,this_point-1,global.harp_pluck_len*this_point,$"/root/game/action_tween".transition,$"/root/game/action_tween".ease_direction)
 		for i in range(this_point):
-			#$"/root/game/progress_tween".interpolate_callback($"/root/game/hex_progress",i*global.harp_pluck_len,"play_note",pow(2,(i + $"/root/game/progress_tween".sw_score*36*$"/root/game/Spawner".ball_per_sw)/36.0-2))
 			$"/root/game/progress_tween".interpolate_callback($"/root/game/hex_progress",i*global.harp_pluck_len,"play_note",i)
 		global.score += this_point
 		this_point = float(this_point)/36.0/$"/root/game/Spawner".ball_per_sw#$"/root/game/Spawner".curr_wv_points

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/glass-break.wav-e6aa0a986c748ca095de926cf83a4839.sample"
+
+[deps]
+
+source_file="res://assets/sounds/glass-break.wav"
+source_md5="42771dbcf35f622b80c0bacca78bc632"
+
+dest_files=[ "res://.import/glass-break.wav-e6aa0a986c748ca095de926cf83a4839.sample" ]
+dest_md5="60733d9e3bb7c803f4e99f7462ff5ced"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

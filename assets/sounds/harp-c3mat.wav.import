@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/harp-c3mat.wav-2de156eae5a60fe6fd124261d831a6b3.sample"
+
+[deps]
+
+source_file="res://assets/sounds/harp-c3mat.wav"
+source_md5="2bb2a6ac6ea3d155b6de566ab99109ac"
+
+dest_files=[ "res://.import/harp-c3mat.wav-2de156eae5a60fe6fd124261d831a6b3.sample" ]
+dest_md5="5cd58a4e2d5fe4740200dec037859e29"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
