@@ -93,8 +93,8 @@ func get_collected(angle):
 		#global.delay.set_feedback_level_db(this_point/36.0-1.05)
 		#$"/root/game/harp".play()
 		#$"/root/game/progress_tween".interpolate_method($"/root/game/hex_progress","set_pitch",0,this_point-1,global.harp_pluck_len*this_point,$"/root/game/action_tween".transition,$"/root/game/action_tween".ease_direction)
-		for i in range(this_point):
-			$"/root/game/progress_tween".interpolate_callback($"/root/game/hex_progress",i*global.harp_pluck_len,"play_note",i)
+		for i in range(this_point):#age):#
+			$"/root/game/progress_tween".interpolate_callback($"/root/game/hex_progress",i*global.harp_pluck_len,"play_note",i)#pow(i,2))
 		global.score += this_point
 		this_point = float(this_point)/36.0/$"/root/game/Spawner".ball_per_sw#$"/root/game/Spawner".curr_wv_points
 		$"/root/game/progress_tween".slide_hints(this_point)
