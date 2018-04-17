@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=2]
-[ext_resource path="res://assets/sounds/harp-c3mat.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/sine_wave.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/violin-spiccato-c4.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/glass-break.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/woodclick.wav" type="AudioStream" id=6]
@@ -175,7 +175,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "Theme", "Visibility", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="pizzicato" type="AudioStreamPlayer" parent="." index="5"]
+[node name="sine" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "phaser"
+
+[node name="pizzicato" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = ExtResource( 3 )
 volume_db = 0.0
@@ -183,7 +191,7 @@ autoplay = false
 mix_target = 0
 bus = "pitch"
 
-[node name="spiccato" type="AudioStreamPlayer" parent="." index="6"]
+[node name="spiccato" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = ExtResource( 4 )
 volume_db = 0.0
@@ -191,7 +199,7 @@ autoplay = false
 mix_target = 0
 bus = "pitch"
 
-[node name="miss" type="AudioStreamPlayer" parent="." index="7"]
+[node name="miss" type="AudioStreamPlayer" parent="." index="8"]
 
 stream = ExtResource( 5 )
 volume_db = 0.0
@@ -199,7 +207,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="move" type="AudioStreamPlayer" parent="." index="8"]
+[node name="move" type="AudioStreamPlayer" parent="." index="9"]
 
 stream = ExtResource( 6 )
 volume_db = 0.0
@@ -207,7 +215,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="typewriter" type="AudioStreamPlayer" parent="." index="9"]
+[node name="typewriter" type="AudioStreamPlayer" parent="." index="10"]
 
 stream = ExtResource( 7 )
 volume_db = 0.0
@@ -215,12 +223,12 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="dividers" type="Node2D" parent="." index="10"]
+[node name="dividers" type="Node2D" parent="." index="11"]
 
 script = ExtResource( 8 )
 _sections_unfolded = [ "Z" ]
 
-[node name="action_tween" type="Tween" parent="." index="11"]
+[node name="action_tween" type="Tween" parent="." index="12"]
 
 repeat = false
 playback_process_mode = 1
@@ -230,14 +238,14 @@ playback/repeat = false
 playback/speed = 1.0
 script = ExtResource( 9 )
 
-[node name="action_timer" type="Timer" parent="." index="12"]
+[node name="action_timer" type="Timer" parent="." index="13"]
 
 process_mode = 1
 wait_time = 0.1
 one_shot = true
 autostart = false
 
-[node name="progress_tween" type="Tween" parent="." index="13"]
+[node name="progress_tween" type="Tween" parent="." index="14"]
 
 repeat = false
 playback_process_mode = 1
@@ -247,7 +255,7 @@ playback/repeat = false
 playback/speed = 1.0
 script = ExtResource( 10 )
 
-[node name="hex_xed" type="Polygon2D" parent="." index="14"]
+[node name="hex_xed" type="Polygon2D" parent="." index="15"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -280,7 +288,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 12 )
 
-[node name="hex_progress" type="Polygon2D" parent="." index="15"]
+[node name="hex_progress" type="Polygon2D" parent="." index="16"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -296,7 +304,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 13 )
 
-[node name="hex_progress_perfect" type="Polygon2D" parent="." index="16"]
+[node name="hex_progress_perfect" type="Polygon2D" parent="." index="17"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -312,7 +320,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 14 )
 
-[node name="hex_progress_mask" type="Polygon2D" parent="." index="17"]
+[node name="hex_progress_mask" type="Polygon2D" parent="." index="18"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -328,7 +336,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 15 )
 
-[node name="hex_subwave" type="Polygon2D" parent="." index="18"]
+[node name="hex_subwave" type="Polygon2D" parent="." index="19"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -344,7 +352,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 16 )
 
-[node name="hex_subwave_capture" type="Polygon2D" parent="." index="19"]
+[node name="hex_subwave_capture" type="Polygon2D" parent="." index="20"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )

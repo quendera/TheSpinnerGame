@@ -7,7 +7,7 @@ func _ready():
 	color = global.hex_color(6)
 	#polygon = global.full_hex((global.poly_size*3*2)/sqrt(3))
 	#antialiased = true
-	position = $"../hex_xed".position#Vector2(coords[0].x+global.h*global.padding/2+global.side_offset,global.centre.y)
+	position = $"../hex_xed".position
 	pie_coords.append(Vector2(0,0))
 	pie_coords.append(coords[3])
 	
@@ -27,10 +27,10 @@ func set_shape(val):
 
 func play_note(pitch):
 	set_pitch(pitch)
-	$"/root/game/pizzicato".play()
+	$"/root/game/sine".play()
 	
 func set_pitch(pitch):
-	global.pitch.pitch_scale = pow(2,(pitch/36.0/$"/root/game/Spawner".ball_per_sw + $"/root/game/progress_tween".sw_score)*2)
+	global.pitch.pitch_scale = pow(2,(pitch/36.0/$"/root/game/Spawner".ball_per_sw + $"/root/game/progress_tween".sw_score))
 #
 #func _draw():
 #	coords = polygon

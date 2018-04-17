@@ -4,7 +4,7 @@ var coords = global.full_hex((global.poly_size*3*2+global.side_offset*2)/sqrt(3)
 var mask = global.full_hex((global.poly_size*3*2)/sqrt(3))
 var pie_coords = PoolVector2Array()
 #var tracers = PoolVector2Array()
-var show_lines = false
+#var show_lines = false
 var how_far
 var cur_bright
 
@@ -34,11 +34,11 @@ func set_shape(val):
 	how_far = val
 	if val >= 1:
 		polygon = coords
-		show_lines = false
+#		show_lines = false
 		update()
 		$"..".save_data()
 	elif val > 0:
-		show_lines = $"../progress_tween".frac_fail != val
+		#show_lines = $"../progress_tween".frac_fail != val
 		val = val*3
 		if pie_coords.size()/2 <= ceil(val - .001):
 			pie_coords.insert(1,Vector2(0,0))
