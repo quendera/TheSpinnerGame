@@ -5,8 +5,6 @@ var pie_coords = PoolVector2Array()
 
 func _ready():
 	color = global.hex_color(6)
-	#polygon = global.full_hex((global.poly_size*3*2)/sqrt(3))
-	#antialiased = true
 	position = $"../hex_xed".position
 	pie_coords.append(Vector2(0,0))
 	pie_coords.append(coords[3])
@@ -30,20 +28,4 @@ func play_note(pitch):
 	$"/root/game/sine".play()
 	
 func set_pitch(pitch):
-	global.pitch.pitch_scale = pow(2,(pitch/36.0/$"/root/game/Spawner".ball_per_sw + $"/root/game/progress_tween".sw_score))
-#
-#func _draw():
-#	coords = polygon
-#	coords.resize(coords.size()+1)
-#	coords[-1] = coords[0]
-#	draw_polyline(coords,color,2)
-
-#	coords.resize(coords.size()-1)
-#	coords.insert(0,Vector2(0,0))
-#	#coords[-1].y = -.01
-#	#coords.resize(coords.size()+1)
-#	cols.resize(coords.size())
-#	for i in range(1,cols.size()):
-#		cols[i] = global.hex_color(6)
-#	#polygon = coords
-#	draw_polygon(coords,cols)
+	global.pitch.pitch_scale = pow(2,(pitch/36.0/$"/root/game/Spawner".ball_per_sw + $"/root/game/progress_tween".sw_score)*2)

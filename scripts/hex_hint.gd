@@ -12,13 +12,13 @@ var orders = [-1,1]
 func _ready():
 	add_to_group("hint_balls")
 	offset = Vector2(0,global.side_offset/2)
-
-func create(rot, ball_id): 
 	position = global.centre
-	cur_rot = int(rot)
-	idx = ball_id
 	coords.resize(4)
 	cols.resize(4)
+
+func create(rot, ball_id): 
+	cur_rot = int(rot)
+	idx = ball_id
 	rotation = float(rot)/3*PI
 	
 func set_shape(wave_age):
@@ -31,14 +31,10 @@ func set_shape(wave_age):
 				cols[2*i+j] = global.hint_color(cur_rads[i])
 		polygon = coords
 		vertex_colors = cols
-#	if age >= 7:
-#		queue_free()
 
 func dimmer(id,val):
 	if idx == id:
 		modulate = Color(1,1,1,val)
-#		for i in range(4):
-#			vertex_colors[i].a = val
 
 func eliminate(id):
 	if idx == id:

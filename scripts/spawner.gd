@@ -99,7 +99,7 @@ func log_data(offset,flip):
 
 func _notification(what):
 	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
-		get_tree().get_root().get_node("game").save_data()
+		$"..".save_data()
 		#get_tree().get_root().get_node("menu_root")._on_game_over()
 		get_tree().quit()
 		

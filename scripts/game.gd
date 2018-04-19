@@ -1,13 +1,8 @@
 extends Node2D
 
-var circScale = 34
-var pad = .1
-var order = [[pad/2,pad,pad],[pad/2,1-pad,pad],[1-pad/2,1-pad,-pad],[1-pad/2,pad,-pad]]
-#var poly_class = preload("res://scripts/trapCell.gd") #scenes/hexCell.tscn")
-#var poly_instance
-#var neon_grid = preload("res://assets/sprites/grid.png")
 var HTTP = HTTPClient.new()
 var prt = 80
+var is_saving = 0
 
 func init(lev,player_name):
 	global.curr_wv = lev
@@ -18,34 +13,18 @@ func init(lev,player_name):
 #	global.start_step = 0
 	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
 	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"mo_press":[],"mo_lobe":[], #"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
-	"mo_act_drag":[],"mo_move_time":[],"mo_move_pos":[],
+	"mo_act_drag":[],"mo_move_time":[],"mo_move_pos_x":[],"mo_move_pos_y":[],
 	"mo_act_taken_time":[],"mo_act_taken_act":[],"mo_act_taken_pos":[],
 	"ba_time":[], "ba_position":[], "ba_ID":[], "ba_age":[], #"ba_ID_mv":[], "ba_time_mv":[], 
 	"sw_time":[], "sw_subwave_num":[], "sw_offset":[], "sw_flip" : [], "level":lev,
 	"device_current_time":OS.get_datetime(), "device_OS": OS.get_name(), 
 	"device_kb_locale":OS.get_locale(), "device_name":OS.get_model_name(),
-	"device_screensize":OS.get_screen_size(), "device_timezone":OS.get_time_zone_info(),
+	"device_screensize_x":OS.get_screen_size().x,"device_screensize_y":OS.get_screen_size().y, "device_timezone":OS.get_time_zone_info(),
 	"device_IP": IP.get_local_addresses(), "player_name": player_name, 
 	"OS_start_time": OS.get_ticks_msec()}
 
 func _ready():
 	$Spawner.mySpawn()
-#	for i in range(6):
-#		var spritefrompreload = Sprite.new()
-#		spritefrompreload.set_texture(neon_grid)
-#		spritefrompreload.apply_scale(Vector2(.5,.5))
-#		#pritefrompreload.region_enabled = true
-#		#print(neon_grid.get_size())
-#		spritefrompreload.offset = global.neon_offset#neon_grid.get_height()/2*.85)
-#		spritefrompreload.rotate(i*PI/3) #pos(Vector2(100, 100))
-#		var scale_trans = 180
-#		spritefrompreload.translate(global.centre)# + Vector2(scale_trans*sin(i*PI/3),-scale_trans*cos(i*PI/3)))
-#		add_child(spritefrompreload)
-#	for i in range(12):
-#		for j in range(6):
-#			poly_instance = poly_class.new()
-#			poly_instance.create(i,j)
-#			add_child(poly_instance)
 
 #func _process(delta):
 	#if !$action_tween.is_active() and (get_tree().get_nodes_in_group("hex_balls").size()) == 0: #+ get_tree().get_nodes_in_group("hint_balls").size()
@@ -57,34 +36,33 @@ func _ready():
 #	$Label3.set_text("Wave: "+ str($Spawner.sw) + " of " + str(int($Spawner.arr[$Spawner.arr.size()-1][2])))
 
 func save_data():
-	var file = File.new()
-	file.open(global.save_file_name, file.WRITE)
-	file.store_line(to_json(global.data))
-	file.close()
+	if !is_saving:
+		is_saving = 1
+		var file = File.new()
+		file.open(global.save_file_name, file.WRITE)
+		file.store_line(to_json(global.data))
+		file.close()
+		# SEND TO SERVER
+		var url = "/post.php"
+		var error = 0
+		error = HTTP.connect_to_host("199.247.17.106", prt)
+		assert(error == OK)
 	
-	# SEND TO SERVER
-#	var url = "/post.php"
-#	var data = file.open(global.save_file_name, file.READ)
-#	var error = 0
-#	error = HTTP.connect_to_host("199.247.17.106", prt)
-#	assert(error == OK)
-#
-#	while HTTP.get_status() == HTTPClient.STATUS_CONNECTING or HTTP.get_status() == HTTPClient.STATUS_RESOLVING:
-#		HTTP.poll()
-#		prt = print(HTTP.get_status())
-#		OS.delay_msec(500)
-#
-#	assert(HTTP.get_status() == HTTPClient.STATUS_CONNECTED)
-#
-#	var QUERY = HTTP.query_string_from_dict(data)
-#	var HEADERS = ["Content-Type: application/json"]
-#
-#	HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY) 
-#
-#	while HTTP.get_status() == HTTPClient.STATUS_REQUESTING:
-#		HTTP.poll()
-#		prt = print(HTTP.get_status())
-#		OS.delay_msec(500)
+		while HTTP.get_status() == HTTPClient.STATUS_CONNECTING or HTTP.get_status() == HTTPClient.STATUS_RESOLVING:
+			HTTP.poll()
+			print(HTTP.get_status())
+			OS.delay_msec(50)
+		assert(HTTP.get_status() == HTTPClient.STATUS_CONNECTED)
 	
-	#return to menu
-	$"/root/menu_root"._on_game_over()
+		var QUERY = HTTP.query_string_from_dict(global.data)
+		var HEADERS = ["Content-Type: application/json"]
+	
+		HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY) 
+	
+		while HTTP.get_status() == HTTPClient.STATUS_REQUESTING:
+			HTTP.poll()
+			print(HTTP.get_status())
+			OS.delay_msec(50)
+		
+		#return to menu
+		$"/root/menu_root"._on_game_over()
