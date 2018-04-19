@@ -3,7 +3,7 @@ extends Node
 var w = 1280
 var h = 720
 var padding = .15
-var centre = Vector2(w-h/sqrt(3),h*.5)
+var centre = Vector2(round(w-h/sqrt(3)),h*.5)
 var harp_pluck_len = .01
 var move_time_new = 36*harp_pluck_len#/6 #1.0/3
 var offset_poly_ratio = .3
@@ -36,6 +36,7 @@ func pie_hex(full,angle):
 		coords.resize(ceil(angle)+2)
 		angle = fmod(angle,1)
 		if angle > 0:
+			angle = max(angle,.001)
 			coords[coords.size()-1] = full[coords.size()-2]*angle+full[coords.size()-3]*(1-angle)
 	else:
 		coords.resize(0)

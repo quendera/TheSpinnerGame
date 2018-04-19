@@ -20,7 +20,8 @@ func _input(event):
 		curr_press_loc = event.position - global.centre
 		if not event is InputEventMouseMotion:
 			global.data["mo_move_time"].push_back(OS.get_ticks_msec())
-			global.data["mo_move_pos"].push_back(curr_press_loc)
+			global.data["mo_move_pos_x"].push_back(curr_press_loc.x)
+			global.data["mo_move_pos_y"].push_back(curr_press_loc.y)
 
 func reset():
 	wave_age = -6
@@ -102,8 +103,6 @@ func _on_action_tween_tween_completed( object, key ):
 	stop_all()
 	if collection_sequence > 0:
 		get_tree().call_group("hex_balls", "run_collection", collection_sequence)
-		location_queue.remove(0)
-		action_queue.remove(0)
 		collection_sequence = 0
 	else:
 		$"../dividers".update()
@@ -111,9 +110,8 @@ func _on_action_tween_tween_completed( object, key ):
 		get_tree().call_group("hex_balls", "set_shape", wave_age)
 		if wave_age > 0:
 			get_tree().call_group("hex_slider","set_shape", wave_age,location_queue,action_queue,1)
-		#if action_queue.size() != 0:
-		location_queue.remove(0)
-		action_queue.remove(0)
+	location_queue.remove(0)
+	action_queue.remove(0)
 	if action_queue.size() != 0 or wave_age < 0:
 		take_action()
 
@@ -131,7 +129,7 @@ func _on_action_timer_timeout():
 	drag_vel = last_press_loc - curr_press_loc
 	if wave_age >= 0:
 		add_to_queue(which_action(last_press_loc),drag_vel.length() > motion_thresh)
-	global.data["mo_act_drag"].push_back(drag_vel.length() > motion_thresh)
+	global.data["mo_act_drag"].push_back(int(drag_vel.length() > motion_thresh))
 	
 #	if event is InputEventScreenTouch and event.is_pressed():
 #		print(OS.get_ticks_msec())
@@ -147,7 +145,3 @@ func _on_action_timer_timeout():
 #			action_queue.append(2)
 #			location_queue.append(location_queue[-1])
 #			drag_flag = 1
-#	if event is InputEventScreenTouch and !event.is_pressed():
-#		print([OS.get_ticks_msec()])
-		
-		

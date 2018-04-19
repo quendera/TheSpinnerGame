@@ -8,5 +8,8 @@ func _ready():
 	color = points_col
 
 func collected_points(angle):
-	polygon = global.pie_hex(coll_coords,angle)
-	#update()
+	if angle > 0.01:
+		show()
+		polygon = global.pie_hex(coll_coords,angle)
+	else:
+		hide()

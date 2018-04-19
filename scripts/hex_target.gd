@@ -3,35 +3,31 @@ extends Polygon2D
 var idx
 var cur_rot
 var age
-#var data_line = {"ba_time":0, "ba_position":0, "ba_ID":0, "ba_age":0} #, "ba_score":0
 var coords = PoolVector2Array()
 var cols = PoolColorArray()
 var orders = [-1,1]
 var is_collected = 0
+var is_logging = 0
 var this_point
 
 func _ready():
 	add_to_group("hex_balls")
 	offset = Vector2(0,global.side_offset/2)
-
-func create(rot, ball_id): 
 	position = global.centre
-	cur_rot = int(rot)
-	idx = ball_id
 	coords.resize(3)
 	cols.resize(3)
 	coords[0] = Vector2(0,0)
 	cols[0] = global.hex_color(0)
+
+func create(rot, ball_id): 
+	cur_rot = int(rot)
+	idx = ball_id
 	rotation = float(rot)/3*PI
 	
 func run_collection(progress):
 	if is_collected == 1:
-		#position = global.centre - progress*global.move_time_new/.1*$"/root/game/action_tween".drag_vel #.rotated(float(cur_rot)/3*PI)
-		#scale = Vector2(1,1)*(1-progress)#max(0,1-progress*36/this_point)
 		get_tree().call_group("hint_balls", "dimmer",idx,1-progress)
 		get_tree().call_group("hex_slider","push_target",progress,age,cur_rot)
-		#$"/root/game/burn_progress".set_shape(progress,pow(age,2))
-		#$"/root/game/hex_pusher".set_shape(progress,age,cur_rot)
 		if progress == 1:
 			log_data()
 		else:
@@ -68,18 +64,17 @@ func set_shape(wave_age):
 		log_data()
 	
 func log_data():
-	global.data["ba_time"].push_back(OS.get_ticks_msec())#global.dt
-	global.data["ba_ID"].push_back(idx)
-	global.data["ba_position"].push_back(cur_rot) #redundant
-	global.data["ba_age"].push_back(age)
-	#for key in data_line.keys():
-	#	global.data[key].push_back(data_line[key])
-	get_tree().call_group("hint_balls", "eliminate",idx)
-	queue_free()
-	#if (get_tree().get_nodes_in_group("hex_balls").size()) == 1: #+ get_tree().get_nodes_in_group("hint_balls").size()
-	if $"/root/game/Spawner".balls_left == 0:
-		$"/root/game/Spawner".balls_left = $"/root/game/Spawner".ball_per_sw
-		$"/root/game/progress_tween".finish_hints_discrete()#Spawner".mySpawn()
+	if !is_logging:
+		is_logging = 1
+		global.data["ba_time"].push_back(OS.get_ticks_msec())#global.dt
+		global.data["ba_ID"].push_back(idx)
+		global.data["ba_position"].push_back(cur_rot) #redundant
+		global.data["ba_age"].push_back(age)
+		get_tree().call_group("hint_balls", "eliminate",idx)
+		queue_free()
+		if $"/root/game/Spawner".balls_left == 0:
+			$"/root/game/Spawner".balls_left = $"/root/game/Spawner".ball_per_sw
+			$"/root/game/progress_tween".finish_hints_discrete()#Spawner".mySpawn()
 
 func get_collected(angle):
 	if angle == cur_rot and age > 0 and age <= 6 and is_collected == 0:
