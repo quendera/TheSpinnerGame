@@ -13,7 +13,7 @@ func init(lev,player_name):
 #	global.start_step = 0
 	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
 	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"mo_press":[],"mo_lobe":[], #"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
-	"mo_act_drag":[],"mo_move_time":[],"mo_move_pos_x":[],"mo_move_pos_y":[],
+	"mo_act_drag":[],"mo_act_drag_time":[],"mo_move_time":[],"mo_move_pos_x":[],"mo_move_pos_y":[],
 	"mo_act_taken_time":[],"mo_act_taken_act":[],"mo_act_taken_pos":[],
 	"ba_time":[], "ba_position":[], "ba_ID":[], "ba_age":[], #"ba_ID_mv":[], "ba_time_mv":[], 
 	"sw_time":[], "sw_subwave_num":[], "sw_offset":[], "sw_flip" : [], "level":lev,

@@ -16,6 +16,7 @@ func _input(event):
 		$"..".save_data()
 	elif event is InputEventScreenTouch:
 		log_data_mo(event.position-global.centre,event.is_pressed())
+		#print(wave_age)
 	else:
 		curr_press_loc = event.position - global.centre
 		if not event is InputEventMouseMotion:
@@ -127,9 +128,10 @@ func _on_action_tween_tween_step( object, key, elapsed, value ):
 
 func _on_action_timer_timeout():
 	drag_vel = last_press_loc - curr_press_loc
-	if wave_age >= 0:
+	if wave_age >= 0:# and $"../Spawner".balls_left > 0 and wave_age <= 5 + $"../Spawner".ball_per_sw:
 		add_to_queue(which_action(last_press_loc),drag_vel.length() > motion_thresh)
 	global.data["mo_act_drag"].push_back(int(drag_vel.length() > motion_thresh))
+	global.data["mo_act_drag_time"].push_back(OS.get_ticks_msec())
 	
 #	if event is InputEventScreenTouch and event.is_pressed():
 #		print(OS.get_ticks_msec())
