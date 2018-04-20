@@ -73,6 +73,7 @@ func log_data():
 		get_tree().call_group("hint_balls", "eliminate",idx)
 		queue_free()
 		if $"/root/game/Spawner".balls_left == 0:
+			$"/root/game/action_tween".wave_age = -6
 			$"/root/game/Spawner".balls_left = $"/root/game/Spawner".ball_per_sw
 			$"/root/game/progress_tween".finish_hints_discrete()#Spawner".mySpawn()
 
