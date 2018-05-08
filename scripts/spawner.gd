@@ -10,6 +10,8 @@ var input_i
 var file = File.new()
 var arr = {}
 var notes = PoolIntArray()
+var notesT = PoolVector2Array()
+var notesB = PoolVector2Array()
 var sw = 0
 var sw_age = 0
 var curr_wv_points
@@ -33,6 +35,7 @@ func _ready():
 			i = i+1
 	file.close()
 	read_music()
+	read_music_time()
 	ball_per_sw = int(arr[arr.size()-1][2])
 	sw_order = shuffleList(range(ball_per_sw)) 
 	ball_per_sw = arr.size()/ball_per_sw
@@ -111,3 +114,18 @@ func read_music():#fname):
 		if target_line.size() > 0:
 			notes.push_back(int(target_line[0]))
 	file.close()
+	
+func read_music_time():#fname):
+	file.open("res://assets/files/jesu.txt", File.READ)
+	var target_line
+	while !file.eof_reached():
+		target_line = file.get_csv_line()
+		if target_line.size() == 4:
+			if int(target_line[3]) == 1:
+				notesT.push_back(Vector2(int(target_line[0]),float(target_line[1])))
+			else:
+				notesB.push_back(Vector2(int(target_line[0]),float(target_line[1])))
+	file.close()
+	global.measure_time = 9 # 5
+	global.game_measure = 1.8 #2.5
+	global.drone_measure = 2.4 #5

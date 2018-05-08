@@ -18,7 +18,12 @@ var score
 var save_file_name
 var data
 #var delay = AudioServer.get_bus_effect(1,0)
-var pitch = AudioServer.get_bus_effect(1,0)
+#var pitch = AudioServer.get_bus_effect(1,0)
+#var drone_pitch = AudioServer.get_bus_effect(4,0)
+#var pitchB = AudioServer.get_bus_effect(5,0)
+var measure_time
+var game_measure
+var drone_measure
 
 func full_hex(radius,wire =0):
 	var coords = PoolVector2Array()

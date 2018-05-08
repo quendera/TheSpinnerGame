@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sine_slow.wav-04e2cbca7b6b14040f61cd326803907f.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sine_slow.wav"
+source_md5="3906371c7cb82c59030b1d0d38fbfaf8"
+
+dest_files=[ "res://.import/sine_slow.wav-04e2cbca7b6b14040f61cd326803907f.sample" ]
+dest_md5="a7758283a93f5c1eed73c0dd3ea840f7"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
