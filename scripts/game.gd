@@ -5,6 +5,8 @@ var prt = 80
 var is_saving = 0
 
 func init(lev,player_name):
+	AudioServer.set_bus_volume_db(4,-40)
+	AudioServer.set_bus_volume_db(6,-36)
 	global.curr_wv = lev
 	#global.dt = 0
 	global.total_time = 300+int(lev > 4)*300
@@ -21,7 +23,7 @@ func init(lev,player_name):
 	"device_kb_locale":OS.get_locale(), "device_name":OS.get_model_name(),
 	"device_screensize_x":OS.get_screen_size().x,"device_screensize_y":OS.get_screen_size().y, "device_timezone":OS.get_time_zone_info(),
 	"device_IP": IP.get_local_addresses(), "player_name": player_name, 
-	"OS_start_time": OS.get_ticks_msec()}
+	"OS_start_time": OS.get_ticks_msec(), "drone_play": []}
 
 func _ready():
 	$Spawner.mySpawn()

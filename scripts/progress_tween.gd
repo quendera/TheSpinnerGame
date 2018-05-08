@@ -13,6 +13,10 @@ var num_sounds
 var start_time
 var note_count = 0
 var scale_time = global.move_time_new*6
+var drone_note = 0
+var scale_count = 0
+var notes_per_scale = 8
+var play_state = Vector3(0,0,0) #completed time for piece, index of notes played
 
 func _ready():
 	start()
@@ -37,16 +41,20 @@ func finish_hints_discrete():
 		$"../hex_progress".set_shape(float($"../Spawner".sw)/global.sw_count)
 	elif round(sw_score*36*$"../Spawner".ball_per_sw) == $"../Spawner".curr_wv_points:
 		$"../hex_subwave_capture".color = global.hex_color(6,1) 
-		#interpolate_method($"../hex_perfect","dim_hex",1,0,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		var scale_time = global.game_measure#global.move_time_new*notes_per_scale*2/3
 		interpolate_method($"../hex_subwave_capture","collected_points",sw_score,0,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_subwave","total_points",sw_score,0,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw-1)/global.sw_count,float($"../Spawner".sw)/global.sw_count,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_progress_perfect","set_shape",0,1,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
-		#$"../perfect".play() too subtle
-		for i in range($"../hex_progress_perfect".notes_per_scale):
-			interpolate_callback($"../hex_progress_perfect",start_time,"play_midi",i)
-			start_time += scale_time/float($"../hex_progress_perfect".notes_per_scale)
-		$"../hex_progress_perfect".scale_count += 1
+		timed_play()
+		#for i in range(notes_per_scale):
+		#	interpolate_callback(self,start_time,"play_midi",i)
+		#	start_time += global.move_time_new*2/3#scale_time/float($"../hex_progress_perfect".notes_per_scale)
+		if scale_count == 0:
+			interpolate_callback(self,start_time+global.move_time_new*2,"drone_timer",0,0,0)
+		#	interpolate_callback(self,$"../Spawner".notesT[0].y/global.measure_time*global.drone_measure+start_time+global.move_time_new*2,"drone_timed_play",0)
+		#	interpolate_callback(self,$"../Spawner".notesB[0].y/global.measure_time*global.drone_measure+start_time+global.move_time_new*2,"drone_timed_playB",0)
+		scale_count += 1
 		#note_count += notes_per_scale
 		#interpolate_property($"../hex_subwave_capture",color,global.hex_color(6,1),global
 		#interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw-1+float(i+1)/num_sounds)/$"../Spawner".accum_points.size())
@@ -63,9 +71,7 @@ func finish_hints_discrete():
 #	var tween_loss_len = click_len*max(1,(norm-sw_score)*36*$"../Spawner".ball_per_sw)*fail_time_ratio
 	frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/(fail_thresh*$"../Spawner".accum_points[-1])
 	num_sounds = ceil((norm-sw_score)*36*$"../Spawner".ball_per_sw/points_per_click)
-	if num_sounds == 0:
-		pass#interpolate_callback($"../collect6",start_time,"play")
-	else:
+	if num_sounds > 0:
 		for i in range(num_sounds):
 			interpolate_callback($"../hex_subwave",start_time,"total_points",(norm-sw_score)*(1-float(i+1)/num_sounds))
 			interpolate_callback($"../hex_xed",start_time,"set_shape",frac_fail+(float(i+1)/num_sounds*(frac_fail_new-frac_fail)))
@@ -74,7 +80,54 @@ func finish_hints_discrete():
 	frac_fail = frac_fail_new
 	#generate new wave
 	interpolate_callback($"../Spawner",start_time,"mySpawn")
+
+func drone_timer(counter,indT,indB):
+	if counter == 0:
+		global.data["drone_play"].push_back(OS.get_ticks_msec())
+	if $"../Spawner".notesT[indT].y == counter:
+		AudioServer.get_bus_effect(4,0).pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5-1)
+		$"../drone".play()
+		indT += 1
+	if $"../Spawner".notesB[indB].y == counter:
+		AudioServer.get_bus_effect(6,0).pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5-1)
+		$"../droneB".play()
+		indB += 1
+	counter += 1
+	if counter >= play_state.z*global.measure_time:
+		indT = 0
+		indB = 0
+		interpolate_callback(self,global.move_time_new + 12*global.move_time_new,"drone_timer",0,indT,indB)
+	else:
+		interpolate_callback(self,global.move_time_new,"drone_timer",counter,indT,indB) #global.drone_measure/global.measure_time
+
+func timed_play():
+	while play_state.x < $"../Spawner".notesB.size() and $"../Spawner".notesB[play_state.x].y < (play_state.z+1)*global.measure_time:
+		start_time = ($"../Spawner".notesB[play_state.x].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure
+		interpolate_callback(self,start_time,"play_timed_midiB",$"../Spawner".notesB[play_state.x].x)
+		play_state.x += 1
+	while play_state.y < $"../Spawner".notesT.size() and $"../Spawner".notesT[play_state.y].y < (play_state.z+1)*global.measure_time:
+		start_time = ($"../Spawner".notesT[play_state.y].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure
+		interpolate_callback(self,start_time,"play_timed_midi",$"../Spawner".notesT[play_state.y].x)
+		play_state.y += 1
+	play_state.z += 1
+	start_time = global.game_measure
+	#for i in range($"../hex_progress_perfect".notes_per_scale):
+	#	interpolate_callback($"../hex_progress_perfect",start_time,"play_midi",i)
+	#	start_time += global.move_time_new*2/3
+
+func play_timed_midi(pitch):
+	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
+#	global.pitch.pitch_scale = pow(2,pitch/12.0-5)
+	$"/root/game/spiccato".play()
 	
+func play_timed_midiB(pitch):
+	AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
+	#global.pitchB.pitch_scale = pow(2,pitch/12.0-5)
+	$"/root/game/spiccatoB".play()
+
+func play_midi(pitch):
+	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,$"../Spawner".notes[(scale_count-1)*notes_per_scale+pitch]/12.0-5)
+	$"/root/game/spiccato".play() #sine_slow".play() #
 
 func slide_hints(new):
 	#interpolate_property($"../hex_subwave","scale",Vector2(1,1)*norm*sqrt(1-sw_score),Vector2(1,1)*norm*sqrt(max(0,1-sw_score-new)),global.move_time_new/2,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new/2)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/contrabass-spiccato-a-1.wav-3d01e33bd0ad044b9279d6225d2aafa6.sample"
+
+[deps]
+
+source_file="res://assets/sounds/contrabass-spiccato-a-1.wav"
+source_md5="066d5161679efee196dee63e9a24d036"
+
+dest_files=[ "res://.import/contrabass-spiccato-a-1.wav-3d01e33bd0ad044b9279d6225d2aafa6.sample" ]
+dest_md5="fdde2a4aa615bf7d099316999e0149cc"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
