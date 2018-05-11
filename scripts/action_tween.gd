@@ -16,10 +16,9 @@ func _input(event):
 		$"..".save_data()
 	elif event is InputEventScreenTouch:
 		log_data_mo(event.position-global.centre,event.is_pressed())
-		#print(wave_age)
 	else:
 		curr_press_loc = event.position - global.centre
-		if not event is InputEventMouseMotion:
+		if event is InputEventScreenDrag:#not event is InputEventMouseMotion:
 			global.data["mo_move_time"].push_back(OS.get_ticks_msec())
 			global.data["mo_move_pos_x"].push_back(curr_press_loc.x)
 			global.data["mo_move_pos_y"].push_back(curr_press_loc.y)
@@ -97,10 +96,10 @@ func which_action(click_loc):
 	return (lobe+1)*int(dist < 6*global.poly_size + global.side_offset)
 
 func _on_action_tween_tween_completed( object, key ):
-	#if wave_age > 0:
 	global.data["mo_act_taken_time"].push_back(OS.get_ticks_msec())
 	global.data["mo_act_taken_act"].push_back(action_queue[0])
 	global.data["mo_act_taken_pos"].push_back(location_queue[1])
+	#global.data["mo_act_taken_age"].push_back(wave_age)
 	stop_all()
 	if collection_sequence > 0:
 		get_tree().call_group("hex_balls", "run_collection", collection_sequence)

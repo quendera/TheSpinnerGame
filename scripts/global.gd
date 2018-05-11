@@ -11,16 +11,10 @@ var poly_size = ((1-padding)*h)/2/(6+offset_poly_ratio)#w/50
 var side_offset = poly_size*offset_poly_ratio
 var sw_count
 var curr_wv
-var total_time
 var sw_score
 var score
-#var dt
 var save_file_name
 var data
-#var delay = AudioServer.get_bus_effect(1,0)
-#var pitch = AudioServer.get_bus_effect(1,0)
-#var drone_pitch = AudioServer.get_bus_effect(4,0)
-#var pitchB = AudioServer.get_bus_effect(5,0)
 var measure_time
 var game_measure
 var drone_measure
