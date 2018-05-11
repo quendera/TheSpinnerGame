@@ -3,8 +3,6 @@ extends Polygon2D
 var coords = global.full_hex((global.poly_size*3*2+global.side_offset*2)/sqrt(3))
 var mask = global.full_hex((global.poly_size*3*2)/sqrt(3))
 var pie_coords = PoolVector2Array()
-#var tracers = PoolVector2Array()
-#var show_lines = false
 var how_far
 var cur_bright
 
@@ -14,8 +12,7 @@ func _ready():
 	pie_coords.append(coords[3])
 	how_far = 0
 	cur_bright = 0
-	color = Color(cur_bright,cur_bright,cur_bright)#global.hint_color(6)
-#	tracers.resize(3)
+	color = Color(cur_bright,cur_bright,cur_bright)
 	
 func _process(delta):
 	cur_bright = cur_bright*(1-delta*5)

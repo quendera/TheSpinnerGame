@@ -2,22 +2,22 @@
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=2]
-[ext_resource path="res://assets/sounds/sine_slow.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/sounds/sine_wave.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/sounds/violin-spiccato-c4.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sounds/glass-break.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sounds/woodclick.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sounds/typewriter.wav" type="AudioStream" id=8]
-[ext_resource path="res://scripts/dividers.gd" type="Script" id=9]
-[ext_resource path="res://scripts/action_tween.gd" type="Script" id=10]
-[ext_resource path="res://scripts/progress_tween.gd" type="Script" id=11]
-[ext_resource path="res://scripts/hex_xed.gd" type="Script" id=12]
-[ext_resource path="res://scripts/hex_xed_mask.gd" type="Script" id=13]
-[ext_resource path="res://scripts/hex_progress.gd" type="Script" id=14]
-[ext_resource path="res://scripts/hex_progress_perfect.gd" type="Script" id=15]
-[ext_resource path="res://scripts/hex_progress_mask.gd" type="Script" id=16]
-[ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=17]
-[ext_resource path="res://scripts/hex_subwave_capture.gd" type="Script" id=18]
+[ext_resource path="res://scripts/dividers.gd" type="Script" id=3]
+[ext_resource path="res://scripts/action_tween.gd" type="Script" id=4]
+[ext_resource path="res://scripts/progress_tween.gd" type="Script" id=5]
+[ext_resource path="res://scripts/hex_xed.gd" type="Script" id=6]
+[ext_resource path="res://scripts/hex_xed_mask.gd" type="Script" id=7]
+[ext_resource path="res://scripts/hex_progress.gd" type="Script" id=8]
+[ext_resource path="res://scripts/hex_progress_perfect.gd" type="Script" id=9]
+[ext_resource path="res://scripts/hex_progress_mask.gd" type="Script" id=10]
+[ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=11]
+[ext_resource path="res://scripts/hex_subwave_capture.gd" type="Script" id=12]
+[ext_resource path="res://assets/sounds/sine_slow.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/sine_wave.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sounds/violin-spiccato-c4.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sounds/glass-break.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sounds/woodclick.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sounds/typewriter.wav" type="AudioStream" id=18]
 
 [sub_resource type="Environment" id=1]
 
@@ -98,7 +98,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Adjustments", "Glow", "Glow/levels", "Resource", "Tonemap" ]
 
-[node name="game" type="Node2D" index="0"]
+[node name="game" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
@@ -113,131 +113,12 @@ _sections_unfolded = [ "Pause" ]
 script = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="Label2" type="Label" parent="." index="2"]
+[node name="dividers" type="Node2D" parent="." index="2"]
 
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 300.0
-margin_top = 60.0
-margin_right = 582.0
-margin_bottom = 159.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "Theme", "Visibility", "custom_constants", "custom_fonts", "custom_styles" ]
-
-[node name="Label" type="Label" parent="." index="3"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 300.0
-margin_top = 30.0
-margin_right = 582.0
-margin_bottom = 129.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "Theme", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
-
-[node name="Label3" type="Label" parent="." index="4"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 896.0
-margin_top = 90.0
-margin_right = 1178.0
-margin_bottom = 189.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "Theme", "Visibility", "custom_constants", "custom_fonts", "custom_styles" ]
-
-[node name="sine_slow" type="AudioStreamPlayer" parent="." index="5"]
-
-stream = ExtResource( 3 )
-volume_db = 0.0
-autoplay = false
-mix_target = 0
-bus = "phaser"
-
-[node name="sine" type="AudioStreamPlayer" parent="." index="6"]
-
-stream = ExtResource( 4 )
-volume_db = -10.0
-autoplay = false
-mix_target = 0
-bus = "phaser"
-
-[node name="spiccato" type="AudioStreamPlayer" parent="." index="7"]
-
-stream = ExtResource( 5 )
-volume_db = -10.0
-autoplay = false
-mix_target = 0
-bus = "pitch"
-
-[node name="spiccatoB" type="AudioStreamPlayer" parent="." index="8"]
-
-stream = ExtResource( 5 )
-volume_db = -10.0
-autoplay = false
-mix_target = 0
-bus = "pitchB"
-
-[node name="miss" type="AudioStreamPlayer" parent="." index="9"]
-
-stream = ExtResource( 6 )
-volume_db = -10.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="move" type="AudioStreamPlayer" parent="." index="10"]
-
-stream = ExtResource( 7 )
-volume_db = -10.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="typewriter" type="AudioStreamPlayer" parent="." index="11"]
-
-stream = ExtResource( 8 )
-volume_db = -10.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="dividers" type="Node2D" parent="." index="12"]
-
-script = ExtResource( 9 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Z" ]
 
-[node name="action_tween" type="Tween" parent="." index="13"]
+[node name="action_tween" type="Tween" parent="." index="3"]
 
 repeat = false
 playback_process_mode = 1
@@ -245,16 +126,16 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
-script = ExtResource( 10 )
+script = ExtResource( 4 )
 
-[node name="action_timer" type="Timer" parent="." index="14"]
+[node name="action_timer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.1
 one_shot = true
 autostart = false
 
-[node name="progress_tween" type="Tween" parent="." index="15"]
+[node name="progress_tween" type="Tween" parent="." index="5"]
 
 repeat = false
 playback_process_mode = 1
@@ -262,9 +143,9 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
-script = ExtResource( 11 )
+script = ExtResource( 5 )
 
-[node name="hex_xed" type="Polygon2D" parent="." index="16"]
+[node name="hex_xed" type="Polygon2D" parent="." index="6"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -278,7 +159,7 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 12 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Invert", "Texture", "Visibility" ]
 
 [node name="hex_xed_mask" type="Polygon2D" parent="hex_xed" index="0"]
@@ -295,25 +176,9 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 13 )
+script = ExtResource( 7 )
 
-[node name="hex_progress" type="Polygon2D" parent="." index="17"]
-
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-script = ExtResource( 14 )
-
-[node name="hex_progress_perfect" type="Polygon2D" parent="." index="18"]
+[node name="hex_progress" type="Polygon2D" parent="." index="7"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -327,25 +192,9 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 15 )
+script = ExtResource( 8 )
 
-[node name="hex_progress_mask" type="Polygon2D" parent="." index="19"]
-
-polygon = PoolVector2Array(  )
-uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-script = ExtResource( 16 )
-
-[node name="hex_subwave" type="Polygon2D" parent="." index="20"]
+[node name="hex_progress_perfect" type="Polygon2D" parent="." index="8"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -359,9 +208,9 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 17 )
+script = ExtResource( 9 )
 
-[node name="hex_subwave_capture" type="Polygon2D" parent="." index="21"]
+[node name="hex_progress_mask" type="Polygon2D" parent="." index="9"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -375,19 +224,107 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = ExtResource( 18 )
+script = ExtResource( 10 )
 
-[node name="drone" type="AudioStreamPlayer" parent="." index="22"]
+[node name="hex_subwave" type="Polygon2D" parent="." index="10"]
 
-stream = ExtResource( 5 )
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 11 )
+
+[node name="hex_subwave_capture" type="Polygon2D" parent="." index="11"]
+
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 12 )
+
+[node name="sine_slow" type="AudioStreamPlayer" parent="." index="12"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "phaser"
+
+[node name="sine" type="AudioStreamPlayer" parent="." index="13"]
+
+stream = ExtResource( 14 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "phaser"
+
+[node name="spiccato" type="AudioStreamPlayer" parent="." index="14"]
+
+stream = ExtResource( 15 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "pitch"
+
+[node name="spiccatoB" type="AudioStreamPlayer" parent="." index="15"]
+
+stream = ExtResource( 15 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "pitchB"
+
+[node name="miss" type="AudioStreamPlayer" parent="." index="16"]
+
+stream = ExtResource( 16 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="move" type="AudioStreamPlayer" parent="." index="17"]
+
+stream = ExtResource( 17 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="typewriter" type="AudioStreamPlayer" parent="." index="18"]
+
+stream = ExtResource( 18 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="drone" type="AudioStreamPlayer" parent="." index="19"]
+
+stream = ExtResource( 15 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0
 bus = "drone-pitch"
 
-[node name="droneB" type="AudioStreamPlayer" parent="." index="23"]
+[node name="droneB" type="AudioStreamPlayer" parent="." index="20"]
 
-stream = ExtResource( 5 )
+stream = ExtResource( 15 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0

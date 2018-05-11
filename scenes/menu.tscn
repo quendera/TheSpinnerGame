@@ -13,7 +13,7 @@ _sections_unfolded = [ "Resource" ]
 resource_local_to_scene = true
 _sections_unfolded = [ "Resource" ]
 
-[node name="menu_root" type="Node2D"]
+[node name="menu_root" type="Node2D" index="0"]
 
 position = Vector2( 1000, 600 )
 scale = Vector2( -16.875, -11.2897 )
@@ -160,6 +160,31 @@ caret_blink = true
 caret_blink_speed = 0.65
 caret_position = 0
 _sections_unfolded = [ "Anchor", "Caret", "Grow Direction", "Margin", "Placeholder", "Rect" ]
+
+[node name="instructions" type="Label" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 31.0
+margin_right = 378.0
+margin_bottom = 96.0
+rect_scale = Vector2( -0.2, -0.2 )
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Instructions:
+1. Tap to move the collector or advance the targets
+2. Swipe a triangle to collect it
+3. Bigger triangles yield more points"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
 
 [connection signal="text_entered" from="player_name" to="." method="_on_player_name_text_entered"]
 

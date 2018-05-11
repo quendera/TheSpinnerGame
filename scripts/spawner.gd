@@ -20,8 +20,9 @@ var ball_per_sw
 var balls_left
 var sw_order
 var score_grid = PoolVector2Array()
-#var data_line = {"sw_time":0, "sw_subwave_num":0, "sw_offset":0, "sw_flip" : 1}
 var accum_points = PoolIntArray()
+var rand_offset
+var rand_flip 
 
 func _ready():
 	randomize()
@@ -52,9 +53,6 @@ func _ready():
 			add_child(hex_slide_instance)
 			hex_slide_instance.create(i,j)
 
-#func _onready():
-#	self.set_position($game.center)
-
 func shuffleList(list):
     var shuffledList = []
     var indexList = range(list.size())
@@ -65,8 +63,8 @@ func shuffleList(list):
     return shuffledList
 
 func mySpawn():
-	var rand_offset = randi() % 6
-	var rand_flip = randi() % 2
+	rand_offset = randi() % 6
+	rand_flip = randi() % 2
 	if sw >= sw_order.size():
 		curr_wv_points = 0
 		#$"../progress_tween".reset_hints()
@@ -87,16 +85,16 @@ func mySpawn():
 			hex_target_instance = hex_target_scene.new()
 			hex_target_instance.create(send_rot,i)
 			add_child(hex_target_instance)
-		log_data(rand_offset,rand_flip)
+		log_data()
 		sw += 1
-	for i in range(6-ball_per_sw):
-		get_tree().call_group("balls", "step")
+	#for i in range(6-ball_per_sw):
+	#	get_tree().call_group("balls", "step")
 
-func log_data(offset,flip):
+func log_data():
 	global.data["sw_time"].push_back(OS.get_ticks_msec())#global.dt
 	global.data["sw_subwave_num"].push_back(sw_order[sw])
-	global.data["sw_offset"].push_back(offset)
-	global.data["sw_flip"].push_back(flip)
+	global.data["sw_offset"].push_back(rand_offset)
+	global.data["sw_flip"].push_back(rand_flip)
 	#for key in data_line.keys():
 	#	global.data[key].push_back(data_line[key])
 
