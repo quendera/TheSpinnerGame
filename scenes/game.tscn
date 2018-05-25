@@ -96,29 +96,25 @@ adjustment_enabled = false
 adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
-_sections_unfolded = [ "Adjustments", "Glow", "Glow/levels", "Resource", "Tonemap" ]
+_sections_unfolded = [ "Adjustments", "Background", "Glow", "Glow/levels", "Resource" ]
 
 [node name="game" type="Node2D"]
 
+editor/display_folded = true
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
-
-environment = SubResource( 1 )
-_sections_unfolded = [ "Pause" ]
-
-[node name="Spawner" type="Node2D" parent="." index="1"]
+[node name="Spawner" type="Node2D" parent="." index="0"]
 
 script = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="dividers" type="Node2D" parent="." index="2"]
+[node name="dividers" type="Node2D" parent="." index="1"]
 
 script = ExtResource( 3 )
 _sections_unfolded = [ "Z" ]
 
-[node name="action_tween" type="Tween" parent="." index="3"]
+[node name="action_tween" type="Tween" parent="." index="2"]
 
 repeat = false
 playback_process_mode = 1
@@ -128,14 +124,7 @@ playback/repeat = false
 playback/speed = 1.0
 script = ExtResource( 4 )
 
-[node name="action_timer" type="Timer" parent="." index="4"]
-
-process_mode = 1
-wait_time = 0.1
-one_shot = true
-autostart = false
-
-[node name="progress_tween" type="Tween" parent="." index="5"]
+[node name="progress_tween" type="Tween" parent="." index="3"]
 
 repeat = false
 playback_process_mode = 1
@@ -145,7 +134,7 @@ playback/repeat = false
 playback/speed = 1.0
 script = ExtResource( 5 )
 
-[node name="hex_xed" type="Polygon2D" parent="." index="6"]
+[node name="hex_xed" type="Polygon2D" parent="." index="4"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -178,7 +167,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 7 )
 
-[node name="hex_progress" type="Polygon2D" parent="." index="7"]
+[node name="hex_progress" type="Polygon2D" parent="." index="5"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -194,7 +183,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 8 )
 
-[node name="hex_progress_perfect" type="Polygon2D" parent="." index="8"]
+[node name="hex_progress_perfect" type="Polygon2D" parent="." index="6"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -210,7 +199,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 9 )
 
-[node name="hex_progress_mask" type="Polygon2D" parent="." index="9"]
+[node name="hex_progress_mask" type="Polygon2D" parent="." index="7"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -226,7 +215,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 10 )
 
-[node name="hex_subwave" type="Polygon2D" parent="." index="10"]
+[node name="hex_subwave" type="Polygon2D" parent="." index="8"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -242,7 +231,7 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 11 )
 
-[node name="hex_subwave_capture" type="Polygon2D" parent="." index="11"]
+[node name="hex_subwave_capture" type="Polygon2D" parent="." index="9"]
 
 polygon = PoolVector2Array(  )
 uv = PoolVector2Array(  )
@@ -258,82 +247,93 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 12 )
 
-[node name="sine_slow" type="AudioStreamPlayer" parent="." index="12"]
+[node name="sine_slow" type="AudioStreamPlayer" parent="." index="10"]
 
 stream = ExtResource( 13 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "phaser"
 
-[node name="sine" type="AudioStreamPlayer" parent="." index="13"]
+[node name="sine" type="AudioStreamPlayer" parent="." index="11"]
 
 stream = ExtResource( 14 )
 volume_db = -10.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "phaser"
 
-[node name="spiccato" type="AudioStreamPlayer" parent="." index="14"]
+[node name="spiccato" type="AudioStreamPlayer" parent="." index="12"]
 
 stream = ExtResource( 15 )
 volume_db = -10.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "pitch"
 
-[node name="spiccatoB" type="AudioStreamPlayer" parent="." index="15"]
+[node name="spiccatoB" type="AudioStreamPlayer" parent="." index="13"]
 
 stream = ExtResource( 15 )
 volume_db = -10.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "pitchB"
 
-[node name="miss" type="AudioStreamPlayer" parent="." index="16"]
+[node name="miss" type="AudioStreamPlayer" parent="." index="14"]
 
 stream = ExtResource( 16 )
 volume_db = -10.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="move" type="AudioStreamPlayer" parent="." index="17"]
+[node name="move" type="AudioStreamPlayer" parent="." index="15"]
 
 stream = ExtResource( 17 )
 volume_db = -10.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="typewriter" type="AudioStreamPlayer" parent="." index="18"]
+[node name="typewriter" type="AudioStreamPlayer" parent="." index="16"]
 
 stream = ExtResource( 18 )
 volume_db = -10.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="drone" type="AudioStreamPlayer" parent="." index="19"]
+[node name="drone" type="AudioStreamPlayer" parent="." index="17"]
 
 stream = ExtResource( 15 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "drone-pitch"
 
-[node name="droneB" type="AudioStreamPlayer" parent="." index="20"]
+[node name="droneB" type="AudioStreamPlayer" parent="." index="18"]
 
 stream = ExtResource( 15 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "drone-pitchB"
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="19"]
+
+environment = SubResource( 1 )
+
 [connection signal="tween_completed" from="action_tween" to="action_tween" method="_on_action_tween_tween_completed"]
 
 [connection signal="tween_step" from="action_tween" to="action_tween" method="_on_action_tween_tween_step"]
-
-[connection signal="timeout" from="action_timer" to="action_tween" method="_on_action_timer_timeout"]
 
 

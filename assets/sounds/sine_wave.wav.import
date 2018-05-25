@@ -7,10 +7,7 @@ path="res://.import/sine_wave.wav-76335c580bd9779da9cdefe50d2ad073.sample"
 [deps]
 
 source_file="res://assets/sounds/sine_wave.wav"
-source_md5="44c913fb3a3334b81e1d38cfbf7e54db"
-
 dest_files=[ "res://.import/sine_wave.wav-76335c580bd9779da9cdefe50d2ad073.sample" ]
-dest_md5="58c55c5243bd43c8a6f2a28378222aeb"
 
 [params]
 

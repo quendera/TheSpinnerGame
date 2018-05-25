@@ -10,12 +10,21 @@ var last_press_loc = Vector2(0,0)
 var curr_press_loc
 var drag_vel
 var motion_thresh = OS.get_screen_dpi()*.1 #pixels
+var hold_thresh = global.move_time_new/2*1000
 
 func _input(event):
 	if event is InputEventKey:
 		$"..".save_data()
-	elif event is InputEventScreenTouch:
-		log_data_mo(event.position-global.centre,event.is_pressed())
+	elif event is InputEventScreenTouch and wave_age >= 0:
+		if event.is_pressed():
+			global.data["mo_press_time"].push_back(OS.get_ticks_msec())
+			last_press_loc = event.position-global.centre
+			global.data["mo_press_x"].push_back(last_press_loc.x)
+			global.data["mo_press_y"].push_back(last_press_loc.y)
+		else:#if event.is_released(): #if wave_age >= 0:# and $"../Spawner".balls_left > 0 and wave_age <= 5 + $"../Spawner".ball_per_sw:
+			which_action(event.position-global.centre)#,(OS.get_ticks_msec()-global.data["mo_press_time"][-1]) > hold_thresh)
+			#which_action(last_press_loc),drag_vel.length() > motion_thresh)
+#		log_data_mo(event.position-global.centre,event.is_pressed())
 	else:
 		curr_press_loc = event.position - global.centre
 		if event is InputEventScreenDrag:#not event is InputEventMouseMotion:
@@ -77,23 +86,29 @@ func calc_ang_vel(curr_loc,new_loc):
 	else:
 		return 1
 
-func log_data_mo(mo_pos,pressed):
-	if pressed and which_action(mo_pos) > 0 and $"../Spawner".balls_left > 0:
-		$"../action_timer".start()
-		last_press_loc = mo_pos
-	global.data["mo_time"].push_back(OS.get_ticks_msec())#global.dt
-	global.data["mo_x"].push_back(mo_pos.x)
-	global.data["mo_y"].push_back(mo_pos.y)
-	global.data["mo_press"].push_back(int(pressed))
-	global.data["mo_lobe"].push_back(which_action(mo_pos))
-	#for key in data_line.keys():
-	#	global.data[key].push_back(data_line[key])
+#func log_data_mo(mo_pos,pressed):
+#	if pressed and which_action(mo_pos) > 0 and $"../Spawner".balls_left > 0:
+#		$"../action_timer".start()
+#		last_press_loc = mo_pos
+#	global.data["mo_time"].push_back(OS.get_ticks_msec())#global.dt
+#	global.data["mo_x"].push_back(mo_pos.x)
+#	global.data["mo_y"].push_back(mo_pos.y)
+#	global.data["mo_press"].push_back(int(pressed))
+#	global.data["mo_lobe"].push_back(which_action(mo_pos))
+#	#for key in data_line.keys():
+#	#	global.data[key].push_back(data_line[key])
 
 func which_action(click_loc):
-	var lobe = fposmod(6-round(atan2(click_loc.x,click_loc.y)/PI*3),6)
+	var lobe = fposmod(6-round(atan2(last_press_loc.x,last_press_loc.y)/PI*3),6)
 	var lobe_angle = (lobe)*PI/3
-	var dist = sin(-lobe_angle)*click_loc.x+cos(-lobe_angle)*click_loc.y
-	return (lobe+1)*int(dist < 6*global.poly_size + global.side_offset)
+	global.data["mo_time"].push_back(OS.get_ticks_msec())#global.dt
+	global.data["mo_x"].push_back(click_loc.x)
+	global.data["mo_y"].push_back(click_loc.y)
+	global.data["mo_lobe"].push_back((lobe+1)*int(sin(-lobe_angle)*last_press_loc.x+cos(-lobe_angle)*last_press_loc.y < 6*global.poly_size + global.side_offset))
+	global.data["mo_act_drag"].push_back(int((last_press_loc - click_loc).length() > motion_thresh))
+	global.data["mo_fake_release"].push_back(int(global.data["mo_press_time"].size() == 0 or (global.data["mo_time"].size() > 1 and global.data["mo_press_time"].size() > 0 and global.data["mo_time"][-2] > global.data["mo_press_time"][-1])))
+	if global.data["mo_lobe"][-1] > 0 and !global.data["mo_fake_release"][-1]:
+		add_to_queue(global.data["mo_lobe"][-1],global.data["mo_act_drag"][-1])#(global.data["mo_time"][-1]-global.data["mo_press_time"][-1]) > hold_thresh)
 
 func _on_action_tween_tween_completed( object, key ):
 	global.data["mo_act_taken_time"].push_back(OS.get_ticks_msec())
@@ -125,13 +140,14 @@ func _on_action_tween_tween_step( object, key, elapsed, value ):
 		if wave_age > 0:
 			get_tree().call_group("hex_slider","set_shape", wave_age,location_queue,action_queue)
 
-func _on_action_timer_timeout():
-	drag_vel = last_press_loc - curr_press_loc
-	if wave_age >= 0:# and $"../Spawner".balls_left > 0 and wave_age <= 5 + $"../Spawner".ball_per_sw:
-		add_to_queue(which_action(last_press_loc),drag_vel.length() > motion_thresh)
-	global.data["mo_act_drag"].push_back(int(drag_vel.length() > motion_thresh))
-	global.data["mo_act_drag_time"].push_back(OS.get_ticks_msec())
-	
+#func _on_action_timer_timeout():
+#	drag_vel = last_press_loc - curr_press_loc
+#	if wave_age >= 0:# and $"../Spawner".balls_left > 0 and wave_age <= 5 + $"../Spawner".ball_per_sw:
+#		add_to_queue(which_action(last_press_loc),drag_vel.length() > motion_thresh)
+#	global.data["mo_act_drag"].push_back(int(drag_vel.length() > motion_thresh))
+#	global.data["mo_act_drag_time"].push_back(OS.get_ticks_msec())
+
+
 #	if event is InputEventScreenTouch and event.is_pressed():
 #		print(OS.get_ticks_msec())
 #		drag_flag = 0

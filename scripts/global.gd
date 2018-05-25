@@ -4,7 +4,7 @@ var w = 1280
 var h = 720
 var padding = .15
 var centre = Vector2(round(w-h/sqrt(3)),h*.5)
-var harp_pluck_len = .01
+var harp_pluck_len = .01*5/6.0
 var move_time_new = 36*harp_pluck_len#/6 #1.0/3
 var offset_poly_ratio = .3
 var poly_size = ((1-padding)*h)/2/(6+offset_poly_ratio)#w/50
@@ -18,11 +18,15 @@ var data
 var measure_time
 var game_measure
 var drone_measure
+var fail_thresh
+var hi_scores = PoolIntArray([0,0,0,0,0,0])
+var max_scores = PoolIntArray([216,740,1780,3414,8301,9805])
+var num_waves = PoolIntArray([6,12,20,30,60,60])
 
-func full_hex(radius,wire =0):
+func full_hex(radius,wire =0,off = Vector2(0,0)):
 	var coords = PoolVector2Array()
 	for i in range(6+wire):
-		coords.append(Vector2(cos(float(i)/3*PI),sin(float(i)/3*PI))*radius)
+		coords.append(Vector2(cos(float(i)/3*PI),sin(float(i)/3*PI))*radius+off)
 	return coords
 	
 func pie_hex(full,angle):
@@ -40,12 +44,18 @@ func pie_hex(full,angle):
 	else:
 		coords.resize(0)
 	return coords
+	
+func is_unlocked(lobe):
+	if lobe == 0:
+		return true
+	else:
+		return global.hi_scores[lobe-1] > global.max_scores[lobe-1]-global.fail_thresh*global.num_waves[lobe-1]
 
 func hex_color(rad,invert=false,dim = 1):
 	var col = Color()
 	col.v = float(rad+2)/(6+2)
 	col.s = 1
-	col.h = 22.0/360
+	col.h = 22.0/360#2/12.0 sucks all else 1-5 good??
 	if invert:
 		col.h = fmod(col.h+.5,1)
 	col.a = dim

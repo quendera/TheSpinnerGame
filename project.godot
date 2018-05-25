@@ -12,6 +12,12 @@ config_version=3
 
 config/name="Spinner"
 run/main_scene="res://scenes/menu.tscn"
+run/low_processor_mode=true
+
+[audio]
+
+driver="ALSA"
+channel_disable_time=0.0
 
 [autoload]
 
@@ -62,7 +68,3 @@ quality/subsurface_scattering/weight_samples=false
 quality/voxel_cone_tracing/high_quality=false
 environment/default_clear_color=Color( 0, 0, 0, 1 )
 quality/depth/hdr=false
-
-[sound]
-
-=false

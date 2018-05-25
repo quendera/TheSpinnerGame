@@ -4,10 +4,7 @@ var sw_score
 var norm
 var frac_fail = 0
 var frac_fail_new
-var fail_thresh = .2
-var finish_point_seq_len = 1
-var points_per_click = 1 #6
-var click_len = .0
+#var finish_point_seq_len = 1
 var fail_time_ratio = 3#(1-fail_thresh)/fail_thresh
 var num_sounds
 var start_time
@@ -32,7 +29,7 @@ func reset_sliders(wave_age):
 	get_tree().call_group("hex_slider","set_shape", wave_age)
 
 func finish_hints_discrete():
-	num_sounds = ceil(sw_score*36*$"../Spawner".ball_per_sw/points_per_click)
+	num_sounds = ceil(sw_score*36*$"../Spawner".ball_per_sw) #/points_per_click
 	start_time = 0
 	if num_sounds == 0:
 		$"../hex_progress".set_shape(float($"../Spawner".sw)/global.sw_count)
@@ -55,8 +52,8 @@ func finish_hints_discrete():
 			interpolate_callback($"../hex_progress",start_time,"play_note",-i)
 			start_time += global.harp_pluck_len
 	#fill missing points
-	frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/(fail_thresh*$"../Spawner".accum_points[-1])
-	num_sounds = ceil((norm-sw_score)*36*$"../Spawner".ball_per_sw/points_per_click)
+	frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/float(global.fail_thresh*($"../Spawner".accum_points.size()-1))#$"../Spawner".accum_points[-1]*fail_thresh)
+	num_sounds = round((norm-sw_score)*36*$"../Spawner".ball_per_sw) #/points_per_click
 	if num_sounds > 0:
 		for i in range(num_sounds):
 			interpolate_callback($"../hex_subwave",start_time,"total_points",(norm-sw_score)*(1-float(i+1)/num_sounds))
@@ -64,6 +61,8 @@ func finish_hints_discrete():
 			interpolate_callback($"../typewriter",start_time,"play")
 			start_time += global.harp_pluck_len*fail_time_ratio
 	frac_fail = frac_fail_new
+	if frac_fail >= 1:
+		interpolate_callback($"..",start_time,"save_data")
 	#generate new wave
 	interpolate_callback($"../Spawner",start_time,"mySpawn")
 

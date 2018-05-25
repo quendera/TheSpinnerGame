@@ -1,6 +1,6 @@
 extends Polygon2D
 
-var coords = global.full_hex((global.poly_size*3*2+global.side_offset*2)/sqrt(3))
+var coords = global.full_hex((global.poly_size*3*2+global.side_offset*2)/sqrt(3),1)
 var mask = global.full_hex((global.poly_size*3*2)/sqrt(3))
 var pie_coords = PoolVector2Array()
 var how_far
@@ -22,30 +22,34 @@ func _process(delta):
 	$"../hex_subwave".color = color
 
 #func _draw():
-#	draw_colored_polygon(mask,Color(0,0,0))
+#	draw_colored_polygon(polygon,Color(0,0,0))
 #	if show_lines:
 #		draw_line(Vector2(0,0),coords[3],Color(.5,.5,.5),10)
 	#	draw_polyline(tracers,global.hint_color(6),5)
 
 func set_shape(val):
-	how_far = val
-	if val >= 1:
-		polygon = coords
-#		show_lines = false
-		update()
-		$"..".save_data()
-	elif val > 0:
-		#show_lines = $"../progress_tween".frac_fail != val
-		val = val*3
-		if pie_coords.size()/2 <= ceil(val - .001):
-			pie_coords.insert(1,Vector2(0,0))
-			pie_coords.insert(pie_coords.size(),Vector2(0,0))
-			pie_coords[2] = coords[3+floor(val)]
-			pie_coords[-2] = Vector2(pie_coords[2].x,-pie_coords[2].y)
-		pie_coords[1] = coords[fmod(3+ceil(val),6)]*fmod(val,1) + coords[3+floor(val)]*(1-fmod(val,1))
-		pie_coords[-1] = Vector2(pie_coords[1].x,-pie_coords[1].y)
-		polygon = pie_coords
-#		tracers[0] = pie_coords[1]
-#		tracers[2] = pie_coords[-1]
-		cur_bright = 1
+	polygon = global.pie_hex(coords,val)
+	cur_bright = 1
+	how_far = min(val,1)
+#	if val >= 1:
+#		$"..".save_data()
+#	if val >= 1:
+#		polygon = coords
+##		show_lines = false
 #		update()
+#		$"..".save_data()
+#	elif val > 0:
+#		#show_lines = $"../progress_tween".frac_fail != val
+#		val = val*3
+#		if pie_coords.size()/2 <= ceil(val - .001):
+#			pie_coords.insert(1,Vector2(0,0))
+#			pie_coords.insert(pie_coords.size(),Vector2(0,0))
+#			pie_coords[2] = coords[3+floor(val)]
+#			pie_coords[-2] = Vector2(pie_coords[2].x,-pie_coords[2].y)
+#		pie_coords[1] = coords[fmod(3+ceil(val),6)]*fmod(val,1) + coords[3+floor(val)]*(1-fmod(val,1))
+#		pie_coords[-1] = Vector2(pie_coords[1].x,-pie_coords[1].y)
+#		polygon = pie_coords
+##		tracers[0] = pie_coords[1]
+##		tracers[2] = pie_coords[-1]
+#		cur_bright = 1
+##		update()
