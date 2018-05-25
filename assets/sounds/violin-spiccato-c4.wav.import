@@ -7,10 +7,7 @@ path="res://.import/violin-spiccato-c4.wav-e02bc45ecc2c6b87e6a94800951b45ac.samp
 [deps]
 
 source_file="res://assets/sounds/violin-spiccato-c4.wav"
-source_md5="db3938c883fabfe6bbd0ad299c92cf0c"
-
 dest_files=[ "res://.import/violin-spiccato-c4.wav-e02bc45ecc2c6b87e6a94800951b45ac.sample" ]
-dest_md5="fb3407486fe4f5b90f454d3bacdc6ce4"
 
 [params]
 

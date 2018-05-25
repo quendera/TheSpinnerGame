@@ -59,6 +59,7 @@ func push_target(prog,age,loc):
 	
 func set_shape(age,loc = 0,act = 0,end = 0):
 	if age <= 0:
+		modulate.a = max(modulate.a,1+age/6)
 		if !edge:
 			#if stretch[0] != stretch[1]:
 			#	stretch[0] = 1+age/3
@@ -88,4 +89,32 @@ func set_shape(age,loc = 0,act = 0,end = 0):
 				stretch = [1*act[0],act[0]*((fmod(age,1)+end)*2-1)]
 			else:
 				stretch = [-1,1-(fmod(age,1)+end)*2]
+	update_shape()
+	
+func is_unlocked():
+	return global.is_unlocked(cur_rot) or global.is_unlocked(fposmod(cur_rot - (1-edge),6))
+
+func make_dim(dim):
+	if !is_unlocked():
+		modulate = Color(1,1,1,1-dim)
+
+func locked_shape(age,lobe = 0):
+	if age <= 1:
+		if !is_unlocked() and lobe_match(3):
+			if edge:
+				stretch = [age-1,1-age]
+			else:
+				stretch = [-1,1-age*2]
+		elif is_unlocked() and !lobe_match(3):
+			if edge:
+				stretch = [-age,age]
+			else:
+				stretch = [-1,age*2-1]
+	else:
+		age -= 1
+		if is_unlocked() and !lobe_match(lobe):
+			if edge:
+				stretch = [age-1,1-age]
+			else:
+				stretch = [-1,1-age*2]
 	update_shape()

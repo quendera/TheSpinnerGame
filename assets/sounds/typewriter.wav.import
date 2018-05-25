@@ -7,10 +7,7 @@ path="res://.import/typewriter.wav-6eb42bfc3f2c036270f2c52c5b8e6d38.sample"
 [deps]
 
 source_file="res://assets/sounds/typewriter.wav"
-source_md5="a273fa49bc7f794e0c566e4fbf1aee1e"
-
 dest_files=[ "res://.import/typewriter.wav-6eb42bfc3f2c036270f2c52c5b8e6d38.sample" ]
-dest_md5="616a12e45051db53e5915b4a6f339a7c"
 
 [params]
 
