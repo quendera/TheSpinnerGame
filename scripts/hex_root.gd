@@ -1,10 +1,54 @@
-extends Node2D
+extends Node
 
 var HTTP = HTTPClient.new()
 var prt = 80
 var is_saving = 0
+var game_scene = preload("res://scenes/game.tscn")
+var game_instance
+var menu_scene = preload("res://scenes/hex_menu.tscn")
+var menu_instance
+var hex_slide_scene = preload("res://scripts/hex_slider.gd")
+var hex_slide_instance
+var device_ID = Vector2(0,0)
+var file = File.new()
 
-func init(lev,device_ID,player_name = "",player_ID = 0):
+func _ready():
+	randomize()
+	if !file.file_exists("user://deviceID"):
+		file.open_compressed("user://deviceID",File.WRITE)
+		device_ID = Vector2(OS.get_unix_time(),randi())
+		file.store_32((device_ID.x))
+		file.store_32((device_ID.y))
+		file.close()
+	else:
+		file.open_compressed("user://deviceID",File.READ)
+		device_ID.x = int(file.get_32())
+		device_ID.y = int(file.get_32())
+		file.close()
+	if file.file_exists("user://hiscores"):
+		file.open_compressed("user://hiscores",File.READ)
+		for i in range(global.hi_scores.size()):
+			global.hi_scores[i] = int(file.get_32())
+		file.close()
+	global.fail_thresh = 9*2#(fmod(device_ID.y,4)+1) #FOR NOW USING SAME THRESH FOR ALL PLAYERS
+	for i in range(6):
+		for j in range(2):
+			hex_slide_instance = hex_slide_scene.new()
+			add_child(hex_slide_instance)
+			hex_slide_instance.create(i,j)
+	menu_instance = menu_scene.instance()
+	add_child(menu_instance)
+
+func start_level(lobe):
+	if lobe == 6:
+		global.fail_thresh = 9
+	game_instance = game_scene.instance()
+	init(lobe)
+	#game_instance.init(lobe,device_ID)
+	add_child(game_instance)
+	menu_instance.queue_free()
+
+func init(lev):#,player_name = "",player_ID = 0):
 	AudioServer.set_bus_volume_db(4,-35)
 	AudioServer.set_bus_volume_db(6,-30)
 	global.curr_wv = lev
@@ -20,12 +64,9 @@ func init(lev,device_ID,player_name = "",player_ID = 0):
 	"device_kb_locale":OS.get_locale(), "device_name":OS.get_model_name(),
 	"device_screensize_x":OS.get_screen_size().x,"device_screensize_y":OS.get_screen_size().y,
 	"device_timezone":OS.get_time_zone_info(),"device_dpi":OS.get_screen_dpi(),
-	"device_IP": IP.get_local_addresses(), "player_name": player_name,
-	"player_ID":player_ID,"device_ID_time":device_ID.x,"device_ID_rand":device_ID.y,
-	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "failure_thresh":$"progress_tween".fail_thresh}
-
-func _ready():
-	$Spawner.mySpawn()
+	"device_IP": IP.get_local_addresses(),# "player_name": player_name,"player_ID":player_ID,
+	"device_ID_time":device_ID.x,"device_ID_rand":device_ID.y,
+	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "failure_thresh":global.fail_thresh}
 
 func save_data():
 	if !is_saving:
@@ -62,9 +103,9 @@ func save_data():
 			global.hi_scores[global.curr_wv-1] = global.score
 		file.open_compressed("user://hiscores",File.WRITE)
 		for i in range(global.hi_scores.size()):
-			file.store_32((global.hi_scores[i]))# + "\n")
+			file.store_32((global.hi_scores[i]))
 		file.close()
-		#return to menu
-		get_tree().change_scene("res://scenes/hex_menu.tscn")
-		queue_free()
-#		$"/root/hex_menu"._on_game_over()
+		menu_instance = menu_scene.instance()
+		add_child(menu_instance)
+		game_instance.queue_free()
+		is_saving = 0

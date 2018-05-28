@@ -59,7 +59,7 @@ func push_target(prog,age,loc):
 	
 func set_shape(age,loc = 0,act = 0,end = 0):
 	if age <= 0:
-		modulate.a = max(modulate.a,1+age/6)
+		modulate.a = 1#max(modulate.a,1+age/6)
 		if !edge:
 			#if stretch[0] != stretch[1]:
 			#	stretch[0] = 1+age/3
@@ -112,7 +112,7 @@ func locked_shape(age,lobe = 0):
 				stretch = [-1,age*2-1]
 	else:
 		age -= 1
-		if is_unlocked() and !lobe_match(lobe):
+		if !lobe_match(lobe):
 			if edge:
 				stretch = [age-1,1-age]
 			else:

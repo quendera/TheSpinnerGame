@@ -21,18 +21,19 @@ func which_action(click_loc):
 			#choice = lobe[1]
 			if lobe[1] == 3:
 				choice = lobe[1]
-				$"../choose".play()
+				$"../../move".play()
 				interpolate_method(self,"make_dim",0,1,global.move_time_new,transition,ease_direction)
 		elif choice == 3:
 			if global.is_unlocked(lobe[1]):
-				$"../choose".play()
+				$"../../move".play()
 				interpolate_method(self,"locked_sliders",1.001,2,global.move_time_new,transition,ease_direction)
 				interpolate_method(self,"dim_levels",1,0,global.move_time_new,transition,ease_direction)
 				choice = -2
-				$"..".start_level(lobe[1]+1)
+				interpolate_callback($"../../",global.move_time_new,"start_level",lobe[1]+1)
+#				$"..".start_level(lobe[1]+1)
 	else:
 		if choice != -1:
-			$"../choose".play()
+			$"../../move".play()
 			reset_hints()
 			interpolate_method(self,"dim_levels",1,0,global.move_time_new,transition,ease_direction)#dim_levels()
 			choice = -1

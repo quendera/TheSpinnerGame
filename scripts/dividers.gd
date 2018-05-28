@@ -9,7 +9,7 @@ func _ready():
 	coords.resize(7)
 
 func _draw():
-	dist = fmod($"../action_tween".wave_age,1)
+	dist = fposmod($"../action_tween".wave_age,1)
 #	for i in range(0,3):
 #		var offsetY = sin(i*PI/3)*global.poly_size*12*2/sqrt(3)
 #		var offsetX = cos(i*PI/3)*global.poly_size*12*2/sqrt(3)

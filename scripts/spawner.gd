@@ -2,8 +2,8 @@ extends Node2D
 
 var hex_hint_scene = preload("res://scripts/hex_hint.gd")
 var hex_hint_instance
-var hex_slide_scene = preload("res://scripts/hex_slider.gd")
-var hex_slide_instance
+#var hex_slide_scene = preload("res://scripts/hex_slider.gd")
+#var hex_slide_instance
 var hex_target_scene = preload("res://scripts/hex_target.gd")
 var hex_target_instance
 var input_i
@@ -25,7 +25,6 @@ var rand_offset
 var rand_flip 
 
 func _ready():
-	randomize()
 	var i = 0
 	file.open("res://assets/files/spawn.txt", File.READ)
 	var target_line
@@ -47,11 +46,12 @@ func _ready():
 	for i in range(global.sw_count):
 		accum += int(arr[sw_order[i]*ball_per_sw][3])  
 		accum_points.append(accum)
-	for i in range(6):
-		for j in range(2):
-			hex_slide_instance = hex_slide_scene.new()
-			add_child(hex_slide_instance)
-			hex_slide_instance.create(i,j)
+	mySpawn()
+#	for i in range(6):
+#		for j in range(2):
+#			hex_slide_instance = hex_slide_scene.new()
+#			add_child(hex_slide_instance)
+#			hex_slide_instance.create(i,j)
 
 func shuffleList(list):
     var shuffledList = []
@@ -68,7 +68,7 @@ func mySpawn():
 	if sw >= sw_order.size():
 		curr_wv_points = 0
 		#$"../progress_tween".reset_hints()
-		$"..".save_data()
+		$"../..".save_data()
 	else:
 		$"../action_tween".reset()
 		curr_wv_points = accum_points[sw+1]-accum_points[sw]
@@ -87,21 +87,16 @@ func mySpawn():
 			add_child(hex_target_instance)
 		log_data()
 		sw += 1
-	#for i in range(6-ball_per_sw):
-	#	get_tree().call_group("balls", "step")
 
 func log_data():
-	global.data["sw_time"].push_back(OS.get_ticks_msec())#global.dt
+	global.data["sw_time"].push_back(OS.get_ticks_msec())
 	global.data["sw_subwave_num"].push_back(sw_order[sw])
 	global.data["sw_offset"].push_back(rand_offset)
 	global.data["sw_flip"].push_back(rand_flip)
-	#for key in data_line.keys():
-	#	global.data[key].push_back(data_line[key])
 
 func _notification(what):
 	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
-		$"..".save_data()
-		#get_tree().get_root().get_node("menu_root")._on_game_over()
+		$"../..".save_data()
 		get_tree().quit()
 		
 func read_music():#fname):
