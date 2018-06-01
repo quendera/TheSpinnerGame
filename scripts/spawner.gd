@@ -2,8 +2,6 @@ extends Node2D
 
 var hex_hint_scene = preload("res://scripts/hex_hint.gd")
 var hex_hint_instance
-#var hex_slide_scene = preload("res://scripts/hex_slider.gd")
-#var hex_slide_instance
 var hex_target_scene = preload("res://scripts/hex_target.gd")
 var hex_target_instance
 var input_i
@@ -23,6 +21,7 @@ var score_grid = PoolVector2Array()
 var accum_points = PoolIntArray()
 var rand_offset
 var rand_flip 
+var send_rot
 
 func _ready():
 	var i = 0
@@ -47,11 +46,6 @@ func _ready():
 		accum += int(arr[sw_order[i]*ball_per_sw][3])  
 		accum_points.append(accum)
 	mySpawn()
-#	for i in range(6):
-#		for j in range(2):
-#			hex_slide_instance = hex_slide_scene.new()
-#			add_child(hex_slide_instance)
-#			hex_slide_instance.create(i,j)
 
 func shuffleList(list):
     var shuffledList = []
@@ -68,14 +62,14 @@ func mySpawn():
 	if sw >= sw_order.size():
 		curr_wv_points = 0
 		#$"../progress_tween".reset_hints()
-		$"../..".save_data()
+		$"../..".save_data(true)
 	else:
 		$"../action_tween".reset()
 		curr_wv_points = accum_points[sw+1]-accum_points[sw]
 		$"../progress_tween".reset_hints()
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
-			var send_rot = int(arr[input_i][0])
+			send_rot = int(arr[input_i][0])
 			if rand_flip:
 				send_rot = (6-send_rot)
 			send_rot = (send_rot+rand_offset)%6
@@ -96,10 +90,10 @@ func log_data():
 
 func _notification(what):
 	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
-		$"../..".save_data()
-		get_tree().quit()
+		$"../..".save_data(false)
+		#get_tree().quit()
 		
-func read_music():#fname):
+func read_music():
 	file.open("res://assets/files/bach.txt", File.READ)
 	var target_line
 	while (!file.eof_reached()):

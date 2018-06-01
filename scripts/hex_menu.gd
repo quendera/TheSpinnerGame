@@ -4,19 +4,22 @@ var menu_label_scene = preload("res://scripts/menu_label.gd")
 var menu_label_instance
 var menu_level_scene = preload("res://scripts/menu_levels.gd")
 var menu_level_instance
-var menu_items = PoolStringArray(["SURVEY","ABOUT","HOW TO\nPLAY","PLAY","SHARE","LEADER\nBOARD"])
+var menu_items = PoolStringArray(["SURVEY","ABOUT","","PLAY","SHARE","LEADER\nBOARD"])
+var menu_items_lab = PoolStringArray(["CALIB-\nRATION","","","PLAY","",""])
 #var startLevel
 
 func _ready():
-	var fnt = DynamicFont.new()
-	fnt.font_data = load("res://assets/batmfa__.ttf")
-	fnt.size = 40
-	fnt.use_filter = true
+	global.fnt.font_data = load("res://assets/batmfa__.ttf")
+	global.fnt.size = 40
+	global.fnt.use_filter = true
 	#OS.shell_open(hexxed)#"http://godotengine.org")
 	for i in range(6):
 		menu_label_instance = menu_label_scene.new()
 		add_child(menu_label_instance)
-		menu_label_instance.create(i,menu_items[i],fnt)
+		if $"..".in_lab:
+			menu_label_instance.create(i,menu_items_lab[i])
+		else:
+			menu_label_instance.create(i,menu_items[i])
 		menu_level_instance = menu_level_scene.new()
 		add_child(menu_level_instance)
 		menu_level_instance.create(i)

@@ -20,6 +20,7 @@ func _process(delta):
 	#cur_bright = min(1,max(.3,cur_bright)) 
 	color = Color(cur_bright+.4,cur_bright+.4,cur_bright+.4) #global.hex_color(6#fmod(color.r+delta*how_far*randf(),1)#
 	$"../hex_subwave".color = color
+	$"../damage".set("custom_colors/font_color",color)
 
 #func _draw():
 #	draw_colored_polygon(polygon,Color(0,0,0))

@@ -40,6 +40,8 @@ func finish_hints_discrete():
 		interpolate_method($"../hex_subwave","total_points",sw_score,0,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw-1)/global.sw_count,float($"../Spawner".sw)/global.sw_count,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_progress_perfect","set_shape",0,1,scale_time,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		if global.curr_wv == 1:
+			$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
 		timed_play()
 		if scale_count == 0:
 			interpolate_callback(self,start_time+global.move_time_new*2,"drone_timer",0,0,0)
@@ -62,9 +64,9 @@ func finish_hints_discrete():
 			start_time += global.harp_pluck_len*fail_time_ratio
 	frac_fail = frac_fail_new
 	if frac_fail >= 1:
-		interpolate_callback($"../..",start_time,"save_data")
-	#generate new wave
-	interpolate_callback($"../Spawner",start_time,"mySpawn")
+		interpolate_callback($"../..",start_time,"save_data",false)
+	else:
+		interpolate_callback($"../Spawner",start_time,"mySpawn")
 
 func drone_timer(counter,indT,indB):
 	if counter == 0:
@@ -100,7 +102,7 @@ func timed_play():
 func play_timed_midi(pitch):
 	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
 	$"../spiccato".play()
-	
+
 func play_timed_midiB(pitch):
 	AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
 	$"../spiccatoB".play()
