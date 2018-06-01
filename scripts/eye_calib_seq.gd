@@ -44,6 +44,6 @@ func _ready():
 	file.close()
 
 func _input(event):
-	if event is InputEventScreenTouch:
+	if event is InputEventKey:
 		queue_free()
 		$"..".new_menu()

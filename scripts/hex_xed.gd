@@ -16,7 +16,7 @@ func _ready():
 	
 func _process(delta):
 	cur_bright = cur_bright*(1-delta*5)
-	cur_bright += delta*30*how_far*pow(randf()-.5,3)
+	#cur_bright += delta*30*how_far*pow(randf()-.5,3)
 	#cur_bright = min(1,max(.3,cur_bright)) 
 	color = Color(cur_bright+.4,cur_bright+.4,cur_bright+.4) #global.hex_color(6#fmod(color.r+delta*how_far*randf(),1)#
 	$"../hex_subwave".color = color
