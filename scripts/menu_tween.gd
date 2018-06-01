@@ -19,17 +19,31 @@ func which_action(click_loc):
 	if int(sin(-(lobe[1])*PI/3)*click_loc.x+cos(-(lobe[1])*PI/3)*click_loc.y < 6*global.poly_size + global.side_offset): #lobe[1] > 0:# and !global.data["mo_fake_release"][-1]:
 		if choice == -1:
 			#choice = lobe[1]
+#			if lobe[1] == 2:
+#				$"../../move".play()
+#				interpolate_method(self,"locked_sliders",1.001,2,global.move_time_new,transition,ease_direction)
+#				interpolate_callback($"..",global.move_time_new,"queue_free")
+#				interpolate_callback($"../..",global.move_time_new,"start_level",1)
+#				interpolate_callback($"../..",global.move_time_new,"add_child",load("res://scripts/tutor_seq.gd").new())
 			if lobe[1] == 3:
 				choice = lobe[1]
 				$"../../move".play()
 				interpolate_method(self,"make_dim",0,1,global.move_time_new,transition,ease_direction)
+			elif lobe[1] == 0:
+				$"../../move".play()
+				interpolate_method(self,"locked_sliders",1.001,2,global.move_time_new,transition,ease_direction)
+				interpolate_callback($"..",global.move_time_new,"queue_free")
+				interpolate_callback($"../..",global.move_time_new,"add_child",load("res://scripts/eye_calib_seq.gd").new())
+				#interpolate_callback(get_tree().call_group("hex_slider"),global.move_time_new,"hide")
+				#$"..".queue_free()
+				#get_tree().call_group("hex_slider","hide")
 		elif choice == 3:
 			if global.is_unlocked(lobe[1]):
 				$"../../move".play()
 				interpolate_method(self,"locked_sliders",1.001,2,global.move_time_new,transition,ease_direction)
 				interpolate_method(self,"dim_levels",1,0,global.move_time_new,transition,ease_direction)
 				choice = -2
-				interpolate_callback($"../../",global.move_time_new,"start_level",lobe[1]+1)
+				interpolate_callback($"../..",global.move_time_new,"start_level",lobe[1]+1)
 #				$"..".start_level(lobe[1]+1)
 	else:
 		if choice != -1:
@@ -37,6 +51,9 @@ func which_action(click_loc):
 			reset_hints()
 			interpolate_method(self,"dim_levels",1,0,global.move_time_new,transition,ease_direction)#dim_levels()
 			choice = -1
+
+func choose_seq():
+	pass
 
 func make_dim(dim):
 	get_tree().call_group("hex_slider","make_dim",dim*.9)
@@ -51,6 +68,8 @@ func dim_levels(val):
 
 func locked_sliders(wave_age):
 	get_tree().call_group("hex_slider","locked_shape", wave_age,lobe[1])
+	if wave_age == 2:
+		get_tree().call_group("hex_slider","hide")
 
 func reset_sliders(wave_age):
 	get_tree().call_group("hex_slider","set_shape", wave_age,lobe)

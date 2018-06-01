@@ -10,21 +10,19 @@ var last_press_loc = Vector2(0,0)
 var curr_press_loc
 var drag_vel
 var motion_thresh = OS.get_screen_dpi()*.1 #pixels
-var hold_thresh = global.move_time_new/2*1000
+#var hold_thresh = global.move_time_new/2*1000
 
 func _input(event):
 	if event is InputEventKey:
-		$"../..".save_data()
+		get_tree().get_root().get_node("hex_root").save_data(false)
 	elif event is InputEventScreenTouch and wave_age >= 0:
 		if event.is_pressed():
 			global.data["mo_press_time"].push_back(OS.get_ticks_msec())
 			last_press_loc = event.position-global.centre
 			global.data["mo_press_x"].push_back(last_press_loc.x)
 			global.data["mo_press_y"].push_back(last_press_loc.y)
-		else:#if event.is_released(): #if wave_age >= 0:# and $"../Spawner".balls_left > 0 and wave_age <= 5 + $"../Spawner".ball_per_sw:
-			which_action(event.position-global.centre)#,(OS.get_ticks_msec()-global.data["mo_press_time"][-1]) > hold_thresh)
-			#which_action(last_press_loc),drag_vel.length() > motion_thresh)
-#		log_data_mo(event.position-global.centre,event.is_pressed())
+		else:#if event.is_released():
+			which_action(event.position-global.centre)
 	else:
 		curr_press_loc = event.position - global.centre
 		if event is InputEventScreenDrag:#not event is InputEventMouseMotion:

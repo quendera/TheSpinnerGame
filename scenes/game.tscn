@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=1]
 [ext_resource path="res://scripts/dividers.gd" type="Script" id=2]
@@ -16,6 +16,34 @@
 [ext_resource path="res://assets/sounds/glass-break.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sounds/woodclick.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sounds/typewriter.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/batmfa__.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://scripts/instructions.gd" type="Script" id=18]
+[ext_resource path="res://scripts/damage.gd" type="Script" id=19]
+[ext_resource path="res://scripts/progress.gd" type="Script" id=20]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 40
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 17 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 20
+use_mipmaps = false
+use_filter = true
+font_data = ExtResource( 17 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 20
+use_mipmaps = false
+use_filter = true
+font_data = ExtResource( 17 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="game" type="Node2D"]
 
@@ -227,6 +255,77 @@ volume_db = 0.0
 autoplay = false
 mix_target = 0
 bus = "drone-pitchB"
+
+[node name="instructions" type="Label" parent="." index="18"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 18 )
+_sections_unfolded = [ "Margin", "custom_colors", "custom_fonts" ]
+
+[node name="damage" type="Label" parent="." index="19"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "DAMAGE "
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 19 )
+_sections_unfolded = [ "Anchor", "Grow Direction", "custom_fonts" ]
+
+[node name="progress" type="Label" parent="." index="20"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "PROGRESS"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 20 )
+_sections_unfolded = [ "Grow Direction", "Rect", "custom_colors", "custom_fonts" ]
 
 [connection signal="tween_completed" from="action_tween" to="action_tween" method="_on_action_tween_tween_completed"]
 

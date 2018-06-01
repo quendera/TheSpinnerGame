@@ -11,14 +11,17 @@ var hex_slide_scene = preload("res://scripts/hex_slider.gd")
 var hex_slide_instance
 var device_ID = Vector2(0,0)
 var file = File.new()
+var in_lab = 1
+var twn = Tween.new()
+var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
 
 func _ready():
 	randomize()
 	if !file.file_exists("user://deviceID"):
 		file.open_compressed("user://deviceID",File.WRITE)
 		device_ID = Vector2(OS.get_unix_time(),randi())
-		file.store_32((device_ID.x))
-		file.store_32((device_ID.y))
+		file.store_32(device_ID.x)
+		file.store_32(device_ID.y)
 		file.close()
 	else:
 		file.open_compressed("user://deviceID",File.READ)
@@ -30,45 +33,33 @@ func _ready():
 		for i in range(global.hi_scores.size()):
 			global.hi_scores[i] = int(file.get_32())
 		file.close()
-	global.fail_thresh = 9*2#(fmod(device_ID.y,4)+1) #FOR NOW USING SAME THRESH FOR ALL PLAYERS
+	if in_lab:
+		global.fail_thresh = 9*2
+		add_child(load("res://scripts/eye_calib.gd").new())
+	else:
+		global.fail_thresh = 9*(fmod(device_ID.y,4)+1)
 	for i in range(6):
 		for j in range(2):
 			hex_slide_instance = hex_slide_scene.new()
 			add_child(hex_slide_instance)
 			hex_slide_instance.create(i,j)
+	new_menu()
+	add_child(twn)
+
+func new_menu():
 	menu_instance = menu_scene.instance()
 	add_child(menu_instance)
 
 func start_level(lobe):
+	is_saving = 0
 	if lobe == 6:
 		global.fail_thresh = 9
 	game_instance = game_scene.instance()
-	init(lobe)
-	#game_instance.init(lobe,device_ID)
+	global.init(lobe,device_ID)
 	add_child(game_instance)
 	menu_instance.queue_free()
 
-func init(lev):#,player_name = "",player_ID = 0):
-	AudioServer.set_bus_volume_db(4,-35)
-	AudioServer.set_bus_volume_db(6,-30)
-	global.curr_wv = lev
-	global.sw_score = 0
-	global.score = 0
-	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
-	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"mo_lobe":[], "mo_press_time":[], #"mo_press":[],"ke_time":[], "ke_pos":[], "ke_ID":[], "ke_startstep":[],
-	"mo_act_drag":[],"mo_move_time":[],"mo_move_pos_x":[],"mo_move_pos_y":[],"mo_fake_release":[], #"mo_act_drag_time":[],
-	"mo_act_taken_time":[],"mo_act_taken_act":[],"mo_act_taken_pos":[],"mo_press_x":[], "mo_press_y":[],
-	"ba_time":[], "ba_position":[], "ba_ID":[], "ba_age":[], #"ba_ID_mv":[], "ba_time_mv":[],
-	"sw_time":[], "sw_subwave_num":[], "sw_offset":[], "sw_flip" : [], "level":lev,
-	"device_current_time":OS.get_datetime(), "device_OS": OS.get_name(),
-	"device_kb_locale":OS.get_locale(), "device_name":OS.get_model_name(),
-	"device_screensize_x":OS.get_screen_size().x,"device_screensize_y":OS.get_screen_size().y,
-	"device_timezone":OS.get_time_zone_info(),"device_dpi":OS.get_screen_dpi(),
-	"device_IP": IP.get_local_addresses(),# "player_name": player_name,"player_ID":player_ID,
-	"device_ID_time":device_ID.x,"device_ID_rand":device_ID.y,
-	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "failure_thresh":global.fail_thresh}
-
-func save_data():
+func save_data(win):
 	if !is_saving:
 		is_saving = 1
 		var file = File.new()
@@ -105,7 +96,78 @@ func save_data():
 		for i in range(global.hi_scores.size()):
 			file.store_32((global.hi_scores[i]))
 		file.close()
-		menu_instance = menu_scene.instance()
-		add_child(menu_instance)
+		end_seq(win)
+		#menu_instance = menu_scene.instance()
+		#add_child(menu_instance)
 		game_instance.queue_free()
-		is_saving = 0
+		#is_saving = 0
+		
+func end_seq(win):
+	get_tree().call_group("hex_slider","hide")
+	var lbl = Label.new()
+	lbl.valign = Label.VALIGN_CENTER
+	lbl.align = Label.ALIGN_CENTER
+	lbl.rect_size = Vector2(global.w,global.h)
+	lbl.rect_position = Vector2(0,0)#Vector2(global.w,global.h)/2 - lbl.rect_size/2
+	lbl.set("custom_fonts/font",global.fnt)
+	twn.start()
+	if win:	
+		lbl.set("custom_colors/font_color",global.hex_color(6,1))
+		lbl.text = "YOU ARE\n" + compliments[global.curr_wv-1] + "!"
+		if global.curr_wv < 6:# and !global.is_unlocked(global.curr_wv):
+			lbl.text += "\nLEVEL " + str(global.curr_wv+1) + " UNLOCKED."
+#		timed_play(game_instance.get_node("Spawner").notesB,game_instance.get_node("Spawner").notesT,2)#game_instance.get_node("progress_tween").play_state.z-1)#PLAY MUSIC
+	else:
+		lbl.set("custom_colors/font_color",global.hint_color(7))
+		lbl.text = "YOU GOT\nHEXXED!"
+		twn.interpolate_callback($lose,global.move_time_new,"play")
+	twn.interpolate_property(global.fnt,"size",1,80,global.move_time_new,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
+	add_child(lbl)
+	twn.interpolate_callback(self,global.move_time_new*12,"restart_menu")
+	twn.interpolate_callback(lbl,global.move_time_new*12,"queue_free")
+#	twn.interpolate_callback(twn,global.move_time_new*12,"stop")
+
+func restart_menu():
+	menu_instance = menu_scene.instance()
+	add_child(menu_instance)
+#
+#func drone_timer(counter,indT,indB):
+#	if counter == 0:
+#		global.data["drone_play"].push_back(OS.get_ticks_msec())
+#	if $"../Spawner".notesT[indT].y == counter:
+#		AudioServer.get_bus_effect(4,0).pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5-1)
+#		$"../drone".play()
+#		indT += 1
+#	if $"../Spawner".notesB[indB].y == counter:
+#		AudioServer.get_bus_effect(6,0).pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5-1)
+#		$"../droneB".play()
+#		indB += 1
+#	counter += 1
+#	if counter >= play_state.z*global.measure_time:
+#		indT = 0
+#		indB = 0
+#		twn.interpolate_callback(self,global.move_time_new + 12*global.move_time_new,"drone_timer",0,indT,indB)
+#	else:
+#		twn.interpolate_callback(self,global.move_time_new,"drone_timer",counter,indT,indB)
+	
+#func timed_play(notesB,notesT,num_measures):
+#	var play_state = Vector3(0,0,num_measures)
+#	var start_time
+#	while play_state.x < notesB.size() and notesB[play_state.x].y < (play_state.z+1)*global.measure_time:
+#		start_time = (notesB[play_state.x].y)/global.measure_time*global.game_measure
+#		twn.interpolate_callback(self,start_time,"play_timed_midiB",notesB[play_state.x].x)
+#		play_state.x += 1
+#	while play_state.y < notesT.size() and notesT[play_state.y].y < (play_state.z+1)*global.measure_time:
+#		start_time = (notesT[play_state.y].y)/global.measure_time*global.game_measure
+#		twn.interpolate_callback(self,start_time,"play_timed_midi",notesT[play_state.y].x)
+#		play_state.y += 1
+#	#play_state.z += 1
+#	#
+#
+#func play_timed_midi(pitch):
+#	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
+#	$spiccato.play()
+#
+#func play_timed_midiB(pitch):
+#	AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
+#	$spiccatoB.play()
