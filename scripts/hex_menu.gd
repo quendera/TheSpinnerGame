@@ -10,7 +10,7 @@ var menu_items_lab = PoolStringArray(["CALIB-\nRATION","","","PLAY","",""])
 
 func _ready():
 	global.fnt.font_data = load("res://assets/batmfa__.ttf")
-	global.fnt.size = 40
+	global.fnt.size = 40*global.h/720.0
 	global.fnt.use_filter = true
 	#OS.shell_open(hexxed)#"http://godotengine.org")
 	for i in range(6):
