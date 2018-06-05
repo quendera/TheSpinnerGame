@@ -114,6 +114,7 @@ func end_seq(win):
 	if win:	
 		lbl.set("custom_colors/font_color",global.hex_color(6,1))
 		lbl.text = "YOU ARE\n" + compliments[global.curr_wv-1] + "!"
+		twn.interpolate_callback($win,global.move_time_new,"play")
 		if global.curr_wv < 6:# and !global.is_unlocked(global.curr_wv):
 			lbl.text += "\nLEVEL " + str(global.curr_wv+1) + " UNLOCKED."
 #		timed_play(game_instance.get_node("Spawner").notesB,game_instance.get_node("Spawner").notesT,2)#game_instance.get_node("progress_tween").play_state.z-1)#PLAY MUSIC

@@ -33,7 +33,7 @@ func _ready():
 			arr[i] = target_line
 			i = i+1
 	file.close()
-	read_music()
+#	read_music()
 	read_music_time()
 	ball_per_sw = int(arr[arr.size()-1][2])
 	sw_order = shuffleList(range(ball_per_sw)) 

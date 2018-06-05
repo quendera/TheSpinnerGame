@@ -20,7 +20,7 @@ func _ready():
 	target.polygon = global.full_hex(global.poly_size/2)
 	target.color = Color(0,1,0)
 	target.position = global.centre
-	target.offset = Vector2(80,0)
+	target.offset = Vector2(80,0)*global.h/720.0
 	twn.interpolate_callback(target,text_times[0],"hide")
 	add_child(target)
 	var start_time = 0
@@ -28,7 +28,7 @@ func _ready():
 		twn.interpolate_callback(lbl,start_time,"set","text",text[i])
 		start_time += text_times[i]
 	for i in range(3):
-		twn.interpolate_callback(lbl,start_time,"set","rect_position",global.centre - lbl.rect_size/2 + hex[i*2])
+		twn.interpolate_callback(lbl,start_time,"set","rect_position",global.centre - lbl.rect_size/2 + min(i,1)*hex[i*2])
 		start_time += target_time
 		twn.interpolate_callback(target,start_time,"show")
 		for j in range(6):
