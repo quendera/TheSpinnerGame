@@ -26,7 +26,7 @@ func create(rot, ball_id):
 	
 func run_collection(progress):
 	if is_collected == 1:
-		get_tree().call_group("hint_balls", "dimmer",idx,1-progress)
+		#get_tree().call_group("hint_balls", "dimmer",idx,1-progress)
 		get_tree().call_group("hex_slider","push_target",progress,age,cur_rot)
 		if progress == 1:
 			log_data()
@@ -52,7 +52,7 @@ func set_shape(wave_age):
 				#cols[i].a = 7-age
 				coords[i] = Vector2(sin(ang)*(7-age),-cos(ang)*(7-age)+1)/sqrt(3)*global.poly_size*6
 				cols[i] = global.hex_color((7-age-int(i == 0))*6)*(7-age) + global.hint_color((7-age-int(i == 0))*6)*(age-6)
-			get_tree().call_group("hint_balls", "dimmer",idx,7-age)
+			#get_tree().call_group("hint_balls", "dimmer",idx,7-age)
 		else:
 			for i in range(2):
 				coords[i+1] = Vector2((age*orders[i])/sqrt(3),age)*global.poly_size

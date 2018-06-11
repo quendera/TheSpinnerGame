@@ -85,7 +85,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Background", "Glow", "Glow/levels" ]
 
-[node name="hex_root" type="Node" index="0"]
+[node name="hex_root" type="Node"]
 
 script = ExtResource( 1 )
 

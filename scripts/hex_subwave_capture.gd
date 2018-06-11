@@ -8,6 +8,7 @@ func _ready():
 	color = points_col
 
 func collected_points(angle):
+	#$"../percentage".set_prc(round(angle*100))
 	if angle > 0.01:
 		show()
 		polygon = global.pie_hex(coll_coords,angle)
