@@ -16,6 +16,7 @@ run/low_processor_mode=true
 
 [audio]
 
+driver="ALSA"
 channel_disable_time=0.0
 
 [autoload]

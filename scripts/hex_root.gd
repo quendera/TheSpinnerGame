@@ -109,6 +109,7 @@ func end_seq(win):
 	lbl.align = Label.ALIGN_CENTER
 	lbl.rect_size = Vector2(global.w,global.h)
 	lbl.rect_position = Vector2(0,0)#Vector2(global.w,global.h)/2 - lbl.rect_size/2
+	global.fnt.size = 1
 	lbl.set("custom_fonts/font",global.fnt)
 	twn.start()
 	if win:	
