@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=1]
 [ext_resource path="res://scripts/dividers.gd" type="Script" id=2]
@@ -20,8 +20,7 @@
 [ext_resource path="res://assets/batmfa__.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://scripts/instructions.gd" type="Script" id=19]
 [ext_resource path="res://scripts/damage.gd" type="Script" id=20]
-[ext_resource path="res://scripts/percentage_white.gd" type="Script" id=21]
-[ext_resource path="res://scripts/progress.gd" type="Script" id=22]
+[ext_resource path="res://scripts/progress.gd" type="Script" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -215,6 +214,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 script = ExtResource( 12 )
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="sine" type="AudioStreamPlayer" parent="." index="11"]
 
@@ -326,29 +326,7 @@ max_lines_visible = -1
 script = ExtResource( 20 )
 _sections_unfolded = [ "Anchor", "Grow Direction", "custom_fonts" ]
 
-[node name="percentage_white" type="Label" parent="." index="21"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -94.0
-margin_top = -6.0
-margin_right = -54.0
-margin_bottom = 8.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = ExtResource( 21 )
-
-[node name="progress" type="Label" parent="." index="22"]
+[node name="progress" type="Label" parent="." index="21"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -370,7 +348,7 @@ align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 22 )
+script = ExtResource( 21 )
 _sections_unfolded = [ "Grow Direction", "Rect", "custom_colors", "custom_fonts" ]
 
 [connection signal="tween_completed" from="action_tween" to="action_tween" method="_on_action_tween_tween_completed"]
