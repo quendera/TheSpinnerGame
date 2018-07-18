@@ -3,11 +3,11 @@ extends Node
 var HTTP = HTTPClient.new()
 var prt = 80
 var is_saving = 0
-var game_scene = preload("res://scenes/game.tscn")
+var game_scene = load("res://scenes/game.tscn")
 var game_instance
-var menu_scene = preload("res://scenes/hex_menu.tscn")
+var menu_scene = load("res://scenes/hex_menu.tscn")
 var menu_instance
-var hex_slide_scene = preload("res://scripts/hex_slider.gd")
+var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
 var device_ID = Vector2(0,0)
 var file = File.new()
@@ -35,7 +35,7 @@ func _ready():
 		file.close()
 	if in_lab:
 		global.fail_thresh = 9*2
-		add_child(load("res://scripts/eye_calib.gd").new())
+#		add_child(load("res://scripts/eye_calib.gd").new())
 	else:
 		global.fail_thresh = 9*(fmod(device_ID.y,4)+1)
 	for i in range(6):
@@ -66,29 +66,29 @@ func save_data(win):
 		file.open(global.save_file_name, file.WRITE)
 		file.store_line(to_json(global.data))
 		file.close()
-		# SEND TO SERVER
-		var url = "/post.php"
-		var error = 0
-		error = HTTP.connect_to_host("199.247.17.106", prt)
-		assert(error == OK)
-
-		while HTTP.get_status() == HTTPClient.STATUS_CONNECTING or HTTP.get_status() == HTTPClient.STATUS_RESOLVING:
-			HTTP.poll()
-			print(HTTP.get_status())
-			OS.delay_msec(50)
-		assert(HTTP.get_status() == HTTPClient.STATUS_CONNECTED)
-
-		#var QUERY = HTTP.query_string_from_dict(global.data)
-		var QUERY = to_json(global.data)
-		var HEADERS = ["Content-Type: application/json"]
-
-		HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
-
-		while HTTP.get_status() == HTTPClient.STATUS_REQUESTING:
-			HTTP.poll()
-			print(HTTP.get_status())
-			OS.delay_msec(50)
-
+		if !in_lab:
+			# SEND TO SERVER
+			var url = "/post.php"
+			var error = 0
+			error = HTTP.connect_to_host("199.247.17.106", prt)
+			assert(error == OK)
+	
+			while HTTP.get_status() == HTTPClient.STATUS_CONNECTING or HTTP.get_status() == HTTPClient.STATUS_RESOLVING:
+				HTTP.poll()
+				print(HTTP.get_status())
+				OS.delay_msec(50)
+			assert(HTTP.get_status() == HTTPClient.STATUS_CONNECTED)
+	
+			#var QUERY = HTTP.query_string_from_dict(global.data)
+			var QUERY = to_json(global.data)
+			var HEADERS = ["Content-Type: application/json"]
+	
+			HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
+	
+			while HTTP.get_status() == HTTPClient.STATUS_REQUESTING:
+				HTTP.poll()
+				print(HTTP.get_status())
+				OS.delay_msec(50)
 		#update high scores
 		if global.score > global.hi_scores[global.curr_wv-1]:
 			global.hi_scores[global.curr_wv-1] = global.score

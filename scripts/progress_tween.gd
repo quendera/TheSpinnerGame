@@ -16,6 +16,7 @@ var notes_per_scale = 8
 var play_state = Vector3(0,0,0) #completed time for piece, index of notes played
 
 func _ready():
+	#playback_process_mode = TWEEN_PROCESS_PHYSICS
 	start()
 
 func reset_hints():

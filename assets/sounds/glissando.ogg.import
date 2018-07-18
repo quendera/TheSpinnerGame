@@ -10,8 +10,9 @@ source_file="res://assets/sounds/glissando.ogg"
 source_md5="c672da3923c8b57503c97c2cf8b2934f"
 
 dest_files=[ "res://.import/glissando.ogg-46fc3f9ec66edc724bf9d50f019751a5.oggstr" ]
-dest_md5="d1752e65591079e5ecfb8031e9dbfc92"
+dest_md5="6ab9451a666ad7451f44f2fc68569f3a"
 
 [params]
 
 loop=false
+loop_offset=0

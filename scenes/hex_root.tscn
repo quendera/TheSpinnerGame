@@ -97,6 +97,7 @@ environment = SubResource( 1 )
 
 stream = ExtResource( 2 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -105,6 +106,7 @@ bus = "Master"
 
 stream = ExtResource( 3 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "drone-reverb"
@@ -113,6 +115,7 @@ bus = "drone-reverb"
 
 stream = ExtResource( 4 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "pitchB"
@@ -121,6 +124,7 @@ bus = "pitchB"
 
 stream = ExtResource( 4 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "pitch"
@@ -129,6 +133,7 @@ bus = "pitch"
 
 stream = ExtResource( 5 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
