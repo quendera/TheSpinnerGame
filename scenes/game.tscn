@@ -46,7 +46,7 @@ use_filter = true
 font_data = ExtResource( 18 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="game" type="Node2D" index="0"]
+[node name="game" type="Node2D"]
 
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
@@ -220,6 +220,7 @@ _sections_unfolded = [ "custom_fonts" ]
 
 stream = ExtResource( 13 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "phaser"
@@ -228,6 +229,7 @@ bus = "phaser"
 
 stream = ExtResource( 14 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "pitch"
@@ -236,6 +238,7 @@ bus = "pitch"
 
 stream = ExtResource( 14 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "pitchB"
@@ -244,6 +247,7 @@ bus = "pitchB"
 
 stream = ExtResource( 15 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -252,6 +256,7 @@ bus = "Master"
 
 stream = ExtResource( 16 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -260,6 +265,7 @@ bus = "Master"
 
 stream = ExtResource( 17 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -268,6 +274,7 @@ bus = "Master"
 
 stream = ExtResource( 14 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "drone-pitch"
@@ -276,6 +283,7 @@ bus = "drone-pitch"
 
 stream = ExtResource( 14 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "drone-pitchB"

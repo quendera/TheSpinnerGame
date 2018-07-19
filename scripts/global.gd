@@ -1,7 +1,7 @@
 extends Node
 
-var w = 1920
-var h = 1080
+var w = 1024#1920
+var h = 600 #1080
 var padding = .15
 var centre = Vector2(round(w-h/sqrt(3)),h*.5)
 var harp_pluck_len = .01*5/6.0

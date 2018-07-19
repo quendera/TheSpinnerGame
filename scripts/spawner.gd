@@ -36,7 +36,7 @@ func _ready():
 #	read_music()
 	read_music_time()
 	ball_per_sw = int(arr[arr.size()-1][2])
-	sw_order = shuffleList(range(ball_per_sw)) 
+	sw_order = shuffleList(range(ball_per_sw)) #range(ball_per_sw)#
 	ball_per_sw = arr.size()/ball_per_sw
 	balls_left = ball_per_sw
 	global.sw_count = sw_order.size()

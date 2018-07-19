@@ -12,6 +12,9 @@ var drag_vel
 var motion_thresh = OS.get_screen_dpi()*.1 #pixels
 #var hold_thresh = global.move_time_new/2*1000
 
+func _ready():
+	pass#playback_process_mode = TWEEN_PROCESS_PHYSICS
+
 func _input(event):
 	if event is InputEventKey:
 		get_tree().get_root().get_node("hex_root").save_data(false)
