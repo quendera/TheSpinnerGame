@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/422642__trullilulli__sfx-ambiance-clock-tick.wav-7e67c37dcf27dad0b8ee396ac8791633.sample"
+
+[deps]
+
+source_file="res://assets/sounds/422642__trullilulli__sfx-ambiance-clock-tick.wav"
+source_md5="8068929c1b5b30f1c99cd2cae6651b5d"
+
+dest_files=[ "res://.import/422642__trullilulli__sfx-ambiance-clock-tick.wav-7e67c37dcf27dad0b8ee396ac8791633.sample" ]
+dest_md5="9d8d0f9a34abdb6ef46232fd05d182cf"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

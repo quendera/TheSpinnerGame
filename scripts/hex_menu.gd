@@ -4,7 +4,7 @@ var menu_label_scene = load("res://scripts/menu_label.gd")
 var menu_label_instance
 var menu_level_scene = load("res://scripts/menu_levels.gd")
 var menu_level_instance
-var menu_items = PoolStringArray(["SURVEY","ABOUT","","PLAY","SHARE","LEADER\nBOARD"])
+var menu_items = PoolStringArray(["SURVEY","ABOUT","PERFECT\nMODE","PLAY","SHARE","LEADER\nBOARD"])
 var menu_items_lab = PoolStringArray(["CALIB-\nRATION","","","PLAY","",""])
 #var startLevel
 

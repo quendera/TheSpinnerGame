@@ -30,18 +30,18 @@ func create(rot, rad):
 func update_shape():
 	if stretch[0] == stretch[1]:
 		hide()
-	elif stretch[0] > stretch[1]:
-		stretch = [stretch[1],stretch[0]]
-	for i in range(6):
-		coords[i] = hexcoords[i] + Vector2(stretch[int(i < 2 or i == 5)]*(global.poly_size*6/sqrt(3))+global.side_offset*sqrt(3)/4*(2*int(i<2 or i == 5) -1),0)
-		if edge == 0:
-			cols[i] = global.hex_color(stretch[int(i < 2 or i == 5)]*3+3,true)
-		else:
-			cols[i] = global.hex_color(max(-stretch[0],stretch[1])*3+3,true)
-	polygon = coords
-#	if edge == 0:
-	vertex_colors = cols
-	if stretch[0] != stretch[1]:
+	else:
+		if stretch[0] > stretch[1]:
+			stretch = [stretch[1],stretch[0]]
+		for i in range(6):
+			coords[i] = hexcoords[i] + Vector2(stretch[int(i < 2 or i == 5)]*(global.poly_size*6/sqrt(3))+global.side_offset*sqrt(3)/4*(2*int(i<2 or i == 5) -1),0)
+			if edge == 0:
+				cols[i] = global.hex_color(stretch[int(i < 2 or i == 5)]*3+3,true)
+			else:
+				cols[i] = global.hex_color(max(-stretch[0],stretch[1])*3+3,true)
+		polygon = coords
+		vertex_colors = cols
+	#if stretch[0] != stretch[1]:
 		show()
 		
 func lobe_match(loc):

@@ -5,7 +5,7 @@ var prt = 80
 var is_saving = 0
 var game_scene = load("res://scenes/game.tscn")
 var game_instance
-var menu_scene = load("res://scenes/hex_menu.tscn")
+var menu_scene = load("res://scenes/hex_menu.tscn")#hex_menu.tscn")
 var menu_instance
 var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
@@ -34,10 +34,7 @@ func _ready():
 			global.hi_scores[i] = int(file.get_32())
 		file.close()
 	if in_lab:
-		global.fail_thresh = 9*2
-#		add_child(load("res://scripts/eye_calib.gd").new())
-	else:
-		global.fail_thresh = 9*(fmod(device_ID.y,4)+1)
+		add_child(load("res://scripts/eye_calib.gd").new())
 	for i in range(6):
 		for j in range(2):
 			hex_slide_instance = hex_slide_scene.new()
@@ -47,6 +44,10 @@ func _ready():
 	add_child(twn)
 
 func new_menu():
+	if in_lab:
+		global.fail_thresh = 9*2
+	else:
+		global.fail_thresh = 9*(fmod(device_ID.y,4)+1)
 	menu_instance = menu_scene.instance()
 	add_child(menu_instance)
 
@@ -125,13 +126,13 @@ func end_seq(win):
 		twn.interpolate_callback($lose,global.move_time_new,"play")
 	twn.interpolate_property(global.fnt,"size",1,80,global.move_time_new,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
 	add_child(lbl)
-	twn.interpolate_callback(self,global.move_time_new*12,"restart_menu")
+	twn.interpolate_callback(self,global.move_time_new*12,"new_menu")
 	twn.interpolate_callback(lbl,global.move_time_new*12,"queue_free")
 #	twn.interpolate_callback(twn,global.move_time_new*12,"stop")
 
-func restart_menu():
-	menu_instance = menu_scene.instance()
-	add_child(menu_instance)
+#func restart_menu():
+#	menu_instance = menu_scene.instance()
+#	add_child(menu_instance)
 #
 #func drone_timer(counter,indT,indB):
 #	if counter == 0:
