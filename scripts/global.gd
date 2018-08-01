@@ -31,8 +31,10 @@ func full_hex(radius,wire =0,off = Vector2(0,0)):
 	return coords
 
 func init(lev,device_ID):#,player_name = "",player_ID = 0):
-	AudioServer.set_bus_volume_db(4,-35)
-	AudioServer.set_bus_volume_db(6,-30)
+#	AudioServer.set_bus_volume_db(4,-35)
+#	AudioServer.set_bus_volume_db(6,-30)
+#	AudioServer.set_bus_volume_db(1,-5)
+#	AudioServer.set_bus_volume_db(5,0)
 	global.curr_wv = lev
 	global.sw_score = 0
 	global.score = 0

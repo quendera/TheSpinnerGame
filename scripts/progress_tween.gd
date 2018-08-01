@@ -17,6 +17,10 @@ var play_state = Vector3(0,0,0) #completed time for piece, index of notes played
 
 func _ready():
 	#playback_process_mode = TWEEN_PROCESS_PHYSICS
+	$"../spiccato".volume_db = -5
+	$"../spiccatoB".volume_db = 0
+	$"../drone".volume_db = -35
+	$"../droneB".volume_db = -30
 	start()
 
 func reset_hints():
@@ -77,11 +81,13 @@ func drone_timer(counter,indT,indB):
 	if counter == 0:
 		global.data["drone_play"].push_back(OS.get_ticks_msec())
 	if $"../Spawner".notesT[indT].y == counter:
-		AudioServer.get_bus_effect(4,0).pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5-1)
+		#AudioServer.get_bus_effect(4,0).pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5-1)
+		$"../drone".pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5)
 		$"../drone".play()
 		indT += 1
 	if $"../Spawner".notesB[indB].y == counter:
-		AudioServer.get_bus_effect(6,0).pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5-1)
+		#AudioServer.get_bus_effect(6,0).pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5-1
+		$"../droneB".pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5)
 		$"../droneB".play()
 		indB += 1
 	counter += 1
@@ -106,11 +112,13 @@ func timed_play():
 	#start_time += global.game_measure
 
 func play_timed_midi(pitch):
-	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
+	#AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
+	$"../spiccato".pitch_scale = pow(2,pitch/12.0-5)
 	$"../spiccato".play()
 
 func play_timed_midiB(pitch):
-	AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
+	#AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
+	$"../spiccatoB".pitch_scale = pow(2,pitch/12.0-5)
 	$"../spiccatoB".play()
 
 #func play_midi(pitch):

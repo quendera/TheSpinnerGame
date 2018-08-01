@@ -60,7 +60,6 @@ quality/reflections/high_quality_ggx=false
 quality/shading/force_vertex_shading.mobile=false
 quality/depth_prepass/enable=false
 quality/subsurface_scattering/quality=0
-quality/subsurface_scattering/scale=1
 quality/subsurface_scattering/weight_samples=false
 quality/voxel_cone_tracing/high_quality=false
 environment/default_clear_color=Color( 0, 0, 0, 1 )

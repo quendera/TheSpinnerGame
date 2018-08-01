@@ -25,8 +25,10 @@ func set_shape(val):
 #		polygon = pie_coords
 
 func play_note(pitch,note):
-	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,(pitch/36.0/$"../Spawner".ball_per_sw + note)*2)
+	#AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,(pitch/36.0/$"../Spawner".ball_per_sw + note)*2)
+	
 	#set_pitch(pitch,note)
+	$"../sine".pitch_scale = pow(2,(pitch/36.0/$"../Spawner".ball_per_sw + note)*2)
 	$"../sine".play()
 
 #func set_pitch(pitch):

@@ -12,10 +12,10 @@
 [ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=10]
 [ext_resource path="res://scripts/hex_subwave_capture.gd" type="Script" id=11]
 [ext_resource path="res://scripts/percentage.gd" type="Script" id=12]
-[ext_resource path="res://assets/sounds/sine_wave.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sounds/violin-spiccato-c4.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sounds/glass-break.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sounds/woodclick.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sounds/triangle_wave.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/triangle_slow.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sounds/error.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/sounds/typewriter.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/batmfa__.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://scripts/instructions.gd" type="Script" id=19]
@@ -46,7 +46,7 @@ use_filter = true
 font_data = ExtResource( 18 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
@@ -223,7 +223,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "phaser"
+bus = "Master"
 
 [node name="spiccato" type="AudioStreamPlayer" parent="." index="12"]
 
@@ -232,7 +232,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "pitch"
+bus = "Master"
 
 [node name="spiccatoB" type="AudioStreamPlayer" parent="." index="13"]
 
@@ -241,7 +241,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "pitchB"
+bus = "Master"
 
 [node name="miss" type="AudioStreamPlayer" parent="." index="14"]
 
@@ -277,7 +277,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "drone-pitch"
+bus = "Master"
 
 [node name="droneB" type="AudioStreamPlayer" parent="." index="18"]
 
@@ -286,7 +286,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "drone-pitchB"
+bus = "Master"
 
 [node name="instructions" type="Label" parent="." index="19"]
 
@@ -326,7 +326,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
-text = "DAMAGE "
+text = "EVIL  "
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
@@ -351,7 +351,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 3 )
-text = "PROGRESS"
+text = "GOOD"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
