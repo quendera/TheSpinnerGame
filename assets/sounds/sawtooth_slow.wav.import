@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sawtooth_slow.wav-5a4e9c5a18f009f2e39ff40d4332096e.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sawtooth_slow.wav"
+dest_files=[ "res://.import/sawtooth_slow.wav-5a4e9c5a18f009f2e39ff40d4332096e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

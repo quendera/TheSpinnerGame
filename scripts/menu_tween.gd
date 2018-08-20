@@ -29,11 +29,11 @@ func which_action(click_loc):
 				choice = lobe[1]
 				$"../../move".play()
 				interpolate_method(self,"make_dim",0,1,global.move_time_new,transition,ease_direction)
-			elif lobe[1] == 0:
-				$"../../move".play()
-				interpolate_method(self,"locked_sliders",1.001,2,global.move_time_new,transition,ease_direction)
-				interpolate_callback($"..",global.move_time_new,"queue_free")
-				interpolate_callback($"../..",global.move_time_new,"add_child",load("res://scripts/eye_calib_seq.gd").new())
+#			elif lobe[1] == 0:
+#				$"../../move".play()
+#				interpolate_method(self,"locked_sliders",1.001,2,global.move_time_new,transition,ease_direction)
+#				interpolate_callback($"..",global.move_time_new,"queue_free")
+#				interpolate_callback($"../..",global.move_time_new,"add_child",load("res://scripts/eye_calib_seq.gd").new())
 				#interpolate_callback(get_tree().call_group("hex_slider"),global.move_time_new,"hide")
 				#$"..".queue_free()
 				#get_tree().call_group("hex_slider","hide")

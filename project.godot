@@ -15,7 +15,7 @@ run/main_scene="res://scenes/hex_root.tscn"
 
 [audio]
 
-channel_disable_time=0.0
+driver="ALSA"
 
 [autoload]
 

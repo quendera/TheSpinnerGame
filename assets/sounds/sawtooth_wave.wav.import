@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sawtooth_wave.wav-a03a6d0139321221fdfb4966dda81557.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sawtooth_wave.wav"
+dest_files=[ "res://.import/sawtooth_wave.wav-a03a6d0139321221fdfb4966dda81557.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
