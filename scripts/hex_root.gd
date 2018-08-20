@@ -13,6 +13,8 @@ var device_ID = Vector2(0,0)
 var file = File.new()
 var in_lab = 0
 var twn = Tween.new()
+var url = "/hexxed/upload.php"#"/post.php"
+var IP = "95.179.150.62"
 var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
 
 func _ready():
@@ -70,29 +72,30 @@ func save_data(win):
 		file.open(global.save_file_name, file.WRITE)
 		file.store_line(to_json(global.data))
 		file.close()
-		if 0:#!in_lab:
+		if !in_lab:
 			# SEND TO SERVER
-			var url = "/post.php"
-			var error = 0
-			error = HTTP.connect_to_host("199.247.17.106", prt)
-			assert(error == OK)
-	
-			while HTTP.get_status() == HTTPClient.STATUS_CONNECTING or HTTP.get_status() == HTTPClient.STATUS_RESOLVING:
+			var error = HTTP.connect_to_host(IP, prt) #199.247.17.106
+#			assert(error == OK)
+			var counter = 0
+			while HTTP.get_status() <= 4 and counter < 5:#== HTTPClient.STATUS_CONNECTING or HTTP.get_status() == HTTPClient.STATUS_RESOLVING:
 				HTTP.poll()
 				print(HTTP.get_status())
 				OS.delay_msec(50)
-			assert(HTTP.get_status() == HTTPClient.STATUS_CONNECTED)
-	
+				counter += 1
+#			assert(HTTP.get_status() == HTTPClient.STATUS_CONNECTED)
+			if HTTP.get_status() == HTTPClient.STATUS_CONNECTED:
 			#var QUERY = HTTP.query_string_from_dict(global.data)
-			var QUERY = to_json(global.data)
-			var HEADERS = ["Content-Type: application/json"]
-	
-			HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
-	
-			while HTTP.get_status() == HTTPClient.STATUS_REQUESTING:
-				HTTP.poll()
-				print(HTTP.get_status())
-				OS.delay_msec(50)
+				var QUERY = to_json(global.data)
+			#var HEADERS = ["Content-Type: application/json"]
+				var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",OS.get_unix_time())]
+				HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
+				counter = 0
+				while HTTP.get_status() == HTTPClient.STATUS_REQUESTING and counter < 5:
+					HTTP.poll()
+					print(HTTP.get_status())
+					OS.delay_msec(50)
+					counter += 1
+				print(device_ID)
 		#update high scores
 		if global.score > global.hi_scores[global.curr_wv-1]:
 			global.hi_scores[global.curr_wv-1] = global.score
@@ -105,7 +108,7 @@ func save_data(win):
 		#add_child(menu_instance)
 		game_instance.queue_free()
 		#is_saving = 0
-		
+
 func end_seq(win):
 	get_tree().call_group("hex_slider","hide")
 	var lbl = Label.new()
@@ -116,7 +119,7 @@ func end_seq(win):
 	global.fnt.size = 1
 	lbl.set("custom_fonts/font",global.fnt)
 	twn.start()
-	if 1:
+	if win:
 		lbl.set("custom_colors/font_color",global.hex_color(6,1))
 		lbl.text = "YOU ARE\n" + compliments[global.curr_wv-1] + "!"
 		#twn.interpolate_callback($win,global.move_time_new,"play")
