@@ -10,10 +10,6 @@ func _ready():
 
 func _draw():
 	dist = fposmod($"../action_tween".wave_age,1)
-#	for i in range(0,3):
-#		var offsetY = sin(i*PI/3)*global.poly_size*12*2/sqrt(3)
-#		var offsetX = cos(i*PI/3)*global.poly_size*12*2/sqrt(3)
-#		self.draw_line(Vector2(-offsetX,-offsetY),Vector2(offsetX,offsetY),Color(0,0,0),5)#Color(0,0,0)
 	for i in range(6):
 		coords = global.full_hex((global.poly_size*(i+dist)*2+global.side_offset)/sqrt(3),1)
 		draw_polyline(coords,global.hint_color(i+dist),2) #Color(0,0,0)
