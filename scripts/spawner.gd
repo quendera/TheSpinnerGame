@@ -93,14 +93,14 @@ func _notification(what):
 		$"../..".save_data(false)
 		#get_tree().quit()
 		
-func read_music():
-	file.open("res://assets/files/bach.txt", File.READ)
-	var target_line
-	while (!file.eof_reached()):
-		target_line = file.get_csv_line()
-		if target_line.size() > 0:
-			notes.push_back(int(target_line[0]))
-	file.close()
+#func read_music():
+#	file.open("res://assets/files/bach.txt", File.READ)
+#	var target_line
+#	while (!file.eof_reached()):
+#		target_line = file.get_csv_line()
+#		if target_line.size() > 0:
+#			notes.push_back(int(target_line[0]))
+#	file.close()
 	
 func read_music_time():#fname):
 	file.open("res://assets/files/jesu.txt", File.READ)

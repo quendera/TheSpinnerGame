@@ -11,12 +11,15 @@ var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
 var device_ID = Vector2(0,0)
 var file = File.new()
-var in_lab = 1
+var in_lab = 0
 var twn = Tween.new()
 var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
 
 func _ready():
-	randomize()
+	randomize()	
+	AudioServer.set_bus_volume_db(0,-10)
+	$spiccato.volume_db = -5
+	$spiccatoB.volume_db = 0
 	if !file.file_exists("user://deviceID"):
 		file.open_compressed("user://deviceID",File.WRITE)
 		device_ID = Vector2(OS.get_unix_time(),randi())
@@ -67,7 +70,7 @@ func save_data(win):
 		file.open(global.save_file_name, file.WRITE)
 		file.store_line(to_json(global.data))
 		file.close()
-		if !in_lab:
+		if 0:#!in_lab:
 			# SEND TO SERVER
 			var url = "/post.php"
 			var error = 0
@@ -113,10 +116,14 @@ func end_seq(win):
 	global.fnt.size = 1
 	lbl.set("custom_fonts/font",global.fnt)
 	twn.start()
-	if win:	
+	if 1:
 		lbl.set("custom_colors/font_color",global.hex_color(6,1))
 		lbl.text = "YOU ARE\n" + compliments[global.curr_wv-1] + "!"
-		twn.interpolate_callback($win,global.move_time_new,"play")
+		#twn.interpolate_callback($win,global.move_time_new,"play")
+		#game_instance.get_node("progress_tween").play_state.z = 6
+		#game_instance.get_node("progress_tween").play_state.x = 0
+		#game_instance.get_node("progress_tween").play_state.y = 0
+		timed_play(global.move_time_new,$spiccato,$spiccatoB,game_instance.get_node("progress_tween").play_state.z-1)
 		if global.curr_wv < 6:# and !global.is_unlocked(global.curr_wv):
 			lbl.text += "\nLEVEL " + str(global.curr_wv+1) + " UNLOCKED."
 #		timed_play(game_instance.get_node("Spawner").notesB,game_instance.get_node("Spawner").notesT,2)#game_instance.get_node("progress_tween").play_state.z-1)#PLAY MUSIC
@@ -128,7 +135,32 @@ func end_seq(win):
 	add_child(lbl)
 	twn.interpolate_callback(self,global.move_time_new*12,"new_menu")
 	twn.interpolate_callback(lbl,global.move_time_new*12,"queue_free")
+	#game_instance.hide()
+	#twn.interpolate_callback(game_instance,global.move_time_new*12,"queue_free")
 #	twn.interpolate_callback(twn,global.move_time_new*12,"stop")
+
+func timed_play(st = 0,  treb_stream = $spiccato,bass_stream = $spiccatoB,z = 0):
+	var st_t
+	var play_state = Vector3(0,0,z)
+	var notesB = game_instance.get_node("Spawner").notesB
+	var notesT = game_instance.get_node("Spawner").notesT
+	while play_state.x < notesB.size() and notesB[play_state.x].y < (play_state.z+1)*global.measure_time:
+		st_t = st+ (notesB[play_state.x].y)/global.measure_time*global.game_measure
+		twn.interpolate_callback(self,st_t,"play_timed_midi",notesB[play_state.x].x,bass_stream,1)
+		play_state.x += 1
+	while play_state.y < notesT.size() and notesT[play_state.y].y < (play_state.z+1)*global.measure_time:
+		st_t = st+ (notesT[play_state.y].y)/global.measure_time*global.game_measure
+		twn.interpolate_callback(self,st_t,"play_timed_midi",notesT[play_state.y].x,treb_stream)
+		play_state.y += 1
+	play_state.z += 1
+	#start_time += global.game_measure
+
+func play_timed_midi(pitch,stream,offset = 0):
+	#AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
+	#print(pow(2,pitch/12.0-5+offset))
+	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
+	stream.play()
+
 
 #func restart_menu():
 #	menu_instance = menu_scene.instance()

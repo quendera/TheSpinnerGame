@@ -19,8 +19,8 @@ func _ready():
 	#playback_process_mode = TWEEN_PROCESS_PHYSICS
 	$"../spiccato".volume_db = -5
 	$"../spiccatoB".volume_db = 0
-	$"../drone".volume_db = -35
-	$"../droneB".volume_db = -30
+	$"../drone".volume_db = -25
+	$"../droneB".volume_db = -20
 	start()
 
 func reset_hints():
@@ -81,14 +81,16 @@ func drone_timer(counter,indT,indB):
 	if counter == 0:
 		global.data["drone_play"].push_back(OS.get_ticks_msec())
 	if $"../Spawner".notesT[indT].y == counter:
+		play_timed_midi($"../Spawner".notesT[indT].x,$"../drone")
 		#AudioServer.get_bus_effect(4,0).pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5-1)
-		$"../drone".pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5)
-		$"../drone".play()
+		#$"../drone".pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5)
+		#$"../drone".play()
 		indT += 1
 	if $"../Spawner".notesB[indB].y == counter:
+		play_timed_midi($"../Spawner".notesB[indB].x,$"../droneB",1)
 		#AudioServer.get_bus_effect(6,0).pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5-1
-		$"../droneB".pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5)
-		$"../droneB".play()
+		#$"../droneB".pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5)
+		#$"../droneB".play()
 		indB += 1
 	counter += 1
 	if counter >= play_state.z*global.measure_time:
@@ -98,28 +100,28 @@ func drone_timer(counter,indT,indB):
 	else:
 		interpolate_callback(self,global.move_time_new,"drone_timer",counter,indT,indB) #global.drone_measure/global.measure_time
 
-func timed_play():
+func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $"../spiccatoB", speedUp = 1):
 	var st_t
 	while play_state.x < $"../Spawner".notesB.size() and $"../Spawner".notesB[play_state.x].y < (play_state.z+1)*global.measure_time:
-		st_t = start_time+ ($"../Spawner".notesB[play_state.x].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure
-		interpolate_callback(self,st_t,"play_timed_midiB",$"../Spawner".notesB[play_state.x].x)
+		st_t = st+ ($"../Spawner".notesB[play_state.x].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure/speedUp
+		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesB[play_state.x].x,bass_stream,1)
 		play_state.x += 1
 	while play_state.y < $"../Spawner".notesT.size() and $"../Spawner".notesT[play_state.y].y < (play_state.z+1)*global.measure_time:
-		st_t = start_time+ ($"../Spawner".notesT[play_state.y].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure
-		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesT[play_state.y].x)
+		st_t = st+ ($"../Spawner".notesT[play_state.y].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure/speedUp
+		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesT[play_state.y].x,treb_stream)
 		play_state.y += 1
 	play_state.z += 1
 	#start_time += global.game_measure
 
-func play_timed_midi(pitch):
+func play_timed_midi(pitch,stream,offset = 0):
 	#AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
-	$"../spiccato".pitch_scale = pow(2,pitch/12.0-5)
-	$"../spiccato".play()
+	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
+	stream.play()
 
-func play_timed_midiB(pitch):
-	#AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
-	$"../spiccatoB".pitch_scale = pow(2,pitch/12.0-5)
-	$"../spiccatoB".play()
+#func play_timed_midiB(pitch):
+#	#AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
+#	$"../spiccatoB".pitch_scale = pow(2,pitch/12.0-5)
+#	$"../spiccatoB".play()
 
 #func play_midi(pitch):
 #	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,$"../Spawner".notes[(scale_count-1)*notes_per_scale+pitch]/12.0-5)
