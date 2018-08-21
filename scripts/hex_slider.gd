@@ -61,8 +61,6 @@ func set_shape(age,loc = 0,act = 0,end = 0):
 	if age <= 0:
 		modulate.a = 1#max(modulate.a,1+age/6)
 		if !edge:
-			#if stretch[0] != stretch[1]:
-			#	stretch[0] = 1+age/3
 			if stretch[0] > stretch[1] -2:
 				stretch = [-1,1+age/3]
 		else:
@@ -74,9 +72,7 @@ func set_shape(age,loc = 0,act = 0,end = 0):
 					stretch = [age-1,1-age]
 				else:
 					stretch = [-1,1-age*2]
-		#else:
-		#	if !edge:
-		#		stretch = [1-2*age,1]
+
 	else:
 		if lobe_match(loc[1]):
 			if edge and abs(act[0]) == 1:

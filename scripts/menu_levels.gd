@@ -11,7 +11,7 @@ func _ready():
 func _draw():
 	for i in range(rot+1):
 		draw_colored_polygon(global.full_hex(global.side_offset,0,rot*Vector2(sin(i*2*PI/(rot+1)),cos(i*2*PI/(rot+1)))*global.side_offset),global.hex_color(6))
-#	draw_colored_polygon(PoolVector2Array([Vector2(0,0),Vector2(50,0),Vector2(0,50)]),Color(1,1,1))
+
 
 func _process(delta):
 	if global.is_unlocked(rot) and modulate.a > 0:

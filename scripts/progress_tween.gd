@@ -30,6 +30,7 @@ func reset_hints():
 	interpolate_method($"../hex_subwave","total_points",0,norm,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	$"../hex_subwave_capture".color = global.hex_color(6) 
 	$"../percentage".set_prc(0)
+	start()
 
 func reset_sliders(wave_age):
 	get_tree().call_group("hex_slider","set_shape", wave_age)
@@ -41,12 +42,10 @@ func finish_hints_discrete():
 		$"../hex_progress".set_shape(float($"../Spawner".sw)/global.sw_count)
 	elif round(sw_score*36*$"../Spawner".ball_per_sw) == $"../Spawner".curr_wv_points:
 		$"../hex_subwave_capture".color = global.hex_color(6,1) 
-		#var scale_time = global.game_measure#global.move_time_new*notes_per_scale*2/3
 		interpolate_method($"../hex_subwave_capture","collected_points",sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_subwave","total_points",sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw-1)/global.sw_count,float($"../Spawner".sw)/global.sw_count,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_progress_perfect","set_shape",0,1,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
-		#interpolate_method($"../percentage","set_prc",0,1,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		if global.curr_wv == 1:
 			$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
 		timed_play()
@@ -60,7 +59,6 @@ func finish_hints_discrete():
 			interpolate_callback($"../hex_subwave",start_time,"total_points",norm-sw_score*(float(i+1)/num_sounds))
 			interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw-1+float(i+1)/num_sounds)/global.sw_count)
 			interpolate_callback($"../hex_progress",start_time,"play_note",-i,sw_score)
-			#interpolate_callback($"../percentage",start_time,"set_prc",float($"../Spawner".sw-1+float(i+1)/num_sounds)/global.sw_count)
 			start_time += global.harp_pluck_len
 	#fill missing points
 	frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/float(global.fail_thresh*($"../Spawner".accum_points.size()-1))#$"../Spawner".accum_points[-1]*fail_thresh)
@@ -76,21 +74,16 @@ func finish_hints_discrete():
 		interpolate_callback($"../..",start_time,"save_data",false)
 	else:
 		interpolate_callback($"../Spawner",start_time,"mySpawn")
+	start()
 
 func drone_timer(counter,indT,indB):
 	if counter == 0:
 		global.data["drone_play"].push_back(OS.get_ticks_msec())
 	if $"../Spawner".notesT[indT].y == counter:
 		play_timed_midi($"../Spawner".notesT[indT].x,$"../drone")
-		#AudioServer.get_bus_effect(4,0).pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5-1)
-		#$"../drone".pitch_scale = pow(2,$"../Spawner".notesT[indT].x/12.0-5)
-		#$"../drone".play()
 		indT += 1
 	if $"../Spawner".notesB[indB].y == counter:
 		play_timed_midi($"../Spawner".notesB[indB].x,$"../droneB",1)
-		#AudioServer.get_bus_effect(6,0).pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5-1
-		#$"../droneB".pitch_scale = pow(2,$"../Spawner".notesB[indB].x/12.0-5)
-		#$"../droneB".play()
 		indB += 1
 	counter += 1
 	if counter >= play_state.z*global.measure_time:
@@ -99,6 +92,7 @@ func drone_timer(counter,indT,indB):
 		interpolate_callback(self,global.move_time_new + 12*global.move_time_new,"drone_timer",0,indT,indB)
 	else:
 		interpolate_callback(self,global.move_time_new,"drone_timer",counter,indT,indB) #global.drone_measure/global.measure_time
+	start()
 
 func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $"../spiccatoB", speedUp = 1):
 	var st_t
@@ -111,62 +105,16 @@ func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $".
 		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesT[play_state.y].x,treb_stream)
 		play_state.y += 1
 	play_state.z += 1
-	#start_time += global.game_measure
+	start()
 
 func play_timed_midi(pitch,stream,offset = 0):
-	#AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,pitch/12.0-5-1)
 	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
 	stream.play()
-
-#func play_timed_midiB(pitch):
-#	#AudioServer.get_bus_effect(5,0).pitch_scale = pow(2,pitch/12.0-5-1)
-#	$"../spiccatoB".pitch_scale = pow(2,pitch/12.0-5)
-#	$"../spiccatoB".play()
-
-#func play_midi(pitch):
-#	AudioServer.get_bus_effect(1,0).pitch_scale = pow(2,$"../Spawner".notes[(scale_count-1)*notes_per_scale+pitch]/12.0-5)
-#	$"/root/game/spiccato".play() #sine_slow".play() #
 
 func slide_hints(new):
 	interpolate_method($"../hex_subwave_capture","collected_points",sw_score,sw_score+new,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	if global.curr_wv == 1:
 		interpolate_method($"../percentage","set_prc",sw_score,sw_score+new,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	sw_score += new
-
-	#interpolate_property($"../Spawner".progress_line_instance,"sw_score",-1,0,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
-	#interpolate_method($"../Spawner".progress_line_instance,"set_shape",sw_score,sw_score+new,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
+	start()
 	
-	#var dist_to_fail = (1-($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/float((1-$"../progress_full".pass_thresh)*$"../Spawner".accum_points[-1]))
-	#$"../progress_full_line".set_shape()#update()
-	#interpolate_property($"../Spawner".progress_line_instance,"sw_score",-1,0,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
-	#interpolate_method($"../Spawner".progress_line_instance,"set_shape",-1,0,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
-	#interpolate_method($"../progress_fields","my_update",sw_total_points,$"../Spawner".curr_wv_points/$"../Spawner".ball_per_sw/36.0,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
-	#interpolate_property($"../hex_progress","scale",sqrt(1-$"../Spawner".accum_points[$"../Spawner".sw]/float($"../Spawner".accum_points[-1]))*Vector2(1,1),sqrt(1-$"../Spawner".accum_points[$"../Spawner".sw+1]/float($"../Spawner".accum_points[-1]))*Vector2(1,1),global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
-#	interpolate_method($"../hex_progress","set_shape",
-	#float($"../Spawner".accum_points[-1]))
-#	sw_total_points = $"../Spawner".curr_wv_points
-
-#func finish_hints():
-#	var tween_len = click_len*max(1,sw_score*36*$"../Spawner".ball_per_sw)
-#	interpolate_method($"../hex_subwave","collected_points",sw_score,0,tween_len,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new)
-#	interpolate_method($"../hex_subwave","total_points",norm,norm-sw_score,tween_len,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new)
-#	#fill collected points in next line
-#	interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw-1)/($"../Spawner".accum_points.size()),float($"../Spawner".sw)/($"../Spawner".accum_points.size()),tween_len,$"../action_tween".transition,$"../action_tween".ease_direction,global.move_time_new)
-#	num_sounds = ceil(max(1,sw_score*36*$"../Spawner".ball_per_sw)/points_per_click)
-#	for i in range(num_sounds):
-#		interpolate_callback($"../collect4",global.move_time_new+i*points_per_click*click_len,"play")
-#	#fill missing points
-#	var tween_loss_len = click_len*max(1,(norm-sw_score)*36*$"../Spawner".ball_per_sw)*fail_time_ratio
-#	interpolate_method($"../hex_subwave","total_points",norm-sw_score,0,tween_loss_len,$"../action_tween".transition,$"../action_tween".ease_direction,tween_len+global.move_time_new)
-#	frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/(fail_thresh*$"../Spawner".accum_points[-1])
-#	interpolate_method($"../hex_xed","set_shape",frac_fail,frac_fail_new,tween_loss_len,$"../action_tween".transition,$"../action_tween".ease_direction,tween_len+global.move_time_new)
-#	num_sounds = ceil((norm-sw_score)*36*$"../Spawner".ball_per_sw/points_per_click)
-#	if num_sounds == 0:
-#		interpolate_callback($"../collect6",global.move_time_new+tween_len,"play")
-#	else:
-#		for i in range(num_sounds):
-#			interpolate_callback($"../collect1",global.move_time_new+tween_len+i*points_per_click*click_len*fail_time_ratio,"play")
-#	frac_fail = frac_fail_new
-#	#interpolate_property($"../hex_subwave","scale",Vector2(1,1)*norm*sqrt(1-sw_score),Vector2(0,0),global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
-#	#generate new wave
-#	interpolate_callback($"../Spawner",global.move_time_new+tween_loss_len+tween_len,"mySpawn")

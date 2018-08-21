@@ -34,10 +34,6 @@ func set_shape(wave_age):
 		polygon = coords
 		vertex_colors = cols
 
-#func dimmer(id,val):
-#	if idx == id:
-#		modulate = Color(1,1,1,val)
-
 func eliminate(id):
 	if idx == id:
 		queue_free()

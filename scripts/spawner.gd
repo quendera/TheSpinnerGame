@@ -36,7 +36,7 @@ func _ready():
 #	read_music()
 	read_music_time()
 	ball_per_sw = int(arr[arr.size()-1][2])
-	sw_order = shuffleList(range(ball_per_sw)) #range(ball_per_sw)#
+	sw_order = shuffleList(range(ball_per_sw))
 	ball_per_sw = arr.size()/ball_per_sw
 	balls_left = ball_per_sw
 	global.sw_count = sw_order.size()
@@ -61,10 +61,9 @@ func mySpawn():
 	rand_flip = randi() % 2
 	if sw >= sw_order.size():
 		curr_wv_points = 0
-		#$"../progress_tween".reset_hints()
 		$"../..".save_data(true)
 	else:
-		$"../action_tween".reset()
+		$"../action_tween".rst()
 		curr_wv_points = accum_points[sw+1]-accum_points[sw]
 		$"../progress_tween".reset_hints()
 		for i in range(ball_per_sw):
@@ -93,15 +92,7 @@ func _notification(what):
 		$"../..".save_data(false)
 		#get_tree().quit()
 		
-#func read_music():
-#	file.open("res://assets/files/bach.txt", File.READ)
-#	var target_line
-#	while (!file.eof_reached()):
-#		target_line = file.get_csv_line()
-#		if target_line.size() > 0:
-#			notes.push_back(int(target_line[0]))
-#	file.close()
-	
+
 func read_music_time():#fname):
 	file.open("res://assets/files/jesu.txt", File.READ)
 	var target_line
