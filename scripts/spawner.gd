@@ -78,6 +78,8 @@ func mySpawn():
 			hex_target_instance = hex_target_scene.new()
 			hex_target_instance.create(send_rot,i)
 			add_child(hex_target_instance)
+		if ball_per_sw == 1 and $"..".has_node("hex_teacher"):# and sw == 0:
+			$"../hex_teacher".set_pos(send_rot)
 		log_data()
 		sw += 1
 
@@ -88,10 +90,13 @@ func log_data():
 	global.data["sw_flip"].push_back(rand_flip)
 
 func _notification(what):
-	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
-		$"../..".save_data(false)
+	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST or what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST):
+		$"../progress_tween".interpolate_callback($"../..",0,"save_data",false) #$"../..".save_data(false)
+	elif what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
+		global.data["focus_in"].push_back(OS.get_ticks_msec())#print("focus in")
+	elif what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
+		global.data["focus_out"].push_back(OS.get_ticks_msec())#print("focus out")
 		#get_tree().quit()
-		
 
 func read_music_time():#fname):
 	file.open("res://assets/files/jesu.txt", File.READ)

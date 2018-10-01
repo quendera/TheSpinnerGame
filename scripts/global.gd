@@ -46,7 +46,8 @@ func init(lev,device_ID):
 	"device_timezone":OS.get_time_zone_info(),"device_dpi":OS.get_screen_dpi(),
 	"device_IP": IP.get_local_addresses(),
 	"device_ID_time":device_ID.x,"device_ID_rand":device_ID.y,
-	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "failure_thresh":global.fail_thresh}
+	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "failure_thresh":global.fail_thresh,
+	"focus_in":[], "focus_out":[], "version":1}
 
 func pie_hex(full,angle):
 	angle *= 6
