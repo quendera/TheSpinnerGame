@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=1]
 [ext_resource path="res://scripts/dividers.gd" type="Script" id=2]
@@ -11,24 +11,25 @@
 [ext_resource path="res://scripts/hex_progress_mask.gd" type="Script" id=9]
 [ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=10]
 [ext_resource path="res://scripts/hex_subwave_capture.gd" type="Script" id=11]
-[ext_resource path="res://scripts/percentage.gd" type="Script" id=12]
-[ext_resource path="res://assets/sounds/triangle_wave.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sounds/triangle_slow.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sounds/triangle_slow_bass.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/sounds/error.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/sounds/typewriter.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/batmfa__.ttf" type="DynamicFontData" id=19]
-[ext_resource path="res://scripts/instructions.gd" type="Script" id=20]
-[ext_resource path="res://scripts/damage.gd" type="Script" id=21]
-[ext_resource path="res://scripts/progress.gd" type="Script" id=22]
+[ext_resource path="res://scripts/hex_teacher.gd" type="Script" id=12]
+[ext_resource path="res://scripts/percentage.gd" type="Script" id=13]
+[ext_resource path="res://assets/sounds/triangle_wave.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sounds/triangle_slow.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/sounds/triangle_slow_bass.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sounds/error.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sounds/typewriter.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/batmfa__.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://scripts/instructions.gd" type="Script" id=21]
+[ext_resource path="res://scripts/damage.gd" type="Script" id=22]
+[ext_resource path="res://scripts/progress.gd" type="Script" id=23]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 40
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 19 )
+font_data = ExtResource( 20 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
@@ -36,7 +37,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 20
 use_mipmaps = false
 use_filter = true
-font_data = ExtResource( 19 )
+font_data = ExtResource( 20 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=3]
@@ -44,7 +45,7 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 size = 20
 use_mipmaps = false
 use_filter = true
-font_data = ExtResource( 19 )
+font_data = ExtResource( 20 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="game" type="Node2D" index="0"]
@@ -194,7 +195,23 @@ invert_enable = false
 invert_border = 100.0
 script = ExtResource( 11 )
 
-[node name="percentage" type="Label" parent="." index="10"]
+[node name="hex_teacher" type="Polygon2D" parent="." index="10"]
+
+polygon = PoolVector2Array(  )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 12 )
+
+[node name="percentage" type="Label" parent="." index="11"]
 
 visible = false
 anchor_left = 0.0
@@ -214,19 +231,10 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="sine" type="AudioStreamPlayer" parent="." index="11"]
-
-stream = ExtResource( 13 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="spiccato" type="AudioStreamPlayer" parent="." index="12"]
+[node name="sine" type="AudioStreamPlayer" parent="." index="12"]
 
 stream = ExtResource( 14 )
 volume_db = 0.0
@@ -235,7 +243,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="spiccatoB" type="AudioStreamPlayer" parent="." index="13"]
+[node name="spiccato" type="AudioStreamPlayer" parent="." index="13"]
 
 stream = ExtResource( 15 )
 volume_db = 0.0
@@ -244,7 +252,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="miss" type="AudioStreamPlayer" parent="." index="14"]
+[node name="spiccatoB" type="AudioStreamPlayer" parent="." index="14"]
 
 stream = ExtResource( 16 )
 volume_db = 0.0
@@ -253,7 +261,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="move" type="AudioStreamPlayer" parent="." index="15"]
+[node name="miss" type="AudioStreamPlayer" parent="." index="15"]
 
 stream = ExtResource( 17 )
 volume_db = 0.0
@@ -262,7 +270,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="typewriter" type="AudioStreamPlayer" parent="." index="16"]
+[node name="move" type="AudioStreamPlayer" parent="." index="16"]
 
 stream = ExtResource( 18 )
 volume_db = 0.0
@@ -271,16 +279,16 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="drone" type="AudioStreamPlayer" parent="." index="17"]
+[node name="typewriter" type="AudioStreamPlayer" parent="." index="17"]
 
-stream = ExtResource( 14 )
+stream = ExtResource( 19 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "drone-reverb"
+bus = "Master"
 
-[node name="droneB" type="AudioStreamPlayer" parent="." index="18"]
+[node name="drone" type="AudioStreamPlayer" parent="." index="18"]
 
 stream = ExtResource( 15 )
 volume_db = 0.0
@@ -289,8 +297,18 @@ autoplay = false
 mix_target = 0
 bus = "drone-reverb"
 
-[node name="instructions" type="Label" parent="." index="19"]
+[node name="droneB" type="AudioStreamPlayer" parent="." index="19"]
 
+stream = ExtResource( 16 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "drone-reverb"
+
+[node name="instructions" type="Label" parent="." index="20"]
+
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -307,10 +325,10 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 20 )
+script = ExtResource( 21 )
 _sections_unfolded = [ "Margin", "custom_colors", "custom_fonts" ]
 
-[node name="damage" type="Label" parent="." index="20"]
+[node name="damage" type="Label" parent="." index="21"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -327,15 +345,15 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
-text = "EVIL  "
+text = "------"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 21 )
+script = ExtResource( 22 )
 _sections_unfolded = [ "Anchor", "Grow Direction", "custom_fonts" ]
 
-[node name="progress" type="Label" parent="." index="21"]
+[node name="progress" type="Label" parent="." index="22"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -354,12 +372,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 3 )
-text = "GOOD"
+text = "++++++"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 22 )
+script = ExtResource( 23 )
 _sections_unfolded = [ "Grow Direction", "Rect", "custom_colors", "custom_fonts" ]
 
 [connection signal="tween_completed" from="action_tween" to="action_tween" method="_on_action_tween_tween_completed"]

@@ -85,3 +85,5 @@ func get_collected(angle):
 		global.score += this_point
 		this_point = float(this_point)/36.0/$"..".ball_per_sw
 		$"../../progress_tween".slide_hints(this_point)
+		if age > 1 and $"../..".has_node("hex_teacher"):
+			$"../../hex_teacher".queue_free()

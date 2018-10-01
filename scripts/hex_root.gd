@@ -91,7 +91,6 @@ func save_data(win):
 					print(HTTP.get_status())
 					OS.delay_msec(50)
 					counter += 1
-				print(device_ID)
 		#update high scores
 		if global.score > global.hi_scores[global.curr_wv-1]:
 			global.hi_scores[global.curr_wv-1] = global.score
