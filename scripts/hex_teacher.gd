@@ -5,7 +5,7 @@ var my_offset = Vector2(0,0)
 
 func _ready():
 	#position = global.centre
-	color = Color(1,1,1)
+	color = Color(1,1,1)#global.hex_color(6,true)
 	#offset = Vector2(0,global.poly_size*4 + global.side_offset/2)
 	polygon = global.full_hex(global.poly_size)
 	if $"../Spawner".ball_per_sw > 1:
@@ -16,7 +16,7 @@ func _process(delta):
 		my_scale += 1
 		$"../sine".play()
 	else:
-		my_scale = my_scale-delta*2
+		my_scale = my_scale-delta/global.move_time_new
 	if $"../action_tween".wave_age >= 4:
 		position = global.centre + my_offset*my_scale
 	else:

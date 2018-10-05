@@ -12,16 +12,18 @@ var side_offset = poly_size*offset_poly_ratio
 var sw_count
 var curr_wv
 var sw_score
-var score
+#var score
 var save_file_name
 var data
 var measure_time
 var game_measure
 var drone_measure
 var fail_thresh
-var hi_scores = PoolIntArray([0,0,0,0,0,0])
-var max_scores = PoolIntArray([216,740,1780,3414,8301,9805])
-var num_waves = PoolIntArray([6,12,20,30,60,60])
+var make_rand
+var repeat_bad
+var max_level = 0
+var max_score
+var num_waves = PoolIntArray([6,12,20,30,30,30])#60,60])
 var fnt = DynamicFont.new()
 
 func full_hex(radius,wire =0,off = Vector2(0,0)):
@@ -33,7 +35,7 @@ func full_hex(radius,wire =0,off = Vector2(0,0)):
 func init(lev,device_ID):
 	global.curr_wv = lev
 	global.sw_score = 0
-	global.score = 0
+	#global.score = 0
 	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
 	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"mo_lobe":[], "mo_press_time":[],
 	"mo_act_drag":[],"mo_move_time":[],"mo_move_pos_x":[],"mo_move_pos_y":[],"mo_fake_release":[], 
@@ -46,8 +48,9 @@ func init(lev,device_ID):
 	"device_timezone":OS.get_time_zone_info(),"device_dpi":OS.get_screen_dpi(),
 	"device_IP": IP.get_local_addresses(),
 	"device_ID_time":device_ID.x,"device_ID_rand":device_ID.y,
-	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "failure_thresh":global.fail_thresh,
-	"focus_in":[], "focus_out":[], "version":1}
+	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "focus_in":[], "focus_out":[], 
+	"failure_thresh":global.fail_thresh,"rand_pos": global.make_rand, "repeat_bad": global.repeat_bad,
+	"version":1}
 
 func pie_hex(full,angle):
 	angle *= 6
@@ -66,10 +69,7 @@ func pie_hex(full,angle):
 	return coords
 	
 func is_unlocked(lobe):
-	if lobe == 0:
-		return true
-	else:
-		return global.hi_scores[lobe-1] > global.max_scores[lobe-1]-global.fail_thresh*global.num_waves[lobe-1]
+	return lobe <= global.max_level
 
 func hex_color(rad,invert=false,dim = 1):
 	var col = Color()

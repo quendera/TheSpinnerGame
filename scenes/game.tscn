@@ -48,7 +48,7 @@ use_filter = true
 font_data = ExtResource( 20 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="game" type="Node2D" index="0"]
+[node name="game" type="Node2D"]
 
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 

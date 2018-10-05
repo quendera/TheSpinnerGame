@@ -35,11 +35,13 @@ func _ready():
 		file.close()
 	if file.file_exists("user://hiscores"):
 		file.open_compressed("user://hiscores",File.READ)
-		for i in range(global.hi_scores.size()):
-			global.hi_scores[i] = int(file.get_32())
+		global.max_level = int(file.get_32())
+#		for i in range(global.hi_scores.size()):
+#			global.hi_scores[i] = int(file.get_32())
 		file.close()
-	if in_lab:
-		add_child(load("res://scripts/eye_calib.gd").new())
+	#global.max_level = 5
+#	if in_lab:
+#		add_child(load("res://scripts/eye_calib.gd").new())
 	for i in range(6):
 		for j in range(2):
 			hex_slide_instance = hex_slide_scene.new()
@@ -49,17 +51,24 @@ func _ready():
 	add_child(twn)
 
 func new_menu():
-	if in_lab:
-		global.fail_thresh = 9*2
-	else:
-		global.fail_thresh = 9*(fmod(device_ID.y,4)+1)
+#	if in_lab:
+#		global.fail_thresh = 9*2
+#	else:
 	menu_instance = menu_scene.instance()
 	add_child(menu_instance)
+	send_data_from_directory()
+	#print(list_files_in_directory())
 
 func start_level(lobe):
 	is_saving = 0
 	if lobe == 6:
 		global.fail_thresh = 9
+		global.make_rand = 2
+		global.repeat_bad = 2
+	else:
+		global.fail_thresh = 9#*(fmod(device_ID.y,4)+1)
+		global.make_rand = min(2,fmod(int(device_ID.y)/4,4))
+		global.repeat_bad = min(2,fmod(int(device_ID.y)/16,4))
 	game_instance = game_scene.instance()
 	global.init(lobe,device_ID)
 	add_child(game_instance)
@@ -68,38 +77,65 @@ func start_level(lobe):
 func save_data(win):
 	if !is_saving:
 		is_saving = 1
-		var file = File.new()
-		file.open(global.save_file_name, file.WRITE)
-		file.store_line(to_json(global.data))
-		file.close()
 		if !in_lab:
-			# SEND TO SERVER
-			var error = HTTP.connect_to_host(IP, prt)
-			var counter = 0
-			while HTTP.get_status() <= 4 and counter < 5:
-				HTTP.poll()
-				print(HTTP.get_status())
-				OS.delay_msec(50)
-				counter += 1
-			if HTTP.get_status() == HTTPClient.STATUS_CONNECTED:
-				var QUERY = to_json(global.data)
-				var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",OS.get_unix_time())]
-				HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
-				counter = 0
-				while HTTP.get_status() == HTTPClient.STATUS_REQUESTING and counter < 5:
-					HTTP.poll()
-					print(HTTP.get_status())
-					OS.delay_msec(50)
-					counter += 1
+			var QUERY = to_json(global.data)
+			send_data(QUERY)
+			if HTTP.get_status() != HTTPClient.STATUS_BODY:
+				var file = File.new()
+				file.open(global.save_file_name, file.WRITE)
+				file.store_line(QUERY)
+				file.close()
 		#update high scores
-		if global.score > global.hi_scores[global.curr_wv-1]:
-			global.hi_scores[global.curr_wv-1] = global.score
-		file.open_compressed("user://hiscores",File.WRITE)
-		for i in range(global.hi_scores.size()):
-			file.store_32((global.hi_scores[i]))
-		file.close()
+		if win:
+			global.max_level = max(global.max_level,global.curr_wv)
+			file.open_compressed("user://hiscores",File.WRITE)
+			file.store_32(global.max_level)
+			file.close()
 		end_seq(win)
 		game_instance.queue_free()
+		
+func send_data(QUERY):
+	var error = HTTP.connect_to_host(IP, prt)
+	var counter = 0
+	while HTTP.get_status() <= 4 and counter < 5:
+		HTTP.poll()
+		print(HTTP.get_status())
+		OS.delay_msec(50)
+		counter += 1
+	if HTTP.get_status() == HTTPClient.STATUS_CONNECTED:
+		var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",OS.get_unix_time())]
+		HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
+		counter = 0
+		while HTTP.get_status() == HTTPClient.STATUS_REQUESTING and counter < 5:
+			HTTP.poll()
+			print(HTTP.get_status())
+			OS.delay_msec(50)
+			counter += 1
+	return HTTP.get_status()
+
+func send_data_from_directory():
+	#var files = []
+	var dir = Directory.new()
+	dir.open("user://")
+	dir.list_dir_begin()
+	var file = File.new()
+	while true:
+		var filename = dir.get_next()
+		if filename == "":
+			break
+		elif filename.begins_with("data"):
+			file.open("user://" + filename,file.READ)
+			if send_data(file.get_as_text()) == HTTPClient.STATUS_BODY:
+				dir.remove(filename)
+			else:
+				file.close()
+				break
+			#print( file.get_as_text())
+			file.close()
+			#break
+            #files.append(file)
+	dir.list_dir_end()
+    #return files
 
 func end_seq(win):
 	get_tree().call_group("hex_slider","hide")
@@ -114,7 +150,10 @@ func end_seq(win):
 	if win:
 		lbl.set("custom_colors/font_color",global.hex_color(6,1))
 		lbl.text = "YOU ARE\n" + compliments[global.curr_wv-1] + "!"
-		timed_play(global.move_time_new,$spiccato,$spiccatoB,game_instance.get_node("progress_tween").play_state.z-1)
+		if game_instance.get_node("progress_tween").play_state.z == global.sw_count:
+			timed_play(global.move_time_new,$spiccato,$spiccatoB,99999999)
+		else:
+			timed_play(global.move_time_new,$spiccato,$spiccatoB,game_instance.get_node("progress_tween").play_state.z-1)
 		if global.curr_wv < 6:
 			lbl.text += "\nLEVEL " + str(global.curr_wv+1) + " UNLOCKED."
 
