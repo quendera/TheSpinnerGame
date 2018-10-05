@@ -22,8 +22,10 @@ var accum_points = PoolIntArray()
 var rand_offset
 var rand_flip 
 var send_rot
+var measure_times = [8,8,9,16,16,160]
 
 func _ready():
+	$"../..".twn.stop_all()
 	var i = 0
 	file.open("res://assets/files/spawn.txt", File.READ)
 	var target_line
@@ -33,18 +35,22 @@ func _ready():
 			arr[i] = target_line
 			i = i+1
 	file.close()
-#	read_music()
-	read_music_time()
+#	var arr1 = {}
+#	for i in range(6):
+#		arr1[i] = [0, 1, i+1, 36]
+#	arr = arr1
 	ball_per_sw = int(arr[arr.size()-1][2])
 	sw_order = shuffleList(range(ball_per_sw))
 	ball_per_sw = arr.size()/ball_per_sw
+	read_music_time()
 	balls_left = ball_per_sw
-	global.sw_count = sw_order.size()
+	global.sw_count = global.num_waves[ball_per_sw-1]#sw_order.size()
 	var accum = 0
 	accum_points.append(accum)
 	for i in range(global.sw_count):
 		accum += int(arr[sw_order[i]*ball_per_sw][3])  
 		accum_points.append(accum)
+	global.max_score = accum
 	mySpawn()
 
 func shuffleList(list):
@@ -57,21 +63,31 @@ func shuffleList(list):
     return shuffledList
 
 func mySpawn():
-	rand_offset = randi() % 6
-	rand_flip = randi() % 2
-	if sw >= sw_order.size():
+	global.make_rand = 2 #JUST FOR DEBUGGING
+	global.repeat_bad = 0
+	if sw >= global.sw_count:#sw_order.size():
 		curr_wv_points = 0
 		$"../..".save_data(true)
 	else:
+		if global.make_rand == 0 or (global.make_rand == 1 and ball_per_sw == 1):
+			rand_offset = 0
+			rand_flip = 0
+		elif global.make_rand == 1:
+			input_i = sw_order[sw]*ball_per_sw + ball_per_sw - 1
+			rand_offset = int(fposmod(-int(arr[input_i][0]),6))
+			rand_flip = int(fposmod(int(arr[input_i][0])-int(arr[input_i-1][0]),6) > 3 or (ball_per_sw > 2 and fposmod(int(arr[input_i][0])-int(arr[input_i-1][0]),6) == 3 and fposmod(int(arr[input_i][0])-int(arr[input_i-2][0]),6) > 3)) 
+		elif global.make_rand == 2 and !(global.repeat_bad == 0 and $"../progress_tween".num_fails > 0):
+			rand_offset = randi() % 6
+			rand_flip = randi() % 2
 		$"../action_tween".rst()
 		curr_wv_points = accum_points[sw+1]-accum_points[sw]
 		$"../progress_tween".reset_hints()
 		for i in range(ball_per_sw):
 			input_i = sw_order[sw]*ball_per_sw + i
 			send_rot = int(arr[input_i][0])
-			if rand_flip:
-				send_rot = (6-send_rot)
 			send_rot = (send_rot+rand_offset)%6
+			if rand_flip:
+				send_rot = fposmod(-send_rot,6)
 			hex_hint_instance = hex_hint_scene.new()
 			hex_hint_instance.create(send_rot,i)
 			add_child(hex_hint_instance)
@@ -99,7 +115,7 @@ func _notification(what):
 		#get_tree().quit()
 
 func read_music_time():#fname):
-	file.open("res://assets/files/jesu.txt", File.READ)
+	file.open("res://assets/files/" + str(ball_per_sw) + ".txt", File.READ)
 	var target_line
 	while !file.eof_reached():
 		target_line = file.get_csv_line()
@@ -109,6 +125,6 @@ func read_music_time():#fname):
 			else:
 				notesB.push_back(Vector2(int(target_line[0]),float(target_line[1])))
 	file.close()
-	global.measure_time = 9 # 5
+	global.measure_time = measure_times[ball_per_sw-1]#ball_per_sw-1] # 
 	global.game_measure = 1.8 #2.5
-	global.drone_measure = 2.4 #5
+	global.drone_measure = 2.4#5

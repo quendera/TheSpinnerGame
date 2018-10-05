@@ -14,6 +14,7 @@ var drone_note = 0
 var scale_count = 0
 var notes_per_scale = 8
 var play_state = Vector3(0,0,0) #completed time for piece, index of notes played
+var num_fails = 0
 
 func _ready():
 	#playback_process_mode = TWEEN_PROCESS_PHYSICS
@@ -61,8 +62,11 @@ func finish_hints_discrete():
 			interpolate_callback($"../hex_progress",start_time,"play_note",-i,sw_score)
 			start_time += global.harp_pluck_len
 	#fill missing points
-	frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/float(global.fail_thresh*($"../Spawner".accum_points.size()-1))#$"../Spawner".accum_points[-1]*fail_thresh)
+	#frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/float(global.fail_thresh*($"../Spawner".accum_points.size()-1))#$"../Spawner".accum_points[-1]*fail_thresh)
+	#print(frac_fail_new)
 	num_sounds = round((norm-sw_score)*36*$"../Spawner".ball_per_sw) #/points_per_click
+	frac_fail_new = frac_fail + num_sounds/float(global.fail_thresh*global.sw_count)
+	#print(frac_fail_new)
 	if num_sounds > 0:
 		for i in range(num_sounds):
 			interpolate_callback($"../hex_subwave",start_time,"total_points",(norm-sw_score)*(1-float(i+1)/num_sounds))
@@ -70,6 +74,12 @@ func finish_hints_discrete():
 			interpolate_callback($"../typewriter",start_time,"play")
 			start_time += global.harp_pluck_len*fail_time_ratio
 	frac_fail = frac_fail_new
+	if global.repeat_bad < 2 and num_sounds > global.fail_thresh:
+		num_fails = fmod(num_fails+1,6)
+	else:
+		num_fails = 0
+	if num_fails > 0:
+		$"../Spawner".sw -= 1
 	if frac_fail >= 1:
 		interpolate_callback($"../..",start_time,"save_data",false)
 	else:
@@ -91,7 +101,7 @@ func drone_timer(counter,indT,indB):
 		indB = 0
 		interpolate_callback(self,global.move_time_new + 12*global.move_time_new,"drone_timer",0,indT,indB)
 	else:
-		interpolate_callback(self,global.move_time_new,"drone_timer",counter,indT,indB) #global.drone_measure/global.measure_time
+		interpolate_callback(self,global.move_time_new/round(global.measure_time/8),"drone_timer",counter,indT,indB) #global.drone_measure/global.measure_time
 	start()
 
 func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $"../spiccatoB", speedUp = 1):
