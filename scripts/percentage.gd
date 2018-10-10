@@ -12,6 +12,6 @@ func _ready():
 		hide()
 
 func set_prc(val):
-	if global.curr_wv == 1:
-		text = str(round(val*100))+"%"
+	#if global.curr_wv == 1:
+	text = str(round(val*100))+"%"
 

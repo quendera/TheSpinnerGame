@@ -31,6 +31,7 @@ func reset_hints():
 	interpolate_method($"../hex_subwave","total_points",0,norm,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	$"../hex_subwave_capture".color = global.hex_color(6) 
 	$"../percentage".set_prc(0)
+	interpolate_callback(self,global.move_time_new+global.harp_pluck_len,"remove_all")
 	start()
 
 func reset_sliders(wave_age):
@@ -40,25 +41,27 @@ func finish_hints_discrete():
 	num_sounds = ceil(sw_score*36*$"../Spawner".ball_per_sw) #/points_per_click
 	start_time = global.move_time_new
 	if num_sounds == 0:
-		$"../hex_progress".set_shape(float($"../Spawner".sw)/global.sw_count)
+		$"../hex_progress".set_shape(float($"../Spawner".sw_played)/global.sw_count)
 	elif round(sw_score*36*$"../Spawner".ball_per_sw) == $"../Spawner".curr_wv_points:
 		$"../hex_subwave_capture".color = global.hex_color(6,1) 
-		interpolate_method($"../hex_subwave_capture","collected_points",sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		interpolate_method($"../hex_subwave_capture","collected_points",-sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)#$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_subwave","total_points",sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
-		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw-1)/global.sw_count,float($"../Spawner".sw)/global.sw_count,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw_played-1)/global.sw_count,float($"../Spawner".sw_played)/global.sw_count,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		interpolate_method($"../hex_progress_perfect","set_shape",0,1,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		if global.curr_wv == 1:
 			$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
 		timed_play()
 		start_time += global.game_measure
 		if scale_count == 0:
-			interpolate_callback(self,start_time+global.move_time_new*2,"drone_timer",0,0,0)
+			interpolate_callback($"../drone_tween",start_time+global.move_time_new,"drone_timer",0,0,0)
 		scale_count += 1
 	else:
+		#interpolate_method($"../hex_subwave_capture","collected_points",float(sw_score)/num_sounds,0,global.harp_pluck_len*num_sounds,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+		#start_time += global.harp_pluck_len*num_sounds
 		for i in range(num_sounds):
 			interpolate_callback($"../hex_subwave_capture",start_time,"collected_points",sw_score*(1-float(i+1)/num_sounds))
 			interpolate_callback($"../hex_subwave",start_time,"total_points",norm-sw_score*(float(i+1)/num_sounds))
-			interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw-1+float(i+1)/num_sounds)/global.sw_count)
+			interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw_played-1+float(i+1)/num_sounds)/global.sw_count)
 			interpolate_callback($"../hex_progress",start_time,"play_note",-i,sw_score)
 			start_time += global.harp_pluck_len
 	#fill missing points
@@ -72,7 +75,7 @@ func finish_hints_discrete():
 			interpolate_callback($"../hex_subwave",start_time,"total_points",(norm-sw_score)*(1-float(i+1)/num_sounds))
 			interpolate_callback($"../hex_xed",start_time,"set_shape",frac_fail+(float(i+1)/num_sounds*(frac_fail_new-frac_fail)))
 			interpolate_callback($"../typewriter",start_time,"play")
-			start_time += global.harp_pluck_len*fail_time_ratio
+			start_time += global.harp_pluck_len*fail_time_ratio#*10
 	frac_fail = frac_fail_new
 	if global.repeat_bad < 2 and num_sounds > global.fail_thresh:
 		num_fails = fmod(num_fails+1,6)
@@ -84,24 +87,6 @@ func finish_hints_discrete():
 		interpolate_callback($"../..",start_time,"save_data",false)
 	else:
 		interpolate_callback($"../Spawner",start_time,"mySpawn")
-	start()
-
-func drone_timer(counter,indT,indB):
-	if counter == 0:
-		global.data["drone_play"].push_back(OS.get_ticks_msec())
-	if $"../Spawner".notesT[indT].y == counter:
-		play_timed_midi($"../Spawner".notesT[indT].x,$"../drone")
-		indT += 1
-	if $"../Spawner".notesB[indB].y == counter:
-		play_timed_midi($"../Spawner".notesB[indB].x,$"../droneB",1)
-		indB += 1
-	counter += 1
-	if counter >= play_state.z*global.measure_time:
-		indT = 0
-		indB = 0
-		interpolate_callback(self,global.move_time_new + 12*global.move_time_new,"drone_timer",0,indT,indB)
-	else:
-		interpolate_callback(self,global.move_time_new/round(global.measure_time/8),"drone_timer",counter,indT,indB) #global.drone_measure/global.measure_time
 	start()
 
 func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $"../spiccatoB", speedUp = 1):
@@ -122,7 +107,8 @@ func play_timed_midi(pitch,stream,offset = 0):
 	stream.play()
 
 func slide_hints(new):
-	interpolate_method($"../hex_subwave_capture","collected_points",sw_score,sw_score+new,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
+	interpolate_method($"../hex_subwave_capture","collected_points",sw_score,sw_score+new,new*global.move_time_new,Tween.TRANS_LINEAR,Tween.EASE_IN)#,$"../action_tween".transition,$"../action_tween".ease_direction)
+	#interpolate_method($"../hex_progress","play_note1",sw_score,sw_score+new,new*global.move_time_new,Tween.TRANS_LINEAR,Tween.EASE_IN,0)#,$"../../progress_tween".sw_score)
 	if global.curr_wv == 1:
 		interpolate_method($"../percentage","set_prc",sw_score,sw_score+new,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	sw_score += new

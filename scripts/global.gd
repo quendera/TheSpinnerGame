@@ -52,9 +52,9 @@ func init(lev,device_ID):
 	"failure_thresh":global.fail_thresh,"rand_pos": global.make_rand, "repeat_bad": global.repeat_bad,
 	"version":1}
 
-func pie_hex(full,angle):
+func pie_hex(coords,angle):
 	angle *= 6
-	var coords = PoolVector2Array(full)
+	#var coords = PoolVector2Array(full)
 	if angle >= 6:
 		coords.resize(6)
 	elif angle > 0.01:
@@ -63,7 +63,7 @@ func pie_hex(full,angle):
 		angle = fmod(angle,1)
 		if angle > 0:
 			angle = max(angle,.001)
-			coords[coords.size()-1] = full[coords.size()-2]*angle+full[coords.size()-3]*(1-angle)
+			coords[coords.size()-1] = coords[coords.size()-1]*angle+coords[coords.size()-2]*(1-angle)
 	else:
 		coords.resize(0)
 	return coords
