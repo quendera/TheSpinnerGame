@@ -4,8 +4,8 @@ var location_queue = PoolIntArray()
 var action_queue = PoolIntArray() #-1: CCW, 0: advance, 1: CW, 2: collect
 var wave_age
 var collection_sequence
-var transition = TRANS_SINE
-var ease_direction = EASE_IN_OUT#OUT
+var transition = TRANS_LINEAR #SINE
+var ease_direction = EASE_IN #EASE_IN_OUT#OUT
 var last_press_loc = Vector2(0,0)
 var curr_press_loc
 var drag_vel

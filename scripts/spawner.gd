@@ -11,6 +11,7 @@ var notes = PoolIntArray()
 var notesT = PoolVector2Array()
 var notesB = PoolVector2Array()
 var sw = 0
+var sw_played = 0
 var sw_age = 0
 var curr_wv_points
 var rand_seq
@@ -64,8 +65,8 @@ func shuffleList(list):
 
 func mySpawn():
 	global.make_rand = 2 #JUST FOR DEBUGGING
-	global.repeat_bad = 0
-	if sw >= global.sw_count:#sw_order.size():
+	global.repeat_bad = 1
+	if sw_played >= global.sw_count:#sw_order.size():
 		curr_wv_points = 0
 		$"../..".save_data(true)
 	else:
@@ -94,10 +95,13 @@ func mySpawn():
 			hex_target_instance = hex_target_scene.new()
 			hex_target_instance.create(send_rot,i)
 			add_child(hex_target_instance)
+			#print(hex_target_instance)
 		if ball_per_sw == 1 and $"..".has_node("hex_teacher"):# and sw == 0:
 			$"../hex_teacher".set_pos(send_rot)
+		#print(get_child_count())
 		log_data()
 		sw += 1
+		sw_played += 1
 
 func log_data():
 	global.data["sw_time"].push_back(OS.get_ticks_msec())

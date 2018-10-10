@@ -9,6 +9,7 @@ var orders = [-1,1]
 var is_collected = 0
 var is_logging = 0
 var this_point
+var ang
 
 func _ready():
 	add_to_group("hex_balls")
@@ -47,7 +48,7 @@ func set_shape(wave_age):
 				is_collected = 1
 				$"..".balls_left -= 1
 			for i in range(3):
-				var ang = float(i+(age-6))/3*PI*2
+				ang = float(i+(age-6))/3*PI*2
 				coords[i] = Vector2(sin(ang)*(7-age),-cos(ang)*(7-age)+1)/sqrt(3)*global.poly_size*6
 				cols[i] = global.hex_color((7-age-int(i == 0))*6)*(7-age) + global.hint_color((7-age-int(i == 0))*6)*(age-6)
 
@@ -68,22 +69,23 @@ func log_data():
 		global.data["ba_position"].push_back(cur_rot) #redundant
 		global.data["ba_age"].push_back(age)
 		get_tree().call_group("hint_balls", "eliminate",idx)
-		queue_free()
 		if $"..".balls_left == 0:
 			$"../../action_tween".wave_age = -6
 			$"..".balls_left = $"..".ball_per_sw
 			$"../../progress_tween".finish_hints_discrete()
+		queue_free()
 
 func get_collected(angle):
 	if angle == cur_rot and age > 0 and age <= 6 and is_collected == 0:
 		$"..".balls_left -= 1
 		is_collected = 1
-		var sw = $"..".sw
-		this_point = pow(age,2)
-		for i in range(this_point):
-			$"../../progress_tween".interpolate_callback($"../../hex_progress",i*global.harp_pluck_len,"play_note",i,$"../../progress_tween".sw_score)#pow(i,2))
+		#var sw = $"..".sw
+		#this_point = pow(age,2)
+		#$"../../progress_tween".interpolate_method($"../../hex_progress","play_note1",$"../../progress_tween".sw_score,$"../../progress_tween".sw_score+(this_point-1)/36.0/$"..".ball_per_sw,this_point*global.harp_pluck_len,Tween.TRANS_LINEAR,Tween.EASE_IN,0)#,$"../../progress_tween".sw_score)
+		#for i in range(this_point):
+		#	$"../../progress_tween".interpolate_callback($"../../hex_progress",i*global.harp_pluck_len,"play_note",i,$"../../progress_tween".sw_score)#pow(i,2))
 		#global.score += this_point
-		this_point = float(this_point)/36.0/$"..".ball_per_sw
+		this_point = float(pow(age,2))/36.0/$"..".ball_per_sw
 		$"../../progress_tween".slide_hints(this_point)
 		if age > 3 and $"../..".has_node("hex_teacher"):
 			$"../../hex_teacher".queue_free()
