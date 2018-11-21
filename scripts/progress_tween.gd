@@ -4,8 +4,7 @@ var sw_score
 var norm
 var frac_fail = 0
 var frac_fail_new
-#var finish_point_seq_len = 1
-var fail_time_ratio = 3#(1-fail_thresh)/fail_thresh
+var fail_time_ratio = 3
 var num_sounds
 var start_time
 var note_count = 0
@@ -17,65 +16,58 @@ var play_state = Vector3(0,0,0) #completed time for piece, index of notes played
 var num_fails = 0
 
 func _ready():
-	#playback_process_mode = TWEEN_PROCESS_PHYSICS
 	$"../spiccato".volume_db = -5
 	$"../spiccatoB".volume_db = 0
 	$"../drone".volume_db = -25
 	$"../droneB".volume_db = -20
-	start()
 
 func reset_hints():
-	interpolate_method(self,"reset_sliders",-6,0,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
+	#interpolate_method(self,"reset_sliders",-6,0,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	sw_score = 0
 	norm = ($"../Spawner".curr_wv_points/($"../Spawner".ball_per_sw*36.0))
-	interpolate_method($"../hex_subwave","total_points",0,norm,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
+	slide_hints(0,4)
+	#interpolate_method($"../hex_subwave","total_points",0,norm,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	$"../hex_subwave_capture".color = global.hex_color(6) 
 	$"../percentage".set_prc(0)
 	interpolate_callback(self,global.move_time_new+global.harp_pluck_len,"remove_all")
 	start()
 
-func reset_sliders(wave_age):
-	get_tree().call_group("hex_slider","set_shape", wave_age)
-
 func finish_hints_discrete():
-	num_sounds = ceil(sw_score*36*$"../Spawner".ball_per_sw) #/points_per_click
+	#num_sounds = ceil(sw_score*36*$"../Spawner".ball_per_sw) #/points_per_click
 	start_time = global.move_time_new
-	if num_sounds == 0:
+	if sw_score == 0:
 		$"../hex_progress".set_shape(float($"../Spawner".sw_played)/global.sw_count)
 	elif round(sw_score*36*$"../Spawner".ball_per_sw) == $"../Spawner".curr_wv_points:
-		$"../hex_subwave_capture".color = global.hex_color(6,1) 
-		interpolate_method($"../hex_subwave_capture","collected_points",-sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)#$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
-		interpolate_method($"../hex_subwave","total_points",sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
-		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw_played-1)/global.sw_count,float($"../Spawner".sw_played)/global.sw_count,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
-		interpolate_method($"../hex_progress_perfect","set_shape",0,1,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
-		if global.curr_wv == 1:
-			$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
-		timed_play()
-		start_time += global.game_measure
-		if scale_count == 0:
-			interpolate_callback($"../drone_tween",start_time+global.move_time_new,"drone_timer",0,0,0)
-		scale_count += 1
+		slide_hints(sw_score,2,start_time)
+#		$"../hex_subwave_capture".color = global.hex_color(6,1) 
+#		interpolate_method($"../hex_subwave_capture","collected_points",sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)#$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+#		interpolate_method($"../hex_subwave","total_points",sw_score,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+#		interpolate_method($"../hex_progress","set_shape",float($"../Spawner".sw_played-1)/global.sw_count,float($"../Spawner".sw_played)/global.sw_count,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+#		interpolate_method($"../hex_progress_perfect","set_shape",0,1,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
+#		if global.curr_wv == 1:
+#			$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
+#		timed_play()
 	else:
+		slide_hints(sw_score,1,start_time)
 		#interpolate_method($"../hex_subwave_capture","collected_points",float(sw_score)/num_sounds,0,global.harp_pluck_len*num_sounds,$"../action_tween".transition,$"../action_tween".ease_direction,start_time)
 		#start_time += global.harp_pluck_len*num_sounds
-		for i in range(num_sounds):
-			interpolate_callback($"../hex_subwave_capture",start_time,"collected_points",sw_score*(1-float(i+1)/num_sounds))
-			interpolate_callback($"../hex_subwave",start_time,"total_points",norm-sw_score*(float(i+1)/num_sounds))
-			interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw_played-1+float(i+1)/num_sounds)/global.sw_count)
-			interpolate_callback($"../hex_progress",start_time,"play_note",-i,sw_score)
-			start_time += global.harp_pluck_len
+		#for i in range(num_sounds):
+		#	interpolate_callback($"../hex_subwave_capture",start_time,"collected_points",sw_score*(1-float(i+1)/num_sounds))
+		#	interpolate_callback($"../hex_subwave",start_time,"total_points",norm-sw_score*(float(i+1)/num_sounds))
+		#	interpolate_callback($"../hex_progress",start_time,"set_shape",float($"../Spawner".sw_played-1+float(i+1)/num_sounds)/global.sw_count)
+		#	interpolate_callback($"../hex_progress",start_time,"play_note",-i,sw_score)
+		#	start_time += global.harp_pluck_len
 	#fill missing points
 	#frac_fail_new = ($"../Spawner".accum_points[$"../Spawner".sw] - global.score)/float(global.fail_thresh*($"../Spawner".accum_points.size()-1))#$"../Spawner".accum_points[-1]*fail_thresh)
-	#print(frac_fail_new)
 	num_sounds = round((norm-sw_score)*36*$"../Spawner".ball_per_sw) #/points_per_click
 	frac_fail_new = frac_fail + num_sounds/float(global.fail_thresh*global.sw_count)
-	#print(frac_fail_new)
 	if num_sounds > 0:
-		for i in range(num_sounds):
-			interpolate_callback($"../hex_subwave",start_time,"total_points",(norm-sw_score)*(1-float(i+1)/num_sounds))
-			interpolate_callback($"../hex_xed",start_time,"set_shape",frac_fail+(float(i+1)/num_sounds*(frac_fail_new-frac_fail)))
-			interpolate_callback($"../typewriter",start_time,"play")
-			start_time += global.harp_pluck_len*fail_time_ratio#*10
+		slide_hints(norm-sw_score,3,start_time)
+	#for i in range(num_sounds):
+	#	interpolate_callback($"../hex_subwave",start_time,"total_points",(norm-sw_score)*(1-float(i+1)/num_sounds))
+	#	interpolate_callback($"../hex_xed",start_time,"set_shape",frac_fail+(float(i+1)/num_sounds*(frac_fail_new-frac_fail)))
+	#	interpolate_callback($"../typewriter",start_time,"play")
+	#	start_time += global.harp_pluck_len*fail_time_ratio#*10
 	frac_fail = frac_fail_new
 	if global.repeat_bad < 2 and num_sounds > global.fail_thresh:
 		num_fails = fmod(num_fails+1,6)
@@ -89,28 +81,78 @@ func finish_hints_discrete():
 		interpolate_callback($"../Spawner",start_time,"mySpawn")
 	start()
 
-func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $"../spiccatoB", speedUp = 1):
-	var st_t
-	while play_state.x < $"../Spawner".notesB.size() and $"../Spawner".notesB[play_state.x].y < (play_state.z+1)*global.measure_time:
-		st_t = st+ ($"../Spawner".notesB[play_state.x].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure/speedUp
-		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesB[play_state.x].x,bass_stream,1)
-		play_state.x += 1
-	while play_state.y < $"../Spawner".notesT.size() and $"../Spawner".notesT[play_state.y].y < (play_state.z+1)*global.measure_time:
-		st_t = st+ ($"../Spawner".notesT[play_state.y].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure/speedUp
-		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesT[play_state.y].x,treb_stream)
-		play_state.y += 1
-	play_state.z += 1
-	start()
+#func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $"../spiccatoB", speedUp = 1):
+#	var st_t
+#	while play_state.x < $"../Spawner".notesB.size() and $"../Spawner".notesB[play_state.x].y < (play_state.z+1)*global.measure_time:
+#		st_t = st+ ($"../Spawner".notesB[play_state.x].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure/speedUp
+#		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesB[play_state.x].x,bass_stream,1)
+#		play_state.x += 1
+#	while play_state.y < $"../Spawner".notesT.size() and $"../Spawner".notesT[play_state.y].y < (play_state.z+1)*global.measure_time:
+#		st_t = st+ ($"../Spawner".notesT[play_state.y].y - play_state.z*global.measure_time)/global.measure_time*global.game_measure/speedUp
+#		interpolate_callback(self,st_t,"play_timed_midi",$"../Spawner".notesT[play_state.y].x,treb_stream)
+#		play_state.y += 1
+#	play_state.z += 1
+#	start()
 
 func play_timed_midi(pitch,stream,offset = 0):
 	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
 	stream.play()
 
-func slide_hints(new):
-	interpolate_method($"../hex_subwave_capture","collected_points",sw_score,sw_score+new,new*global.move_time_new,Tween.TRANS_LINEAR,Tween.EASE_IN)#,$"../action_tween".transition,$"../action_tween".ease_direction)
-	#interpolate_method($"../hex_progress","play_note1",sw_score,sw_score+new,new*global.move_time_new,Tween.TRANS_LINEAR,Tween.EASE_IN,0)#,$"../../progress_tween".sw_score)
-	if global.curr_wv == 1:
-		interpolate_method($"../percentage","set_prc",sw_score,sw_score+new,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
-	sw_score += new
+func slide_hints(new,mode,time = 0):
+	if mode == 0:
+		interpolate_method(self,"count_up",sw_score,sw_score+new,new*global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
+		sw_score += new
+	elif mode == 1:
+		interpolate_method(self,"count_down",new,0,new*global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction,time)
+		start_time += sw_score*global.move_time_new
+	elif mode == 2:
+		scale_count += 1
+		play_state.z += 1
+		interpolate_method(self,"count_down_perfect",1,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,time)
+		$"../hex_subwave_capture".color = global.hex_color(6,1) 
+		if global.curr_wv == 1:
+			$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
+		#timed_play()
+		start_time += global.game_measure
+		if scale_count == 1:
+			interpolate_callback($"../drone_tween",start_time+global.move_time_new,"drone_timer",0,0,0)
+	elif mode == 3:
+		interpolate_method(self,"count_down_damage",new,0,new*global.move_time_new*fail_time_ratio,$"../action_tween".transition,$"../action_tween".ease_direction,time)
+		start_time += (norm-sw_score)*global.move_time_new*fail_time_ratio
+	elif mode == 4:
+		interpolate_method(self,"count_reset",0,1,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	start()
+
+func count_reset(new):
+#	reset_sliders(6*new-6)
+	get_tree().call_group("hex_slider","set_shape", 6*new-6)
+	$"../hex_subwave".total_points(new*norm)
+
+func count_up(new):
+	$"../hex_subwave_capture".collected_points(new)
+	$"../hex_progress".play_note1(new)
+	if global.curr_wv == 1:
+		$"../percentage".set_prc(new)
+		
+func count_down(new):
+	$"../hex_subwave_capture".collected_points(new)
+	$"../hex_subwave".total_points(new+norm-sw_score)
+	$"../hex_progress".set_shape(($"../Spawner".sw_played-new/sw_score)/global.sw_count)
+	$"../hex_progress".play_note1(new)
 	
+func count_down_perfect(new):
+	$"../hex_subwave_capture".collected_points(new*norm)
+	$"../hex_subwave".total_points(norm*new)
+	$"../hex_progress".set_shape(($"../Spawner".sw_played-new)/global.sw_count)
+	$"../hex_progress_perfect".set_shape((scale_count-new)/global.sw_count)
+	if $"../Spawner".notesB[play_state.x].y/float(global.measure_time) - play_state.z + 1 < 1-new:# float(play_state.z) 
+		play_timed_midi($"../Spawner".notesB[play_state.x].x,$"../spiccatoB",1)
+		play_state.x += 1
+	if $"../Spawner".notesT[play_state.y].y/float(global.measure_time) - play_state.z + 1 < 1-new:
+		play_timed_midi($"../Spawner".notesT[play_state.y].x,$"../spiccato")
+		play_state.y += 1
+		
+func count_down_damage(new):
+	$"../hex_subwave".total_points(new)
+	$"../hex_xed".set_shape(frac_fail_new-new/(norm-sw_score)*num_sounds/float(global.fail_thresh*global.sw_count))
+	$"../typewriter".play()

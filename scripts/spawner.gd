@@ -65,19 +65,20 @@ func shuffleList(list):
 
 func mySpawn():
 	global.make_rand = 2 #JUST FOR DEBUGGING
-	global.repeat_bad = 1
+	global.repeat_bad = 2
 	if sw_played >= global.sw_count:#sw_order.size():
 		curr_wv_points = 0
 		$"../..".save_data(true)
 	else:
-		if global.make_rand == 0 or (global.make_rand == 1 and ball_per_sw == 1):
+		var rep_rand = global.repeat_bad == 1 and $"../progress_tween".num_fails > 0
+		if (global.make_rand == 0 or (global.make_rand == 1 and ball_per_sw == 1)) and !rep_rand:
 			rand_offset = 0
 			rand_flip = 0
-		elif global.make_rand == 1:
+		elif global.make_rand == 1 and !rep_rand:
 			input_i = sw_order[sw]*ball_per_sw + ball_per_sw - 1
 			rand_offset = int(fposmod(-int(arr[input_i][0]),6))
 			rand_flip = int(fposmod(int(arr[input_i][0])-int(arr[input_i-1][0]),6) > 3 or (ball_per_sw > 2 and fposmod(int(arr[input_i][0])-int(arr[input_i-1][0]),6) == 3 and fposmod(int(arr[input_i][0])-int(arr[input_i-2][0]),6) > 3)) 
-		elif global.make_rand == 2 and !(global.repeat_bad == 0 and $"../progress_tween".num_fails > 0):
+		elif (global.make_rand == 2 and !(global.repeat_bad == 0 and $"../progress_tween".num_fails > 0)) or rep_rand:
 			rand_offset = randi() % 6
 			rand_flip = randi() % 2
 		$"../action_tween".rst()
@@ -111,7 +112,8 @@ func log_data():
 
 func _notification(what):
 	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST or what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST):
-		$"../progress_tween".interpolate_callback($"../..",0,"save_data",false) #$"../..".save_data(false)
+		#$"../progress_tween".interpolate_callback($"../..",0,"save_data",false) #$"../..".save_data(false)
+		$"../..".save_data(false)
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
 		global.data["focus_in"].push_back(OS.get_ticks_msec())#print("focus in")
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
