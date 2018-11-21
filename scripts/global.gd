@@ -31,6 +31,12 @@ func full_hex(radius,wire =0,off = Vector2(0,0)):
 	for i in range(6+wire):
 		coords.append(Vector2(cos(float(i)/3*PI),sin(float(i)/3*PI))*radius+off)
 	return coords
+	
+func full_tri(radius,wire =0,off = Vector2(0,0)):
+	var coords = PoolVector2Array()
+	for i in range(3+wire):
+		coords.append(Vector2(sin(float(i)/1.5*PI),-cos(float(i)/1.5*PI))*radius+off)
+	return coords
 
 func init(lev,device_ID):
 	global.curr_wv = lev

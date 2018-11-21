@@ -12,5 +12,5 @@ func _ready():
 	pie_coords.append(coords[3])
 	
 func set_shape(val):
-	val = float($"../progress_tween".scale_count - 1 + val)/global.sw_count
+#	val = float($"../progress_tween".scale_count - 1 + val)/global.sw_count
 	polygon = global.pie_hex(coords,val)

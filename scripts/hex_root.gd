@@ -49,6 +49,9 @@ func _ready():
 			hex_slide_instance.create(i,j)
 	new_menu()
 	add_child(twn)
+#	if 1:
+#		var pop_ups = load("res://scripts/permission.gd").new()
+#		add_child(pop_ups)
 
 func new_menu():
 #	if in_lab:
@@ -56,7 +59,7 @@ func new_menu():
 #	else:
 	menu_instance = menu_scene.instance()
 	add_child(menu_instance)
-	send_data_from_directory()
+	#send_data_from_directory() #REMOVE FOR DEBUGGING
 	#print(list_files_in_directory())
 
 func start_level(lobe):
@@ -66,7 +69,7 @@ func start_level(lobe):
 		global.make_rand = 2
 		global.repeat_bad = 2
 	else:
-		global.fail_thresh = 9#*(fmod(device_ID.y,4)+1)
+		global.fail_thresh = 18#*(fmod(device_ID.y,4)+1)
 		global.make_rand = min(2,fmod(int(device_ID.y)/4,4))
 		global.repeat_bad = min(2,fmod(int(device_ID.y)/16,4))
 	game_instance = game_scene.instance()

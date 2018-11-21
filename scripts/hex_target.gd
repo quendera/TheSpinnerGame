@@ -86,6 +86,9 @@ func get_collected(angle):
 		#	$"../../progress_tween".interpolate_callback($"../../hex_progress",i*global.harp_pluck_len,"play_note",i,$"../../progress_tween".sw_score)#pow(i,2))
 		#global.score += this_point
 		this_point = float(pow(age,2))/36.0/$"..".ball_per_sw
-		$"../../progress_tween".slide_hints(this_point)
-		if age > 3 and $"../..".has_node("hex_teacher"):
-			$"../../hex_teacher".queue_free()
+		$"../../progress_tween".slide_hints(this_point,0)
+		#print($"../../progress_tween".sw_score)
+		if age > 3 and $"../..".has_node("hex_teacher"): #age > 3 
+			$"../../hex_teacher".num_good += 1
+			if $"../../hex_teacher".num_good >= 3:
+				$"../../hex_teacher".queue_free()
