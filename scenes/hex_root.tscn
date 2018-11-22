@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/hex_root.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/pop.wav" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sounds/triangle_slow_bass.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/triangle_slow.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/triangle_wave.wav" type="AudioStream" id=6]
+[ext_resource path="res://scripts/data_send.gd" type="Script" id=7]
 
 [sub_resource type="Environment" id=1]
 
@@ -86,7 +87,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Background", "Glow", "Glow/levels", "Resource", "Tonemap" ]
 
-[node name="hex_root" type="Node"]
+[node name="hex_root" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -139,5 +140,15 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 _sections_unfolded = [ "Pause" ]
+
+[node name="data_send" type="HTTPRequest" parent="." index="6"]
+
+download_file = ""
+use_threads = false
+body_size_limit = -1
+max_redirects = 8
+script = ExtResource( 7 )
+
+[connection signal="request_completed" from="data_send" to="." method="_on_data_send_request_completed"]
 
 

@@ -2,6 +2,7 @@ extends Node
 
 var HTTP = HTTPClient.new()
 var prt = 80
+var QUERY
 var is_saving = 0
 var game_scene = load("res://scenes/game.tscn")
 var game_instance
@@ -10,18 +11,19 @@ var menu_instance
 var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
 var device_ID = Vector2(0,0)
-var file = File.new()
 var in_lab = 0
 var twn = Tween.new()
-var url = "/hexxed/upload.php"
-var IP = "95.179.150.62"
+var url = "/upload.php"
+var IP = "http://95.179.150.62"
 var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
+var file_to_delete = ""
 
 func _ready():
-	randomize()	
+	randomize()
 	AudioServer.set_bus_volume_db(0,-10)
 	$spiccato.volume_db = -5
 	$spiccatoB.volume_db = 0
+	var file = File.new()
 	if !file.file_exists("user://deviceID"):
 		file.open_compressed("user://deviceID",File.WRITE)
 		device_ID = Vector2(OS.get_unix_time(),randi())
@@ -36,8 +38,6 @@ func _ready():
 	if file.file_exists("user://hiscores"):
 		file.open_compressed("user://hiscores",File.READ)
 		global.max_level = int(file.get_32())
-#		for i in range(global.hi_scores.size()):
-#			global.hi_scores[i] = int(file.get_32())
 		file.close()
 	#global.max_level = 5
 #	if in_lab:
@@ -54,13 +54,8 @@ func _ready():
 #		add_child(pop_ups)
 
 func new_menu():
-#	if in_lab:
-#		global.fail_thresh = 9*2
-#	else:
 	menu_instance = menu_scene.instance()
 	add_child(menu_instance)
-	#send_data_from_directory() #REMOVE FOR DEBUGGING
-	#print(list_files_in_directory())
 
 func start_level(lobe):
 	is_saving = 0
@@ -70,8 +65,8 @@ func start_level(lobe):
 		global.repeat_bad = 2
 	else:
 		global.fail_thresh = 18#*(fmod(device_ID.y,4)+1)
-		global.make_rand = min(2,fmod(int(device_ID.y)/4,4))
-		global.repeat_bad = min(2,fmod(int(device_ID.y)/16,4))
+		global.make_rand = 2#min(2,fmod(int(device_ID.y)/4,4))
+		global.repeat_bad = 2#min(2,fmod(int(device_ID.y)/16,4))
 	game_instance = game_scene.instance()
 	global.init(lobe,device_ID)
 	add_child(game_instance)
@@ -81,64 +76,68 @@ func save_data(win):
 	if !is_saving:
 		is_saving = 1
 		if !in_lab:
-			var QUERY = to_json(global.data)
-			send_data(QUERY)
-			if HTTP.get_status() != HTTPClient.STATUS_BODY:
-				var file = File.new()
-				file.open(global.save_file_name, file.WRITE)
-				file.store_line(QUERY)
-				file.close()
-		#update high scores
+			QUERY = to_json(global.data)
+			send_data(QUERY,global.save_file_name)
+#			if send_data(QUERY) != HTTPRequest.RESULT_SUCCESS: #HTTP.get_status() != HTTPClient.STATUS_BODY:
+#				var file = File.new()
+#				file.open(global.save_file_name, file.WRITE)
+#				file.store_line(QUERY)
+#				file.close()
 		if win:
+			var file = File.new()
 			global.max_level = max(global.max_level,global.curr_wv)
 			file.open_compressed("user://hiscores",File.WRITE)
 			file.store_32(global.max_level)
 			file.close()
 		end_seq(win)
 		game_instance.queue_free()
-		
-func send_data(QUERY):
-	var error = HTTP.connect_to_host(IP, prt)
-	var counter = 0
-	while HTTP.get_status() <= 4 and counter < 5:
-		HTTP.poll()
-		print(HTTP.get_status())
-		OS.delay_msec(50)
-		counter += 1
-	if HTTP.get_status() == HTTPClient.STATUS_CONNECTED:
-		var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",OS.get_unix_time())]
-		HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
-		counter = 0
-		while HTTP.get_status() == HTTPClient.STATUS_REQUESTING and counter < 5:
-			HTTP.poll()
-			print(HTTP.get_status())
-			OS.delay_msec(50)
-			counter += 1
-	return HTTP.get_status()
 
-func send_data_from_directory():
-	#var files = []
-	var dir = Directory.new()
-	dir.open("user://")
-	dir.list_dir_begin()
-	var file = File.new()
-	while true:
-		var filename = dir.get_next()
-		if filename == "":
-			break
-		elif filename.begins_with("data"):
-			file.open("user://" + filename,file.READ)
-			if send_data(file.get_as_text()) == HTTPClient.STATUS_BODY:
-				dir.remove(filename)
-			else:
-				file.close()
-				break
-			#print( file.get_as_text())
-			file.close()
-			#break
-            #files.append(file)
-	dir.list_dir_end()
-    #return files
+func send_data(QUERY,fname):
+	var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",fname)]
+	return $data_send.request(IP + url, HEADERS,true,HTTPClient.METHOD_POST,QUERY)
+
+#func send_data_old(QUERY):
+#	var error = HTTP.connect_to_host(IP, prt)
+#	var counter = 0
+#	while HTTP.get_status() <= 4 and counter < 5:
+#		HTTP.poll()
+#		print(HTTP.get_status())
+#		OS.delay_msec(50)
+#		counter += 1
+#	if HTTP.get_status() == HTTPClient.STATUS_CONNECTED:
+#		var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",OS.get_unix_time())]
+#		HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
+#		counter = 0
+#		while HTTP.get_status() == HTTPClient.STATUS_REQUESTING and counter < 5:
+#			HTTP.poll()
+#			print(HTTP.get_status())
+#			print(HTTP.get_response_headers())
+#			OS.delay_msec(50)
+#			counter += 1
+#	return HTTP.get_status()
+#
+#func send_data_from_directory():
+#	#var files = []
+#	var dir = Directory.new()
+#	dir.open("user://")
+#	dir.list_dir_begin()
+#	var file = File.new()
+#	while true:
+#		var filename = dir.get_next()
+#		if filename == "":
+#			break
+#		elif filename.begins_with("data"):
+#			file.open("user://" + filename,file.READ)
+#			if send_data(file.get_as_text()) == HTTPClient.STATUS_BODY:
+#				dir.remove(filename)
+#			else:
+#				file.close()
+#				break
+#			#print( file.get_as_text())
+#			file.close()
+#			#break
+#            #files.append(file)
+#	dir.list_dir_end()
 
 func end_seq(win):
 	get_tree().call_group("hex_slider","hide")
@@ -187,3 +186,26 @@ func timed_play(st = 0,  treb_stream = $spiccato,bass_stream = $spiccatoB,z = 0)
 func play_timed_midi(pitch,stream,offset = 0):
 	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
 	stream.play()
+
+func _on_data_send_request_completed(result, response_code, headers, body):
+	if body.get_string_from_utf8() != "Upload Successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
+		print("bad")
+		var file = File.new()
+		file.open("user://data" + global.save_file_name +".json", file.WRITE)
+		file.store_line(QUERY)
+		file.close()
+	else:
+		var dir = Directory.new()
+		dir.open("user://")
+		dir.remove(file_to_delete)
+		dir.list_dir_begin()
+		var file_iter = dir.get_next()
+		while !file_iter.begins_with("data") and file_iter != "":
+			file_iter = dir.get_next()
+		file_to_delete = file_iter
+		if file_iter.begins_with("data"):
+			var file = File.new()
+			file.open("user://" + file_to_delete,file.READ)
+			send_data(file.get_as_text(),file_to_delete.left(file_to_delete.length()-5).right(4)+"old")
+			file.close()
+		dir.list_dir_end()

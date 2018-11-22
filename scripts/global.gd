@@ -42,7 +42,7 @@ func init(lev,device_ID):
 	global.curr_wv = lev
 	global.sw_score = 0
 	#global.score = 0
-	global.save_file_name = "user://data" + str(OS.get_unix_time())+".json"
+	global.save_file_name = str(OS.get_unix_time())
 	global.data = {"mo_time":[],"mo_x":[], "mo_y":[],"mo_lobe":[], "mo_press_time":[],
 	"mo_act_drag":[],"mo_move_time":[],"mo_move_pos_x":[],"mo_move_pos_y":[],"mo_fake_release":[], 
 	"mo_act_taken_time":[],"mo_act_taken_act":[],"mo_act_taken_pos":[],"mo_press_x":[], "mo_press_y":[],
