@@ -41,11 +41,11 @@ func _ready():
 #		arr1[i] = [0, 1, i+1, 36]
 #	arr = arr1
 	ball_per_sw = int(arr[arr.size()-1][2])
-	sw_order = shuffleList(range(ball_per_sw))
 	ball_per_sw = arr.size()/ball_per_sw
 	read_music_time()
 	balls_left = ball_per_sw
 	global.sw_count = global.num_waves[ball_per_sw-1]#sw_order.size()
+	sw_order = shuffleList(range(global.sw_count),int(arr[arr.size()-1][2])/global.sw_count)#range(ball_per_sw))
 	var accum = 0
 	accum_points.append(accum)
 	for i in range(global.sw_count):
@@ -54,18 +54,18 @@ func _ready():
 	global.max_score = accum
 	mySpawn()
 
-func shuffleList(list):
+func shuffleList(list,offset):
     var shuffledList = []
     var indexList = range(list.size())
     for i in range(list.size()):
         var x = randi()%indexList.size()
-        shuffledList.append(list[indexList[x]])
+        shuffledList.append(list[indexList[x]]*offset + randi()%offset)
         indexList.remove(x)
     return shuffledList
 
 func mySpawn():
-	global.make_rand = 2 #JUST FOR DEBUGGING
-	global.repeat_bad = 2
+	#global.make_rand = 2 #JUST FOR DEBUGGING
+	#global.repeat_bad = 2
 	if sw_played >= global.sw_count:#sw_order.size():
 		curr_wv_points = 0
 		$"../..".save_data(true)
