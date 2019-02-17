@@ -20,6 +20,14 @@ var file_to_delete = ""
 
 func _ready():
 	randomize()
+
+	# The API used below is only available starting with Godot 3.1
+	var version = Engine.get_version_info()
+	if version.major > 3 || (version.major == 3 && version.minor >= 1):
+		# GLES2 renders a black screen if WorldEnvironment background mode is "Canvas"
+		if OS.get_current_video_driver() == OS.VIDEO_DRIVER_GLES2:
+			$WorldEnvironment.environment.background_mode = Environment.BG_CLEAR_COLOR
+
 	AudioServer.set_bus_volume_db(0,-10)
 	$spiccato.volume_db = -5
 	$spiccatoB.volume_db = 0
