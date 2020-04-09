@@ -145,10 +145,10 @@ func count_down_perfect(new):
 	$"../hex_subwave".total_points(norm*new)
 	$"../hex_progress".set_shape(($"../Spawner".sw_played-new)/global.sw_count)
 	$"../hex_progress_perfect".set_shape((scale_count-new)/global.sw_count)
-	if $"../Spawner".notesB[play_state.x].y/float(global.measure_time) - play_state.z + 1 < 1-new:# float(play_state.z) 
+	if play_state.x < $"../Spawner".notesB.size() and $"../Spawner".notesB[play_state.x].y/float(global.measure_time) - play_state.z + 1 < 1-new:# float(play_state.z) 
 		play_timed_midi($"../Spawner".notesB[play_state.x].x,$"../spiccatoB",1)
 		play_state.x += 1
-	if $"../Spawner".notesT[play_state.y].y/float(global.measure_time) - play_state.z + 1 < 1-new:
+	if play_state.y< $"../Spawner".notesT.size() and  $"../Spawner".notesT[play_state.y].y/float(global.measure_time) - play_state.z + 1 < 1-new:
 		play_timed_midi($"../Spawner".notesT[play_state.y].x,$"../spiccato")
 		play_state.y += 1
 		

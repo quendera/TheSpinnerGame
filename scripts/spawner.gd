@@ -55,13 +55,13 @@ func _ready():
 	mySpawn()
 
 func shuffleList(list,offset):
-    var shuffledList = []
-    var indexList = range(list.size())
-    for i in range(list.size()):
-        var x = randi()%indexList.size()
-        shuffledList.append(list[indexList[x]]*offset + randi()%offset)
-        indexList.remove(x)
-    return shuffledList
+	var shuffledList = []
+	var indexList = range(list.size())
+	for i in range(list.size()):
+		var x = randi()%indexList.size()
+		shuffledList.append(list[indexList[x]]*offset + randi()%offset)
+		indexList.remove(x)
+	return shuffledList
 
 func mySpawn():
 	#global.make_rand = 2 #JUST FOR DEBUGGING
