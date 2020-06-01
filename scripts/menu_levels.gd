@@ -13,7 +13,7 @@ func _draw():
 		draw_colored_polygon(global.full_hex(global.side_offset,0,rot*Vector2(sin(i*2*PI/(rot+1)),cos(i*2*PI/(rot+1)))*global.side_offset),global.hex_color(6))
 
 
-func _process(delta):
+func _process(_delta):
 	if global.is_unlocked(rot) and modulate.a > 0:
 		rotation = OS.get_ticks_msec()/1000.0*PI/2
 

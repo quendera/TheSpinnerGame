@@ -10,6 +10,7 @@ var menu_scene = load("res://scenes/hex_menu.tscn")#hex_menu.tscn")
 var menu_instance
 var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
+var perm_instance
 var device_ID = Vector2(0,0)
 var in_lab = 0
 var twn = Tween.new()
@@ -17,45 +18,51 @@ var url = "/upload.php"
 var IP = "http://95.179.150.62"
 var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
 var file_to_delete = ""
+var file = File.new()
 
 func _ready():
 	randomize()
 	AudioServer.set_bus_volume_db(0,-10)
 	$spiccato.volume_db = -5
 	$spiccatoB.volume_db = 0
-	var file = File.new()
-	if !file.file_exists("user://deviceID"):
-		file.open_compressed("user://deviceID",File.WRITE)
-		device_ID = Vector2(OS.get_unix_time(),randi())
-		file.store_32(device_ID.x)
-		file.store_32(device_ID.y)
+	if file.file_exists("user://hiscores"):
+		file.open_compressed("user://hiscores",File.READ)
+		global.max_level = int(file.get_32())
 		file.close()
+	if !file.file_exists("user://deviceID"):
+		var perm_scene = load("res://scenes/permission.tscn")
+		perm_instance = perm_scene.instance()
+		add_child(perm_instance)
 	else:
 		file.open_compressed("user://deviceID",File.READ)
 		device_ID.x = int(file.get_32())
 		device_ID.y = int(file.get_32())
 		file.close()
-	if file.file_exists("user://hiscores"):
-		file.open_compressed("user://hiscores",File.READ)
-		global.max_level = int(file.get_32())
-		file.close()
-	#global.max_level = 5
-#	if in_lab:
-#		add_child(load("res://scripts/eye_calib.gd").new())
+		start_game()
 	for i in range(6):
 		for j in range(2):
 			hex_slide_instance = hex_slide_scene.new()
 			add_child(hex_slide_instance)
 			hex_slide_instance.create(i,j)
+#	if in_lab:
+#		add_child(load("res://scripts/eye_calib.gd").new())
+
+func start_game():
+	if !file.file_exists("user://deviceID"):
+		gen_ID()
 	new_menu()
 	add_child(twn)
-#	if 1:
-#		var pop_ups = load("res://scripts/permission.gd").new()
-#		add_child(pop_ups)
 
 func new_menu():
 	menu_instance = menu_scene.instance()
 	add_child(menu_instance)
+
+func gen_ID():
+	file.open_compressed("user://deviceID",File.WRITE)
+	device_ID = Vector2(OS.get_unix_time(),randi())
+	file.store_32(device_ID.x)
+	file.store_32(device_ID.y)
+	file.close()
 
 func start_level(lobe):
 	is_saving = 0
@@ -64,7 +71,7 @@ func start_level(lobe):
 		global.make_rand = 2
 		global.repeat_bad = 2
 	else:
-		global.fail_thresh = 18#*(fmod(device_ID.y,4)+1)
+		global.fail_thresh = 15#*(fmod(device_ID.y,4)+1)
 		global.make_rand = 2#min(2,fmod(int(device_ID.y)/4,4))
 		global.repeat_bad = 2#min(2,fmod(int(device_ID.y)/16,4))
 	game_instance = game_scene.instance()
@@ -92,9 +99,9 @@ func save_data(win):
 		end_seq(win)
 		game_instance.queue_free()
 
-func send_data(QUERY,fname):
+func send_data(QUERYloc,fname):
 	var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",fname)]
-	return $data_send.request(IP + url, HEADERS,true,HTTPClient.METHOD_POST,QUERY)
+	return $data_send.request(IP + url, HEADERS,true,HTTPClient.METHOD_POST,QUERYloc)
 
 #func send_data_old(QUERY):
 #	var error = HTTP.connect_to_host(IP, prt)
@@ -187,7 +194,8 @@ func play_timed_midi(pitch,stream,offset = 0):
 	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
 	stream.play()
 
-func _on_data_send_request_completed(result, response_code, headers, body):
+func _on_data_send_request_completed(_result, _response_code, _headers, body):
+	print(body.get_string_from_utf8())
 	if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
 		print("bad")
 		var file = File.new()

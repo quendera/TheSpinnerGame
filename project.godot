@@ -69,11 +69,11 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
+quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 vram_compression/import_s3tc=false
-vram_compression/import_etc2=false
+vram_compression/import_etc=true
 quality/shadow_atlas/quadrant_0_subdiv=0
 quality/shadow_atlas/quadrant_1_subdiv=0
 quality/shadow_atlas/quadrant_2_subdiv=0
@@ -83,8 +83,7 @@ quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 quality/shading/force_vertex_shading.mobile=false
 quality/depth_prepass/enable=false
-environment/default_clear_color=Color( 0, 0, 0, 1 )
-quality/depth/hdr=false
 quality/subsurface_scattering/quality=0
 quality/subsurface_scattering/weight_samples=false
-quality/voxel_cone_tracing/high_quality=false
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+quality/depth/hdr=false

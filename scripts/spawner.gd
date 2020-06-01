@@ -57,7 +57,7 @@ func _ready():
 func shuffleList(list,offset):
 	var shuffledList = []
 	var indexList = range(list.size())
-	for i in range(list.size()):
+	for _i in range(list.size()):
 		var x = randi()%indexList.size()
 		shuffledList.append(list[indexList[x]]*offset + randi()%offset)
 		indexList.remove(x)

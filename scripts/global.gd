@@ -52,8 +52,9 @@ func init(lev,device_ID):
 	"device_kb_locale":OS.get_locale(), "device_name":OS.get_model_name(),
 	"device_screensize_x":OS.get_screen_size().x,"device_screensize_y":OS.get_screen_size().y,
 	"device_timezone":OS.get_time_zone_info(),"device_dpi":OS.get_screen_dpi(),
-	"device_IP": IP.get_local_addresses(),
+	"device_IP": IP.get_local_addresses(),"device_ID":OS.get_unique_id(),
 	"device_ID_time":device_ID.x,"device_ID_rand":device_ID.y,
+	"device_video_driver":OS.get_current_video_driver(),
 	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "focus_in":[], "focus_out":[], 
 	"failure_thresh":global.fail_thresh,"rand_pos": global.make_rand, "repeat_bad": global.repeat_bad,
 	"version":1}

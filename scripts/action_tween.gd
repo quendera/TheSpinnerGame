@@ -98,7 +98,7 @@ func which_action(click_loc):
 	if global.data["mo_lobe"][-1] > 0 and !global.data["mo_fake_release"][-1]:
 		add_to_queue(global.data["mo_lobe"][-1],global.data["mo_act_drag"][-1])
 
-func _on_action_tween_tween_completed( object, key ):
+func _on_action_tween_tween_completed( _object, _key ):
 	global.data["mo_act_taken_time"].push_back(OS.get_ticks_msec())
 	global.data["mo_act_taken_act"].push_back(action_queue[0])
 	global.data["mo_act_taken_pos"].push_back(location_queue[1])
@@ -117,7 +117,7 @@ func _on_action_tween_tween_completed( object, key ):
 	if action_queue.size() != 0 or wave_age < 0:
 		take_action()
 
-func _on_action_tween_tween_step( object, key, elapsed, value ):
+func _on_action_tween_tween_step( _object, _key, _elapsed, _value ):
 	if collection_sequence > 0:
 		get_tree().call_group("hex_balls", "run_collection", collection_sequence)
 	else:
