@@ -67,7 +67,7 @@ func gen_ID():
 func start_level(lobe):
 	is_saving = 0
 	if lobe == 6:
-		global.fail_thresh = 9
+		global.fail_thresh = 6
 		global.make_rand = 2
 		global.repeat_bad = 2
 	else:
