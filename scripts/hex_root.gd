@@ -195,7 +195,6 @@ func play_timed_midi(pitch,stream,offset = 0):
 	stream.play()
 
 func _on_data_send_request_completed(_result, _response_code, _headers, body):
-	print(body.get_string_from_utf8())
 	if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
 		print("bad")
 		var file = File.new()
