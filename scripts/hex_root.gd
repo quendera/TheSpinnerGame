@@ -14,7 +14,7 @@ var perm_instance
 var device_ID = Vector2(0,0)
 var in_lab = 0
 var twn = Tween.new()
-var url = "/upload.php"
+var url = "/upload/gd.php"
 var IP = "http://95.179.150.62"
 var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
 var file_to_delete = ""
@@ -196,7 +196,7 @@ func play_timed_midi(pitch,stream,offset = 0):
 
 func _on_data_send_request_completed(_result, _response_code, _headers, body):
 	if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
-		print("bad")
+		print(body.get_string_from_utf8())
 		var file = File.new()
 		file.open("user://data" + global.save_file_name +".json", file.WRITE)
 		file.store_line(QUERY)
