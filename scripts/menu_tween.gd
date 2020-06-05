@@ -14,6 +14,24 @@ func _input(event):
 		if event.is_pressed():
 			which_action(event.position-global.centre)
 
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		get_tree().quit()
+	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		if choice == -3:
+			$"../../move".play()
+			reset_hints()
+			choice = -1
+			$"../accessory_screen".create(0)
+		elif choice == -1:
+			get_tree().quit()
+		elif choice == 3:
+			$"../../move".play()
+			reset_hints()
+			interpolate_method(self,"dim_levels",1,0,global.move_time_new,transition,ease_direction)#dim_levels()
+			choice = -1
+			start()
+
 func which_action(click_loc):
 	if choice == -3:
 		$"../../move".play()
@@ -31,7 +49,7 @@ func which_action(click_loc):
 					interpolate_method(self,"make_dim",0,1,global.move_time_new,transition,ease_direction)
 				elif lobe[1] == 0:
 					get_tree().quit()
-				else:
+				elif !is_active():
 					choice = -3
 					get_tree().call_group("hex_slider","hide")#make_dim",0)
 					get_tree().call_group("menu_label","set_shape",1)

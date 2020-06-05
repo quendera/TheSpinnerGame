@@ -1,10 +1,10 @@
 extends Label
 
 var acc_items = PoolStringArray(["",\
-"We are neuroscientists who developed this game to study how humans learn to solve problems. By playing the game, people like you help make this possible!",\
+"We are neuroscientists who developed this game to study how humans learn to solve problems. By playing the game, you provide the data to make this possible!",\
 "This game is a puzzle for you to solve. Keep on trying and leave the rest to your brain!",\
 "",\
-"design\nGautam Agarwal\nTiago Quendera\nZachary Mainen\n\nMusic\nAdapted from\n8notes.com\n\nlogo\ndiogo matias",\
+"design\nGautam Agarwal\nTiago Quendera\nZachary Mainen\n\nMusic\nAdapted from\n8notes.com\n\nlogo\ndiogo matias\n\nPowered by\nGodot Engine",\
 "reach us at\nthehexxedgame@gmail.com\n\nIf you would like to disenroll from the study, please include code\n"])
 
 func _ready():
@@ -17,6 +17,8 @@ func _ready():
 		set("custom_colors/font_color",global.hint_color(5))
 		#rect_pivot_offset = rect_size/2.0 + Vector2(0,global.poly_size*5)
 		rect_position = global.centre - rect_size/2.0# - rect_pivot_offset
+		rect_pivot_offset = rect_size/2
+		rect_rotation = 270
 
 func create(ind):
 	text = acc_items[ind]

@@ -29,6 +29,8 @@ margin_left = -50.0
 margin_top = -50.0
 margin_right = 50.0
 margin_bottom = 50.0
+rect_rotation = 270.0
+rect_pivot_offset = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "yes"
@@ -51,6 +53,8 @@ margin_left = -50.0
 margin_top = -50.0
 margin_right = 50.0
 margin_bottom = 50.0
+rect_rotation = 270.0
+rect_pivot_offset = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "no"
@@ -62,22 +66,17 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 margin_left = 10.0
-margin_top = 10.0
-margin_right = 1013.0
-margin_bottom = 1010.0
+margin_top = 600.0
+margin_right = 590.0
+margin_bottom = 1615.0
+rect_rotation = 270.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
-text = "We designed this game to study how 
-people solve puzzles. We do this by 
-recording and analyzing your actions 
-in the game. Your data will be kept
-anonymous and secure, and you can 
-remove your data from the study 
-at any time.
+text = "We designed this game to study how people solve puzzles. We do this by recording and analyzing your actions in the game. Your data will be kept anonymous and secure, and you can remove your data from the study at any time.
 
-I hereby consent to having my data 
-collected. If I am under 18, I have 
-gotten permission from my parents. "
+I hereby consent to having my data collected. If I am under 18, I have gotten permission from my parents. "
+align = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
