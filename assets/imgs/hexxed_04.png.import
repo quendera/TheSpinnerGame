@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hexxed_blue.svg-a35bcc4315223d9cd92601f0fa3c4927.stex"
+path="res://.import/hexxed_04.png-369c4fcee5418146648ddde8339df324.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/imgs/hexxed_blue.svg"
-dest_files=[ "res://.import/hexxed_blue.svg-a35bcc4315223d9cd92601f0fa3c4927.stex" ]
+source_file="res://assets/imgs/hexxed_04.png"
+dest_files=[ "res://.import/hexxed_04.png-369c4fcee5418146648ddde8339df324.stex" ]
 
 [params]
 

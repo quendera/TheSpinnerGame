@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/hex_menu.gd" type="Script" id=1]
 [ext_resource path="res://scripts/menu_tween.gd" type="Script" id=2]
-[ext_resource path="res://assets/imgs/hexxed_blue.svg" type="Texture" id=3]
+[ext_resource path="res://assets/imgs/hexxed_04.png" type="Texture" id=3]
 [ext_resource path="res://scripts/accessory_screen.gd" type="Script" id=4]
+[ext_resource path="res://hex_menu.tres" type="Animation" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
 [node name="hex_menu" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,13 +20,40 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="hexxed_blue" type="Sprite" parent="."]
-position = Vector2( 205.839, 281.74 )
+position = Vector2( 144.47, 288.936 )
 rotation = -1.5708
+scale = Vector2( 0.340276, 0.340276 )
 texture = ExtResource( 3 )
+region_rect = Rect2( 60, 34, 980, 286 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hexxed_blue"]
+playback_speed = 2.0
+anims/highlight = ExtResource( 5 )
+
+[node name="spotlight" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.741176 )
+position = Vector2( 154.156, 284.842 )
+rotation = -1.5708
+scale = Vector2( 0.055, 154.661 )
+texture = SubResource( 2 )
+
+[node name="mask_logo1" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.564706 )
+position = Vector2( 146.004, 411.695 )
+rotation = -1.5708
+scale = Vector2( 0.063834, 174.661 )
+texture = SubResource( 2 )
+
+[node name="mask_logo2" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.564706 )
+position = Vector2( 153.406, 161.862 )
+rotation = -1.5708
+scale = Vector2( 0.063834, 174.661 )
+texture = SubResource( 2 )
 
 [node name="accessory_screen" type="Label" parent="."]
 margin_right = 40.0
-margin_bottom = 14.0
+margin_bottom = 13.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
