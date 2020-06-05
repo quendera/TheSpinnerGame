@@ -80,7 +80,6 @@ func start_level(lobe):
 	menu_instance.queue_free()
 
 func save_data(win,end_level=true):
-	print(34)
 #	if !is_saving:
 #		is_saving = 1
 	if !in_lab:
@@ -197,7 +196,6 @@ func play_timed_midi(pitch,stream,offset = 0):
 	stream.play()
 
 func _on_data_send_request_completed(_result, _response_code, _headers, body):
-	print(45)
 	if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
 		var file = File.new()
 		file.open("user://data" + global.save_file_name +".json", file.WRITE)
