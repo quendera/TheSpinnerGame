@@ -10,6 +10,8 @@ var menu_scene = load("res://scenes/hex_menu.tscn")#hex_menu.tscn")
 var menu_instance
 var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
+var data_send_scene = load("res://scripts/data_send.gd")
+var data_send_instance
 var perm_instance
 var device_ID = Vector2(0,0)
 var in_lab = 0
@@ -18,7 +20,8 @@ var url = "/upload/gd.php"
 var IP = "http://95.179.150.62"
 var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
 var file_to_delete = ""
-var file = File.new()
+var file = File.new() #????
+
 
 func _ready():
 	randomize()
@@ -34,10 +37,6 @@ func _ready():
 		perm_instance = perm_scene.instance()
 		add_child(perm_instance)
 	else:
-		file.open_compressed("user://deviceID",File.READ)
-		device_ID.x = int(file.get_32())
-		device_ID.y = int(file.get_32())
-		file.close()
 		start_game()
 	for i in range(6):
 		for j in range(2):
@@ -47,9 +46,32 @@ func _ready():
 #	if in_lab:
 #		add_child(load("res://scripts/eye_calib.gd").new())
 
+func get_cached_files():
+	var dir = Directory.new()
+	dir.open("user://")
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if file_name.begins_with("data"):
+			var file1 = File.new()
+			file1.open("user://" + file_name,file1.READ)
+			data_send_instance = data_send_scene.new()
+			add_child(data_send_instance)
+			data_send_instance.create(file_name.left(file_name.length()-5).right(4),device_ID,file1.get_as_text())
+			file1.close()
+		file_name = dir.get_next()
+	dir.list_dir_end()
+	get_tree().call_group("file_to_send","request_wrapper")
+
 func start_game():
 	if !file.file_exists("user://deviceID"):
 		gen_ID()
+	else:
+		file.open_compressed("user://deviceID",File.READ)
+		device_ID.x = int(file.get_32())
+		device_ID.y = int(file.get_32())
+		file.close()
+	get_cached_files()
 	new_menu()
 	add_child(twn)
 
@@ -84,46 +106,34 @@ func save_data(win,end_level=true):
 #		is_saving = 1
 	if !in_lab:
 		QUERY = to_json(global.data)
-		send_data(QUERY,global.save_file_name)
+		var file1 = File.new()
+		file1.open("user://data" + global.save_file_name +".json", file1.WRITE)
+		file1.store_line(QUERY)
+		file1.close()
+		data_send_instance = data_send_scene.new()
+		add_child(data_send_instance)
+		data_send_instance.create(global.save_file_name,device_ID,QUERY)
+		get_tree().call_group("file_to_send","request_wrapper")
+		#send_data(QUERY,global.save_file_name)
 #			if send_data(QUERY) != HTTPRequest.RESULT_SUCCESS: #HTTP.get_status() != HTTPClient.STATUS_BODY:
 #				var file = File.new()
 #				file.open(global.save_file_name, file.WRITE)
 #				file.store_line(QUERY)
 #				file.close()
 	if win:
-		var file = File.new()
+		var file1 = File.new()
 		global.max_level = max(global.max_level,global.curr_wv)
-		file.open_compressed("user://hiscores",File.WRITE)
-		file.store_32(global.max_level)
-		file.close()
+		file1.open_compressed("user://hiscores",File.WRITE)
+		file1.store_32(global.max_level)
+		file1.close()
 	if end_level:
 		end_seq(win)
 		game_instance.queue_free()
 
-func send_data(QUERYloc,fname):
-	var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",fname)]
-	return $data_send.request(IP + url, HEADERS,true,HTTPClient.METHOD_POST,QUERYloc)
+#func send_data(QUERYloc,fname):
+#	var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",fname)]
+#	return $data_send.request_wrapper(IP + url, HEADERS,true,HTTPClient.METHOD_POST,QUERYloc,fname)
 
-#func send_data_old(QUERY):
-#	var error = HTTP.connect_to_host(IP, prt)
-#	var counter = 0
-#	while HTTP.get_status() <= 4 and counter < 5:
-#		HTTP.poll()
-#		print(HTTP.get_status())
-#		OS.delay_msec(50)
-#		counter += 1
-#	if HTTP.get_status() == HTTPClient.STATUS_CONNECTED:
-#		var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",OS.get_unix_time())]
-#		HTTP.request(HTTPClient.METHOD_POST, url, HEADERS, QUERY)
-#		counter = 0
-#		while HTTP.get_status() == HTTPClient.STATUS_REQUESTING and counter < 5:
-#			HTTP.poll()
-#			print(HTTP.get_status())
-#			print(HTTP.get_response_headers())
-#			OS.delay_msec(50)
-#			counter += 1
-#	return HTTP.get_status()
-#
 #func send_data_from_directory():
 #	#var files = []
 #	var dir = Directory.new()
@@ -195,24 +205,24 @@ func play_timed_midi(pitch,stream,offset = 0):
 	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
 	stream.play()
 
-func _on_data_send_request_completed(_result, _response_code, _headers, body):
-	if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
-		var file = File.new()
-		file.open("user://data" + global.save_file_name +".json", file.WRITE)
-		file.store_line(QUERY)
-		file.close()
-	else:
-		var dir = Directory.new()
-		dir.open("user://")
-		dir.remove(file_to_delete)
-		dir.list_dir_begin()
-		var file_iter = dir.get_next()
-		while !file_iter.begins_with("data") and file_iter != "":
-			file_iter = dir.get_next()
-		file_to_delete = file_iter
-		if file_iter.begins_with("data"):
-			var file = File.new()
-			file.open("user://" + file_to_delete,file.READ)
-			send_data(file.get_as_text(),file_to_delete.left(file_to_delete.length()-5).right(4)+"old")
-			file.close()
-		dir.list_dir_end()
+#func _on_data_send_request_completed(_result, _response_code, _headers, body,fname):
+#	#if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
+#	#	var file = File.new()
+#	#	file.open("user://data" + global.save_file_name +".json", file.WRITE)
+#	#	file.store_line(QUERY)
+##		file.close()
+#	if body.get_string_from_utf8() == "upload successful":#else:
+#		var dir = Directory.new()
+#		dir.open("user://")
+#		dir.remove(fname)#file_to_delete)
+#		dir.list_dir_begin()
+#		var file_iter = dir.get_next()
+#		while !file_iter.begins_with("data") and file_iter != "":
+#			file_iter = dir.get_next()
+#		#file_to_delete = file_iter
+#		if file_iter.begins_with("data"):
+#			var file = File.new()
+#			file.open("user://" + file_iter,file.READ)
+##			send_data(file.get_as_text(),file_iter.left(file_iter.length()-5).right(4))
+#			file.close()
+#		dir.list_dir_end()
