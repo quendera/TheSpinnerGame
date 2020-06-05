@@ -14,7 +14,7 @@ func _ready():
 		add_to_group("menu_label")
 		rect_size = Vector2(400,400)
 		set("custom_fonts/font",global.fnt)
-		set("custom_colors/font_color",global.hint_color(7))
+		set("custom_colors/font_color",global.hint_color(5))
 		#rect_pivot_offset = rect_size/2.0 + Vector2(0,global.poly_size*5)
 		rect_position = global.centre - rect_size/2.0# - rect_pivot_offset
 

@@ -22,6 +22,6 @@ func create(rot,txt):
 func set_shape(val):
 	if val <= 0:
 		modulate = Color(1,1,1,1)
-		rect_scale = max_scale*(6+val)/6.0
+		rect_scale = max_scale*(6+val)/5.1
 	else:#if cur_rot != lobe:
 		modulate = Color(1,1,1,1-val)

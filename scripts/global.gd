@@ -25,6 +25,7 @@ var max_level = 0
 var max_score
 var num_waves = PoolIntArray([6,12,20,30,30,30])#60,60])
 var fnt = DynamicFont.new()
+var menu_opened = 0
 
 func full_hex(radius,wire =0,off = Vector2(0,0)):
 	var coords = PoolVector2Array()
@@ -89,5 +90,5 @@ func hex_color(rad,invert=false,dim = 1):
 	return col
 	
 func hint_color(rad):
-	var col = float(rad+2)/(18+2)
+	var col = float(rad+2)/(10+2)
 	return Color(col,col,col)

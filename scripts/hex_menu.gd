@@ -5,14 +5,21 @@ var menu_label_instance
 var menu_level_scene = load("res://scripts/menu_levels.gd")
 var menu_level_instance
 #var menu_items = PoolStringArray(["SURVEY","ABOUT","PERFECT\nMODE","PLAY","SHARE","LEADER\nBOARD"])
-var menu_items = PoolStringArray(["EXIT","ABOUT","\nHOW TO\nPLAY","PLAY","CREDITS","CONTACT"])
+var menu_items = PoolStringArray(["EXIT","ABOUT","HELP","PLAY","CREDITS","CONTACT"])
 var menu_items_lab = PoolStringArray(["CALIB-\nRATION","","","PLAY","",""])
 #var startLevel
 
 func _ready():
 	global.fnt.font_data = load("res://assets/batmfa__.ttf")
-	global.fnt.size = 40*global.h/720.0
+	global.fnt.size = 60*global.h/720.0
 	global.fnt.use_filter = true
+	global.fnt.extra_spacing_bottom = -40
+	#$"/./Sprite".visible = 0
+	if global.menu_opened == 0:
+		$hexxed_blue/AnimationPlayer.play("highlight")
+		global.menu_opened = 1
+	else:
+		$spotlight.visible = false
 
 	for i in range(6):
 		menu_label_instance = menu_label_scene.new()
