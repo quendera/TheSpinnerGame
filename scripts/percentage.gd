@@ -7,6 +7,8 @@ func _ready():
 		set("custom_colors/font_color",Color(0,0,0))
 		rect_size = Vector2(global.w,global.h)
 		rect_position = $"../hex_xed".position - rect_size/2
+		rect_pivot_offset = rect_size/2
+		rect_rotation = 270
 		show()
 	else:
 		hide()

@@ -1,7 +1,7 @@
 extends CollisionPolygon2D
 
 func _ready():
-	position = Vector2(global.w*2/3,global.h*11/12)
+	position = Vector2(global.w*11/12,global.h*1/3)
 	polygon = global.full_hex(global.poly_size)
 
 

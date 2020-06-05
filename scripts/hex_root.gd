@@ -3,7 +3,7 @@ extends Node
 var HTTP = HTTPClient.new()
 var prt = 80
 var QUERY
-var is_saving = 0
+#var is_saving = 0
 var game_scene = load("res://scenes/game.tscn")
 var game_instance
 var menu_scene = load("res://scenes/hex_menu.tscn")#hex_menu.tscn")
@@ -65,7 +65,7 @@ func gen_ID():
 	file.close()
 
 func start_level(lobe):
-	is_saving = 0
+#	is_saving = 0
 	if lobe == 6:
 		global.fail_thresh = 6
 		global.make_rand = 2
@@ -79,23 +79,25 @@ func start_level(lobe):
 	add_child(game_instance)
 	menu_instance.queue_free()
 
-func save_data(win):
-	if !is_saving:
-		is_saving = 1
-		if !in_lab:
-			QUERY = to_json(global.data)
-			send_data(QUERY,global.save_file_name)
+func save_data(win,end_level=true):
+	print(34)
+#	if !is_saving:
+#		is_saving = 1
+	if !in_lab:
+		QUERY = to_json(global.data)
+		send_data(QUERY,global.save_file_name)
 #			if send_data(QUERY) != HTTPRequest.RESULT_SUCCESS: #HTTP.get_status() != HTTPClient.STATUS_BODY:
 #				var file = File.new()
 #				file.open(global.save_file_name, file.WRITE)
 #				file.store_line(QUERY)
 #				file.close()
-		if win:
-			var file = File.new()
-			global.max_level = max(global.max_level,global.curr_wv)
-			file.open_compressed("user://hiscores",File.WRITE)
-			file.store_32(global.max_level)
-			file.close()
+	if win:
+		var file = File.new()
+		global.max_level = max(global.max_level,global.curr_wv)
+		file.open_compressed("user://hiscores",File.WRITE)
+		file.store_32(global.max_level)
+		file.close()
+	if end_level:
 		end_seq(win)
 		game_instance.queue_free()
 
@@ -195,8 +197,8 @@ func play_timed_midi(pitch,stream,offset = 0):
 	stream.play()
 
 func _on_data_send_request_completed(_result, _response_code, _headers, body):
+	print(45)
 	if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 
-		print(body.get_string_from_utf8())
 		var file = File.new()
 		file.open("user://data" + global.save_file_name +".json", file.WRITE)
 		file.store_line(QUERY)

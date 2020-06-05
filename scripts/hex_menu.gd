@@ -26,7 +26,7 @@ func _ready():
 		menu_level_instance.create(i)
 	$menu_tween.reset_hints()
 
-func _notification(what):
-	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST or what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST):
-		#$"../..".save_data(false)
-		get_tree().quit()
+#func _notification(what):
+#	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST or what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST):
+#		#$"../..".save_data(false)
+#		get_tree().quit()

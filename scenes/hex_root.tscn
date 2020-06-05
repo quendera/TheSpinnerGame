@@ -43,4 +43,6 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [node name="data_send" type="HTTPRequest" parent="."]
+use_threads = true
+timeout = 1
 [connection signal="request_completed" from="data_send" to="." method="_on_data_send_request_completed"]

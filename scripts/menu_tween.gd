@@ -31,7 +31,7 @@ func which_action(click_loc):
 					interpolate_method(self,"make_dim",0,1,global.move_time_new,transition,ease_direction)
 				elif lobe[1] == 0:
 					get_tree().quit()
-				else:
+				elif !is_active():
 					choice = -3
 					get_tree().call_group("hex_slider","hide")#make_dim",0)
 					get_tree().call_group("menu_label","set_shape",1)
