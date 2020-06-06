@@ -30,7 +30,7 @@ func _notification(what):
 			reset_hints()
 			interpolate_method(self,"dim_levels",1,0,global.move_time_new,transition,ease_direction)#dim_levels()
 			choice = -1
-			start()
+		start()
 
 func which_action(click_loc):
 	if choice == -3:

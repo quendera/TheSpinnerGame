@@ -50,9 +50,14 @@ func start_game():
 		device_ID.x = int(file.get_32())
 		device_ID.y = int(file.get_32())
 		file.close()
+	add_child(twn)
+	twn.start()
+	twn.interpolate_method(self,"play_timed_midi",48,72,3.4)
+	twn.interpolate_callback($lose,3.4,"play")
 	$data_send.search_and_send()
 	new_menu()
-	add_child(twn)
+	#twn.set_tween_process_mode(0)
+
 
 func new_menu():
 	menu_instance = menu_scene.instance()
@@ -117,33 +122,36 @@ func save_data(win,end_level=true):
 
 func end_seq(win):
 	get_tree().call_group("hex_slider","hide")
-	var lbl = Label.new()
-	lbl.valign = Label.VALIGN_CENTER
-	lbl.align = Label.ALIGN_CENTER
-	lbl.rect_size = Vector2(global.w,global.h)
-	lbl.rect_position = Vector2(0,0)
-	lbl.rect_pivot_offset = lbl.rect_size/2
-	lbl.rect_rotation = 270
-	global.fnt.size = 1
-	lbl.set("custom_fonts/font",global.fnt)
+	#var lbl = Label.new()
+	#lbl.valign = Label.VALIGN_CENTER
+	#lbl.align = Label.ALIGN_CENTER
+	$end_label.rect_size = Vector2(global.w,global.h)
+	#lbl.rect_position = Vector2(0,0)
+	$end_label.rect_pivot_offset = Vector2(global.w,global.h)/2
+	#lbl.rect_rotation = 270
+	global.fnt.size = 80
+	$end_label.set("custom_fonts/font",global.fnt)
 	twn.start()
 	if win:
-		lbl.set("custom_colors/font_color",global.hex_color(6,1))
-		lbl.text = "YOU ARE\n" + compliments[global.curr_wv-1] + "!"
+		$end_label.set("custom_colors/font_color",global.hex_color(6,1))
+		$end_label.text = "YOU ARE\n" + compliments[global.curr_wv-1] + "!"
 		if game_instance.get_node("progress_tween").play_state.z == global.sw_count:
 			timed_play(global.move_time_new,$spiccato,$spiccatoB,99999999)
 		else:
 			timed_play(global.move_time_new,$spiccato,$spiccatoB,game_instance.get_node("progress_tween").play_state.z-1)
 		if global.curr_wv < 6:
-			lbl.text += "\nLEVEL " + str(global.curr_wv+1) + " UNLOCKED."
+			$end_label.text += "\nLEVEL " + str(global.curr_wv+1) + " UNLOCKED."
 	else:
-		lbl.set("custom_colors/font_color",global.hint_color(7))
-		lbl.text = "YOU GOT\nHEXXED!"
+		$end_label.set("custom_colors/font_color",global.hint_color(7))
+		$end_label.text = "YOU GOT\nHEXXED!"
 		twn.interpolate_callback($lose,global.move_time_new,"play")
-	twn.interpolate_property(global.fnt,"size",1,80,global.move_time_new,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
-	call_deferred("add_child",lbl)#add_child(lbl)
+	#twn.interpolate_property(global.fnt,"size",1,80,global.move_time_new,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
+	twn.interpolate_property($end_label,"rect_scale",Vector2(0,0),Vector2(1,1),global.move_time_new,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
+	$end_label.show()
+	#call_deferred("add_child",lbl)#add_child(lbl)
 	twn.interpolate_callback(self,global.move_time_new*12,"new_menu")
-	twn.interpolate_callback(lbl,global.move_time_new*12,"queue_free")
+	twn.interpolate_callback($end_label,global.move_time_new*12,"hide")
+	#twn.interpolate_callback(lbl,global.move_time_new*12,"queue_free")
 
 func timed_play(st = 0,  treb_stream = $spiccato,bass_stream = $spiccatoB,z = 0):
 	var st_t
@@ -160,7 +168,7 @@ func timed_play(st = 0,  treb_stream = $spiccato,bass_stream = $spiccatoB,z = 0)
 		play_state.y += 1
 	play_state.z += 1
 
-func play_timed_midi(pitch,stream,offset = 0):
+func play_timed_midi(pitch,stream = $spiccato,offset = 0):
 	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
 	stream.play()
 

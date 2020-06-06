@@ -9,7 +9,7 @@ var file = File.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timeout = 1
+	timeout = 3
 	use_threads = true
 	connect("request_completed",self,"_on_request_completed")
 	dir.open("user://")
