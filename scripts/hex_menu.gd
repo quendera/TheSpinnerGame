@@ -11,10 +11,10 @@ var menu_items_lab = PoolStringArray(["CALIB-\nRATION","","","PLAY","",""])
 
 func _ready():
 	global.fnt.font_data = load("res://assets/batmfa__.ttf")
-	global.fnt.size = 60*global.h/720.0
+	global.fnt.size = 80*global.h/720.0
 	global.fnt.use_filter = true
-	global.fnt.extra_spacing_top = -20
-	global.fnt.extra_spacing_bottom = -20
+	global.fnt.extra_spacing_top = -30
+	global.fnt.extra_spacing_bottom = -30
 	#$"/./Sprite".visible = 0
 	if global.menu_opened == 0:
 		$hexxed_blue/AnimationPlayer.play("highlight")

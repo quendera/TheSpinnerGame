@@ -18,6 +18,7 @@ func create(rot,txt):
 	rect_rotation = rot*60-180
 	set("custom_fonts/font",global.fnt)
 	set("custom_colors/font_color",global.hint_color(7))
+	#set("custom_fonts/size",180*global.h/720.0)
 	
 func set_shape(val):
 	if val <= 0:

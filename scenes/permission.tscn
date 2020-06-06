@@ -7,11 +7,15 @@
 [ext_resource path="res://scripts/no.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 36
+size = 64
+extra_spacing_top = -20
+extra_spacing_bottom = -20
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 36
+size = 64
+extra_spacing_top = -30
+extra_spacing_bottom = -30
 font_data = ExtResource( 3 )
 
 [node name="permission" type="Node2D"]
@@ -33,7 +37,7 @@ rect_rotation = 270.0
 rect_pivot_offset = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "yes"
+text = "YES"
 align = 1
 valign = 1
 __meta__ = {
@@ -57,7 +61,7 @@ rect_rotation = 270.0
 rect_pivot_offset = Vector2( 50, 50 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "no"
+text = "NO"
 align = 1
 valign = 1
 __meta__ = {

@@ -10,8 +10,6 @@ var menu_scene = load("res://scenes/hex_menu.tscn")#hex_menu.tscn")
 var menu_instance
 var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
-var data_send_scene = load("res://scripts/data_send.gd")
-var data_send_instance
 var perm_instance
 var device_ID = Vector2(0,0)
 var in_lab = 0
@@ -20,7 +18,7 @@ var url = "/upload/gd.php"
 var IP = "http://95.179.150.62"
 var compliments = PoolStringArray(["MONOMENTAL","DUOLICIOUS","TRIUMPHANT","TETRIFIC","PENTASTIC","HEXQUISITE"])
 var file_to_delete = ""
-var file = File.new() #????
+var file = File.new()
 
 
 func _ready():
@@ -43,25 +41,6 @@ func _ready():
 			hex_slide_instance = hex_slide_scene.new()
 			add_child(hex_slide_instance)
 			hex_slide_instance.create(i,j)
-#	if in_lab:
-#		add_child(load("res://scripts/eye_calib.gd").new())
-
-func get_cached_files():
-	var dir = Directory.new()
-	dir.open("user://")
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name != "":
-		if file_name.begins_with("data"):
-			var file1 = File.new()
-			file1.open("user://" + file_name,file1.READ)
-			data_send_instance = data_send_scene.new()
-			add_child(data_send_instance)
-			data_send_instance.create(file_name.left(file_name.length()-5).right(4),device_ID,file1.get_as_text())
-			file1.close()
-		file_name = dir.get_next()
-	dir.list_dir_end()
-	get_tree().call_group("file_to_send","request_wrapper")
 
 func start_game():
 	if !file.file_exists("user://deviceID"):
@@ -71,7 +50,7 @@ func start_game():
 		device_ID.x = int(file.get_32())
 		device_ID.y = int(file.get_32())
 		file.close()
-	get_cached_files()
+	$data_send.search_and_send()
 	new_menu()
 	add_child(twn)
 
@@ -110,11 +89,12 @@ func save_data(win,end_level=true):
 		file1.open("user://data" + global.save_file_name +".json", file1.WRITE)
 		file1.store_line(QUERY)
 		file1.close()
-		data_send_instance = data_send_scene.new()
+		$data_send.search_and_send()
+		#data_send_instance = data_send_scene.new()
 		#call_deferred("add_child",data_send_instance)#
-		add_child(data_send_instance)
-		data_send_instance.create(global.save_file_name,device_ID,QUERY)
-		get_tree().call_group("file_to_send","request_wrapper")
+		#add_child(data_send_instance)
+		#data_send_instance.create(global.save_file_name,device_ID,QUERY)
+		#get_tree().call_group("file_to_send","request_wrapper")
 		#send_data(QUERY,global.save_file_name)
 #			if send_data(QUERY) != HTTPRequest.RESULT_SUCCESS: #HTTP.get_status() != HTTPClient.STATUS_BODY:
 #				var file = File.new()
@@ -135,29 +115,6 @@ func save_data(win,end_level=true):
 #	var HEADERS = ["Content-Type: application/json", str("ID:",device_ID[0],"_",device_ID[1]) , str("SESSIONID:",fname)]
 #	return $data_send.request_wrapper(IP + url, HEADERS,true,HTTPClient.METHOD_POST,QUERYloc,fname)
 
-#func send_data_from_directory():
-#	#var files = []
-#	var dir = Directory.new()
-#	dir.open("user://")
-#	dir.list_dir_begin()
-#	var file = File.new()
-#	while true:
-#		var filename = dir.get_next()
-#		if filename == "":
-#			break
-#		elif filename.begins_with("data"):
-#			file.open("user://" + filename,file.READ)
-#			if send_data(file.get_as_text()) == HTTPClient.STATUS_BODY:
-#				dir.remove(filename)
-#			else:
-#				file.close()
-#				break
-#			#print( file.get_as_text())
-#			file.close()
-#			#break
-#            #files.append(file)
-#	dir.list_dir_end()
-
 func end_seq(win):
 	get_tree().call_group("hex_slider","hide")
 	var lbl = Label.new()
@@ -165,6 +122,8 @@ func end_seq(win):
 	lbl.align = Label.ALIGN_CENTER
 	lbl.rect_size = Vector2(global.w,global.h)
 	lbl.rect_position = Vector2(0,0)
+	lbl.rect_pivot_offset = lbl.rect_size/2
+	lbl.rect_rotation = 270
 	global.fnt.size = 1
 	lbl.set("custom_fonts/font",global.fnt)
 	twn.start()
@@ -177,7 +136,6 @@ func end_seq(win):
 			timed_play(global.move_time_new,$spiccato,$spiccatoB,game_instance.get_node("progress_tween").play_state.z-1)
 		if global.curr_wv < 6:
 			lbl.text += "\nLEVEL " + str(global.curr_wv+1) + " UNLOCKED."
-
 	else:
 		lbl.set("custom_colors/font_color",global.hint_color(7))
 		lbl.text = "YOU GOT\nHEXXED!"
