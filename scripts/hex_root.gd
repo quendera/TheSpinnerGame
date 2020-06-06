@@ -111,7 +111,8 @@ func save_data(win,end_level=true):
 		file1.store_line(QUERY)
 		file1.close()
 		data_send_instance = data_send_scene.new()
-		call_deferred("add_child",data_send_instance)#add_child(data_send_instance)
+		#call_deferred("add_child",data_send_instance)#
+		add_child(data_send_instance)
 		data_send_instance.create(global.save_file_name,device_ID,QUERY)
 		get_tree().call_group("file_to_send","request_wrapper")
 		#send_data(QUERY,global.save_file_name)

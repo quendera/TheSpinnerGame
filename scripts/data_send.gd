@@ -19,10 +19,13 @@ func create(fname,devID,quer):
 	query = quer
 	
 func request_wrapper():
+	print(finame)
 	request(ip_url, header,true,HTTPClient.METHOD_POST,query)
 	#connect("request_completed",self,"_on_data_send_request_completed",[fname])
 	
 func _on_request_completed(_result, _response_code, _headers, body):
+	print(3)
+	print(finame)
 	if body.get_string_from_utf8() == "upload successful":
 		dir.remove("user://data" + finame + ".json")
 		queue_free()
