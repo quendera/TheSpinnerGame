@@ -34,7 +34,7 @@ anims/highlight = ExtResource( 5 )
 modulate = Color( 1, 1, 1, 0.741176 )
 position = Vector2( 154.156, 284.842 )
 rotation = -1.5708
-scale = Vector2( 0.055, 154.661 )
+scale = Vector2( 0.22, 154.661 )
 texture = SubResource( 2 )
 
 [node name="mask_logo1" type="Sprite" parent="."]

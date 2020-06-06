@@ -7,7 +7,7 @@
 [ext_resource path="res://scripts/no.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 20
+size = 36
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -72,9 +72,9 @@ margin_bottom = 1615.0
 rect_rotation = 270.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
-text = "We designed this game to study how people solve puzzles. We do this by recording and analyzing your actions in the game. Your data will be kept anonymous and secure, and you can remove your data from the study at any time.
+text = "We designed this game to study how people solve problems. We do this by saving and analyzing your actions in the game. All the data is completely anonymous and stored in a secure server.  At any time you can withdraw from the study by following the instructions in the CONTACT tab.
 
-I hereby consent to having my data collected. If I am under 18, I have gotten permission from my parents. "
+I hereby consent to having my data collected. If I am under 18, I have gotten permission from my parents to participate. "
 align = 1
 autowrap = true
 __meta__ = {

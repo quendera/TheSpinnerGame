@@ -58,7 +58,7 @@ func init(lev,device_ID):
 	"device_video_driver":OS.get_current_video_driver(),
 	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "focus_in":[], "focus_out":[], 
 	"failure_thresh":global.fail_thresh,"rand_pos": global.make_rand, "repeat_bad": global.repeat_bad,
-	"version":1.01}
+	"version":1.02}
 
 func pie_hex(coords,angle):
 	angle *= 6

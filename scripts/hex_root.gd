@@ -111,7 +111,7 @@ func save_data(win,end_level=true):
 		file1.store_line(QUERY)
 		file1.close()
 		data_send_instance = data_send_scene.new()
-		add_child(data_send_instance)
+		call_deferred("add_child",data_send_instance)#add_child(data_send_instance)
 		data_send_instance.create(global.save_file_name,device_ID,QUERY)
 		get_tree().call_group("file_to_send","request_wrapper")
 		#send_data(QUERY,global.save_file_name)
@@ -182,7 +182,7 @@ func end_seq(win):
 		lbl.text = "YOU GOT\nHEXXED!"
 		twn.interpolate_callback($lose,global.move_time_new,"play")
 	twn.interpolate_property(global.fnt,"size",1,80,global.move_time_new,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
-	add_child(lbl)
+	call_deferred("add_child",lbl)#add_child(lbl)
 	twn.interpolate_callback(self,global.move_time_new*12,"new_menu")
 	twn.interpolate_callback(lbl,global.move_time_new*12,"queue_free")
 

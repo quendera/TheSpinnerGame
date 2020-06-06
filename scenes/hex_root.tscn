@@ -16,7 +16,7 @@ glow_enabled = true
 glow_levels/5 = false
 glow_intensity = 1.0
 glow_blend_mode = 0
-glow_hdr_threshold = 0.1
+glow_hdr_threshold = 0.4
 glow_hdr_scale = 1.0
 glow_bicubic_upscale = true
 
@@ -41,8 +41,3 @@ stream = ExtResource( 5 )
 
 [node name="win" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-
-[node name="data_send" type="HTTPRequest" parent="."]
-use_threads = true
-timeout = 1
-[connection signal="request_completed" from="data_send" to="." method="_on_data_send_request_completed"]
