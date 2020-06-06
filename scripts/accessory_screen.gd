@@ -4,7 +4,7 @@ var acc_items = PoolStringArray(["",\
 "We are neuroscientists who developed this game to study how humans learn to solve problems. By playing the game, you provide the data to make this possible!",\
 "This game is a puzzle for you to solve. Keep on trying and leave the rest to your brain!",\
 "",\
-"Design\nGautam Agarwal\nTiago Quendera\nZachary Mainen\n\nMusic\nAdapted from\n8notes.com\n\nLogo and icon\nDiogo Matias\nBruna Pontes\n\nPowered by Godot Engine",\
+"Design\nGautam Agarwal\nTiago Quendera\nZachary Mainen\n\nMusic\nadapted from\n8notes.com\n\nAdditional media\nBruna Pontes\nDiogo Matias\n\nPowered by Godot Engine",\
 "Reach us at\nthehexxedgame@gmail.com\n\nIf you would like to disenroll from the study, please include code\n"])
 
 func _ready():

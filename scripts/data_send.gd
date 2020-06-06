@@ -46,8 +46,8 @@ func search_and_send():
 	
 func _on_request_completed(_result, _response_code, _headers, body):
 #	print(3)
-	print(body.get_string_from_utf8())
-	print(file_name)
+	#print(body.get_string_from_utf8())
+	#print(file_name)
 	if body.get_string_from_utf8() == "upload successful":
 		dir.remove(file_name)#"user://data" + finame + ".json")
 		search_and_send()

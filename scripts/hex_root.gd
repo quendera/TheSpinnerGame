@@ -12,6 +12,7 @@ var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
 var perm_instance
 var device_ID = Vector2(0,0)
+var total_saves = 0
 var in_lab = 0
 var twn = Tween.new()
 var url = "/upload/gd.php"
@@ -28,7 +29,11 @@ func _ready():
 	$spiccatoB.volume_db = 0
 	if file.file_exists("user://hiscores"):
 		file.open_compressed("user://hiscores",File.READ)
-		global.max_level = int(file.get_32())
+		global.max_level = file.get_32()
+		file.close()
+	if file.file_exists("user://save_count"):
+		file.open_compressed("user://save_count",File.READ)
+		total_saves = file.get_32()
 		file.close()
 	if !file.file_exists("user://deviceID"):
 		var perm_scene = load("res://scenes/permission.tscn")
@@ -47,8 +52,8 @@ func start_game():
 		gen_ID()
 	else:
 		file.open_compressed("user://deviceID",File.READ)
-		device_ID.x = int(file.get_32())
-		device_ID.y = int(file.get_32())
+		device_ID.x = file.get_32()
+		device_ID.y = file.get_32()
 		file.close()
 	add_child(twn)
 	twn.start()
@@ -88,13 +93,19 @@ func start_level(lobe):
 func save_data(win,end_level=true):
 #	if !is_saving:
 #		is_saving = 1
-	if !in_lab:
-		QUERY = to_json(global.data)
-		var file1 = File.new()
-		file1.open("user://data" + global.save_file_name +".json", file1.WRITE)
-		file1.store_line(QUERY)
-		file1.close()
-		$data_send.search_and_send()
+	#if !in_lab:
+	total_saves += 1
+	file.open_compressed("user://save_count",File.WRITE)
+	file.store_32(total_saves)
+	file.close()
+	global.data["total_saves"] = total_saves
+	print(total_saves)
+	QUERY = to_json(global.data)
+	#var file1 = File.new()
+	file.open("user://data" + global.save_file_name +".json", File.WRITE)
+	file.store_line(QUERY)
+	file.close()
+	$data_send.search_and_send()
 		#data_send_instance = data_send_scene.new()
 		#call_deferred("add_child",data_send_instance)#
 		#add_child(data_send_instance)
