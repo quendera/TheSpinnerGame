@@ -112,8 +112,7 @@ func log_data():
 
 func _notification(what):
 	if (what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST or what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST):
-		#$"../progress_tween".interpolate_callback($"../..",0,"save_data",false) #$"../..".save_data(false)
-		$"../..".save_data(false)
+		$"../..".save_data(false,true,true)
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
 		global.data["focus_in"].push_back(OS.get_ticks_msec())#print("focus in")
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:

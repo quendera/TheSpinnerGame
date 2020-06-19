@@ -1,8 +1,7 @@
 extends Node
 
-var HTTP = HTTPClient.new()
-var prt = 80
-var QUERY
+#var HTTP = HTTPClient.new()
+#var prt = 80
 #var is_saving = 0
 var game_scene = load("res://scenes/game.tscn")
 var game_instance
@@ -86,11 +85,16 @@ func start_level(lobe):
 		global.make_rand = 2#min(2,fmod(int(device_ID.y)/4,4))
 		global.repeat_bad = 2#min(2,fmod(int(device_ID.y)/16,4))
 	game_instance = game_scene.instance()
-	global.init(lobe,device_ID)
+	global.init(lobe,device_ID,total_saves)
 	add_child(game_instance)
 	menu_instance.queue_free()
 
-func save_data(win,end_level=true):
+func write_data():
+	file.open("user://data" + global.save_file_name +".json", File.WRITE)
+	file.store_line(to_json(global.data))
+	file.close()
+
+func save_data(win,end_level=true,user_quit=false):
 #	if !is_saving:
 #		is_saving = 1
 	#if !in_lab:
@@ -99,12 +103,10 @@ func save_data(win,end_level=true):
 	file.store_32(total_saves)
 	file.close()
 	global.data["total_saves"] = total_saves
-	print(total_saves)
-	QUERY = to_json(global.data)
-	#var file1 = File.new()
-	file.open("user://data" + global.save_file_name +".json", File.WRITE)
-	file.store_line(QUERY)
-	file.close()
+	global.data["level_won"] = win
+	global.data["user_quit"] = user_quit
+	write_data()
+	#print(total_saves)
 	$data_send.search_and_send()
 		#data_send_instance = data_send_scene.new()
 		#call_deferred("add_child",data_send_instance)#
