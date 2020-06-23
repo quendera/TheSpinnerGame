@@ -6,19 +6,21 @@ Godot sends user data to the server in the form of a JSON object via an HTTP `PO
 
 [0. Overview: ](#overview) overall structure
 
-[1. JSON Contents: ](#json-contents) detailed description of every key and its content
+[1. Life Cycle: ](#life-cycle) Overview of the life cycle of data from creation to deletion. 
 
-[2. Send Schedule:]() when is the JSON sent and 
+[2. JSON Contents: ](#json-contents) detailed description of every key and its content
 
-[3. Implications for Analysis]:() Data duplication, data loss, etc. 
+[3. Send Schedule:]() when is the JSON sent and 
+
+[4. Implications for Analysis:]() Data duplication, data loss, etc. 
 
 
-## 0. Overview
+## Overview
 
 User data is first stored in memory, then written to file on the device, then sent to remote server which saves is on disk but also in a database. The files on the local device's disk are deleted upon succesful transmission to remove server. The database is dumped (backed up) every 24 hrs.  
 
 
-## 1. Life Cycle
+## Life Cycle
 
 *The data's life cycle:*
 
@@ -37,7 +39,7 @@ User data is first stored in memory, then written to file on the device, then se
     
 
 
-## 2. JSON Contents
+## JSON Contents
 
 ### Overview
 
