@@ -205,3 +205,9 @@ level: level number #NUMBER OF LEVEL
 "OS_start_time": OS.get_ticks_msec(), # time since current login
 
 collect_status #BOOLEAN
+
+## Etc
+
+:question: how does a tap/swipe outside a lobe reflect in the data? 
+
+:question: how does a tap/swipe during the slider movement reflect in the data?
