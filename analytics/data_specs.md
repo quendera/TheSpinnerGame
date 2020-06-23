@@ -37,6 +37,7 @@ User data is first stored in memory, then written to file on the device, then se
 * The server stores the JSON as a file on disk as well as by committing it to SQL with the following fields: 
   * 
     
+when you focus out, data (including the actions associated with the incomplete puzzle that the user is in the mist of) is written to file, AND sent to the server. 
 
 
 ## JSON Contents
@@ -95,14 +96,36 @@ mo_move_pos_x                (24) : [-97.381409, -88.491577, -88.491577, -84.046
 every time android sends a drag (swipe) signal it will write to these arrays. These include taps that are misundertsood as drags/swipes by android, but godot logic has a more stringent requirement to count an interaction as a swipe. 
 
 mo_move_pos_y                (24) : [83.333344, 62.222229, 62.777802, 62.777802, 67.777802, 68.333344, 120.000031, 118.888916, 117.222229, 112.777802, 102.777802, 85.555573, 21.666687, -155, -155, -158.333328, -166.666656, -171.111099, -194.444443, -192.222214, -182.222214, -160, -76.111099, -62.222214]
+
+
 mo_move_time                 (24) : [365057, 365371, 365387, 365525, 365670, 365670, 366725, 366743, 366761, 366778, 366796, 366814, 366832, 369254, 369271, 369395, 369529, 369694, 371282, 371298, 371315, 371331, 371363, 371364]
+
+
+
 ba_ID                         (2) : [0, 0]
+
+biggest target 0, next biggest 1 and so on. 
+
 ba_age                        (2) : [5, 6]
+
+size at which object was collected, if you miss it it's indicated by a 0 (or a 7?) 
+
 ba_position                   (2) : [1, 3]
+
+the lobe that it exists on (and by definition is collected from)
+
 ba_time                       (2) : [367116, 371651]
+
+time of collection
+
 focus_in                      (2) : [379081, 386834]
+
 focus_out                     (2) : [374954, 381247]
+
 sw_time_end                   (2) : [367116, 371651]
+
+time that subwave (puzzle) ended. 
+
 sw_flip                       (3) : [0, 1, 0]
 
 whether flipped or not (after rotational offset) around the first piece. 
@@ -112,31 +135,37 @@ sw_offset                     (3) : [1, 3, 4]
 rotational offset of objects (0-indexed)
 
 sw_subwave_num                (3) : [0, 1, 5]
+
+the puzzle id according to the spawn.txt
+
 sw_time                       (3) : [364339, 367914, 373764]
+
+start time of the subwave (puzzle)
+
 device_IP                     (7) : ['192.168.1.66', '2001:569:7ac6:6900:1457:626f:c220:f868', '2001:569:7ac6:6900:ee9b:f3ff:fe96:3eb5', 'fe80:0:0:0:ee9b:f3ff:fe96:3eb5', 'fe80:0:0:0:ec9b:f3ff:fe96:3eb5', '127.0.0.1', '0:0:0:0:0:0:0:1']
 ++++++++++++++++++++
-level                           : 1
+level                           : 1   current level: NOT 0-indexed. 
 version                         : 1.08
-rand_pos                        : 2
+rand_pos                        : 2   a/b testing: which category you were put into... 
 device_ID                       : a3f1ef82e68aa9bb
 device_OS                       : Android
-level_won                       : False
-user_quit                       : False
+level_won                       : False  only True if the session is saved upon successfull completion of the level.  
+user_quit                       : False  if user pressed back. It does NOT register a quit if user focuses OUT and then closes the app. 
 device_dpi                      : 420
-repeat_bad                      : 2
+repeat_bad                      : 2       a/b testing variable : whether you present the same pattern if person fails it... currently disabled i.e. they don't see the sam epuzzle again. 
 device_name                     : SM-N920W8
-total_saves                     : 13
-max_unlocked                    : 1
+total_saves                     : 13     number of times this user's files has been saved: cumulative across all levels. 
+max_unlocked                    : 1   maximum level unlocked PRIOR to this attempt, 0-indexed
 OS_start_time                   : 364316
 device_ID_rand                  : 2846276096
 device_ID_time                  : 1592595456
-failure_thresh                  : 15
+failure_thresh                  : 15     level dependent, always 15 except last level. 
 device_timezone                 : {'bias': -420, 'name': 'PDT'}
 device_kb_locale                : en_CA
 device_current_time             : {'day': 22, 'dst': True, 'hour': 14, 'year': 2020, 'month': 6, 'minute': 51, 'second': 40, 'weekday': 1}
 device_screensize_x             : 1920
 device_screensize_y             : 1080
-device_video_driver             : 0
+device_video_driver             : 0   
 ```
 
 </details>
