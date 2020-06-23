@@ -51,6 +51,8 @@ User data is first stored in memory, then written to file on the device, then se
 
 `device_`: 
 
+actions of user vs. discreet actions that are actually taken by the game in response to the user actions (registered when the tween is completed). 
+
 
 
 ### Real Example
@@ -64,20 +66,34 @@ json_raw = '{"mo_x": [-97.381409, -101.270752, -88.491577, -84.046631, -91.26965
 The json above is organized below with one key and its value printed per line, ordered first by type (lists first, everything else second), category (`mo_`, `sw_`, etc.), and size (if list), respectively. The number in parenthesis is the size of the list: 
 
 ```
-drone_play                    (1) : [374062]
-mo_act_drag                  (13) : [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]
-mo_fake_release              (13) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-mo_lobe                      (13) : [2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4]
-mo_press_time                (13) : [365039, 365192, 365338, 365486, 365635, 366691, 368974, 369089, 369218, 369360, 369496, 369641, 371266]
-mo_press_x                   (13) : [-96.825806, -101.270752, -87.935974, -83.491028, -90.158447, -168.500244, 7.074341, 22.075989, 19.297913, 22.631592, 20.409119, 19.853516, 0.406982]
-mo_press_y                   (13) : [82.777802, 80.000031, 61.666687, 62.222229, 67.777802, 120.555573, -155, -156.666656, -155, -158.333328, -167.222214, -171.666656, -195]
-mo_time                      (13) : [365058, 365225, 365387, 365525, 365671, 366832, 368991, 369122, 369272, 369396, 369545, 369694, 371364]
-mo_x                         (13) : [-97.381409, -101.270752, -88.491577, -84.046631, -91.269653, 28.743347, 7.074341, 22.075989, 20.409119, 23.187195, 20.964722, 20.409119, -9.594116]
-mo_y                         (13) : [83.333344, 80.000031, 62.777802, 62.777802, 68.333344, 21.666687, -155, -156.666656, -155, -158.333328, -166.666656, -171.111099, -62.222214]
-mo_act_taken_act             (16) : [50, 0, 0, 0, 0, 0, 2, -1962528752, 0, 0, 0, 0, 0, 0, 2, -1962528752]
+drone_play              (1) : time at which the background drone music restarts the loop  [374062]
+mo_act_drag             (13) : 0 for tap, 1 for drag (swipe).      [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1]
+mo_fake_release         (13) : ??? multiple releases by a single press as registered by godot.  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+mo_lobe                 (13) : lobe that was either touched or swiped. [2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4]
+mo_press_time           (13) : time of user action relative to start of level (milliseconds) [365039, 365192, 365338, 365486, 365635, 366691, 368974, 369089, 369218, 369360, 369496, 369641, 371266]
+mo_press_x              (13) : where you press [-96.825806, -101.270752, -87.935974, -83.491028, -90.158447, -168.500244, 7.074341, 22.075989, 19.297913, 22.631592, 20.409119, 19.853516, 0.406982]
+mo_press_y              (13) : [82.777802, 80.000031, 61.666687, 62.222229, 67.777802, 120.555573, -155, -156.666656, -155, -158.333328, -167.222214, -171.666656, -195]
+mo_time                 (13) : when you release [365058, 365225, 365387, 365525, 365671, 366832, 368991, 369122,/ 369272, 369396, 369545, 369694, 371364]
+mo_x                    (13) : where you release [-97.381409, -101.270752, -88.491577, -84.046631, -91.269653, 28.743347, 7.074341, 22.075989, 20.409119, 23.187195, 20.964722, 20.409119, -9.594116]
+mo_y                    (13) : where you release [83.333344, 80.000031, 62.777802, 62.777802, 68.333344, 21.666687, -155, -156.666656, -155, -158.333328, -166.666656, -171.111099, -62.222214]
+mo_act_taken_act        (16) : [50, 0, 0, 0, 0, 0, 2, -1962528752, 0, 0, 0, 0, 0, 0, 2, -1962528752]
+
+actions from the vantage point of slider, +/-1 if slide is moving (clockwise/counterclockwise), 2 if slider is collecting, 0 if it's aggregating (tap in place). The other numbers in the example above can actually be anything, including 0, -1, 1, and 2. In order ot disambiguate these, look at mo_act_taken_pos, the entries that are -1 correspond to these random numbers here that indicate begin/end of a puzzle. 
+
 mo_act_taken_pos             (16) : [-1, 1, 1, 1, 1, 1, 1, -1, 3, 3, 3, 3, 3, 3, 3, -1]
-mo_act_taken_time            (17) : [364621, 365338, 365652, 365952, 366254, 366565, 367116, 368208, 369289, 369598, 369905, 370218, 370532, 370835, 371668, 371976, 374062]
+
+-1 "bookend" the start/end of a puzzle, other numbers refer to the lobes (0-indexed)
+
+mo_act_taken_time            (17) : [364621, 365338, 365652, 365952, 366254, 366565, 367116,|| 368208, 369289, 369598, /369905, 370218, 370532, 370835, 371668, || 371976,(third sw) 374062]
+
+godot signal system logs these "taken" values into queue as soon as the slider movement is done (tween completion)
+
+quit level while action is happening: 
+
 mo_move_pos_x                (24) : [-97.381409, -88.491577, -88.491577, -84.046631, -91.269653, -91.269653, -167.944641, -166.277771, -161.277283, -152.38739, -133.49646, -101.270752, 28.743347, 19.853516, 20.409119, 23.187195, 20.964722, 20.409119, 0.406982, -0.148682, -1.259888, -4.037964, -9.038513, -9.594116]
+
+every time android sends a drag (swipe) signal it will write to these arrays. These include taps that are misundertsood as drags/swipes by android, but godot logic has a more stringent requirement to count an interaction as a swipe. 
+
 mo_move_pos_y                (24) : [83.333344, 62.222229, 62.777802, 62.777802, 67.777802, 68.333344, 120.000031, 118.888916, 117.222229, 112.777802, 102.777802, 85.555573, 21.666687, -155, -155, -158.333328, -166.666656, -171.111099, -194.444443, -192.222214, -182.222214, -160, -76.111099, -62.222214]
 mo_move_time                 (24) : [365057, 365371, 365387, 365525, 365670, 365670, 366725, 366743, 366761, 366778, 366796, 366814, 366832, 369254, 369271, 369395, 369529, 369694, 371282, 371298, 371315, 371331, 371363, 371364]
 ba_ID                         (2) : [0, 0]
@@ -88,7 +104,13 @@ focus_in                      (2) : [379081, 386834]
 focus_out                     (2) : [374954, 381247]
 sw_time_end                   (2) : [367116, 371651]
 sw_flip                       (3) : [0, 1, 0]
+
+whether flipped or not (after rotational offset) around the first piece. 
+
 sw_offset                     (3) : [1, 3, 4]
+
+rotational offset of objects (0-indexed)
+
 sw_subwave_num                (3) : [0, 1, 5]
 sw_time                       (3) : [364339, 367914, 373764]
 device_IP                     (7) : ['192.168.1.66', '2001:569:7ac6:6900:1457:626f:c220:f868', '2001:569:7ac6:6900:ee9b:f3ff:fe96:3eb5', 'fe80:0:0:0:ee9b:f3ff:fe96:3eb5', 'fe80:0:0:0:ec9b:f3ff:fe96:3eb5', '127.0.0.1', '0:0:0:0:0:0:0:1']
@@ -148,7 +170,12 @@ level: level number #NUMBER OF LEVEL
 
 "mo_move_time":[], #DURATION OF DRAG/TAP
 
-"mo_fake_release":[], #SUCCESSFUL DRAG  (for collect)
+#### `mo_fake_release`
+
+#SUCCESSFUL DRAG  (for collect)
+
+press and release that registered two releases... indicates second of two releases from the same event. Should be rare. 
+press is indicated by mo_press_x, mo_press_y, mo_press_time, while mo_x mo_y, mo_time indicate release position/time. The mo_press_* are less than or equal to the other ones but if they are less than, then you should see this reflected in the mo_fake_release. 
 
 `mo_act_taken_act`: `[int]` 
 
