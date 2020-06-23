@@ -58,8 +58,8 @@ func init(lev,device_ID,num_saves):
 	"device_video_driver":OS.get_current_video_driver(),
 	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "focus_in":[], "focus_out":[], 
 	"failure_thresh":global.fail_thresh,"rand_pos": global.make_rand, "repeat_bad": global.repeat_bad,
-	"user_quit":false,"level_won":false,
-	"total_saves":num_saves,"max_unlocked":max_level ,"version":1.08}
+	"user_quit":false,"level_won":false,"level_end_time":0,
+	"total_saves":num_saves,"max_unlocked":max_level ,"version":1.09}
 
 func pie_hex(coords,angle):
 	angle *= 6

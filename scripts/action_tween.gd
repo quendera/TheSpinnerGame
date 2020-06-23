@@ -17,7 +17,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
-		get_tree().get_root().get_node("hex_root").save_data(false)
+		get_tree().get_root().get_node("hex_root").save_data(false,true,true)
 	elif event is InputEventScreenTouch and wave_age >= 0:
 		if event.is_pressed():
 			global.data["mo_press_time"].push_back(OS.get_ticks_msec())
@@ -99,10 +99,10 @@ func which_action(click_loc):
 		add_to_queue(global.data["mo_lobe"][-1],global.data["mo_act_drag"][-1])
 
 func _on_action_tween_tween_completed( _object, _key ):
+	stop_all()
 	global.data["mo_act_taken_time"].push_back(OS.get_ticks_msec())
 	global.data["mo_act_taken_act"].push_back(action_queue[0])
 	global.data["mo_act_taken_pos"].push_back(location_queue[1])
-	stop_all()
 	if collection_sequence > 0:
 		get_tree().call_group("hex_balls", "run_collection", collection_sequence)
 		collection_sequence = 0

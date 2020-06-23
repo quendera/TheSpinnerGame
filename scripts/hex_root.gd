@@ -102,6 +102,7 @@ func save_data(win,end_level=true,user_quit=false):
 	file.open_compressed("user://save_count",File.WRITE)
 	file.store_32(total_saves)
 	file.close()
+	global.data["level_end_time"] = OS.get_ticks_msec()
 	global.data["total_saves"] = total_saves
 	global.data["level_won"] = win
 	global.data["user_quit"] = user_quit
