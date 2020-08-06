@@ -140,6 +140,7 @@ func end_seq(win):
 	#lbl.valign = Label.VALIGN_CENTER
 	#lbl.align = Label.ALIGN_CENTER
 	$end_label.rect_size = Vector2(global.w,global.h)
+	$end_label.rect_scale = Vector2(0,0)
 	#lbl.rect_position = Vector2(0,0)
 	$end_label.rect_pivot_offset = Vector2(global.w,global.h)/2
 	#lbl.rect_rotation = 270
