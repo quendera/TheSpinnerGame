@@ -1,7 +1,7 @@
 extends Label
 
 func _ready():
-	if global.curr_wv == 1:
+	if global.curr_wv == 1 and global.scorebar_mode == 0:
 		set_prc(0)
 		set("custom_fonts/font",global.fnt)
 		set("custom_colors/font_color",Color(0,0,0))

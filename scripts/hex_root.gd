@@ -26,10 +26,18 @@ func _ready():
 	AudioServer.set_bus_volume_db(0,-10)
 	$spiccato.volume_db = -5
 	$spiccatoB.volume_db = 0
-	if file.file_exists("user://hiscores"):
-		file.open_compressed("user://hiscores",File.READ)
-		global.max_level = file.get_32()
+	if file.file_exists("user://levelscores"):
+		file.open_compressed("user://levelscores",File.READ)
+		for i in range(12):
+			global.level_scores[i] = file.get_64()
+			if !i%2 and global.level_scores[i] >= 0:
+				global.max_level = i/2 + 1
 		file.close()
+		update_score()
+	#if file.file_exists("user://hiscores"):
+	#	file.open_compressed("user://hiscores",File.READ)
+	#	global.max_level = file.get_32()
+	#	file.close()
 	if file.file_exists("user://save_count"):
 		file.open_compressed("user://save_count",File.READ)
 		total_saves = file.get_32()
@@ -58,10 +66,9 @@ func start_game():
 	twn.start()
 	twn.interpolate_method(self,"play_timed_midi",48,72,3.4)
 	twn.interpolate_callback($lose,3.4,"play")
-	$data_send.search_and_send()
+	#$data_send.search_and_send()
 	new_menu()
 	#twn.set_tween_process_mode(0)
-
 
 func new_menu():
 	menu_instance = menu_scene.instance()
@@ -94,7 +101,7 @@ func write_data():
 	file.store_line(to_json(global.data))
 	file.close()
 
-func save_data(win,end_level=true,user_quit=false):
+func save_data(win,end_level=true,user_quit=false,num_perfect=-1):
 #	if !is_saving:
 #		is_saving = 1
 	#if !in_lab:
@@ -107,25 +114,25 @@ func save_data(win,end_level=true,user_quit=false):
 	global.data["level_won"] = win
 	global.data["user_quit"] = user_quit
 	write_data()
-	#print(total_saves)
-	$data_send.search_and_send()
-		#data_send_instance = data_send_scene.new()
-		#call_deferred("add_child",data_send_instance)#
-		#add_child(data_send_instance)
-		#data_send_instance.create(global.save_file_name,device_ID,QUERY)
-		#get_tree().call_group("file_to_send","request_wrapper")
-		#send_data(QUERY,global.save_file_name)
-#			if send_data(QUERY) != HTTPRequest.RESULT_SUCCESS: #HTTP.get_status() != HTTPClient.STATUS_BODY:
-#				var file = File.new()
-#				file.open(global.save_file_name, file.WRITE)
-#				file.store_line(QUERY)
-#				file.close()
 	if win:
 		var file1 = File.new()
-		global.max_level = max(global.max_level,global.curr_wv)
-		file1.open_compressed("user://hiscores",File.WRITE)
-		file1.store_32(global.max_level)
-		file1.close()
+		#global.max_level = max(global.max_level,global.curr_wv)
+		var total_time = global.data["level_end_time"] - global.data["sw_time"][0]
+		if global.level_scores[global.curr_wv*2-2] < num_perfect or \
+			(global.level_scores[global.curr_wv*2-2] == num_perfect and \
+			global.level_scores[global.curr_wv*2-1] > total_time):
+				file1.open_compressed("user://levelscores",File.WRITE)
+				global.level_scores[global.curr_wv*2-2] = num_perfect
+				global.level_scores[global.curr_wv*2-1] = total_time
+				update_score()
+				global.max_level = max(global.curr_wv,global.max_level)
+				for i in range(12):
+					file1.store_64(global.level_scores[i])
+				file1.close()
+		#file1.open_compressed("user://hiscores",File.WRITE)
+		#file1.store_32(global.max_level)
+		#file1.close()
+	#$data_send.search_and_send()
 	if end_level:
 		end_seq(win)
 		game_instance.queue_free()
@@ -186,6 +193,13 @@ func timed_play(st = 0,  treb_stream = $spiccato,bass_stream = $spiccatoB,z = 0)
 func play_timed_midi(pitch,stream = $spiccato,offset = 0):
 	stream.pitch_scale = pow(2,pitch/12.0-5+offset)
 	stream.play()
+	
+func update_score():
+	global.total_score = 0
+	for i in range(6):
+		if global.level_scores[i*2] >= 0:
+			global.total_score = global.total_score + 1000*global.level_scores[i*2] + \
+			(1000*int(global.move_time_new*1000)*global.num_waves[i]*6*(i+1))/global.level_scores[i*2+1]
 
 #func _on_data_send_request_completed(_result, _response_code, _headers, body,fname):
 #	#if body.get_string_from_utf8() != "upload successful" and file_to_delete == "": #result != HTTPRequest.RESULT_SUCCESS and 

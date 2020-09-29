@@ -22,16 +22,28 @@ var fail_thresh
 var make_rand
 var repeat_bad
 var max_level = 0
+var level_scores = PoolIntArray([-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1])
+var total_score = 0
 var max_score
 var num_waves = PoolIntArray([6,12,20,30,30,30])#60,60])
 var fnt = DynamicFont.new()
 var menu_opened = 0
+var scorebar_mode = 1
+var stretch = h*(1-padding)-poly_size*2/sqrt(3)
+var scorebar_anchor = poly_size*1.5
 
 func full_hex(radius,wire =0,off = Vector2(0,0)):
 	var coords = PoolVector2Array()
 	for i in range(6+wire):
 		coords.append(Vector2(cos(float(i)/3*PI),sin(float(i)/3*PI))*radius+off)
 	return coords
+	
+func score_hex(radius,off = Vector2(0,0),stretchy = Vector2(0,0),wire = 0):
+	var coords = PoolVector2Array()
+	for i in range(6+wire):
+		coords.append(Vector2(sin(float(i)/3*PI),cos(float(i)/3*PI))*radius+off+int(i>1 and i < 5)*stretchy)
+	return coords
+	
 	
 func full_tri(radius,wire =0,off = Vector2(0,0)):
 	var coords = PoolVector2Array()
@@ -58,8 +70,8 @@ func init(lev,device_ID,num_saves):
 	"device_video_driver":OS.get_current_video_driver(),
 	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "focus_in":[], "focus_out":[], 
 	"failure_thresh":global.fail_thresh,"rand_pos": global.make_rand, "repeat_bad": global.repeat_bad,
-	"user_quit":false,"level_won":false,"level_end_time":0,
-	"total_saves":num_saves,"max_unlocked":max_level ,"version":1.10}
+	"user_quit":false,"level_won":false,"level_end_time":0,"level_scores":level_scores,
+	"total_saves":num_saves,"max_unlocked":max_level ,"version":1.11}
 
 func pie_hex(coords,angle):
 	angle *= 6

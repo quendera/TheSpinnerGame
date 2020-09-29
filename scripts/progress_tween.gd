@@ -37,7 +37,7 @@ func finish_hints_discrete():
 	#num_sounds = ceil(sw_score*36*$"../Spawner".ball_per_sw) #/points_per_click
 	start_time = global.move_time_new
 	if sw_score == 0:
-		$"../hex_progress".set_shape(float($"../Spawner".sw_played)/global.sw_count)
+		$"../hex_progress_back/hex_progress".set_shape(float($"../Spawner".sw_played)/global.sw_count)
 	elif round(sw_score*36*$"../Spawner".ball_per_sw) == $"../Spawner".curr_wv_points:
 		slide_hints(sw_score,2,start_time)
 	else:
@@ -45,6 +45,7 @@ func finish_hints_discrete():
 	num_sounds = round((norm-sw_score)*36*$"../Spawner".ball_per_sw) #/points_per_click
 	frac_fail_new = frac_fail + num_sounds/float(global.fail_thresh*global.sw_count)
 	if num_sounds > 0:
+		start_time = start_time + global.move_time_new
 		slide_hints(norm-sw_score,3,start_time)
 	frac_fail = frac_fail_new
 	if global.repeat_bad < 2 and num_sounds > global.fail_thresh:
@@ -74,10 +75,12 @@ func slide_hints(new,mode,time = 0):
 	elif mode == 2:
 		scale_count += 1
 		play_state.z += 1
+		#print(scale_count)
+		#print(play_state.z)
 		interpolate_method(self,"count_down_perfect",1,0,global.game_measure,$"../action_tween".transition,$"../action_tween".ease_direction,time)
 		$"../hex_subwave_capture".color = global.hex_color(6,1) 
-		if global.curr_wv == 1:
-			$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
+		#if global.curr_wv == 1:
+		#	$"../progress".set("custom_colors/font_color",global.hex_color(6,1))
 		#timed_play()
 		start_time += global.game_measure
 		if scale_count == 1:
@@ -92,25 +95,30 @@ func slide_hints(new,mode,time = 0):
 func count_reset(new):
 #	reset_sliders(6*new-6)
 	get_tree().call_group("hex_slider","set_shape", 6*new-6)
-	$"../hex_subwave".total_points(new*norm)
+	$"../hex_subwave".total_points(new)
 
 func count_up(new):
-	$"../hex_subwave_capture".collected_points(new)
-	$"../hex_progress".play_note1(new)
+	$"../hex_subwave_capture".collected_points(new/norm)
+	$"../hex_progress_back/hex_progress".play_note1(new)
 	if global.curr_wv == 1:
 		$"../percentage".set_prc(new)
 		
 func count_down(new):
-	$"../hex_subwave_capture".collected_points(new)
-	$"../hex_subwave".total_points(new+norm-sw_score)
-	$"../hex_progress".set_shape(($"../Spawner".sw_played-new/sw_score)/global.sw_count)
-	$"../hex_progress".play_note1(new)
+	$"../hex_subwave_capture".collected_points(new/norm)
+	$"../hex_subwave".total_points((new+norm-sw_score)/norm)
+	$"../hex_progress_back/hex_progress".set_shape(($"../Spawner".sw_played-new/sw_score)/global.sw_count)
+	$"../hex_progress_back/hex_progress".play_note1(new)
 	
 func count_down_perfect(new):
-	$"../hex_subwave_capture".collected_points(new*norm)
-	$"../hex_subwave".total_points(norm*new)
-	$"../hex_progress".set_shape(($"../Spawner".sw_played-new)/global.sw_count)
-	$"../hex_progress_perfect".set_shape((scale_count-new)/global.sw_count)
+	$"../hex_subwave_capture".collected_points(new)
+	#$"../hex_subwave".total_points(new)
+	$"../hex_progress_back/hex_progress".set_shape(($"../Spawner".sw_played-new)/global.sw_count)
+	$"../hex_progress_back/hex_progress_perfect".set_shape((scale_count-new)/global.sw_count)
+	if new == 1:
+		$"../hex_subwave".total_points(0)
+		$"../hex_progress_back/hex_progress/smiley".modulate = global.hex_color(6,1)*2
+	elif new == 0:
+		$"../hex_progress_back/hex_progress/smiley".modulate = global.hex_color(6)*1.5
 	if play_state.x < $"../Spawner".notesB.size() and $"../Spawner".notesB[play_state.x].y/float(global.measure_time) - play_state.z + 1 < 1-new:# float(play_state.z) 
 		play_timed_midi($"../Spawner".notesB[play_state.x].x,$"../spiccatoB",1)
 		play_state.x += 1
@@ -119,8 +127,8 @@ func count_down_perfect(new):
 		play_state.y += 1
 		
 func count_down_damage(new):
-	$"../hex_subwave".total_points(new)
-	$"../hex_xed".set_shape(frac_fail_new-new/(norm-sw_score)*num_sounds/float(global.fail_thresh*global.sw_count))
+	$"../hex_subwave".total_points(new/norm)
+	$"../hex_xed_back/hex_xed".set_shape(frac_fail_new-new/(norm-sw_score)*num_sounds/float(global.fail_thresh*global.sw_count))
 	$"../typewriter".play()
 
 #func timed_play(st = start_time,  treb_stream = $"../spiccato",bass_stream = $"../spiccatoB", speedUp = 1):

@@ -13,8 +13,6 @@ func _ready():
 	use_threads = true
 	connect("request_completed",self,"_on_request_completed")
 	dir.open("user://")
-	#search_and_send()
-	#add_to_group("file_to_send")
 
 func search_and_send():
 	cancel_request()
@@ -25,7 +23,8 @@ func search_and_send():
 			file.open("user://" + file_name,file.READ)
 			header = ["Content-Type: application/json", \
 			str("ID:",$"..".device_ID[0],"_",$"..".device_ID[1]) , \
-			str("SESSIONID:",file_name.left(file_name.length()-5).right(4))]
+			str("SESSIONID:",file_name.left(file_name.length()-5).right(4)), \
+			str("SCORE:",global.total_score,"VERSION:",global.data["version"])]
 			request(ip_url, header,true,HTTPClient.METHOD_POST,file.get_as_text())
 			#data_send_instance.create(file_name.left(file_name.length()-5).right(4),device_ID,file1.get_as_text())
 			file.close()
@@ -34,16 +33,6 @@ func search_and_send():
 			file_name = dir.get_next()
 	dir.list_dir_end()
 
-#func create(fname,devID,quer):
-#	finame = fname
-#	header = ["Content-Type: application/json", str("ID:",devID[0],"_",devID[1]) , str("SESSIONID:",fname)]
-#	query = quer
-	
-#func request_wrapper():
-#	print(finame)
-#	request(ip_url, header,true,HTTPClient.METHOD_POST,query)
-	#connect("request_completed",self,"_on_data_send_request_completed",[fname])
-	
 func _on_request_completed(_result, _response_code, _headers, body):
 #	print(3)
 	#print(body.get_string_from_utf8())

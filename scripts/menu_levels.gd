@@ -10,7 +10,9 @@ func _ready():
 	
 func _draw():
 	for i in range(rot+1):
-		draw_colored_polygon(global.full_hex(global.side_offset,0,rot*Vector2(sin(i*2*PI/(rot+1)),cos(i*2*PI/(rot+1)))*global.side_offset),global.hex_color(6))
+		draw_colored_polygon(global.full_hex(global.side_offset,0, \
+		rot*Vector2(sin(i*2*PI/(rot+1)),cos(i*2*PI/(rot+1)))*global.side_offset),\
+		global.hex_color(6,i< (rot+1)*global.level_scores[rot*2]/global.num_waves[rot]))
 
 
 func _process(_delta):

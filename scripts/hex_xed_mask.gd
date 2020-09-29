@@ -1,5 +1,6 @@
 extends Polygon2D
 
 func _ready():
-	polygon = global.full_hex((global.poly_size*3*2)/sqrt(3))
-	color = Color(0,0,0)
+	if global.scorebar_mode == 0:
+		polygon = global.full_hex((global.poly_size*3*2)/sqrt(3))
+		color = Color(0,0,0)

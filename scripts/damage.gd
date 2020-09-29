@@ -1,7 +1,7 @@
 extends Label
 
 func _ready():
-	if global.curr_wv == 1:
+	if global.curr_wv == 1 and global.scorebar_mode == 0:
 		set("custom_colors/font_color",global.hint_color(7))
 		#rect_scale = Vector2(1,1)
 		#rect_size = Vector2(global.w,global.h)#/10

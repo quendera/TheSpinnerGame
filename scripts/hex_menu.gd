@@ -5,7 +5,7 @@ var menu_label_instance
 var menu_level_scene = load("res://scripts/menu_levels.gd")
 var menu_level_instance
 #var menu_items = PoolStringArray(["SURVEY","ABOUT","PERFECT\nMODE","PLAY","SHARE","LEADER\nBOARD"])
-var menu_items = PoolStringArray(["EXIT","ABOUT","HELP","PLAY","CREDITS","CONTACT"])
+var menu_items = PoolStringArray(["EXIT","ABOUT","RANKING","PLAY","CREDITS","CONTACT"])
 var menu_items_lab = PoolStringArray(["CALIB-\nRATION","","","PLAY","",""])
 #var startLevel
 
@@ -21,7 +21,6 @@ func _ready():
 		global.menu_opened = 1
 	else:
 		$spotlight.visible = false
-
 	for i in range(6):
 		menu_label_instance = menu_label_scene.new()
 		add_child(menu_label_instance)

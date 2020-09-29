@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=1]
 [ext_resource path="res://scripts/dividers.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scripts/hex_progress_mask.gd" type="Script" id=10]
 [ext_resource path="res://scripts/hex_subwave.gd" type="Script" id=11]
 [ext_resource path="res://scripts/hex_subwave_capture.gd" type="Script" id=12]
+[ext_resource path="res://scripts/hex_xed_back.gd" type="Script" id=13]
 [ext_resource path="res://scripts/percentage.gd" type="Script" id=14]
 [ext_resource path="res://assets/sounds/triangle_wave.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sounds/triangle_slow.wav" type="AudioStream" id=16]
@@ -23,6 +24,16 @@
 [ext_resource path="res://scripts/instructions.gd" type="Script" id=22]
 [ext_resource path="res://scripts/damage.gd" type="Script" id=23]
 [ext_resource path="res://scripts/progress.gd" type="Script" id=24]
+[ext_resource path="res://scripts/progress_text.gd" type="Script" id=25]
+[ext_resource path="res://scripts/hex_progress_back.gd" type="Script" id=26]
+[ext_resource path="res://scripts/hex_xed_text.gd" type="Script" id=27]
+[ext_resource path="res://scripts/hex_subwave_back.gd" type="Script" id=28]
+[ext_resource path="res://scripts/hex_subwave_text.gd" type="Script" id=29]
+[ext_resource path="res://assets/imgs/smiley_new.png" type="Texture" id=30]
+[ext_resource path="res://assets/imgs/frowney_new.png" type="Texture" id=31]
+[ext_resource path="res://scripts/frowney.gd" type="Script" id=32]
+[ext_resource path="res://scripts/smiley.gd" type="Script" id=33]
+[ext_resource path="res://scripts/max_text.gd" type="Script" id=34]
 
 [sub_resource type="DynamicFont" id=1]
 size = 28
@@ -53,23 +64,86 @@ script = ExtResource( 4 )
 [node name="drone_tween" type="Tween" parent="."]
 script = ExtResource( 5 )
 
-[node name="hex_xed" type="Polygon2D" parent="."]
-script = ExtResource( 6 )
+[node name="hex_progress_back" type="Polygon2D" parent="."]
+script = ExtResource( 26 )
 
-[node name="hex_xed_mask" type="Polygon2D" parent="hex_xed"]
-script = ExtResource( 7 )
+[node name="progress_text" type="Label" parent="hex_progress_back"]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+align = 1
+valign = 1
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="hex_progress" type="Polygon2D" parent="."]
+[node name="hex_progress" type="Polygon2D" parent="hex_progress_back"]
 script = ExtResource( 8 )
 
-[node name="hex_progress_perfect" type="Polygon2D" parent="."]
+[node name="smiley" type="Sprite" parent="hex_progress_back/hex_progress"]
+rotation = -1.5708
+texture = ExtResource( 30 )
+script = ExtResource( 33 )
+
+[node name="hex_progress_perfect" type="Polygon2D" parent="hex_progress_back"]
 script = ExtResource( 9 )
+
+[node name="hex_xed_back" type="Polygon2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="hex_xed_text" type="Label" parent="hex_xed_back"]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+align = 1
+valign = 1
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hex_xed" type="Polygon2D" parent="hex_xed_back"]
+script = ExtResource( 6 )
+
+[node name="hex_xed_mask" type="Polygon2D" parent="hex_xed_back/hex_xed"]
+script = ExtResource( 7 )
+
+[node name="frowney" type="Sprite" parent="hex_xed_back/hex_xed"]
+rotation = -1.5708
+texture = ExtResource( 31 )
+script = ExtResource( 32 )
 
 [node name="hex_progress_mask" type="Polygon2D" parent="."]
 script = ExtResource( 10 )
 
+[node name="hex_subwave_back" type="Polygon2D" parent="."]
+visible = false
+script = ExtResource( 28 )
+
 [node name="hex_subwave" type="Polygon2D" parent="."]
 script = ExtResource( 11 )
+
+[node name="max" type="Label" parent="hex_subwave"]
+margin_right = 40.0
+margin_bottom = 14.0
+align = 1
+valign = 1
+script = ExtResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hex_subwave_text" type="Label" parent="hex_subwave"]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+align = 1
+valign = 1
+script = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="hex_subwave_capture" type="Polygon2D" parent="."]
 script = ExtResource( 12 )
@@ -118,29 +192,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="damage" type="Label" parent="."]
-margin_right = 64.0
-margin_bottom = 50.0
-grow_horizontal = 0
-grow_vertical = 0
-rect_rotation = 240.0
-custom_fonts/font = SubResource( 1 )
-text = "  DAMAGE"
-script = ExtResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="progress" type="Label" parent="."]
 margin_right = 76.0
 margin_bottom = 50.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_rotation = 240.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "PROGRESS"
 align = 2
 script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="damage" type="Label" parent="."]
+margin_right = 64.0
+margin_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_rotation = 240.0
+custom_fonts/font = SubResource( 2 )
+text = "  DAMAGE"
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

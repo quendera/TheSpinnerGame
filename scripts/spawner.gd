@@ -68,7 +68,7 @@ func mySpawn():
 	#global.repeat_bad = 2
 	if sw_played >= global.sw_count:#sw_order.size():
 		curr_wv_points = 0
-		$"../..".save_data(true)
+		$"../..".save_data(true,true,false,$"../progress_tween".scale_count)
 	else:
 		var rep_rand = global.repeat_bad == 1 and $"../progress_tween".num_fails > 0
 		if (global.make_rand == 0 or (global.make_rand == 1 and ball_per_sw == 1)) and !rep_rand:
