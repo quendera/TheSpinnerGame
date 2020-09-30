@@ -34,6 +34,7 @@ func create(ind):
 		tot_stars = 0
 		for i in range(6):
 			tot_stars = tot_stars + max(0,(i+1)*global.level_scores[i*2]/global.num_waves[i])
+		#THE FOLLOWING IS WHERE I REQUEST RANK
 		http_request.request(ip_url,["Content-Type: application/json", \
 			str("ID:",$"../..".device_ID[0],"_",$"../..".device_ID[1])])
 		text = "You have unlocked\n" + str(tot_stars) + " out of 42\nblue hexxes."
@@ -42,6 +43,7 @@ func create(ind):
 
 func _http_request_completed(result, response_code, headers, body):
 	var response = parse_json(body.get_string_from_utf8())
+	## THE FOLLOWING IS WHERE I PARSE THE MESSAGE TO GET RANK
 	if false:
 		text = text + "\nYou are ranked\n" + str(1) + " out of " + str(2) + "\nplayers with a score of\n" + \
 		str(global.total_score) + \

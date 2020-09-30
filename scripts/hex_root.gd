@@ -66,7 +66,7 @@ func start_game():
 	twn.start()
 	twn.interpolate_method(self,"play_timed_midi",48,72,3.4)
 	twn.interpolate_callback($lose,3.4,"play")
-	#$data_send.search_and_send()
+	$data_send.search_and_send()
 	new_menu()
 	#twn.set_tween_process_mode(0)
 
@@ -132,7 +132,7 @@ func save_data(win,end_level=true,user_quit=false,num_perfect=-1):
 		#file1.open_compressed("user://hiscores",File.WRITE)
 		#file1.store_32(global.max_level)
 		#file1.close()
-	#$data_send.search_and_send()
+	$data_send.search_and_send()
 	if end_level:
 		end_seq(win)
 		game_instance.queue_free()
