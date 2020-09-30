@@ -24,7 +24,7 @@ func search_and_send():
 			header = ["Content-Type: application/json", \
 			str("ID:",$"..".device_ID[0],"_",$"..".device_ID[1]) , \
 			str("SESSIONID:",file_name.left(file_name.length()-5).right(4)), \
-			str("SCORE:",global.total_score,"VERSION:",global.data["version"])]
+			str("SCORE:",global.total_score)]
 			request(ip_url, header,true,HTTPClient.METHOD_POST,file.get_as_text())
 			#data_send_instance.create(file_name.left(file_name.length()-5).right(4),device_ID,file1.get_as_text())
 			file.close()
