@@ -9,7 +9,7 @@ var acc_items = PoolStringArray(["",\
 "Reach us at\nthehexxedgame@gmail.com\n\nIf you would like to disenroll from the study, please include code\n"])
 var http_request = HTTPRequest.new()
 var tot_stars
-var ip_url = "http://95.179.150.62" + "/upload/gd.php"
+var ip_url = "http://95.179.150.62" + "/upload/score.php"
 
 func _ready():
 		autowrap = true
@@ -42,11 +42,14 @@ func create(ind):
 	#rect_rotation = rot*60-180
 
 func _http_request_completed(result, response_code, headers, body):
-	var response = parse_json(body.get_string_from_utf8())
+	var response = body.get_string_from_utf8()
+	print(response)
 	## THE FOLLOWING IS WHERE I PARSE THE MESSAGE TO GET RANK
-	if false:
-		text = text + "\nYou are ranked\n" + str(1) + " out of " + str(2) + "\nplayers with a score of\n" + \
+	if true:
+		text = text + "\nYou are ranked\n" + response + " out of " + str(2) + "\nplayers with a score of\n" + \
 		str(global.total_score) + \
 		".\nFor ranking rules visit hexxed.io"
-	else:
+	elif false:
 		text = text + "\nTo see your global rank, please enable your data connection."
+	else:
+		text = text + "\nGlobal ranking coming soon!"
