@@ -43,13 +43,16 @@ func create(ind):
 
 func _http_request_completed(result, response_code, headers, body):
 	var response = body.get_string_from_utf8()
-	print(response)
+	var spl = response.split(",")
 	## THE FOLLOWING IS WHERE I PARSE THE MESSAGE TO GET RANK
-	if true:
-		text = text + "\nYou are ranked\n" + response + " out of " + str(2) + "\nplayers with a score of\n" + \
-		str(global.total_score) + \
-		".\nFor ranking rules visit hexxed.io"
-	elif false:
-		text = text + "\nTo see your global rank, please enable your data connection."
+	if spl[0] == "ok":
+		if spl[1] == "":
+			text = text + "\nYou need to play the game before you can be ranked!"
+		elif spl[2] == "0":
+			text = text + "\nYou need to complete a level before you can be ranked!"
+		else:
+			text = text + "\nYou are ranked\n" + spl[1] + " out of " + spl[3] + "\nplayers with a score of\n" + \
+			str(global.total_score) + \
+			".\nFor ranking rules visit hexxed.io"
 	else:
-		text = text + "\nGlobal ranking coming soon!"
+		text = text + "\nTo see your global rank, please enable your data connection."
