@@ -9,6 +9,8 @@ var menu_scene = load("res://scenes/hex_menu.tscn")#hex_menu.tscn")
 var menu_instance
 var hex_slide_scene = load("res://scripts/hex_slider.gd")
 var hex_slide_instance
+var survey_scene = load("res://scenes/survey1.tscn")
+var survey_instance
 var perm_instance
 var device_ID = Vector2(0,0)
 var total_saves = 0
@@ -69,6 +71,12 @@ func start_game():
 	$data_send.search_and_send()
 	new_menu()
 	#twn.set_tween_process_mode(0)
+
+func start_survey():
+	get_tree().call_group("hex_slider","hide")
+	menu_instance.queue_free()
+	survey_instance = survey_scene.instance()
+	add_child(survey_instance)
 
 func new_menu():
 	menu_instance = menu_scene.instance()

@@ -19,7 +19,7 @@ func search_and_send():
 	dir.list_dir_begin()
 	file_name = dir.get_next()
 	while file_name != "":
-		if file_name.begins_with("data"):
+		if file_name.begins_with("data") or file_name.begins_with("surv"):
 			file.open("user://" + file_name,file.READ)
 			header = ["Content-Type: application/json", \
 			str("ID:",$"..".device_ID[0],"_",$"..".device_ID[1]) , \

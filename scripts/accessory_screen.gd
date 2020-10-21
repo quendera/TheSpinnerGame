@@ -1,12 +1,12 @@
 extends Label
 
 var acc_items = PoolStringArray(["",\
-"We are neuroscientists who developed this game to study how humans learn to solve problems. By playing the game, you provide the data to make this possible!",\
+"We are neuroscientists who developed this game to study how humans learn to solve problems. By playing the game, you provide the data to make this possible!\n\n You can reach us at\nthehexxedgame@gmail.com.\nIf you would like to disenroll from the study, please include code\n",\
 #"This game is a puzzle for you to solve. Keep on trying and leave the rest to your brain!",\
 "",\
 "",\
 "Design\nGautam Agarwal\nTiago Quendera\nZachary Mainen\n\nMusic\nadapted from\n8notes.com\n\nAdditional media\nBruna Pontes\nDiogo Matias\n\nPowered by Godot Engine",\
-"Reach us at\nthehexxedgame@gmail.com\n\nIf you would like to disenroll from the study, please include code\n"])
+""])
 var http_request = HTTPRequest.new()
 var tot_stars
 var ip_url = "http://95.179.150.62" + "/upload/score.php"
@@ -28,7 +28,7 @@ func _ready():
 
 func create(ind):
 	text = acc_items[ind]
-	if ind == 5:
+	if ind == 1:
 		text = text + str($"../..".device_ID)
 	if ind == 2:
 		tot_stars = 0

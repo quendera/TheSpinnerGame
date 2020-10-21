@@ -11,7 +11,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventScreenTouch:
-		if event.is_pressed():
+		if !event.is_pressed():
 			which_action(event.position-global.centre)
 
 func _notification(what):
@@ -34,6 +34,7 @@ func _notification(what):
 
 func which_action(click_loc):
 	if choice == -3:
+		$"../accessory_screen".http_request.cancel_request()
 		$"../../move".play()
 		reset_hints()
 		choice = -1
@@ -47,6 +48,8 @@ func which_action(click_loc):
 					choice = lobe[1]
 					#$"../../move".play()
 					interpolate_method(self,"make_dim",0,1,global.move_time_new,transition,ease_direction)
+				elif lobe[1] == 5:
+					$"../..".start_survey()
 				elif lobe[1] == 0:
 					get_tree().quit()
 				elif !is_active():

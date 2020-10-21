@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/hex_progress_perfect.gd" type="Script" id=1]
+[ext_resource path="res://scripts/hex_progress.gd" type="Script" id=2]
+[ext_resource path="res://scripts/hex_progress_back.gd" type="Script" id=3]
+[ext_resource path="res://scripts/progress_text.gd" type="Script" id=4]
+[ext_resource path="res://scripts/smiley.gd" type="Script" id=5]
+[ext_resource path="res://assets/imgs/smiley_new.png" type="Texture" id=6]
+
+[node name="hex_progress_back" type="Polygon2D"]
+script = ExtResource( 3 )
+
+[node name="progress_text" type="Label" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+align = 1
+valign = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hex_progress" type="Polygon2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="smiley" type="Sprite" parent="hex_progress"]
+rotation = -1.5708
+texture = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="hex_progress_perfect" type="Polygon2D" parent="."]
+script = ExtResource( 1 )
