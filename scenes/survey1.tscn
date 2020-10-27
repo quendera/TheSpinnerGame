@@ -20,9 +20,9 @@ current = true
 zoom = Vector2( 0.66, 0.66 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 80.0
+margin_left = 48.0
 margin_top = 360.0
-margin_right = 323.0
+margin_right = 291.0
 margin_bottom = 428.0
 rect_rotation = -90.0
 rect_scale = Vector2( 1.4, 1.4 )

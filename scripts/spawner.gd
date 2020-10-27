@@ -48,8 +48,8 @@ func _ready():
 	sw_order = shuffleList(range(global.sw_count),int(arr[arr.size()-1][2])/global.sw_count)#range(ball_per_sw))
 	var accum = 0
 	accum_points.append(accum)
-	for i in range(global.sw_count):
-		accum += int(arr[sw_order[i]*ball_per_sw][3])  
+	for j in range(global.sw_count):
+		accum += int(arr[sw_order[j]*ball_per_sw][3])  
 		accum_points.append(accum)
 	global.max_score = accum
 	mySpawn()

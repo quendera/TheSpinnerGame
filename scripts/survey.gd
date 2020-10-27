@@ -9,7 +9,7 @@ var TIPI_qs = PoolStringArray(["Age","Sex","extraverted and enthusiastic","criti
 	"complex and open to new experiences", "reserved and quiet", 
 	"sympathetic and warm", "disorganized and careless", "calm and emotionally stable",
 	"conventional and uncreative"])
-var age_scale = PoolStringArray(["0-9","10-19","20-29","30-39","40-49","50-59","60 or older"])
+var age_scale = PoolStringArray(["0-9","10-19","20-29","30-39","40-49","50-59","60-69","70-79","80 or older"])
 var sex_scale = PoolStringArray(["Female","Male","Other"])
 var questions = []
 var answers = []
@@ -19,13 +19,15 @@ var data
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	data = {"question_ID":[],"answer_ID":[],"answer_time":[],
-		"start_time": OS.get_ticks_msec(),"end_time": 0}
+		"start_time": OS.get_ticks_msec(),"end_time": 0,
+		"toggle_qID":[],"toggle_time":[],"toggle_pressed":[]}
 	for i in range(TIPI_qs.size()):
 		answers.push_back(0)
 		questions.append(OptionButton.new())
 		questions[i].set_size(Vector2(global.h*.55,20))
-		questions[i].set_position(Vector2(200+i*30,global.h*.6))
+		questions[i].set_position(Vector2(150+i*30,global.h*.6))
 		questions[i].connect("item_selected", self, "_on_selected",[i])
+		questions[i].connect("toggled",self,"_on_toggled",[i])
 		questions[i].set_rotation(-PI/2)
 		questions[i].get_popup().set_rotation(-PI/2)
 		questions[i].get_popup().set("custom_colors/font_color_disabled",Color(0.9, 0.9, 0.9,.5))
@@ -51,6 +53,11 @@ func write_data():
 	file.open("user://surv" + String(OS.get_unix_time()) +".json", File.WRITE)
 	file.store_line(to_json(data))
 	file.close()
+
+func _on_toggled(pressed,qID):
+	data["toggle_qID"].push_back(qID)
+	data["toggle_time"].push_back(OS.get_ticks_msec())
+	data["toggle_pressed"].push_back(pressed)
 
 func _on_selected(idx,qID):
 	data["question_ID"].push_back(qID)
