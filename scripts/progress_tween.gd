@@ -28,7 +28,7 @@ func reset_hints():
 	slide_hints(0,4)
 	#interpolate_method($"../hex_subwave","total_points",0,norm,global.move_time_new,$"../action_tween".transition,$"../action_tween".ease_direction)
 	$"../hex_subwave_capture".color = global.hex_color(6) 
-	$"../percentage".set_prc(0)
+	#$"../percentage".set_prc(0)
 	interpolate_callback(self,global.move_time_new+global.harp_pluck_len,"remove_all")
 	start()
 

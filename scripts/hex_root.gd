@@ -28,6 +28,11 @@ func _ready():
 	AudioServer.set_bus_volume_db(0,-10)
 	$spiccato.volume_db = -5
 	$spiccatoB.volume_db = 0
+	#if !file.file_exists("user://spawn.txt"):
+	#	var dir = Directory.new()
+	#	dir.copy("res://assets/files/spawn.txt","user://spawn.txt")
+	#	for i in range(6):
+	#		dir.copy("res://assets/files/"+str(i+1)+".txt","user://"+str(i+1)+".txt")
 	if file.file_exists("user://levelscores"):
 		file.open_compressed("user://levelscores",File.READ)
 		for i in range(12):
