@@ -76,7 +76,7 @@ margin_bottom = 1615.0
 rect_rotation = 270.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.705882, 0.705882, 0.705882, 1 )
-text = "We designed this game to study how people solve problems. We do this by saving and analyzing your actions in the game. All the data is completely anonymous and stored in a secure server.  At any time you can withdraw from the study by following the instructions in the CONTACT tab.
+text = "We designed this game to study how people solve problems. We do this by saving and analyzing your actions in the game. All the data is completely anonymous and stored in a secure server.  At any time you can withdraw from the study by following the instructions in the \"privacy\" section of our website, hexxed.io.
 
 I hereby consent to having my data collected. If I am under 18, I have gotten permission from my parents to participate. "
 align = 1

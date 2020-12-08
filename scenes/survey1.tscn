@@ -7,12 +7,27 @@
 [ext_resource path="res://scripts/submit1.gd" type="Script" id=5]
 [ext_resource path="res://assets/batmfa__.ttf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-use_mipmaps = true
-use_filter = true
+[sub_resource type="DynamicFont" id=2]
+size = 90
+extra_spacing_top = -40
+extra_spacing_bottom = -40
 font_data = ExtResource( 6 )
 
 [node name="test" type="Node2D"]
+
+[node name="Label" type="RichTextLabel" parent="."]
+margin_left = 40.0
+margin_top = 361.0
+margin_right = 725.0
+margin_bottom = 584.0
+rect_rotation = -90.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.627451, 0.627451, 0.627451, 1 )
+text = "Your answers below will help us learn how your qualities influence the way you play the game."
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="survey" type="Control" parent="."]
 script = ExtResource( 1 )
@@ -24,19 +39,6 @@ __meta__ = {
 anchor_mode = 0
 current = true
 zoom = Vector2( 0.66, 0.66 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = 48.0
-margin_top = 360.0
-margin_right = 291.0
-margin_bottom = 428.0
-rect_rotation = -90.0
-custom_fonts/font = SubResource( 1 )
-text = "By answering these questions, you will help us learn how your qualities influence the way you play the game."
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Area2D2" type="Area2D" parent="."]
 input_pickable = false

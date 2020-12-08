@@ -18,14 +18,14 @@ var data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	data = {"question_ID":[],"answer_ID":[],"answer_time":[],
+	data = {"question_ID":[],"answer_ID":[],"answer_time":[],"date_time":OS.get_datetime(),
 		"start_time": OS.get_ticks_msec(),"end_time": 0,
 		"toggle_qID":[],"toggle_time":[],"toggle_pressed":[]}
 	for i in range(TIPI_qs.size()):
 		answers.push_back(0)
 		questions.append(OptionButton.new())
 		questions[i].set_size(Vector2(global.h*.55,20))
-		questions[i].set_position(Vector2(150+i*30,global.h*.6))
+		questions[i].set_position(Vector2(180+i*30,global.h*.6))
 		questions[i].connect("item_selected", self, "_on_selected",[i])
 		questions[i].connect("toggled",self,"_on_toggled",[i])
 		questions[i].set_rotation(-PI/2)
@@ -48,7 +48,6 @@ func _ready():
 		add_child(questions[i])
 
 func write_data():
-	print(33)
 	data["end_time"] = OS.get_ticks_msec()
 	file.open("user://surv" + String(OS.get_unix_time()) +".json", File.WRITE)
 	file.store_line(to_json(data))
