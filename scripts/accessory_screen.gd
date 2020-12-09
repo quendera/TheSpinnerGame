@@ -38,6 +38,7 @@ func create(ind):
 		http_request.request(ip_url,["Content-Type: application/json", \
 			str("ID:",$"../..".device_ID[0],"_",$"../..".device_ID[1])])#,true,HTTPClient.METHOD_GET)#POST,str(OS.get_datetime()))
 		write_data()
+		text = "SCORE\n" + str(global.total_score)
 		#text = You have unlocked\n" + str(tot_stars) + " out of 42\nblue hexxes."
 	#cur_rot = rot
 	#rect_rotation = rot*60-180
@@ -55,12 +56,11 @@ func _http_request_completed(result, response_code, headers, body):
 	## THE FOLLOWING IS WHERE I PARSE THE MESSAGE TO GET RANK
 	if spl[0] == "ok":
 		if spl[1] == "":
-			text = text + "\nYou need to play the game before you can be ranked!"
+			text = text + "\n\nYou need to play the game before you can be ranked!"
 		elif spl[2] == "0":
-			text = text + "\nYou need to complete a level before you can be ranked!"
+			text = text + "\n\nYou need to complete a level before you can be ranked!"
 		else:
-			text = text + "\nRANK\n" + spl[1] + " of " + spl[3] + " players\n\nSCORE\n" + \
-			str(global.total_score) + \
+			text = "RANK\n" + spl[1] + " of " + spl[3] + " players\n\n" + text + \
 			"\n\nFor scoring rules visit hexxed.io"
 	else:
 		text = text + "\nTo see your global rank, please enable your data connection."
