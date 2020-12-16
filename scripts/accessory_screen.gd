@@ -8,7 +8,7 @@ var acc_items = PoolStringArray(["",\
 "Game Design\nGautam Agarwal + Tiago Quendera\n\nAdditional media\nBruna Pontes + Diogo Matias\n\nSpecial Thanks\nZachary Mainen + Mani Hamidi\n\nMusic\nadapted from 8notes.com\n\nPowered by Godot Engine",\
 ""])
 var http_request = HTTPRequest.new()
-var tot_stars
+var leader_data = PoolIntArray()
 var ip_url = "http://95.179.150.62" + "/upload/score.php"
 
 func _ready():
@@ -31,36 +31,53 @@ func create(ind):
 	if ind == 1:
 		text = text + str($"../..".device_ID)
 	if ind == 2:
-		tot_stars = 0
-		for i in range(6):
-			tot_stars = tot_stars + max(0,(i+1)*global.level_scores[i*2]/global.num_waves[i])
+		leader_data = [OS.get_ticks_msec(),0,0,0,0] #start time,rank,players,server response time, server response
+		#tot_stars = 0
+		#for i in range(6):
+		#	tot_stars = tot_stars + max(0,(i+1)*global.level_scores[i*2]/global.num_waves[i])
 		#THE FOLLOWING IS WHERE I REQUEST RANK
 		http_request.request(ip_url,["Content-Type: application/json", \
 			str("ID:",$"../..".device_ID[0],"_",$"../..".device_ID[1])])#,true,HTTPClient.METHOD_GET)#POST,str(OS.get_datetime()))
-		write_data()
-		text = "SCORE\n" + str(global.total_score)
+		#write_data()
+		leader_text("Accessing server...")
+		#text = "RANK\nAccessing server\n\n" + "SCORE\n" + str(global.total_score) + \
+		#"\n\nFor scoring rules visit hexxed.io"
 		#text = You have unlocked\n" + str(tot_stars) + " out of 42\nblue hexxes."
 	#cur_rot = rot
 	#rect_rotation = rot*60-180
 
 func write_data():
+	var dict = OS.get_datetime()
+	dict["start_time"] = leader_data[0]
+	dict["current_score"] = global.total_score
+	dict["rank"] = leader_data[1]
+	dict["total_players"] = leader_data[2]
+	dict["server_response_time"] = leader_data[3]
+	dict["server_response"] = leader_data[4]
+	dict["screen_exit"] = OS.get_ticks_msec()
 	var file = File.new()
 	file.open("user://lead" + String(OS.get_unix_time()) +".json", File.WRITE)
-	file.store_line(to_json(OS.get_datetime()))
+	file.store_line(to_json(dict))#OS.get_datetime()))
 	file.close()
 	$"../../../hex_root/data_send".search_and_send()
 
 func _http_request_completed(result, response_code, headers, body):
+	leader_data[3] = OS.get_ticks_msec()
 	var response = body.get_string_from_utf8()
 	var spl = response.split(",")
-	## THE FOLLOWING IS WHERE I PARSE THE MESSAGE TO GET RANK
 	if spl[0] == "ok":
+		leader_data[4] = 1
 		if spl[1] == "":
-			text = text + "\n\nYou need to play the game before you can be ranked!"
-		elif spl[2] == "0":
-			text = text + "\n\nYou need to complete a level before you can be ranked!"
+			leader_text("Play the game to get a rank!")
 		else:
-			text = "RANK\n" + spl[1] + " of " + spl[3] + " players\n\n" + text + \
-			"\n\nFor scoring rules visit hexxed.io"
+			leader_data[1] = int(spl[1])
+			leader_data[2] = int(spl[3])
+			leader_text(spl[1] + " of " + spl[3] + " players")
 	else:
-		text = text + "\nTo see your global rank, please enable your data connection."
+		leader_data[4] = -1
+		leader_text("Could not access server")
+
+func leader_text(rank):
+	text = "RANK\n" + rank + "\n\n" + \
+			"SCORE\n" + str(global.total_score) + \
+			"\n\nFor scoring rules visit hexxed.io"

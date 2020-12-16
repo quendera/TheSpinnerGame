@@ -35,6 +35,8 @@ func _notification(what):
 func which_action(click_loc):
 	if choice == -3:
 		$"../accessory_screen".http_request.cancel_request()
+		if lobe[1] == 2:
+			$"../accessory_screen".write_data()
 		$"../../move".play()
 		reset_hints()
 		choice = -1
