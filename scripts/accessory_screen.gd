@@ -5,7 +5,7 @@ var acc_items = PoolStringArray(["",\
 #"This game is a puzzle for you to solve. Keep on trying and leave the rest to your brain!",\
 "",\
 "",\
-"Game Design\nGautam Agarwal + Tiago Quendera\n\nAdditional media\nBruna Pontes + Diogo Matias\n\nSpecial Thanks\nZachary Mainen + Mani Hamidi\n\nMusic\nadapted from 8notes.com\n\nPowered by Godot Engine",\
+"Game Design\nGautam Agarwal + Tiago Quendera\n\nAdditional media\nBruna Pontes + Diogo Matias\n\nSpecial Thanks\nZachary Mainen + Mani Hamidi\n\nSound + Music\nfreesound.org + 8notes.com\n\nPowered by Godot Engine",\
 ""])
 var http_request = HTTPRequest.new()
 var leader_data = PoolIntArray()
