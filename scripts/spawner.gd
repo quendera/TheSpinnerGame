@@ -116,8 +116,8 @@ func _notification(what):
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
 		global.data["focus_in"].push_back(OS.get_ticks_msec())#print("focus in")
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
-		$"../..".save_data(false,false)
 		global.data["focus_out"].push_back(OS.get_ticks_msec())#print("focus out")
+		$"../..".save_data(false,false)
 		#get_tree().quit()
 
 func read_music_time():#fname):
