@@ -70,15 +70,15 @@ func mySpawn():
 		curr_wv_points = 0
 		$"../..".save_data(true,true,false,$"../progress_tween".scale_count)
 	else:
-		var rep_rand = global.repeat_bad == 1 and $"../progress_tween".num_fails > 0
-		if (global.make_rand == 0 or (global.make_rand == 1 and ball_per_sw == 1)) and !rep_rand:
+		#var rep_rand = global.repeat_bad == 1 and $"../progress_tween".num_fails > 0
+		if (global.make_rand == 0 or (global.make_rand == 1 and ball_per_sw == 1)):# and !rep_rand:
 			rand_offset = 0
 			rand_flip = 0
-		elif global.make_rand == 1 and !rep_rand:
+		elif global.make_rand == 1: # and !rep_rand:
 			input_i = sw_order[sw]*ball_per_sw + ball_per_sw - 1
 			rand_offset = int(fposmod(-int(arr[input_i][0]),6))
 			rand_flip = int(fposmod(int(arr[input_i][0])-int(arr[input_i-1][0]),6) > 3 or (ball_per_sw > 2 and fposmod(int(arr[input_i][0])-int(arr[input_i-1][0]),6) == 3 and fposmod(int(arr[input_i][0])-int(arr[input_i-2][0]),6) > 3)) 
-		elif (global.make_rand == 2 and !(global.repeat_bad == 0 and $"../progress_tween".num_fails > 0)) or rep_rand:
+		elif (global.make_rand == 2 and !(global.repeat_bad == 0 and $"../progress_tween".num_fails > 0)):# or rep_rand:
 			rand_offset = randi() % 6
 			rand_flip = randi() % 2
 		$"../action_tween".rst()
@@ -96,10 +96,8 @@ func mySpawn():
 			hex_target_instance = hex_target_scene.new()
 			hex_target_instance.create(send_rot,i)
 			add_child(hex_target_instance)
-			#print(hex_target_instance)
-		if ball_per_sw == 1 and $"..".has_node("hex_teacher"):# and sw == 0:
-			$"../hex_teacher".set_pos(send_rot)
-		#print(get_child_count())
+		#if ball_per_sw == 1 and $"..".has_node("hex_teacher"):# and sw == 0:
+		#	$"../hex_teacher".set_pos(send_rot)
 		log_data()
 		sw += 1
 		sw_played += 1

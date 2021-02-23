@@ -66,12 +66,12 @@ func init(lev,device_ID,num_saves):
 	"device_screensize_x":OS.get_screen_size().x,"device_screensize_y":OS.get_screen_size().y,
 	"device_timezone":OS.get_time_zone_info(),"device_dpi":OS.get_screen_dpi(),
 	"device_IP": IP.get_local_addresses(),"device_ID":OS.get_unique_id(),
-	"device_ID_time":device_ID.x,"device_ID_rand":device_ID.y,
+	"device_ID_time":device_ID[0],"device_ID_rand":device_ID[1],
 	"device_video_driver":OS.get_current_video_driver(),
 	"OS_start_time": OS.get_ticks_msec(), "drone_play": [], "focus_in":[], "focus_out":[], 
 	"failure_thresh":global.fail_thresh,"rand_pos": global.make_rand, "repeat_bad": global.repeat_bad,
 	"user_quit":false,"level_won":false,"level_end_time":0,"level_scores":level_scores,
-	"total_saves":num_saves,"max_unlocked":max_level ,"version":2.07}
+	"total_saves":num_saves,"max_unlocked":max_level ,"version":device_ID[2]}
 
 func pie_hex(coords,angle):
 	angle *= 6

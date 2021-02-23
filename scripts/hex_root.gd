@@ -12,7 +12,7 @@ var hex_slide_instance
 var survey_scene = load("res://scenes/survey1.tscn")
 var survey_instance
 var perm_instance
-var device_ID = Vector2(0,0)
+var device_ID = Array([0,0,0])# = Vector3(0,0,0)
 var total_saves = 0
 var in_lab = 0
 var twn = Tween.new()
@@ -61,8 +61,11 @@ func start_game():
 		gen_ID()
 	else:
 		file.open_compressed("user://deviceID",File.READ)
-		device_ID.x = file.get_32()
-		device_ID.y = file.get_32()
+		var sz = file.get_len()
+		device_ID[0] = file.get_32()
+		device_ID[1] = file.get_32()
+		if sz >= 12:
+			device_ID[2] = file.get_32()
 		file.close()
 	add_child(twn)
 	twn.start()
@@ -84,9 +87,10 @@ func new_menu():
 
 func gen_ID():
 	file.open_compressed("user://deviceID",File.WRITE)
-	device_ID = Vector2(OS.get_unix_time(),randi())
-	file.store_32(device_ID.x)
-	file.store_32(device_ID.y)
+	device_ID = Array([OS.get_unix_time(),randi(),208])#,fmod(randi(),3),fmod(randi(),4),fmod(randi(),4))
+	file.store_32(device_ID[0])
+	file.store_32(device_ID[1])
+	file.store_32(device_ID[2])
 	file.close()
 
 func start_level(lobe):
@@ -95,10 +99,23 @@ func start_level(lobe):
 		global.fail_thresh = 6
 		global.make_rand = 2
 		global.repeat_bad = 2
+	elif device_ID[2] < 208: # users with old game version
+		global.fail_thresh = 15
+		global.make_rand = 2
+		global.repeat_bad = 2
 	else:
-		global.fail_thresh = 15#*(fmod(device_ID.y,4)+1)
-		global.make_rand = 2#min(2,fmod(int(device_ID.y)/4,4))
-		global.repeat_bad = 2#min(2,fmod(int(device_ID.y)/16,4))
+		# '*' indicates the value previously used
+		# randomly assigned either 10, 15*, or 20 points below optimal
+		global.fail_thresh = 5*(fmod(device_ID[1],3)+2)
+		# 0 = 1st target assigned position 0; 2nd last is clockwise
+		# 1 = last target assigned position 0; 2nd last is counterclockwise
+		# 2* = rotation/flip is randomly assigned
+		global.make_rand = min(2,fmod(floor(device_ID[1]/3),4))
+		# 0 = repeat pattern after poor performance in same orientation
+		# 1 = repeat pattern after poor performance in diff orientation
+		# 2( = do not repeat pattern
+		global.repeat_bad = min(2,fmod(floor(device_ID[1]/12),4))
+	#print([global.fail_thresh,global.make_rand,global.repeat_bad])
 	game_instance = game_scene.instance()
 	global.init(lobe,device_ID,total_saves)
 	add_child(game_instance)

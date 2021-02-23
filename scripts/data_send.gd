@@ -3,7 +3,7 @@ extends HTTPRequest
 var dir = Directory.new()
 var file_name
 var ip_url = "http://95.179.150.62/upload/"# + "/upload/gd.php"
-var suff = ["gd.php","survey.php","leaderboard.php"]
+var suff = ["gd.php","survey.php","leaderboard.php","help.php"]
 var header
 var query
 var file = File.new()
@@ -20,7 +20,7 @@ func search_and_send():
 	dir.list_dir_begin()
 	file_name = dir.get_next()
 	while file_name != "":
-		if file_name.begins_with("data") or file_name.begins_with("surv") or file_name.begins_with("lead"):
+		if file_name.begins_with("data") or file_name.begins_with("surv") or file_name.begins_with("lead")  or file_name.begins_with("help"):
 			file.open("user://" + file_name,file.READ)
 			header = ["Content-Type: application/json", \
 			str("ID:",$"..".device_ID[0],"_",$"..".device_ID[1]) , \
@@ -31,8 +31,10 @@ func search_and_send():
 				ind = 0
 			elif file_name.begins_with("surv"):
 				ind = 1
-			else:
+			elif file_name.begins_with("lead"):
 				ind = 2
+			elif file_name.begins_with("help"):
+				ind = 3
 			request(ip_url + suff[ind], header,true,HTTPClient.METHOD_POST,file.get_as_text())
 			#data_send_instance.create(file_name.left(file_name.length()-5).right(4),device_ID,file1.get_as_text())
 			file.close()

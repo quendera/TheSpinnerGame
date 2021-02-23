@@ -1,6 +1,6 @@
 extends Label
 
-var acc_items = PoolStringArray(["",\
+var acc_items = PoolStringArray(["Many players find the game confusing at first. We give you no instructions because we are studying how you learn to make sense of the game. We hope you keep trying until you succeed!",\
 "We are neuroscientists who developed this game to study how humans learn to solve problems. By playing the game, you provide the data to make this possible!\n\nYou can learn more at http://hexxed.io.\n\nYour user ID is\n",\
 #"This game is a puzzle for you to solve. Keep on trying and leave the rest to your brain!",\
 "",\
@@ -28,9 +28,11 @@ func _ready():
 
 func create(ind):
 	text = acc_items[ind]
-	if ind == 1:
+	if ind == 0:
+		leader_data = [OS.get_ticks_msec()]
+	elif ind == 1:
 		text = text + str($"../..".device_ID)
-	if ind == 2:
+	elif ind == 2:
 		leader_data = [OS.get_ticks_msec(),0,0,0,0] #start time,rank,players,server response time, server response
 		#tot_stars = 0
 		#for i in range(6):
@@ -45,6 +47,16 @@ func create(ind):
 		#text = You have unlocked\n" + str(tot_stars) + " out of 42\nblue hexxes."
 	#cur_rot = rot
 	#rect_rotation = rot*60-180
+
+func write_help():
+	var dict = OS.get_datetime()
+	dict["start_time"] = leader_data[0]
+	dict["screen_exit"] = OS.get_ticks_msec()
+	var file = File.new()
+	file.open("user://help" + String(OS.get_unix_time()) +".json", File.WRITE)
+	file.store_line(to_json(dict))#OS.get_datetime()))
+	file.close()
+	$"../../../hex_root/data_send".search_and_send()
 
 func write_data():
 	var dict = OS.get_datetime()
