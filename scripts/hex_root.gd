@@ -12,7 +12,7 @@ var hex_slide_instance
 var survey_scene = load("res://scenes/survey1.tscn")
 var survey_instance
 var perm_instance
-var device_ID = Array([0,0,0])# = Vector3(0,0,0)
+var device_ID = Array([0,0,0])
 var total_saves = 0
 var in_lab = 0
 var twn = Tween.new()
@@ -87,7 +87,7 @@ func new_menu():
 
 func gen_ID():
 	file.open_compressed("user://deviceID",File.WRITE)
-	device_ID = Array([OS.get_unix_time(),randi(),208])#,fmod(randi(),3),fmod(randi(),4),fmod(randi(),4))
+	device_ID = Array([OS.get_unix_time(),randi(),209])#,fmod(randi(),3),fmod(randi(),4),fmod(randi(),4))
 	file.store_32(device_ID[0])
 	file.store_32(device_ID[1])
 	file.store_32(device_ID[2])
@@ -113,7 +113,7 @@ func start_level(lobe):
 		global.make_rand = min(2,fmod(floor(device_ID[1]/3),4))
 		# 0 = repeat pattern after poor performance in same orientation
 		# 1 = repeat pattern after poor performance in diff orientation
-		# 2( = do not repeat pattern
+		# 2* = do not repeat pattern
 		global.repeat_bad = min(2,fmod(floor(device_ID[1]/12),4))
 	#print([global.fail_thresh,global.make_rand,global.repeat_bad])
 	game_instance = game_scene.instance()
